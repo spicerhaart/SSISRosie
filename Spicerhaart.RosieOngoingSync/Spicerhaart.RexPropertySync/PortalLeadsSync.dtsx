@@ -1,0 +1,1988 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/16/2018 11:10:48 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WX9000ITD24"
+  DTS:CreatorName="SPICERHAART\1905803"
+  DTS:DTSID="{AB9EB8B9-B7E9-4D7E-B4D1-DDEBD09E04D7}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="PortalLeadsSync"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="1"
+  DTS:VersionBuild="129"
+  DTS:VersionGUID="{A74C42B5-BE47-4C6F-9FAA-DABADC113D41}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[httpConnection]"
+      DTS:CreationName="ZS-HTTP"
+      DTS:DTSID="{2CA9AB86-8197-4CED-8A23-A8CA4E435F4A}"
+      DTS:ObjectName="httpConnection">
+      <DTS:ObjectData>
+        <ConnectionManager
+          ConnectionString="Url=https://api.uk.rexsoftware.com/special_interface/leads/;CredentialType=Basic;UserName=leaddrop;Timeout=100000;SoapWssPasswordType=Notset;JwtCustomClaims=;UseProxy=False;ProxyUrl=;UseProxyCreds=False;ProxyUserName=;DoNotUseDefaultProxy=False;UseClientCertificate=False;CertificatePath=;CertificateStorageType=CurrentUser;CertificateStoreName=My;CertificateThumbprint=;RetryMode=None;RetryCountMax=3;RetryWaitTimeMs=2000;RetryMultiplyWaitTime=False;RetryMessageList=;RetryStatusCodeList=;AuthScheme=Bearer;TokenAuthHeader=;TokenUrl=;TokenRequestData=;TokenRequestHeaders=;TokenRequestMethod=;TokenRequestContentType=Default;TokenResponseContentFilter=;TokenResponseValueExtractMode=Body;TokenResponseCookie=;TokenResponseHeader=;TokenResponseContentType=None;TokenExpirationTimeInSeconds=3600">
+          <Password
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAVMlPrOXYg0KXzKv0lVo7kQAAAAACAAAAAAADZgAAwAAAABAAAADObXBmNg0ZlHYs3Y1Xa9flAAAAAASAAACgAAAAEAAAAPPrLIot7g3oYmnEPTT4BPkYAAAAjORX+bVScOIKaoSicxDnfbWcEklIebu6FAAAANzbYOV79tAA/MXp/f/mNU2eDEhf</Password>
+        </ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PortalFeedsInboundLive]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{F4C958C7-025A-417B-BAC4-B2A460AD0516}"
+      DTS:ObjectName="PortalFeedsInboundLive">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=COLSQL15\Inst02;User ID=RosieUser;Initial Catalog=PortalFeedsInboundLive;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAVMlPrOXYg0KXzKv0lVo7kQAAAAACAAAAAAADZgAAwAAAABAAAACelWbCE/UOiz3+ae/XcnyPAAAAAASAAACgAAAAEAAAALO0vdzPwBeYDj8icE+LzAkgAAAAUpo15qpB81/Xd/pexOxeXQcDW2CVq9buwsLBx+yJP64UAAAAJisEyNGDOZ83ekgmTSm47F9F/Rc=</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP 1]"
+      DTS:CreationName="ZS-SMTP"
+      DTS:DTSID="{CEF4DAFD-0CBA-489D-AA17-28E5C5ACE15D}"
+      DTS:ObjectName="SMTP 1">
+      <DTS:ObjectData>
+        <ConnectionManager
+          ConnectionString="SmtpServer=OUTLOOKCOL;UserName=;Port=25;EnableSsl=False;Timeout=10000;EnableAnonymousAuth=False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{8B08F32F-A656-4434-97D5-2A9B042C7E45}"
+      DTS:ObjectName="AlertEmailAddress"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">neil.strong@spicerhaart.co.uk</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{64170073-8D21-4D1A-8094-507725D642A3}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="boolProcessed">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{050E3252-859C-4F40-A536-152C69018823}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="dtLeadCreated">
+      <DTS:VariableValue
+        DTS:DataType="7">10/18/2018 9:35:36 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7ACA689E-46CC-458A-80A6-E6781BB7491E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorEmailAddress">
+      <DTS:VariableValue
+        DTS:DataType="8">Neil.Strong@spicerhaart.co.uk</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6BB7720A-5BC3-45FD-954B-325DF21FE98D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="intAccount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{93FAE34B-469F-404D-95FE-1EC0461E9954}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="intLeadId">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A51F7BFB-BE6E-4C73-9A8D-434556D2B56A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="intRexId">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0D42750F-B4D7-4E20-B0E5-44FDF161E30B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="intRexLeadID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{071FFB20-4268-4DC3-AF73-E47EB4DF7836}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="intRexListingLeadID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{02A25AFB-5AD6-4D6F-8E4F-5C2F9D5D83D7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="JSONLead">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{25699B53-5D7D-4EB7-A588-3B0F311B88D4}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="JSONVersion">
+      <DTS:VariableValue
+        DTS:DataType="3">1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DEC16477-118B-4C87-8893-CDCC5FCF9B18}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PortalLead">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{404639C5-E2B5-4474-9E94-BA088DBC5DC0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RunMode">
+      <DTS:VariableValue
+        DTS:DataType="8">LIVE</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F4348A98-1B78-4191-B210-744D153BA5F0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strBranchRef">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7F17A974-0148-45E4-83D5-02FF9BD763EB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strContactEmail">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{164E78C0-0E22-405D-8E25-CCFB62F75A88}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strContactMobile">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3BDBC407-C17F-40EE-AA2D-95920B9EE785}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strContactName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4CD2C24A-CED4-436C-9F6B-79F99521EC1B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strContactPhone">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8784A435-0206-4D15-A363-3E2D93F9D292}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strListingAdd1">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{66EA679C-0A1C-478C-BC0B-84628039EAE7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strMessageBody">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{34E70F72-1B34-4A0E-880D-D4202B7031AF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strSourceEmail">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5993C71B-4D56-4F57-8FBE-FF62B601844E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F4C958C7-025A-417B-BAC4-B2A460AD0516}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="exec uspSelNextPortalLeadsToRosie"
+          SQLTask:ResultType="ResultSetType_Rowset"
+          SQLTask:TypeConversionMode="None" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::PortalLead" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{F26F5251-ADE3-4543-BAED-C71B3EE2A397}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{26584822-5232-456B-A8D8-92DA490B9258}"
+        DTS:ObjectName="{26584822-5232-456B-A8D8-92DA490B9258}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::PortalLead" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{AA25DB2F-BF0A-432B-8EA7-F1AA956BC078}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="UpdateResponse">
+          <DTS:VariableValue
+            DTS:DataType="8"
+            xml:space="preserve"></DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{2FA54EC1-45F8-4A9C-B88C-93741B35C573}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="UpdateResponseCode">
+          <DTS:VariableValue
+            DTS:DataType="8">0</DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{FCF3EB03-2ED8-4FF7-A026-82FBF6E78743}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="Variable1">
+          <DTS:VariableValue
+            DTS:DataType="8">0</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\CreateLeadJSON"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{3C6F9C86-EAB3-4B88-BE19-A761AE2E44FB}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="CreateLeadJSON"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::JSONLead]  = &quot;{&#xA;&#x9;\&quot;version\&quot;: &quot; + (@[User::JSONVersion] == -1 ? (DT_WSTR, 200)&quot;null&quot; :  (DT_WSTR, 200)@[User::JSONVersion]) + &quot;,&#xA;&#x9;\&quot;type\&quot;:\&quot;general\&quot;,&#xA;&#x9;\&quot;source\&quot;:&#xA;&#x9;{&#xA;&#x9;&#x9;\&quot;email_address\&quot;: &quot; + (@[User::strSourceEmail] == &quot;&quot; ? (DT_WSTR, 2000)&quot;null&quot; : &quot;\&quot;&quot; + (DT_WSTR, 2000)@[User::strSourceEmail] + &quot;\&quot;&quot;) + &quot;&#xA;&#x9;},&#xA;&#x9;\&quot;account\&quot;: &#xA;&#x9;{&#xA;&#x9;&#x9;\&quot;id\&quot;: &quot; + (@[User::intAccount] == -1 ? (DT_WSTR, 200)&quot;null&quot; :  (DT_WSTR, 200)@[User::intAccount]) + &quot;&#xA;&#x9;},&#xA;&#x9;\&quot;contact\&quot;: &#xA;&#x9;{&#xA;&#x9;&#x9;\&quot;name\&quot;: &quot; + (@[User::strContactName] == &quot;&quot; ? (DT_WSTR, 2000)&quot;null&quot; : &quot;\&quot;&quot; + (DT_WSTR, 2000)@[User::strContactName] + &quot;\&quot;&quot;) + &quot;,&#xA;&#x9;&#x9;\&quot;email_address\&quot;: &quot; + (@[User::strContactEmail] == &quot;&quot; ? (DT_WSTR, 2000)&quot;null&quot; : &quot;\&quot;&quot; + (DT_WSTR, 2000)@[User::strContactEmail] + &quot;\&quot;&quot;) + &quot;,&#xA;&#x9;&#x9;\&quot;mobile_number\&quot;: &quot; + (@[User::strContactMobile] == &quot;&quot; ? (DT_WSTR, 2000)&quot;null&quot; : &quot;\&quot;&quot; + (DT_WSTR, 2000)@[User::strContactMobile] + &quot;\&quot;&quot;) + &quot;,&#xA;&#x9;&#x9;\&quot;phone_number\&quot;: &quot; + (@[User::strContactPhone] == &quot;&quot; ? (DT_WSTR, 2000)&quot;null&quot; : &quot;\&quot;&quot; + (DT_WSTR, 2000)@[User::strContactPhone] + &quot;\&quot;&quot;) + &quot;&#xA;&#x9;},&#xA;&#x9;\&quot;message\&quot;: &#xA;&#x9;{&#xA;&#x9;&#x9;\&quot;body\&quot;: &quot; + (@[User::strMessageBody] == &quot;&quot; ? (DT_WSTR, 2000)&quot;null&quot; : &quot;\&quot;&quot; + (DT_WSTR, 2000)@[User::strMessageBody] + &quot;\&quot;&quot;) + &quot;&#xA;&#x9;}&#xA;}&quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\CreateLeadListingJSON"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{1C50A2BA-084A-441A-A378-EB3ABE289A6B}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="CreateLeadListingJSON"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::JSONLead]  = &quot;{&#xA;&#x9;\&quot;version\&quot;: &quot; + (@[User::JSONVersion] == -1 ? (DT_WSTR, 200)&quot;null&quot; :  (DT_WSTR, 200)@[User::JSONVersion]) + &quot;,&#xA;&#x9;\&quot;type\&quot;:\&quot;general\&quot;,&#xA;&#x9;\&quot;source\&quot;:&#xA;&#x9;{&#xA;&#x9;&#x9;\&quot;email_address\&quot;: &quot; + (@[User::strSourceEmail] == &quot;&quot; ? (DT_WSTR, 2000)&quot;null&quot; : &quot;\&quot;&quot; + (DT_WSTR, 2000)@[User::strSourceEmail] + &quot;\&quot;&quot;) + &quot;&#xA;&#x9;},&#xA;&#x9;\&quot;account\&quot;: &#xA;&#x9;{&#xA;&#x9;&#x9;\&quot;id\&quot;: &quot; + (@[User::intAccount] == -1 ? (DT_WSTR, 200)&quot;null&quot; :  (DT_WSTR, 200)@[User::intAccount]) + &quot;&#xA;&#x9;},&#xA;&#x9;\&quot;contact\&quot;: &#xA;&#x9;{&#xA;&#x9;&#x9;\&quot;name\&quot;: &quot; + (@[User::strContactName] == &quot;&quot; ? (DT_WSTR, 2000)&quot;null&quot; : &quot;\&quot;&quot; + (DT_WSTR, 2000)@[User::strContactName] + &quot;\&quot;&quot;) + &quot;,&#xA;&#x9;&#x9;\&quot;email_address\&quot;: &quot; + (@[User::strContactEmail] == &quot;&quot; ? (DT_WSTR, 2000)&quot;null&quot; : &quot;\&quot;&quot; + (DT_WSTR, 2000)@[User::strContactEmail] + &quot;\&quot;&quot;) + &quot;,&#xA;&#x9;&#x9;\&quot;mobile_number\&quot;: &quot; + (@[User::strContactMobile] == &quot;&quot; ? (DT_WSTR, 2000)&quot;null&quot; : &quot;\&quot;&quot; + (DT_WSTR, 2000)@[User::strContactMobile] + &quot;\&quot;&quot;) + &quot;,&#xA;&#x9;&#x9;\&quot;phone_number\&quot;: &quot; + (@[User::strContactPhone] == &quot;&quot; ? (DT_WSTR, 2000)&quot;null&quot; : &quot;\&quot;&quot; + (DT_WSTR, 2000)@[User::strContactPhone] + &quot;\&quot;&quot;) + &quot;&#xA;&#x9;},&#xA;&#x9;\&quot;message\&quot;: &#xA;&#x9;{&#xA;&#x9;&#x9;\&quot;body\&quot;: &quot; + (@[User::strMessageBody] == &quot;&quot; ? (DT_WSTR, 2000)&quot;null&quot; : &quot;\&quot;&quot; + (DT_WSTR, 2000)@[User::strMessageBody] + &quot;\&quot;&quot;) + &quot;&#xA;&#x9;},&#xA;&#x9;\&quot;listing\&quot;: &#xA;&#x9;{&#xA;&#x9;&#x9;\&quot;id\&quot;: &quot; + (@[User::intRexId] == -1 ? (DT_WSTR, 200)&quot;null&quot; :  (DT_WSTR, 200)@[User::intRexId]) + &quot;,&#xA;&#x9;&#x9;\&quot;address_string\&quot;: &quot; + (@[User::strListingAdd1] == &quot;&quot; ? (DT_WSTR, 2000)&quot;null&quot; : &quot;\&quot;&quot; + (DT_WSTR, 2000)@[User::strListingAdd1] + &quot;\&quot;&quot;) + &quot;&#xA;&#x9;&#xA;&#x9;}&#xA;}&quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Dummy Task"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{52B28D7D-9751-4D7B-90BC-6E0779A151C2}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Dummy Task"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="ISNULL( @[User::intRexId]  )" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Email Lead Failure"
+          DTS:CreationName="ZappySys.HtmlEmailTask"
+          DTS:Description="ZS HTML Email Task"
+          DTS:DTSID="{437669A9-0CF2-4AD8-8B53-F976E1D1FF8D}"
+          DTS:ExecutableType="ZappySys.HtmlEmailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Email Lead Failure"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <HtmlEmailTask
+              SmtpConnection="SMTP 1"
+              IsHtmlEmail="True"
+              DefaultStyle="&#xA;&lt;style type=&quot;text/css&quot;&gt;&#xA;body,div,p,span,td,th,table {&#xA; font-family: Helvetica, Arial, sans-serif;&#xA; font-size: 10pt; &#xA;}&#xA;h1,h2,h3,h4,h5{&#xA;font-family: Helvetica, Arial, sans-serif;&#xA;}&#xA;&#xA;table { &#xA; border-collapse: &#xA; collapse; border-spacing: 0; &#xA;}&#xA;&#xA;tr.odd    {background-color: #cccccc}&#xA;tr.even   {background-color: #fafafa}&#xA;td, th { border: 1px solid #bbb;padding: 5 5 5 5} &#xA;th { background: #F3F3F3;  font-weight: bold;}&#xA;&lt;/style&gt;&#xA;&#xA;"
+              Subject="Error occured in {{System::PackageName}}"
+              From="portalleads@spicerhaart.co.uk"
+              To="{{$Package::AlertEmailAddress}}"
+              Cc=""
+              ReplyTo=""
+              Bcc=""
+              Attachments=""
+              EmailPriority="Low"
+              MessageSourceType="Direct"
+              MessageDirectValue="&lt;b&gt;Failed to insert Portal Lead into Rosie&lt;/b&gt;&lt;p /&gt;&#xA;&#xA;&lt;p&gt;Response Code: {{User::UpdateResponseCode}} &lt;p /&gt;&#xA;&lt;p&gt;Response Error: {{User::UpdateResponse}} &lt;p /&gt;&#xA;&lt;p&gt;Lead Id: {{User::intLeadId}} &lt;p/&gt;"
+              MessageFileConnection=""
+              MessageVariable=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Email Listing Lead Failure"
+          DTS:CreationName="ZappySys.HtmlEmailTask"
+          DTS:Description="ZS HTML Email Task"
+          DTS:DTSID="{DCE170CC-1EB6-4857-B503-30CAC92C4886}"
+          DTS:ExecutableType="ZappySys.HtmlEmailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Email Listing Lead Failure"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <HtmlEmailTask
+              SmtpConnection="SMTP 1"
+              IsHtmlEmail="True"
+              DefaultStyle="&#xA;&lt;style type=&quot;text/css&quot;&gt;&#xA;body,div,p,span,td,th,table {&#xA; font-family: Helvetica, Arial, sans-serif;&#xA; font-size: 10pt; &#xA;}&#xA;h1,h2,h3,h4,h5{&#xA;font-family: Helvetica, Arial, sans-serif;&#xA;}&#xA;&#xA;table { &#xA; border-collapse: &#xA; collapse; border-spacing: 0; &#xA;}&#xA;&#xA;tr.odd    {background-color: #cccccc}&#xA;tr.even   {background-color: #fafafa}&#xA;td, th { border: 1px solid #bbb;padding: 5 5 5 5} &#xA;th { background: #F3F3F3;  font-weight: bold;}&#xA;&lt;/style&gt;&#xA;&#xA;"
+              Subject="Error occured in {{System::PackageName}}"
+              From="portalleads@spicerhaart.com"
+              To="{{$Package::AlertEmailAddress}}"
+              Cc=""
+              ReplyTo=""
+              Bcc=""
+              Attachments=""
+              EmailPriority="Low"
+              MessageSourceType="Direct"
+              MessageDirectValue="&lt;b&gt;Failed to insert Portal Lead into Rosie&lt;/b&gt;&lt;p /&gt;&#xA;&#xA;&lt;p&gt;Response Code: {{User::UpdateResponseCode}} &lt;p /&gt;&#xA;&lt;p&gt;Response Error: {{User::UpdateResponse}} &lt;p /&gt;&#xA;&lt;p&gt;Lead Id: {{User::intLeadId}} &lt;p/&gt;"
+              MessageFileConnection=""
+              MessageVariable=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Lead - Send email to branch"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{b8c030d7-fd65-488f-87cd-db92053b1f20}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="0"
+          DTS:ObjectName="Lead - Send email to branch"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}"
+              SQLTask:SqlStatementSource="EXEC ROSIE_uspProcessSendPortalLeadAlert ?, ? ,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@OfficeID"
+                SQLTask:DtsVariableName="User::strBranchRef"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@PortalLeadID"
+                SQLTask:DtsVariableName="User::intLeadId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@RunMode"
+                SQLTask:DtsVariableName="User::RunMode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Listing lead - Send email to branch"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{FA559117-97B5-4316-8C7D-6560DE005CC4}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="0"
+          DTS:ObjectName="Listing lead - Send email to branch"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}"
+              SQLTask:SqlStatementSource="EXEC ROSIE_uspProcessSendPortalLeadAlert ?, ? ,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@OfficeID"
+                SQLTask:DtsVariableName="User::strBranchRef"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@PortalLeadID"
+                SQLTask:DtsVariableName="User::intLeadId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@RunMode"
+                SQLTask:DtsVariableName="User::RunMode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Parse return lead object"
+          DTS:CreationName="ZappySys.JsonParserTask"
+          DTS:Description="ZS JSON Parser Task"
+          DTS:DTSID="{13D5BE75-2441-4019-9C7E-EDA00DD3698E}"
+          DTS:ExecutableType="ZappySys.JsonParserTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Parse return lead object"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <JsonParserTask
+              SourceAccessMode="Variable"
+              SourceVariable="User::UpdateResponse"
+              SourceConnection=""
+              SourceDirectValue="{&#xA;&quot;CustomerID&quot;: &quot;ALFKI&quot;,&#xA;&quot;CustomerName&quot;: &quot;Alfredo Koli&quot;,&#xA;&quot;Age&quot;: 55,&#xA;&quot;LocationInfo&quot;: {&quot;City&quot;:&quot;Newyork&quot;, &quot;State&quot;:&quot;NY&quot;, &quot;Zip&quot;:&quot;23234&quot;},&#xA;&quot;OrderIDList&quot;: [111,222,333,444,555]&#xA;}"
+              TargetSettings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;JsonParserSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;Mappings&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.id&lt;/Path&gt;&lt;Target&gt;User::intRexLeadID&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;/Mappings&gt;&lt;Path /&gt;&lt;/JsonParserSetting&gt;"
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Parse return listing lead object"
+          DTS:CreationName="ZappySys.JsonParserTask"
+          DTS:Description="ZS JSON Parser Task"
+          DTS:DTSID="{86F7583E-3A9C-4C84-B6B2-E711778F025A}"
+          DTS:ExecutableType="ZappySys.JsonParserTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Parse return listing lead object"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <JsonParserTask
+              SourceAccessMode="Variable"
+              SourceVariable="User::UpdateResponse"
+              SourceConnection=""
+              SourceDirectValue="{&#xA;&quot;CustomerID&quot;: &quot;ALFKI&quot;,&#xA;&quot;CustomerName&quot;: &quot;Alfredo Koli&quot;,&#xA;&quot;Age&quot;: 55,&#xA;&quot;LocationInfo&quot;: {&quot;City&quot;:&quot;Newyork&quot;, &quot;State&quot;:&quot;NY&quot;, &quot;Zip&quot;:&quot;23234&quot;},&#xA;&quot;OrderIDList&quot;: [111,222,333,444,555]&#xA;}"
+              TargetSettings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;JsonParserSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;Mappings&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.id&lt;/Path&gt;&lt;Target&gt;User::intRexListingLeadID&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;/Mappings&gt;&lt;Path /&gt;&lt;/JsonParserSetting&gt;"
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Reset intRexLeadID"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{2DB7C59E-A178-4553-85A9-D659470D2DA2}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Reset intRexLeadID"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::intRexLeadID] = 0" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Reset intRexListingLeadID"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{DC6FD0C4-444F-475D-8632-5241EDDD4996}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Reset intRexListingLeadID"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::intRexListingLeadID] = 0" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\REST API Insert Lead"
+          DTS:CreationName="ZappySys.RestApiTask"
+          DTS:Description="ZS REST API Task"
+          DTS:DTSID="{BB297293-908D-4A43-9219-AD769EF97B85}"
+          DTS:ExecutableType="ZappySys.RestApiTask"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="REST API Insert Lead"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <RestApiTask
+              RequestAccessMode="UrlFromConnection"
+              RequestUrlVariable=""
+              EnableStatusCheck="False"
+              StatucCheckMaxWaitSeconds="0"
+              StatucCheckIterationWaitSeconds="0"
+              StatusCheckForFailedValue="False"
+              StatusSuccessValue=""
+              StatusFailedValue=""
+              IsMultiPartUpload="False"
+              PreventAutoRedirect="False"
+              RequestTimeoutMs="0"
+              SecurityProtocol="Default"
+              EnableCompressionSupport="True"
+              AllowUnsecureSuite="False"
+              IgnoreCertificateErrors="False"
+              RequestUrl="https://api.rexsoftware.com/special_interface/leads/"
+              RequestUrlConnection="httpConnection"
+              RequestMethod="POST"
+              RequestContentType="ApplicationJson"
+              OverrideConnectionUrl="False"
+              RequestHeaders="&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;"
+              RequestData="{{User::JSONLead}}"
+              SaveResponse="True"
+              SaveResponseStatusCode="True"
+              ResponseAccessMode="Variable"
+              SaveAsBinary="False"
+              ResponseDataFilePath=""
+              ResponseHeaderMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+              ResponseCookieMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+              CookieContainerVariable=""
+              ConvertXmlToJson="False"
+              ResponseDataVariable="User::UpdateResponse"
+              ResponseStatusCodeVariable="User::UpdateResponseCode"
+              ResponseContentType="Json"
+              ResponseContentFilter=""
+              ResponseCharset=""
+              ValidateResponse="False"
+              ValidationRules="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ResponseValidationSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;MatchAny&gt;false&lt;/MatchAny&gt;&lt;Rules&gt;&lt;ResponseValidationRule xsi:type=&quot;StatusCodeValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;StatusCode&gt;200&lt;/StatusCode&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;ContentValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;Value /&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;HeaderValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;KeyName /&gt;&lt;Value /&gt;&lt;DataType&gt;String&lt;/DataType&gt;&lt;/ResponseValidationRule&gt;&lt;/Rules&gt;&lt;/ResponseValidationSetting&gt;"
+              ConsumeResponseOnError="True"
+              ContineOnAnyError="True"
+              ContineOnErrorForMessage="False"
+              ContineOnErrorForStatusCode="False"
+              ErrorStatusCodeToMatch="404"
+              MatchForEqual="True"
+              ErrorSubstringToMatch=""
+              ContineOn404Error="False"
+              SaveErrorFlagToVariable="False"
+              ErrorFlagVariableName=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\REST API Insert Listing Lead"
+          DTS:CreationName="ZappySys.RestApiTask"
+          DTS:Description="ZS REST API Task"
+          DTS:DTSID="{d3361364-7999-4061-9083-993bd4b6b907}"
+          DTS:ExecutableType="ZappySys.RestApiTask"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="REST API Insert Listing Lead"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <RestApiTask
+              RequestAccessMode="UrlFromConnection"
+              RequestUrlVariable=""
+              EnableStatusCheck="False"
+              StatucCheckMaxWaitSeconds="0"
+              StatucCheckIterationWaitSeconds="0"
+              StatusCheckForFailedValue="False"
+              StatusSuccessValue=""
+              StatusFailedValue=""
+              IsMultiPartUpload="False"
+              PreventAutoRedirect="False"
+              RequestTimeoutMs="0"
+              SecurityProtocol="Default"
+              EnableCompressionSupport="True"
+              AllowUnsecureSuite="False"
+              IgnoreCertificateErrors="False"
+              RequestUrl="https://api.rexsoftware.com/special_interface/leads/"
+              RequestUrlConnection="httpConnection"
+              RequestMethod="POST"
+              RequestContentType="ApplicationJson"
+              OverrideConnectionUrl="False"
+              RequestHeaders="&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;"
+              RequestData="{{User::JSONLead}}"
+              SaveResponse="True"
+              SaveResponseStatusCode="True"
+              ResponseAccessMode="Variable"
+              SaveAsBinary="False"
+              ResponseDataFilePath=""
+              ResponseHeaderMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+              ResponseCookieMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+              CookieContainerVariable=""
+              ConvertXmlToJson="False"
+              ResponseDataVariable="User::UpdateResponse"
+              ResponseStatusCodeVariable="User::UpdateResponseCode"
+              ResponseContentType="Json"
+              ResponseContentFilter=""
+              ResponseCharset=""
+              ValidateResponse="False"
+              ValidationRules="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ResponseValidationSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;MatchAny&gt;false&lt;/MatchAny&gt;&lt;Rules&gt;&lt;ResponseValidationRule xsi:type=&quot;StatusCodeValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;StatusCode&gt;200&lt;/StatusCode&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;ContentValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;Value /&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;HeaderValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;KeyName /&gt;&lt;Value /&gt;&lt;DataType&gt;String&lt;/DataType&gt;&lt;/ResponseValidationRule&gt;&lt;/Rules&gt;&lt;/ResponseValidationSetting&gt;"
+              ConsumeResponseOnError="True"
+              ContineOnAnyError="True"
+              ContineOnErrorForMessage="False"
+              ContineOnErrorForStatusCode="False"
+              ErrorStatusCodeToMatch="404"
+              MatchForEqual="True"
+              ErrorSubstringToMatch=""
+              ContineOn404Error="False"
+              SaveErrorFlagToVariable="False"
+              ErrorFlagVariableName=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Update Portal Listing Lead Queue"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{080F135D-1AFE-460C-BDC0-A119AE7E6E8D}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Portal Listing Lead Queue"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F4C958C7-025A-417B-BAC4-B2A460AD0516}"
+              SQLTask:SqlStatementSource="UPDATE [LEAD STAGING TABLE] &#xA;SET PROCESSED = 1&#xA;WHERE ID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::intLeadId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Update PortalFeed Queue"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{BE38D6CC-1FC4-4CF9-9D2B-F20BCDD230B2}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update PortalFeed Queue"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F4C958C7-025A-417B-BAC4-B2A460AD0516}"
+              SQLTask:SqlStatementSource="UPDATE [LEAD STAGING TABLE] &#xA;SET&#xA;PROCESSED = 1&#xA;WHERE &#xA;ID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::intLeadId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Update RosiePortalFeedApiCalls A Fail"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{b196ea8c-034e-4039-b496-1ca1701a9012}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update RosiePortalFeedApiCalls A Fail"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F4C958C7-025A-417B-BAC4-B2A460AD0516}"
+              SQLTask:SqlStatementSource="exec ROSIE_uspInsRosiePortalFeedApiCalls ?,?,0,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@LeadID"
+                SQLTask:DtsVariableName="User::intLeadId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ApiCall"
+                SQLTask:DtsVariableName="User::JSONLead"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorMessage"
+                SQLTask:DtsVariableName="User::UpdateResponse"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Update RosiePortalFeedApiCalls A Success"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{5422317C-CFD2-4FCF-856A-55730ABC2BED}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update RosiePortalFeedApiCalls A Success"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F4C958C7-025A-417B-BAC4-B2A460AD0516}"
+              SQLTask:SqlStatementSource="exec ROSIE_uspInsRosiePortalFeedApiCalls ?, ?, 1, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@LeadID"
+                SQLTask:DtsVariableName="User::intLeadId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ApiCall"
+                SQLTask:DtsVariableName="User::JSONLead"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorMessage"
+                SQLTask:DtsVariableName="User::UpdateResponse"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@RexLeadID"
+                SQLTask:DtsVariableName="User::intRexListingLeadID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Update RosiePortalFeedApiCalls B Fail"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{6918ea46-048c-4dbe-8d5d-2659d0b7bf47}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update RosiePortalFeedApiCalls B Fail"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F4C958C7-025A-417B-BAC4-B2A460AD0516}"
+              SQLTask:SqlStatementSource="exec ROSIE_uspInsRosiePortalFeedApiCalls ?,?,0,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@LeadID"
+                SQLTask:DtsVariableName="User::intLeadId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ApiCall"
+                SQLTask:DtsVariableName="User::JSONLead"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorMessage"
+                SQLTask:DtsVariableName="User::UpdateResponse"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Update RosiePortalFeedApiCalls B Success"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7d906f5d-2969-4f6f-82ff-4763e9b0ee76}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update RosiePortalFeedApiCalls B Success"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F4C958C7-025A-417B-BAC4-B2A460AD0516}"
+              SQLTask:SqlStatementSource="exec ROSIE_uspInsRosiePortalFeedApiCalls ?, ?, 1, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@LeadID"
+                SQLTask:DtsVariableName="User::intLeadId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ApiCall"
+                SQLTask:DtsVariableName="User::JSONLead"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorMessage"
+                SQLTask:DtsVariableName="User::UpdateResponse"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@RexLeadID"
+                SQLTask:DtsVariableName="User::intRexLeadID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{3CEB02E3-369D-4EFA-A728-3F3890EE7625}"
+          DTS:From="Package\Foreach Loop Container\Update RosiePortalFeedApiCalls A Success"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach Loop Container\Listing lead - Send email to branch" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{8972B8B5-811C-4F2C-9EFF-60725AD16C42}"
+          DTS:From="Package\Foreach Loop Container\Update Portal Listing Lead Queue"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Foreach Loop Container\Update RosiePortalFeedApiCalls A Success" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 10]"
+          DTS:CreationName=""
+          DTS:DTSID="{C1D3E9A5-F3F0-494B-B0D9-5ECA89783250}"
+          DTS:From="Package\Foreach Loop Container\Parse return lead object"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 10"
+          DTS:To="Package\Foreach Loop Container\Update PortalFeed Queue"
+          DTS:Value="2" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 11]"
+          DTS:CreationName=""
+          DTS:DTSID="{F6F62DCE-0D28-4810-8A3D-FA1B042275A9}"
+          DTS:From="Package\Foreach Loop Container\Update RosiePortalFeedApiCalls B Success"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 11"
+          DTS:To="Package\Foreach Loop Container\Lead - Send email to branch" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 12]"
+          DTS:CreationName=""
+          DTS:DTSID="{18B02F76-1F84-4CCB-93DD-68B7AB595DA4}"
+          DTS:From="Package\Foreach Loop Container\Listing lead - Send email to branch"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 12"
+          DTS:To="Package\Foreach Loop Container\Reset intRexListingLeadID" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 13]"
+          DTS:CreationName=""
+          DTS:DTSID="{B7C3984A-6297-4B8C-8678-C875B0DE956C}"
+          DTS:From="Package\Foreach Loop Container\Lead - Send email to branch"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 13"
+          DTS:To="Package\Foreach Loop Container\Reset intRexLeadID" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{2A04C738-1923-4A80-8000-B3B8115005C7}"
+          DTS:From="Package\Foreach Loop Container\Parse return listing lead object"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Foreach Loop Container\Update Portal Listing Lead Queue"
+          DTS:Value="2" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{00994785-E9FE-47D0-93DC-6998481489E6}"
+          DTS:EvalOp="4"
+          DTS:Expression="@[User::UpdateResponseCode] != &quot;200&quot;"
+          DTS:From="Package\Foreach Loop Container\REST API Insert Lead"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Foreach Loop Container\Email Lead Failure"
+          DTS:Value="1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{47ED797B-E69B-4595-A876-19E29777F62F}"
+          DTS:EvalOp="4"
+          DTS:Expression="@[User::UpdateResponseCode] != &quot;200&quot;"
+          DTS:From="Package\Foreach Loop Container\REST API Insert Listing Lead"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Foreach Loop Container\Email Listing Lead Failure"
+          DTS:Value="1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{DA4B28B5-5CC3-4CA3-8A8D-7C9EE3B1CD19}"
+          DTS:From="Package\Foreach Loop Container\Email Listing Lead Failure"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package\Foreach Loop Container\Update RosiePortalFeedApiCalls A Fail" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 6]"
+          DTS:CreationName=""
+          DTS:DTSID="{73387516-6626-49B6-9430-C7A7B0CE7BB2}"
+          DTS:From="Package\Foreach Loop Container\CreateLeadJSON"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 6"
+          DTS:To="Package\Foreach Loop Container\REST API Insert Lead" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 7]"
+          DTS:CreationName=""
+          DTS:DTSID="{712BB08F-F0A0-4A2F-9B43-F7322292E3D3}"
+          DTS:From="Package\Foreach Loop Container\CreateLeadListingJSON"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 7"
+          DTS:To="Package\Foreach Loop Container\REST API Insert Listing Lead" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 8]"
+          DTS:CreationName=""
+          DTS:DTSID="{892C6E7F-6D0E-435D-880F-5967531B0AF1}"
+          DTS:From="Package\Foreach Loop Container\Update PortalFeed Queue"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 8"
+          DTS:To="Package\Foreach Loop Container\Update RosiePortalFeedApiCalls B Success" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 9]"
+          DTS:CreationName=""
+          DTS:DTSID="{07438A66-738A-4B71-B904-758010F5428D}"
+          DTS:From="Package\Foreach Loop Container\Email Lead Failure"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 9"
+          DTS:To="Package\Foreach Loop Container\Update RosiePortalFeedApiCalls B Fail" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[LeadWithListing]"
+          DTS:CreationName=""
+          DTS:Description="LeadWithListing"
+          DTS:DTSID="{CD1CAACE-E79D-459E-9585-BAAED20DA826}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::intRexId] != 0"
+          DTS:From="Package\Foreach Loop Container\Dummy Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="LeadWithListing"
+          DTS:To="Package\Foreach Loop Container\CreateLeadListingJSON" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[LeadWithoutListing]"
+          DTS:CreationName=""
+          DTS:Description="LeadWithoutListing"
+          DTS:DTSID="{9B6CAD60-967D-477B-B542-1C712A3145B8}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::intRexId] == 0"
+          DTS:From="Package\Foreach Loop Container\Dummy Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="LeadWithoutListing"
+          DTS:To="Package\Foreach Loop Container\CreateLeadJSON" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Response code 200]"
+          DTS:CreationName=""
+          DTS:DTSID="{420AEA81-BC8E-4AD0-81F8-B3EB91614ABB}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::UpdateResponseCode] == &quot;200&quot;"
+          DTS:From="Package\Foreach Loop Container\REST API Insert Lead"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Response code 200"
+          DTS:To="Package\Foreach Loop Container\Parse return lead object" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Response code 2001]"
+          DTS:CreationName=""
+          DTS:DTSID="{6CFDEFB7-5CB6-48F0-9238-7B6E47F67F2F}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::UpdateResponseCode] == &quot;200&quot;"
+          DTS:From="Package\Foreach Loop Container\REST API Insert Listing Lead"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Response code 200"
+          DTS:To="Package\Foreach Loop Container\Parse return listing lead object" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{3CB2F6B2-1C2C-4F9C-B3CE-62F7171FD22E}"
+          DTS:ObjectName="{3CB2F6B2-1C2C-4F9C-B3CE-62F7171FD22E}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::intLeadId" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{F007B5B5-4CCD-43B7-9D0C-9F21F527C142}"
+          DTS:ObjectName="{F007B5B5-4CCD-43B7-9D0C-9F21F527C142}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::dtLeadCreated" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{A30378CD-4678-4042-BB78-9AB6ADEB041F}"
+          DTS:ObjectName="{A30378CD-4678-4042-BB78-9AB6ADEB041F}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::strBranchRef" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{8F43867C-8395-4DB3-81AE-026130C2C847}"
+          DTS:ObjectName="{8F43867C-8395-4DB3-81AE-026130C2C847}"
+          DTS:ValueIndex="3"
+          DTS:VariableName="User::boolProcessed" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{6BAF2D11-E97B-40EA-82B2-B8610F986CBD}"
+          DTS:ObjectName="{6BAF2D11-E97B-40EA-82B2-B8610F986CBD}"
+          DTS:ValueIndex="4"
+          DTS:VariableName="User::strSourceEmail" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{E41B8EE2-551F-4584-8D6E-9761A336DFB7}"
+          DTS:ObjectName="{E41B8EE2-551F-4584-8D6E-9761A336DFB7}"
+          DTS:ValueIndex="5"
+          DTS:VariableName="User::intAccount" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{9CF85506-4C4D-418C-B010-5E4B6FD8C1F3}"
+          DTS:ObjectName="{9CF85506-4C4D-418C-B010-5E4B6FD8C1F3}"
+          DTS:ValueIndex="6"
+          DTS:VariableName="User::strContactName" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{614C1161-C5B5-413B-9971-BE9923EC961A}"
+          DTS:ObjectName="{614C1161-C5B5-413B-9971-BE9923EC961A}"
+          DTS:ValueIndex="7"
+          DTS:VariableName="User::strContactEmail" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{74773627-7CDC-42CB-A6FE-00B129484D93}"
+          DTS:ObjectName="{74773627-7CDC-42CB-A6FE-00B129484D93}"
+          DTS:ValueIndex="8"
+          DTS:VariableName="User::strContactMobile" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{72A82EE3-F40C-4652-AE48-99A2FB946860}"
+          DTS:ObjectName="{72A82EE3-F40C-4652-AE48-99A2FB946860}"
+          DTS:ValueIndex="9"
+          DTS:VariableName="User::strContactPhone" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{27EDF628-088D-4A19-A0F0-F268E2BB126D}"
+          DTS:ObjectName="{27EDF628-088D-4A19-A0F0-F268E2BB126D}"
+          DTS:ValueIndex="10"
+          DTS:VariableName="User::strMessageBody" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{6401FD2E-5770-41C4-B25D-458798F336F2}"
+          DTS:ObjectName="{6401FD2E-5770-41C4-B25D-458798F336F2}"
+          DTS:ValueIndex="11"
+          DTS:VariableName="User::intRexId" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{29EBAC54-EFFF-4713-9AF2-F4C5A402D028}"
+          DTS:ObjectName="{29EBAC54-EFFF-4713-9AF2-F4C5A402D028}"
+          DTS:ValueIndex="12"
+          DTS:VariableName="User::strListingAdd1" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{0E462468-95D8-4A1E-841B-35578085BEF5}"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Foreach Loop Container" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{C06B837B-73B9-4451-93CB-7B082EE354C8}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{1A6DD5BF-8D5B-4D99-AD8E-D6FA1F02BDA2}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Email error"
+          DTS:CreationName="ZappySys.HtmlEmailTask"
+          DTS:Description="Email Auth Failure"
+          DTS:DTSID="{0aad8ab9-a314-4fd7-842f-a60e0569b3f9}"
+          DTS:ExecutableType="ZappySys.HtmlEmailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Email error"
+          DTS:TaskContact="HTML Email Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <HtmlEmailTask
+              SmtpConnection="SMTP 1"
+              IsHtmlEmail="True"
+              DefaultStyle="&#xA;&lt;style type=&quot;text/css&quot;&gt;&#xA;body,div,p,span,td,th,table {&#xA; font-family: Helvetica, Arial, sans-serif;&#xA; font-size: 10pt; &#xA;}&#xA;h1,h2,h3,h4,h5{&#xA;font-family: Helvetica, Arial, sans-serif;&#xA;}&#xA;&#xA;table { &#xA; border-collapse: &#xA; collapse; border-spacing: 0; &#xA;}&#xA;&#xA;tr.odd    {background-color: #cccccc}&#xA;tr.even   {background-color: #fafafa}&#xA;td, th { border: 1px solid #bbb;padding: 5 5 5 5} &#xA;th { background: #F3F3F3;  font-weight: bold;}&#xA;&lt;/style&gt;&#xA;&#xA;"
+              Subject="Error occured in {{System::PackageName}}"
+              From="alerts@spicerhaart.co.uk"
+              To="{{User::PackageErrorEmail}}"
+              Cc=""
+              ReplyTo=""
+              Bcc=""
+              Attachments=""
+              EmailPriority="High"
+              MessageSourceType="Direct"
+              MessageDirectValue="&lt;p&gt;Error occured and could not be logged in database&lt;p /&gt;&#xA;&lt;br&gt;&#xA;&lt;p&gt;Error code: {{System::ErrorCode}}&lt;p /&gt;&#xA;&lt;br&gt;&#xA;&lt;p&gt;Error message: {{System::ErrorDescription}}&lt;p /&gt;"
+              MessageFileConnection=""
+              MessageVariable=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Insert error log into database"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{10591374-bd25-46c8-8526-7b9b0337f4e7}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert error log into database"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+              SQLTask:SqlStatementSource="INSERT INTO SSISErrorLog&#xA;(PackageName, StartTime, ErrorCode, ErrorDescription, AccountID)&#xA;VALUES&#xA;(?, ?, ?, ?, ?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@PackageName"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@StartTime"
+                SQLTask:DtsVariableName="System::StartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorCode"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorDescription"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@AccountID"
+                SQLTask:DtsVariableName="User::intAccount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{A05D2908-6D6D-45DB-9F93-810C60033346}"
+          DTS:From="Package.EventHandlers[OnError]\Insert error log into database"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Email error" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Execute SQL Task"
+          TopLeft="514,5.5" />
+        <NodeLayout
+          Size="157,44"
+          Id="Package\Foreach Loop Container\CreateLeadJSON"
+          TopLeft="669,107.5" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\Foreach Loop Container\CreateLeadListingJSON"
+          TopLeft="421,108.5" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Foreach Loop Container\Dummy Task"
+          TopLeft="677,5.49999999999977" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Foreach Loop Container\Email Lead Failure"
+          TopLeft="665,313.5" />
+        <NodeLayout
+          Size="199,42"
+          Id="Package\Foreach Loop Container\Email Listing Lead Failure"
+          TopLeft="69.0000000000001,313.5" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Foreach Loop Container\REST API Insert Lead"
+          TopLeft="657.5,211.5" />
+        <NodeLayout
+          Size="214,42"
+          Id="Package\Foreach Loop Container\REST API Insert Listing Lead"
+          TopLeft="333.5,211.5" />
+        <NodeLayout
+          Size="236,42"
+          Id="Package\Foreach Loop Container\Update Portal Listing Lead Queue"
+          TopLeft="322.5,418" />
+        <NodeLayout
+          Size="200,47"
+          Id="Package\Foreach Loop Container\Update PortalFeed Queue"
+          TopLeft="936.5,415.5" />
+        <NodeLayout
+          Size="256,42"
+          Id="Package\Foreach Loop Container\Update RosiePortalFeedApiCalls A Fail"
+          TopLeft="5.50000000000011,418" />
+        <NodeLayout
+          Size="277,42"
+          Id="Package\Foreach Loop Container\Update RosiePortalFeedApiCalls A Success"
+          TopLeft="302,522.5" />
+        <NodeLayout
+          Size="256,42"
+          Id="Package\Foreach Loop Container\Update RosiePortalFeedApiCalls B Fail"
+          TopLeft="619.5,418" />
+        <NodeLayout
+          Size="277,42"
+          Id="Package\Foreach Loop Container\Update RosiePortalFeedApiCalls B Success"
+          TopLeft="898,522.5" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="440.5,460">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62.5"
+              Start="0,0"
+              End="0,55">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 3]"
+          TopLeft="718.833333333333,253.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="28.6666666666666,60"
+              Start="0,0"
+              End="28.6666666666666,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3171806167401" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3171806167401"
+                    Point2="0,24.3171806167401"
+                    Point3="4,24.3171806167401" />
+                  <mssgle:LineSegment
+                    End="24.6666666666666,24.3171806167401" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24.6666666666666,24.3171806167401"
+                    Point2="28.6666666666666,24.3171806167401"
+                    Point3="28.6666666666666,28.3171806167401" />
+                  <mssgle:LineSegment
+                    End="28.6666666666666,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-9.77666666666669,29.3171806167401,48.22,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 4]"
+          TopLeft="406.166666666667,253.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-237.666666666667,60.0000000000001"
+              Start="0,0"
+              End="-237.666666666667,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2671614100186" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2671614100186"
+                    Point2="0,24.2671614100186"
+                    Point3="-4,24.2671614100186" />
+                  <mssgle:LineSegment
+                    End="-233.666666666667,24.2671614100186" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-233.666666666667,24.2671614100186"
+                    Point2="-237.666666666667,24.2671614100186"
+                    Point3="-237.666666666667,28.2671614100186" />
+                  <mssgle:LineSegment
+                    End="-237.666666666667,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-142.943333333333,29.2671614100186,48.22,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 5]"
+          TopLeft="168.5,355.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-35,62.5"
+              Start="0,0"
+              End="-35,55">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.25"
+                    Point2="0,31.25"
+                    Point3="-4,31.25" />
+                  <mssgle:LineSegment
+                    End="-31,31.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-31,31.25"
+                    Point2="-35,31.25"
+                    Point3="-35,35.25" />
+                  <mssgle:LineSegment
+                    End="-35,55" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 6]"
+          TopLeft="747.5,151.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 7]"
+          TopLeft="514.5,150.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-74,61"
+              Start="0,0"
+              End="-74,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.5"
+                    Point2="0,30.5"
+                    Point3="-4,30.5" />
+                  <mssgle:LineSegment
+                    End="-70,30.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-70,30.5"
+                    Point2="-74,30.5"
+                    Point3="-74,34.5" />
+                  <mssgle:LineSegment
+                    End="-74,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 8]"
+          TopLeft="1036.5,462.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 9]"
+          TopLeft="747.5,355.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62.5"
+              Start="0,0"
+              End="0,55">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[LeadWithListing]"
+          TopLeft="725.333333333333,47.4999999999998">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-210.833333333333,61"
+              Start="0,0"
+              End="-210.833333333333,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.8106591865358" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.8106591865358"
+                    Point2="0,24.8106591865358"
+                    Point3="-4,24.8106591865358" />
+                  <mssgle:LineSegment
+                    End="-206.833333333333,24.8106591865358" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-206.833333333333,24.8106591865358"
+                    Point2="-210.833333333333,24.8106591865358"
+                    Point3="-210.833333333333,28.8106591865358" />
+                  <mssgle:LineSegment
+                    End="-210.833333333333,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-149.443307291667,29.8106591865358,88.05328125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[LeadWithoutListing]"
+          TopLeft="769.666666666667,47.4999999999998">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-22.1666666666665,60"
+              Start="0,0"
+              End="-22.1666666666665,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4039270687237" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4039270687237"
+                    Point2="0,24.4039270687237"
+                    Point3="-4,24.4039270687237" />
+                  <mssgle:LineSegment
+                    End="-18.1666666666665,24.4039270687237" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.1666666666665,24.4039270687237"
+                    Point2="-22.1666666666665,24.4039270687237"
+                    Point3="-22.1666666666665,28.4039270687237" />
+                  <mssgle:LineSegment
+                    End="-22.1666666666665,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-62.2849739583333,29.4039270687237,102.40328125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Foreach Loop Container\Parse return lead object"
+          TopLeft="890.5,313.5" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Response code 200]"
+          TopLeft="776.166666666667,253.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="210.333333333333,60"
+              Start="0,0"
+              End="210.333333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3171806167401" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3171806167401"
+                    Point2="0,24.3171806167401"
+                    Point3="4,24.3171806167401" />
+                  <mssgle:LineSegment
+                    End="206.333333333333,24.3171806167401" />
+                  <mssgle:CubicBezierSegment
+                    Point1="206.333333333333,24.3171806167401"
+                    Point2="210.333333333333,24.3171806167401"
+                    Point3="210.333333333333,28.3171806167401" />
+                  <mssgle:LineSegment
+                    End="210.333333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="53.0398111979167,29.3171806167401,104.2537109375,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 10]"
+          TopLeft="986.5,355.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="50.0000000000001,60"
+              Start="0,0"
+              End="50.0000000000001,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="46.0000000000001,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="46.0000000000001,30"
+                    Point2="50.0000000000001,30"
+                    Point3="50.0000000000001,34" />
+                  <mssgle:LineSegment
+                    End="50.0000000000001,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-0.304453124999945,35,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Foreach Loop Container\Reset intRexLeadID"
+          TopLeft="950.5,726.5" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\Foreach Loop Container\Parse return listing lead object"
+          TopLeft="329,313.5" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Response code 2001]"
+          TopLeft="474.833333333333,253.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-34.3333333333333,60.0000000000001"
+              Start="0,0"
+              End="-34.3333333333333,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2671614100186" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2671614100186"
+                    Point2="0,24.2671614100186"
+                    Point3="-4,24.2671614100186" />
+                  <mssgle:LineSegment
+                    End="-30.3333333333333,24.2671614100186" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-30.3333333333333,24.2671614100186"
+                    Point2="-34.3333333333333,24.2671614100186"
+                    Point3="-34.3333333333333,28.2671614100186" />
+                  <mssgle:LineSegment
+                    End="-34.3333333333333,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-69.2935221354167,29.2671614100186,104.2537109375,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 2]"
+          TopLeft="440.5,355.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62.5"
+              Start="0,0"
+              End="0,55">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-25.304453125,21.6953125,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="202,42"
+          Id="Package\Foreach Loop Container\Reset intRexListingLeadID"
+          TopLeft="339.5,726.5" />
+        <NodeLayout
+          Size="243,42"
+          Id="Package\Foreach Loop Container\Listing lead - Send email to branch"
+          TopLeft="319,624.5" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          TopLeft="440.5,564.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 12]"
+          TopLeft="440.5,666.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="212,42"
+          Id="Package\Foreach Loop Container\Lead - Send email to branch"
+          TopLeft="930.5,624.5" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 11]"
+          TopLeft="1036.5,564.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 13]"
+          TopLeft="1036.5,666.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="1180,823"
+          Size="1180,866"
+          Id="Package\Foreach Loop Container"
+          TopLeft="5.50000000000011,107.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="595.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="131,42"
+          Id="Package.EventHandlers[OnError]\Email error"
+          TopLeft="NaN,NaN" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package.EventHandlers[OnError]\Insert error log into database"
+          TopLeft="NaN,NaN" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="NaN,NaN">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="{assembly:Null}"
+              Start="0,0"
+              End="0,0">
+              <mssgle:Curve.Segments>
+                <assembly:Null />
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <PrecedenceConstraint
+    design-time-name="Package\Foreach Loop Container.PrecedenceConstraints[LeadWithListing]">
+    <ShowAnnotation>ConstraintDescription</ShowAnnotation>
+  </PrecedenceConstraint>
+  <PrecedenceConstraint
+    design-time-name="Package\Foreach Loop Container.PrecedenceConstraints[LeadWithoutListing]">
+    <ShowAnnotation>ConstraintDescription</ShowAnnotation>
+  </PrecedenceConstraint>
+  <PrecedenceConstraint
+    design-time-name="Package\Foreach Loop Container.PrecedenceConstraints[Response code 200]">
+    <ShowAnnotation>ConstraintName</ShowAnnotation>
+  </PrecedenceConstraint>
+  <PrecedenceConstraint
+    design-time-name="Package\Foreach Loop Container.PrecedenceConstraints[Response code 2001]">
+    <ShowAnnotation>ConstraintName</ShowAnnotation>
+  </PrecedenceConstraint>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

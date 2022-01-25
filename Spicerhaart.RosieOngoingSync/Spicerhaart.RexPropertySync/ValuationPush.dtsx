@@ -1,0 +1,2787 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/26/2018 4:42:07 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="79000ITD10"
+  DTS:CreatorName="SPICERHAART\1901434"
+  DTS:DTSID="{A9FE914A-CEB7-4411-B80B-5A4F8680A128}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="ValuationPush"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="1"
+  DTS:VersionBuild="443"
+  DTS:VersionGUID="{AA0F27A3-8161-4351-9F09-CD510242A23A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RexSync.xml]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{5300FFF4-BD82-489F-9E5A-1CF1E17B6F98}"
+      DTS:ObjectName="RexSync.xml">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\SSISVariables\RexSync.xml" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP]"
+      DTS:CreationName="ZS-SMTP"
+      DTS:DTSID="{C00D0923-EBF9-4CCE-B082-91660AA1AB5C}"
+      DTS:ObjectName="SMTP">
+      <DTS:ObjectData>
+        <ConnectionManager
+          ConnectionString="SmtpServer=outlookcol;UserName=;Port=25;EnableSsl=False;Timeout=10000;EnableAnonymousAuth=False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{2DCCEBA8-5A52-4290-8DE3-68E66329CB5C}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=outlookcol;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{1C8FA6C4-C387-4103-A4A0-A59D702E5692}"
+      DTS:ObjectName="RexAccountID"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">1919</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{22AF30E0-1E56-442F-A250-4DC21B29F85B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="AgentID1">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6FBBCD44-8FB5-42D0-83E1-28A3E5C389DE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="AgentID2">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8E4AE2EE-9BB0-4657-BA03-41BA6D5C6DA5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="AgentName1">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D4E81CA1-40D2-4CFA-AF45-C5296CC140BB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="AgentName2">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F4C82D57-A5F6-4356-B4D9-4BE3E4FCF6F2}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="APIResponseError">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3E934E3F-674F-4C0B-8002-FB274AE7FD15}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="APIValuationID">
+      <DTS:VariableValue
+        DTS:DataType="8">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{40E79DD1-7DCD-4851-B566-F6F59D8E7259}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ContactID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{55013742-E56C-40A1-AA8B-55603CEFE372}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExecutedRecordCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7E9F9E81-B8A1-4074-BACB-BF73003777E5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExistingValID">
+      <DTS:VariableValue
+        DTS:DataType="8">{"result":null,"error":{"message":"You can only have one active appraisal at a time on any given property. There is already an active appraisal (id 19790) on this property.","type":"ValidationException","code":0,"extra":{"field_name":"appraisal_state"}}}</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D6CB969D-B180-4915-81F8-9C426BB2C99C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="FailedDMACount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{34E355CE-FC87-461F-A96B-80246EE18380}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="IgnoredRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3A19AEF9-C274-42B9-A4B3-7C8D64F66D18}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="InterestLevel">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{75ED41BE-35E0-4C70-8EB8-13A31A47CC05}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageErrorEmail">
+      <DTS:VariableValue
+        DTS:DataType="8">saulius.samoska@spicerhaart.co.uk</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8D89D08E-AF1D-4A52-A61C-5CDD28897109}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageExecutionInfo">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D42DFB98-DDAB-4BE2-9C6E-210571EBC982}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackagePassword">
+      <DTS:VariableValue
+        DTS:DataType="8">P4ssword</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{255CB349-2D93-4BB6-B028-2B2F4B996946}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageStartDate">
+      <DTS:VariableValue
+        DTS:DataType="7">11/21/2018 2:03:19 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8CB32204-C88F-46E6-B3BD-14E3CB349F7E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageUser">
+      <DTS:VariableValue
+        DTS:DataType="8">1897047@spicerhaart.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EC0F7FD3-A76A-4E8E-B93B-3AAA742BD865}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PriceAsking">
+      <DTS:VariableValue
+        DTS:DataType="14">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7DA5579F-8DCB-4CE4-BB05-5989720D6F40}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PriceMax">
+      <DTS:VariableValue
+        DTS:DataType="14">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AC162956-C2AD-4120-AD83-6487E65CFE0E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PriceMin">
+      <DTS:VariableValue
+        DTS:DataType="14">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1744607F-D22B-4C56-AD5C-791AF8263088}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PriceRent">
+      <DTS:VariableValue
+        DTS:DataType="14">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5C4130E1-E636-4EE0-932F-BD66B49BC260}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PropertyReference">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{87457F68-3168-4607-B916-0199070FC4CF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ResponseAuth">
+      <DTS:VariableValue
+        DTS:DataType="8">{"result":null,"error":{"message":"You can only have one active appraisal at a time on any given property. There is already an active appraisal (id 19790) on this property.","type":"ValidationException","code":0,"extra":{"field_name":"appraisal_state"}}}</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{11715F30-CEE4-44AF-AE9A-5743B0727E3D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ResponseAuthCode">
+      <DTS:VariableValue
+        DTS:DataType="8">200</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{02188267-C326-4604-B389-30C5CA79B186}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RexAPIWebURL">
+      <DTS:VariableValue
+        DTS:DataType="8">https://api.rexsoftware.com/rex.php</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C61DAF04-5C38-4B42-B4B7-49DD50357D25}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RexPropertyID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{39B60398-7039-4177-89D3-67D85DD814FE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RexToken">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A342C464-605A-411F-A1FB-AEFE0AE5D21C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RosieUserID">
+      <DTS:VariableValue
+        DTS:DataType="3">18382</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6CC36EA0-BD7E-448B-9562-3C1BC446E5B8}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="DATEDIFF(&quot;S&quot;, (DT_DBTIMESTAMP)&quot;1970-01-01&quot;, (DT_DBTIMESTAMP)&quot;2018-09-01&quot;)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="system_ctime">
+      <DTS:VariableValue
+        DTS:DataType="3">1535760000</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5F24AB74-69A0-4ACF-AA0E-00A546E72027}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="UpsertedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5A54F368-EBEE-44EF-8854-1FEC2411F5DA}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ValuationDate">
+      <DTS:VariableValue
+        DTS:DataType="7">12/6/2018 11:49:07 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D803CAA4-22DA-489F-BFF9-79850FC24D45}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ValuationeTag">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EAC7A860-904D-4F4A-9DDA-B81A890ACE4F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ValuationID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{47CDFCAA-B3FD-4990-9898-0522ED3A4F78}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ValuationList">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FDCABDE4-EA98-4720-A67A-837ADC92C2E0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ValuationState">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Auth Failure"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{CA400685-DB72-434C-8533-B683A9FDCD9A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Auth Failure"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+          SQLTask:SqlStatementSource="exec [dbo].[ROSIE_uspInsValuationPushPullLog] ?,NULL,'Push','Failed to get token',?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@RexAccountID"
+            SQLTask:DtsVariableName="$Package::RexAccountID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@ResponseCode"
+            SQLTask:DtsVariableName="User::ResponseAuthCode"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@Response"
+            SQLTask:DtsVariableName="User::ResponseAuth"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Email Auth Failure"
+      DTS:CreationName="ZappySys.HtmlEmailTask"
+      DTS:Description="Email Auth Failure"
+      DTS:DTSID="{3DD97A14-0F8D-4314-8909-D5C6D9A4B143}"
+      DTS:ExecutableType="ZappySys.HtmlEmailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Email Auth Failure"
+      DTS:TaskContact="HTML Email Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <HtmlEmailTask
+          SmtpConnection="SMTP"
+          IsHtmlEmail="True"
+          DefaultStyle="&#xA;&lt;style type=&quot;text/css&quot;&gt;&#xA;body,div,p,span,td,th,table {&#xA; font-family: Helvetica, Arial, sans-serif;&#xA; font-size: 10pt; &#xA;}&#xA;h1,h2,h3,h4,h5{&#xA;font-family: Helvetica, Arial, sans-serif;&#xA;}&#xA;&#xA;table { &#xA; border-collapse: &#xA; collapse; border-spacing: 0; &#xA;}&#xA;&#xA;tr.odd    {background-color: #cccccc}&#xA;tr.even   {background-color: #fafafa}&#xA;td, th { border: 1px solid #bbb;padding: 5 5 5 5} &#xA;th { background: #F3F3F3;  font-weight: bold;}&#xA;&lt;/style&gt;&#xA;&#xA;"
+          Subject="Error occured in {{System::PackageName}}"
+          From="alerts@spicerhaart.co.uk"
+          To="{{User::PackageErrorEmail}}"
+          Cc=""
+          ReplyTo=""
+          Bcc=""
+          Attachments=""
+          EmailPriority="High"
+          MessageSourceType="Direct"
+          MessageDirectValue="&lt;b&gt;Failed to get Authorization Key&lt;/b&gt;&lt;p /&gt;&#xA;&#xA;&lt;p&gt; Response Code =&gt; {{User::ResponseAuthCode}} &lt;p /&gt;&#xA;&#xA;"
+          MessageFileConnection=""
+          MessageVariable=""
+          LogLevel="Normal"
+          PrefixTimestamp="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Auth Key"
+      DTS:CreationName="ZappySys.RestApiTask"
+      DTS:Description="ZS REST API Task"
+      DTS:DTSID="{09708C6F-E2AB-43A7-9000-844397ADF4ED}"
+      DTS:ExecutableType="ZappySys.RestApiTask"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Auth Key"
+      DTS:TaskContact="REST API Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <RestApiTask
+          RequestAccessMode="DirectUrl"
+          RequestUrlVariable=""
+          EnableStatusCheck="False"
+          StatucCheckMaxWaitSeconds="0"
+          StatucCheckIterationWaitSeconds="0"
+          StatusCheckForFailedValue="False"
+          StatusSuccessValue=""
+          StatusFailedValue=""
+          IsMultiPartUpload="False"
+          PreventAutoRedirect="False"
+          RequestTimeoutMs="0"
+          SecurityProtocol="Default"
+          EnableCompressionSupport="True"
+          AllowUnsecureSuite="False"
+          IgnoreCertificateErrors="False"
+          RequestUrl="{{User::RexAPIWebURL}}"
+          RequestUrlConnection=""
+          RequestMethod="POST"
+          RequestContentType="ApplicationJson"
+          OverrideConnectionUrl="False"
+          RequestHeaders="&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;"
+          RequestData="{&#xA;&quot;method&quot;:&quot;Authentication::login&quot;,&#xA;&quot;args&quot;:{&#xA;&quot;email&quot;:&quot;{{User::PackageUser}}&quot;,&#xA;&quot;password&quot;:&quot;{{User::PackagePassword}}&quot;,&#xA;&quot;account_id&quot;:&quot;{{$Package::RexAccountID}}&quot;,&#xA;&quot;application&quot;:&quot;rex&quot;&#xA;}&#xA;}"
+          SaveResponse="True"
+          SaveResponseStatusCode="True"
+          ResponseAccessMode="Variable"
+          SaveAsBinary="False"
+          ResponseDataFilePath=""
+          ResponseHeaderMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Transfer-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Connection&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Origin&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Headers&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Methods&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Max-Age&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Vary&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Type&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Date&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Server&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;/ArrayOfKeyValueMapping&gt;"
+          ResponseCookieMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+          CookieContainerVariable=""
+          ConvertXmlToJson="False"
+          ResponseDataVariable="User::RexToken"
+          ResponseStatusCodeVariable="User::ResponseAuthCode"
+          ResponseContentType="Json"
+          ResponseContentFilter="$.result"
+          ResponseCharset=""
+          ValidateResponse="False"
+          ValidationRules="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ResponseValidationSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;MatchAny&gt;false&lt;/MatchAny&gt;&lt;Rules&gt;&lt;ResponseValidationRule xsi:type=&quot;StatusCodeValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;StatusCode&gt;200&lt;/StatusCode&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;ContentValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;Value /&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;HeaderValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;KeyName /&gt;&lt;Value /&gt;&lt;DataType&gt;String&lt;/DataType&gt;&lt;/ResponseValidationRule&gt;&lt;/Rules&gt;&lt;/ResponseValidationSetting&gt;"
+          ConsumeResponseOnError="False"
+          ContineOnAnyError="False"
+          ContineOnErrorForMessage="False"
+          ContineOnErrorForStatusCode="False"
+          ErrorStatusCodeToMatch="404"
+          MatchForEqual="True"
+          ErrorSubstringToMatch=""
+          ContineOn404Error="False"
+          SaveErrorFlagToVariable="False"
+          ErrorFlagVariableName=""
+          LogLevel="Normal"
+          PrefixTimestamp="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Valuation List"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{49424B5D-646B-469F-A931-61C70F44634C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Valuation List"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="exec ROSIE_uspSelValuationsByRexAccountID ?"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::ValuationList" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::RexAccountID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Iterate Valuations"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{BA7740B2-65B4-4472-AF02-760B49739BCD}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:MaxErrorCount="0"
+      DTS:ObjectName="Iterate Valuations">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{DC69B695-C5A4-401B-8ABD-AA998622C56F}"
+        DTS:ObjectName="{DC69B695-C5A4-401B-8ABD-AA998622C56F}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::ValuationList" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Valuations\Convert Valuation ID To Int"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{4f4a73e6-763e-4ea9-b2ef-7fb0439426ee}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Convert Valuation ID To Int"
+          DTS:ThreadHint="5">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::ValuationID]  = (DT_I4)@[User::APIValuationID]" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Valuations\Create Active Valuation"
+          DTS:CreationName="ZappySys.RestApiTask"
+          DTS:Description="ZS REST API Task"
+          DTS:DTSID="{7c3075d5-9677-498a-b612-b9d4c8639f8b}"
+          DTS:ExecutableType="ZappySys.RestApiTask"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create Active Valuation"
+          DTS:TaskContact="REST API Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+          DTS:ThreadHint="4">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <RestApiTask
+              RequestAccessMode="DirectUrl"
+              RequestUrlVariable=""
+              EnableStatusCheck="False"
+              StatucCheckMaxWaitSeconds="0"
+              StatucCheckIterationWaitSeconds="0"
+              StatusCheckForFailedValue="False"
+              StatusSuccessValue=""
+              StatusFailedValue=""
+              IsMultiPartUpload="False"
+              PreventAutoRedirect="False"
+              RequestTimeoutMs="0"
+              SecurityProtocol="Default"
+              EnableCompressionSupport="True"
+              AllowUnsecureSuite="False"
+              IgnoreCertificateErrors="False"
+              RequestUrl="{{User::RexAPIWebURL}}"
+              RequestUrlConnection=""
+              RequestMethod="POST"
+              RequestContentType="ApplicationJson"
+              OverrideConnectionUrl="False"
+              RequestHeaders="&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;"
+              RequestData="{&#xA;&quot;method&quot;:&quot;Appraisals::create&quot;,&#xA;&quot;args&quot;:{&#xA;&#x9;&quot;data&quot;: {&#xA;    &quot;appraisal_state&quot;: &quot;{{User::ValuationState}}&quot;,&#xA;    &quot;appraisal_date&quot;: &quot;{{User::ValuationDate}}&quot;,&#xA;    &quot;price_min&quot;: {{User::PriceMin}},&#xA;    &quot;price_max&quot;: {{User::PriceMax}},&#xA;    &quot;price_asking&quot;: {{User::PriceAsking}},&#xA;    &quot;price_rent&quot;: {{User::PriceRent}},&#xA;    &quot;interest_level&quot;: &quot;{{User::InterestLevel}}&quot;,&#xA;    &quot;agent_1&quot;: {&#xA;      &quot;id&quot;: &quot;{{User::AgentID1}}&quot;,&#xA;         &quot;text&quot;: &quot;{{User::AgentName1}}&quot;&#xA;          },&#xA;    &quot;agent_2&quot;: {&#xA;      &quot;id&quot;: &quot;{{User::AgentID2}}&quot;,&#xA;      &quot;text&quot;: &quot;{{User::AgentName2}}&quot;&#xA;      &#xA;    },&#xA;    &quot;_id&quot;: &quot;&quot;,&#xA;    &quot;property_id&quot;: {{User::RexPropertyID}}&#xA;  }&#xA;&#x9; },&#xA;&quot;strip_response_prefix&quot;: true,&#xA;&quot;token&quot;: &quot;{{User::RexToken}}&quot;&#xA;}"
+              SaveResponse="True"
+              SaveResponseStatusCode="True"
+              ResponseAccessMode="Variable"
+              SaveAsBinary="False"
+              ResponseDataFilePath=""
+              ResponseHeaderMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Transfer-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Connection&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Origin&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Headers&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Methods&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Max-Age&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Vary&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Type&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Date&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Server&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;/ArrayOfKeyValueMapping&gt;"
+              ResponseCookieMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+              CookieContainerVariable=""
+              ConvertXmlToJson="False"
+              ResponseDataVariable="User::ResponseAuth"
+              ResponseStatusCodeVariable="User::ResponseAuthCode"
+              ResponseContentType="Json"
+              ResponseContentFilter=""
+              ResponseCharset=""
+              ValidateResponse="False"
+              ValidationRules="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ResponseValidationSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;MatchAny&gt;false&lt;/MatchAny&gt;&lt;Rules&gt;&lt;ResponseValidationRule xsi:type=&quot;StatusCodeValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;StatusCode&gt;200&lt;/StatusCode&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;ContentValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;Value /&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;HeaderValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;KeyName /&gt;&lt;Value /&gt;&lt;DataType&gt;String&lt;/DataType&gt;&lt;/ResponseValidationRule&gt;&lt;/Rules&gt;&lt;/ResponseValidationSetting&gt;"
+              ConsumeResponseOnError="False"
+              ContineOnAnyError="False"
+              ContineOnErrorForMessage="False"
+              ContineOnErrorForStatusCode="False"
+              ErrorStatusCodeToMatch="404"
+              MatchForEqual="True"
+              ErrorSubstringToMatch=""
+              ContineOn404Error="False"
+              SaveErrorFlagToVariable="False"
+              ErrorFlagVariableName=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Valuations\Create Archived Valuation"
+          DTS:CreationName="ZappySys.RestApiTask"
+          DTS:Description="ZS REST API Task"
+          DTS:DTSID="{4fa80425-c137-4891-9e89-5251ad7cbdd1}"
+          DTS:ExecutableType="ZappySys.RestApiTask"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create Archived Valuation"
+          DTS:TaskContact="REST API Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <RestApiTask
+              RequestAccessMode="DirectUrl"
+              RequestUrlVariable=""
+              EnableStatusCheck="False"
+              StatucCheckMaxWaitSeconds="0"
+              StatucCheckIterationWaitSeconds="0"
+              StatusCheckForFailedValue="False"
+              StatusSuccessValue=""
+              StatusFailedValue=""
+              IsMultiPartUpload="False"
+              PreventAutoRedirect="False"
+              RequestTimeoutMs="0"
+              SecurityProtocol="Default"
+              EnableCompressionSupport="True"
+              AllowUnsecureSuite="False"
+              IgnoreCertificateErrors="False"
+              RequestUrl="{{User::RexAPIWebURL}}"
+              RequestUrlConnection=""
+              RequestMethod="POST"
+              RequestContentType="ApplicationJson"
+              OverrideConnectionUrl="False"
+              RequestHeaders="&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;"
+              RequestData="{&#xA;&quot;method&quot;:&quot;Appraisals::create&quot;,&#xA;&quot;args&quot;:{&#xA; &quot;data&quot;: {&#xA;    &quot;appraisal_state&quot;: &quot;{{User::ValuationState}}&quot;,&#xA;    &quot;appraisal_date&quot;: &quot;{{User::ValuationDate}}&quot;,&#xA;    &quot;price_min&quot;: {{User::PriceMin}},&#xA;    &quot;price_max&quot;: {{User::PriceMax}},&#xA;    &quot;price_asking&quot;: {{User::PriceAsking}},&#xA;    &quot;price_rent&quot;: {{User::PriceRent}},&#xA;    &quot;interest_level&quot;: &quot;{{User::InterestLevel}}&quot;,&#xA;    &quot;agent_1&quot;: {&#xA;      &quot;id&quot;: &quot;{{User::AgentID1}}&quot;,&#xA;         &quot;text&quot;: &quot;{{User::AgentName1}}&quot;&#xA;          },&#xA;    &quot;agent_2&quot;: {&#xA;      &quot;id&quot;: &quot;{{User::AgentID2}}&quot;,&#xA;      &quot;text&quot;: &quot;{{User::AgentName2}}&quot;&#xA;      &#xA;    },&#xA;    &quot;archive_reason&quot;: {&#xA;      &quot;id&quot;: &quot;not_interested&quot;,&#xA;      &quot;_value&quot;: {&#xA;        &quot;id&quot;: &quot;not_interested&quot;,&#xA;        &quot;label&quot;: &quot;Not Interested / Cooled Off&quot;,&#xA;        &quot;value&quot;: &quot;Not Interested / Cooled Off&quot;,&#xA;        &quot;term&quot;: &quot;Not Interested / Cooled Off&quot;&#xA;      },&#xA;      &quot;text&quot;: &quot;Not Interested / Cooled Off&quot;&#xA;    },&#xA;    &quot;_id&quot;: &quot;&quot;,&#xA;    &quot;property_id&quot;: {{User::RexPropertyID}}&#xA;  }&#xA;  },&#xA;&quot;strip_response_prefix&quot;: true,&#xA;&quot;token&quot;: &quot;{{User::RexToken}}&quot;&#xA;}"
+              SaveResponse="True"
+              SaveResponseStatusCode="True"
+              ResponseAccessMode="Variable"
+              SaveAsBinary="False"
+              ResponseDataFilePath=""
+              ResponseHeaderMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Transfer-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Connection&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Origin&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Headers&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Methods&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Max-Age&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Vary&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Type&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Date&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Server&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;/ArrayOfKeyValueMapping&gt;"
+              ResponseCookieMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+              CookieContainerVariable=""
+              ConvertXmlToJson="False"
+              ResponseDataVariable="User::ResponseAuth"
+              ResponseStatusCodeVariable="User::ResponseAuthCode"
+              ResponseContentType="Json"
+              ResponseContentFilter=""
+              ResponseCharset=""
+              ValidateResponse="False"
+              ValidationRules="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ResponseValidationSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;MatchAny&gt;false&lt;/MatchAny&gt;&lt;Rules&gt;&lt;ResponseValidationRule xsi:type=&quot;StatusCodeValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;StatusCode&gt;200&lt;/StatusCode&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;ContentValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;Value /&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;HeaderValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;KeyName /&gt;&lt;Value /&gt;&lt;DataType&gt;String&lt;/DataType&gt;&lt;/ResponseValidationRule&gt;&lt;/Rules&gt;&lt;/ResponseValidationSetting&gt;"
+              ConsumeResponseOnError="False"
+              ContineOnAnyError="False"
+              ContineOnErrorForMessage="False"
+              ContineOnErrorForStatusCode="False"
+              ErrorStatusCodeToMatch="404"
+              MatchForEqual="True"
+              ErrorSubstringToMatch=""
+              ContineOn404Error="False"
+              SaveErrorFlagToVariable="False"
+              ErrorFlagVariableName=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Valuations\Dummy task"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{9e601fbf-eae7-4250-80da-28154cc2a523}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Dummy task"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::ValuationState] = @[User::ValuationState]" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Valuations\eTag Search Error"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{d88d2760-a067-4fa5-8e4c-e2d1ca97e8ef}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="eTag Search Error"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="8">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+              SQLTask:SqlStatementSource="exec [dbo].[ROSIE_uspInsValuationPushPullLog] ?,?,'Push','Failed to search eTag',?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@RexAccountID"
+                SQLTask:DtsVariableName="$Package::RexAccountID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@Propref"
+                SQLTask:DtsVariableName="User::PropertyReference"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ResponseCode"
+                SQLTask:DtsVariableName="User::ResponseAuthCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@Response"
+                SQLTask:DtsVariableName="User::ResponseAuth"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Valuations\Increment Failed Count"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{5e749955-fae8-4799-aeb8-74c5806c5b96}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Increment Failed Count"
+          DTS:ThreadHint="9">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::FailedDMACount]= @[User::FailedDMACount]+1" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Valuations\Increment Record Count 1"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{ff4b3eb8-2e4a-42a2-8b38-d0fa99c653c8}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Increment Record Count 1"
+          DTS:ThreadHint="5">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::ExecutedRecordCount]= @[User::ExecutedRecordCount]+1" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Valuations\Link Contact"
+          DTS:CreationName="ZappySys.RestApiTask"
+          DTS:Description="ZS REST API Task"
+          DTS:DTSID="{3fdbf052-f25e-439f-8846-c190632fc0db}"
+          DTS:ExecutableType="ZappySys.RestApiTask"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="1000"
+          DTS:ObjectName="Link Contact"
+          DTS:TaskContact="REST API Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+          DTS:ThreadHint="7">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <RestApiTask
+              RequestAccessMode="DirectUrl"
+              RequestUrlVariable=""
+              EnableStatusCheck="False"
+              StatucCheckMaxWaitSeconds="0"
+              StatucCheckIterationWaitSeconds="0"
+              StatusCheckForFailedValue="False"
+              StatusSuccessValue=""
+              StatusFailedValue=""
+              IsMultiPartUpload="False"
+              PreventAutoRedirect="False"
+              RequestTimeoutMs="0"
+              SecurityProtocol="Default"
+              EnableCompressionSupport="True"
+              AllowUnsecureSuite="False"
+              IgnoreCertificateErrors="False"
+              RequestUrl="{{User::RexAPIWebURL}}"
+              RequestUrlConnection=""
+              RequestMethod="POST"
+              RequestContentType="ApplicationJson"
+              OverrideConnectionUrl="False"
+              RequestHeaders="&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;"
+              RequestData="{&#xA;&quot;method&quot;:&quot;Properties::update&quot;,&#xA;&quot;args&quot;:{&#xA; &quot;data&quot;: {&#xA;    &quot;_id&quot;:{{User::RexPropertyID}},&#xA;  &#x9;&#x9;&quot;_related&quot;: {&#xA;&#x9;&#x9;&#x9;&quot;contact_reln_property&quot;: [{ &#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&quot;contact&quot;: {&quot;id&quot;:{{User::ContactID}}},&#xA;&#x9;&#x9;&#x9;&#x9;&quot;reln_type&quot;: {&quot;id&quot;:&quot;owner&quot;}&#xA;&#x9;&#x9;&#x9;}]&#xA;&#xA;  &#x9;&#x9;}&#xA;  }&#xA;  },&#xA;&quot;strip_response_prefix&quot;: true,&#xA;&quot;token&quot;: &quot;{{User::RexToken}}&quot;&#xA;}"
+              SaveResponse="True"
+              SaveResponseStatusCode="True"
+              ResponseAccessMode="Variable"
+              SaveAsBinary="False"
+              ResponseDataFilePath=""
+              ResponseHeaderMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Transfer-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Connection&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Origin&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Headers&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Methods&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Max-Age&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Vary&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Type&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Date&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Server&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;/ArrayOfKeyValueMapping&gt;"
+              ResponseCookieMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+              CookieContainerVariable=""
+              ConvertXmlToJson="False"
+              ResponseDataVariable="User::ResponseAuth"
+              ResponseStatusCodeVariable="User::ResponseAuthCode"
+              ResponseContentType="Json"
+              ResponseContentFilter=""
+              ResponseCharset=""
+              ValidateResponse="False"
+              ValidationRules="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ResponseValidationSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;MatchAny&gt;false&lt;/MatchAny&gt;&lt;Rules&gt;&lt;ResponseValidationRule xsi:type=&quot;StatusCodeValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;StatusCode&gt;200&lt;/StatusCode&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;ContentValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;Value /&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;HeaderValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;KeyName /&gt;&lt;Value /&gt;&lt;DataType&gt;String&lt;/DataType&gt;&lt;/ResponseValidationRule&gt;&lt;/Rules&gt;&lt;/ResponseValidationSetting&gt;"
+              ConsumeResponseOnError="False"
+              ContineOnAnyError="False"
+              ContineOnErrorForMessage="False"
+              ContineOnErrorForStatusCode="False"
+              ErrorStatusCodeToMatch="404"
+              MatchForEqual="True"
+              ErrorSubstringToMatch=""
+              ContineOn404Error="False"
+              SaveErrorFlagToVariable="False"
+              ErrorFlagVariableName=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Valuations\Link Contact Error"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{d0bef97e-e3d8-46be-9e40-19d2b91a35d8}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Link Contact Error"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="7">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+              SQLTask:SqlStatementSource="exec [dbo].[ROSIE_uspInsValuationPushPullLog] ?,?,'Push','Failed to link Contact',?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@RexAccountID"
+                SQLTask:DtsVariableName="$Package::RexAccountID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@Propref"
+                SQLTask:DtsVariableName="User::PropertyReference"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ResponseCode"
+                SQLTask:DtsVariableName="User::ResponseAuthCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@Response"
+                SQLTask:DtsVariableName="User::ResponseAuth"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Valuations\Parse response JSON"
+          DTS:CreationName="ZappySys.JsonParserTask"
+          DTS:Description="ZS JSON Parser Task"
+          DTS:DTSID="{b368a8cf-6c4c-4e52-b3ef-4dfb78a8f695}"
+          DTS:ExecutableType="ZappySys.JsonParserTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Parse response JSON"
+          DTS:TaskContact="JSON Parser Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+          DTS:ThreadHint="5">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:LoggingMode="1" />
+          <DTS:ObjectData>
+            <JsonParserTask
+              SourceAccessMode="Variable"
+              SourceVariable="User::ResponseAuth"
+              SourceConnection=""
+              SourceDirectValue="{&#xA;&quot;CustomerID&quot;: &quot;ALFKI&quot;,&#xA;&quot;CustomerName&quot;: &quot;Alfredo Koli&quot;,&#xA;&quot;Age&quot;: 55,&#xA;&quot;LocationInfo&quot;: {&quot;City&quot;:&quot;Newyork&quot;, &quot;State&quot;:&quot;NY&quot;, &quot;Zip&quot;:&quot;23234&quot;},&#xA;&quot;OrderIDList&quot;: [111,222,333,444,555]&#xA;}"
+              TargetSettings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;JsonParserSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;Mappings&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;error.message&lt;/Path&gt;&lt;Target&gt;User::APIResponseError&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result._id&lt;/Path&gt;&lt;Target&gt;User::APIValuationID&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;/Mappings&gt;&lt;Path /&gt;&lt;/JsonParserSetting&gt;"
+              LogLevel="Detail"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Valuations\Populate Valuation ID and eTag"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{27b536f5-8b67-4e5a-8ac0-58c5d3cc1409}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Populate Valuation ID and eTag"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="5">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}"
+              SQLTask:SqlStatementSource="UPDATE tbl_prop&#xA;SET rid_valuation = ?,&#xA;&#x9;etag_valuation = ?,&#xA;&#x9;usr = 'ROSIE',&#xA;&#x9;pc = 'ROSIE',&#xA;&#x9;locked = 1,&#xA;&#x9;rid_property = ?&#xA;WHERE prop_Ref = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ValuationID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::ValuationeTag"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::PropertyReference"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::RexPropertyID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Valuations\Search eTag"
+          DTS:CreationName="ZappySys.RestApiTask"
+          DTS:Description="ZS REST API Task"
+          DTS:DTSID="{4fc43004-ddb9-421e-b97c-7782ba70c5d4}"
+          DTS:ExecutableType="ZappySys.RestApiTask"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Search eTag"
+          DTS:TaskContact="REST API Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+          DTS:ThreadHint="5">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <RestApiTask
+              RequestAccessMode="DirectUrl"
+              RequestUrlVariable=""
+              EnableStatusCheck="False"
+              StatucCheckMaxWaitSeconds="0"
+              StatucCheckIterationWaitSeconds="0"
+              StatusCheckForFailedValue="False"
+              StatusSuccessValue=""
+              StatusFailedValue=""
+              IsMultiPartUpload="False"
+              PreventAutoRedirect="False"
+              RequestTimeoutMs="0"
+              SecurityProtocol="Default"
+              EnableCompressionSupport="True"
+              AllowUnsecureSuite="False"
+              IgnoreCertificateErrors="False"
+              RequestUrl="{{User::RexAPIWebURL}}"
+              RequestUrlConnection=""
+              RequestMethod="POST"
+              RequestContentType="ApplicationJson"
+              OverrideConnectionUrl="False"
+              RequestHeaders="&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;"
+              RequestData="{&#xA;&quot;method&quot;:&quot;Appraisals::search&quot;,&#xA;&quot;args&quot;:{&#xA;&#x9;&quot;criteria&quot;: &#xA;&#x9;[&#xA;&#x9;&#x9;{&#xA;       &#x9;&#x9;&quot;name&quot;: &quot;id&quot;, &#xA;&#x9;       &#x9;&quot;type&quot;: &quot;=&quot;, &#xA;&#x9;        &quot;value&quot;: {{User::ValuationID}}&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;&#xA;&#x9;],&#xA;&#x9;&quot;result_format&quot;:&quot;etags&quot;&#xA;&#x9; },&#xA;&quot;strip_response_prefix&quot;: true,&#xA;&quot;token&quot;: &quot;{{User::RexToken}}&quot;&#xA;}"
+              SaveResponse="True"
+              SaveResponseStatusCode="True"
+              ResponseAccessMode="Variable"
+              SaveAsBinary="False"
+              ResponseDataFilePath=""
+              ResponseHeaderMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Transfer-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Connection&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Origin&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Headers&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Methods&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Max-Age&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Vary&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Type&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Date&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Server&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;/ArrayOfKeyValueMapping&gt;"
+              ResponseCookieMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+              CookieContainerVariable=""
+              ConvertXmlToJson="False"
+              ResponseDataVariable="User::ResponseAuth"
+              ResponseStatusCodeVariable="User::ResponseAuthCode"
+              ResponseContentType="Json"
+              ResponseContentFilter=""
+              ResponseCharset=""
+              ValidateResponse="False"
+              ValidationRules="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ResponseValidationSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;MatchAny&gt;false&lt;/MatchAny&gt;&lt;Rules&gt;&lt;ResponseValidationRule xsi:type=&quot;StatusCodeValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;StatusCode&gt;200&lt;/StatusCode&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;ContentValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;Value /&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;HeaderValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;KeyName /&gt;&lt;Value /&gt;&lt;DataType&gt;String&lt;/DataType&gt;&lt;/ResponseValidationRule&gt;&lt;/Rules&gt;&lt;/ResponseValidationSetting&gt;"
+              ConsumeResponseOnError="False"
+              ContineOnAnyError="False"
+              ContineOnErrorForMessage="False"
+              ContineOnErrorForStatusCode="False"
+              ErrorStatusCodeToMatch="404"
+              MatchForEqual="True"
+              ErrorSubstringToMatch=""
+              ContineOn404Error="False"
+              SaveErrorFlagToVariable="False"
+              ErrorFlagVariableName=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Valuations\Set eTag"
+          DTS:CreationName="ZappySys.JsonParserTask"
+          DTS:Description="ZS JSON Parser Task"
+          DTS:DTSID="{4cfdcdd5-e717-4ade-85d2-89f398735233}"
+          DTS:ExecutableType="ZappySys.JsonParserTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Set eTag"
+          DTS:ThreadHint="5">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <JsonParserTask
+              SourceAccessMode="Variable"
+              SourceVariable="User::ResponseAuth"
+              SourceConnection=""
+              SourceDirectValue="{&#xA;&quot;CustomerID&quot;: &quot;ALFKI&quot;,&#xA;&quot;CustomerName&quot;: &quot;Alfredo Koli&quot;,&#xA;&quot;Age&quot;: 55,&#xA;&quot;LocationInfo&quot;: {&quot;City&quot;:&quot;Newyork&quot;, &quot;State&quot;:&quot;NY&quot;, &quot;Zip&quot;:&quot;23234&quot;},&#xA;&quot;OrderIDList&quot;: [111,222,333,444,555]&#xA;}"
+              TargetSettings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;JsonParserSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;Mappings&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;etag&lt;/Path&gt;&lt;Target&gt;User::ValuationeTag&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;/Mappings&gt;&lt;Path&gt;$.result.rows[0]&lt;/Path&gt;&lt;/JsonParserSetting&gt;"
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Valuations\Set eTag Error"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0b54464d-9a07-423e-a7b1-ee9a07a31c5c}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Set eTag Error"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="6">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+              SQLTask:SqlStatementSource="exec [dbo].[ROSIE_uspInsValuationPushPullLog] ?,?,'Push','Failed to set eTag',?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@RexAccountID"
+                SQLTask:DtsVariableName="$Package::RexAccountID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@Propref"
+                SQLTask:DtsVariableName="User::PropertyReference"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ResponseCode"
+                SQLTask:DtsVariableName="User::ResponseAuthCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@Response"
+                SQLTask:DtsVariableName="User::ResponseAuth"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Valuations\Valuation Create Error"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{dc44e571-367a-43cb-b41d-897922f27e98}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Valuation Create Error"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="10">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+              SQLTask:SqlStatementSource="exec [dbo].[ROSIE_uspInsValuationPushPullLog] ?,?,'Push','Failed to create valuation',?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@RexAccountID"
+                SQLTask:DtsVariableName="$Package::RexAccountID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@Propref"
+                SQLTask:DtsVariableName="User::PropertyReference"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ResponseCode"
+                SQLTask:DtsVariableName="User::ResponseAuthCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@Response"
+                SQLTask:DtsVariableName="User::ResponseAuth"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Valuations.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{84F5A170-3631-41F5-B1D3-3DE5F878B89B}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::APIValuationID] != &quot;&quot;"
+          DTS:From="Package\Iterate Valuations\Parse response JSON"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Iterate Valuations\Convert Valuation ID To Int" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Valuations.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{6E7D0FE1-FC00-4CA4-A0B8-4000D951C729}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::APIResponseError] != &quot;&quot;"
+          DTS:From="Package\Iterate Valuations\Parse response JSON"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Iterate Valuations\Increment Failed Count" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Valuations.PrecedenceConstraints[Constraint 12]"
+          DTS:CreationName=""
+          DTS:DTSID="{E73F0C3D-E63F-46F5-B3B8-09874660968D}"
+          DTS:From="Package\Iterate Valuations\Link Contact"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 12"
+          DTS:To="Package\Iterate Valuations\Link Contact Error"
+          DTS:Value="1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Valuations.PrecedenceConstraints[Constraint 13]"
+          DTS:CreationName=""
+          DTS:DTSID="{3A61922A-F8C0-4811-A71C-4B98AD7961AE}"
+          DTS:From="Package\Iterate Valuations\Create Active Valuation"
+          DTS:ObjectName="Constraint 13"
+          DTS:To="Package\Iterate Valuations\Parse response JSON" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Valuations.PrecedenceConstraints[Constraint 14]"
+          DTS:CreationName=""
+          DTS:DTSID="{153C637F-B478-4C20-8E53-ABDCB3432ECB}"
+          DTS:From="Package\Iterate Valuations\Populate Valuation ID and eTag"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 14"
+          DTS:To="Package\Iterate Valuations\Increment Record Count 1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Valuations.PrecedenceConstraints[Constraint 15]"
+          DTS:CreationName=""
+          DTS:DTSID="{1CDD6353-F3F0-452B-80CB-A015309862ED}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::ValuationID]&gt;0"
+          DTS:From="Package\Iterate Valuations\Convert Valuation ID To Int"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 15"
+          DTS:To="Package\Iterate Valuations\Search eTag" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Valuations.PrecedenceConstraints[Constraint 16]"
+          DTS:CreationName=""
+          DTS:DTSID="{A5F3C965-8F80-486C-A191-175CF959AF5C}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::ValuationID]&gt;0"
+          DTS:From="Package\Iterate Valuations\Convert Valuation ID To Int"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 16"
+          DTS:To="Package\Iterate Valuations\Link Contact" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Valuations.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:Description="Active"
+          DTS:DTSID="{868D546F-1366-43B2-9762-54FDF53C1D9D}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::ValuationState] != &quot;archived&quot;"
+          DTS:From="Package\Iterate Valuations\Dummy task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Iterate Valuations\Create Active Valuation" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Valuations.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:Description="Archived"
+          DTS:DTSID="{56BCC013-CE6D-45FB-AA8F-85D05F12B8F2}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::ValuationState] == &quot;archived&quot;"
+          DTS:From="Package\Iterate Valuations\Dummy task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Iterate Valuations\Create Archived Valuation" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Valuations.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{47310477-5200-4DEC-AFE2-385635C838E2}"
+          DTS:EvalOp="1"
+          DTS:Expression="FINDSTRING( @[User::ResponseAuth], &quot;\&quot;&quot;+&quot;etag&quot;+&quot;\&quot;&quot;, 1) &gt; 0"
+          DTS:From="Package\Iterate Valuations\Search eTag"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Iterate Valuations\Set eTag" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Valuations.PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{BC90B755-13B4-485A-B88E-F5D5B0266CF8}"
+          DTS:From="Package\Iterate Valuations\Search eTag"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package\Iterate Valuations\eTag Search Error"
+          DTS:Value="1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Valuations.PrecedenceConstraints[Constraint 6]"
+          DTS:CreationName=""
+          DTS:DTSID="{24343895-41A8-4221-8E9F-C6C40CD15697}"
+          DTS:From="Package\Iterate Valuations\Set eTag"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 6"
+          DTS:To="Package\Iterate Valuations\Set eTag Error"
+          DTS:Value="1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Valuations.PrecedenceConstraints[Constraint 7]"
+          DTS:CreationName=""
+          DTS:DTSID="{7E25157E-353C-404F-9551-5C91559F86CF}"
+          DTS:From="Package\Iterate Valuations\Set eTag"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 7"
+          DTS:To="Package\Iterate Valuations\Populate Valuation ID and eTag" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Valuations.PrecedenceConstraints[Constraint 8]"
+          DTS:CreationName=""
+          DTS:DTSID="{5D398298-FD67-4DE6-B752-2DD2A5208F25}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::APIResponseError] != &quot;&quot;"
+          DTS:From="Package\Iterate Valuations\Parse response JSON"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 8"
+          DTS:To="Package\Iterate Valuations\Valuation Create Error" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Valuations.PrecedenceConstraints[Constraint 9]"
+          DTS:CreationName=""
+          DTS:DTSID="{A672C157-A6E3-48A2-A969-857682A65C65}"
+          DTS:From="Package\Iterate Valuations\Create Archived Valuation"
+          DTS:ObjectName="Constraint 9"
+          DTS:To="Package\Iterate Valuations\Parse response JSON" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{871C58D8-3EBB-4FDC-9834-EDCBB3B78FC6}"
+          DTS:ObjectName="{871C58D8-3EBB-4FDC-9834-EDCBB3B78FC6}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::PropertyReference" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{73FCB321-615A-4701-BE31-E196AB8D833F}"
+          DTS:ObjectName="{73FCB321-615A-4701-BE31-E196AB8D833F}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::ValuationState" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{E51DC399-8765-47A9-BB8A-20FBE0B0AFBD}"
+          DTS:ObjectName="{E51DC399-8765-47A9-BB8A-20FBE0B0AFBD}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::ValuationDate" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{626A7DAA-3DF3-4115-A92F-14BDADC98A40}"
+          DTS:ObjectName="{626A7DAA-3DF3-4115-A92F-14BDADC98A40}"
+          DTS:ValueIndex="3"
+          DTS:VariableName="User::PriceMin" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{528FA542-1C44-4634-8284-8DB4A74DB3A5}"
+          DTS:ObjectName="{528FA542-1C44-4634-8284-8DB4A74DB3A5}"
+          DTS:ValueIndex="4"
+          DTS:VariableName="User::PriceMax" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{92BAEFE0-D469-40B8-A92B-E20CAE89F2C6}"
+          DTS:ObjectName="{92BAEFE0-D469-40B8-A92B-E20CAE89F2C6}"
+          DTS:ValueIndex="5"
+          DTS:VariableName="User::PriceAsking" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{ABF30376-990F-4588-994B-6A213FDCB7BD}"
+          DTS:ObjectName="{ABF30376-990F-4588-994B-6A213FDCB7BD}"
+          DTS:ValueIndex="6"
+          DTS:VariableName="User::PriceRent" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{2A171027-6B32-4493-A5E5-D63E26A2DE33}"
+          DTS:ObjectName="{2A171027-6B32-4493-A5E5-D63E26A2DE33}"
+          DTS:ValueIndex="7"
+          DTS:VariableName="User::InterestLevel" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{D43132B4-A65F-4CB6-9413-9BD3A4A2CB41}"
+          DTS:ObjectName="{D43132B4-A65F-4CB6-9413-9BD3A4A2CB41}"
+          DTS:ValueIndex="8"
+          DTS:VariableName="User::AgentID1" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{A1C88E63-A23E-4BC1-AFEE-3A5984CF7782}"
+          DTS:ObjectName="{A1C88E63-A23E-4BC1-AFEE-3A5984CF7782}"
+          DTS:ValueIndex="9"
+          DTS:VariableName="User::AgentName1" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{42CD0647-AF30-4DEA-8E53-516C1072B8C6}"
+          DTS:ObjectName="{42CD0647-AF30-4DEA-8E53-516C1072B8C6}"
+          DTS:ValueIndex="10"
+          DTS:VariableName="User::AgentID2" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{65AAA070-FE98-4FD7-8401-9241E343CBDF}"
+          DTS:ObjectName="{65AAA070-FE98-4FD7-8401-9241E343CBDF}"
+          DTS:ValueIndex="11"
+          DTS:VariableName="User::AgentName2" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{929C1117-4013-41A5-A382-D1E53EB221CE}"
+          DTS:ObjectName="{929C1117-4013-41A5-A382-D1E53EB221CE}"
+          DTS:ValueIndex="12"
+          DTS:VariableName="User::RexPropertyID" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{F3B56D8F-1FC3-446F-8C13-98C311C8DE2C}"
+          DTS:ObjectName="{F3B56D8F-1FC3-446F-8C13-98C311C8DE2C}"
+          DTS:ValueIndex="13"
+          DTS:VariableName="User::ContactID" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Package Processed Data Log"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{55fd5bc2-ab93-47fe-8657-a90285f6edcf}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Package Processed Data Log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+          SQLTask:SqlStatementSource="INSERT INTO[SSISSuccessLog] (packagename,accountid, starttime, upserted,failed ,endtime,ignored)&#xA;VALUES ('ValuationPush',?,?,?,?,getdate(),?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::RexAccountID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::PackageStartDate"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::UpsertedCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="User::FailedDMACount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="4"
+            SQLTask:DtsVariableName="User::IgnoredRecords"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set package run date"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7a8baa4d-4496-4bda-86f2-47696ebcdbce}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set package run date"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="4">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+          SQLTask:SqlStatementSource="UPDATE dbo.PackageLastRun&#xA;SET lastruntime = getdate()&#xA;WHERE AccountID = ?&#xA;and PackageName = 'ValuationPush'&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@AccountID"
+            SQLTask:DtsVariableName="$Package::RexAccountID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set package start date"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{80A71787-F21F-40EF-A0C1-620A1AEDEBD9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set package start date"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+          SQLTask:SqlStatementSource="DECLARE @accountid int  = ?&#xA;&#xA;IF NOT EXISTS (&#xA;    SELECT NULL FROM dbo.PackageLastRun WHERE PackageName = 'ValuationPush' AND AccountId = @accountid &#xA;)&#xA;&#xA;BEGIN&#xA;&#xA;INSERT INTO dbo.PackageLastRun&#xA; (packagename,accountid) VALUES ('ValuationPush' , @accountid )&#xA;END&#xA;ELSE &#xA;BEGIN&#xA;UPDATE  dbo.PackageLastRun&#xA;SET firstruntime = getdate()&#xA;WHERE packagename = 'ValuationPush'&#xA;and accountid = @accountid &#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@AccountID"
+            SQLTask:DtsVariableName="$Package::RexAccountID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set SSIS Variables From XML"
+      DTS:CreationName="ZappySys.XmlParserTask"
+      DTS:Description="ZS Xml Parser Task"
+      DTS:DTSID="{A59F8D27-D7DB-46E7-A56B-B1EB0F171E8C}"
+      DTS:ExecutableType="ZappySys.XmlParserTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set SSIS Variables From XML"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <XmlParserTask
+          SourceAccessMode="Connection"
+          SourceVariable=""
+          SourceConnection="{5300FFF4-BD82-489F-9E5A-1CF1E17B6F98}"
+          SourceDirectValue="&lt;!-- &#xA;Using XML Parser Task you can extract values from XML document using XPath Expression &#xA;See example in below grid. Read description for each mapping.&#xA;See more examples: https://msdn.microsoft.com/en-us/library/ms256086(v=vs.110).aspx&#xA;--&gt;&#xA;&lt;catalog&gt;&#xA;   &lt;book id=&quot;bk101&quot;&gt;&#xA;      &lt;author&gt;Gambardella, Matthew&lt;/author&gt;&#xA;      &lt;title&gt;XML Developer's Guide&lt;/title&gt;&#xA;      &lt;genre&gt;Computer&lt;/genre&gt;&#xA;      &lt;price&gt;44.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-10-01&lt;/publish_date&gt;&#xA;      &lt;description&gt;An in-depth look at creating applications &#xA;      with XML.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk102&quot;&gt;&#xA;      &lt;author&gt;Ralls, Kim&lt;/author&gt;&#xA;      &lt;title&gt;Midnight Rain&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-12-16&lt;/publish_date&gt;&#xA;      &lt;description&gt;A former architect battles corporate zombies, &#xA;      an evil sorceress, and her own childhood to become queen &#xA;      of the world.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk103&quot;&gt;&#xA;      &lt;author&gt;Corets, Eva&lt;/author&gt;&#xA;      &lt;title&gt;Maeve Ascendant&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-11-17&lt;/publish_date&gt;&#xA;      &lt;description&gt;After the collapse of a nanotechnology &#xA;      society in England, the young survivors lay the &#xA;      foundation for a new society.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk104&quot;&gt;&#xA;      &lt;author&gt;Corets, Eva&lt;/author&gt;&#xA;      &lt;title&gt;Oberon's Legacy&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2001-03-10&lt;/publish_date&gt;&#xA;      &lt;description&gt;In post-apocalypse England, the mysterious &#xA;      agent known only as Oberon helps to create a new life &#xA;      for the inhabitants of London. Sequel to Maeve &#xA;      Ascendant.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;&lt;/catalog&gt;"
+          TargetSettings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;XmlParserSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;Mappings&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/RexAPIWebURL&lt;/Path&gt;&lt;Target&gt;User::RexAPIWebURL&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt; /SSISVariables/PackageUser&lt;/Path&gt;&lt;Target&gt;User::PackageUser&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/PackageErrorEmail&lt;/Path&gt;&lt;Target&gt;User::PackageErrorEmail&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/PackagePassword&lt;/Path&gt;&lt;Target&gt;User::PackagePassword&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;/Mappings&gt;&lt;Path /&gt;&lt;/XmlParserSetting&gt;"
+          LogLevel="Normal"
+          PrefixTimestamp="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set start date variable"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{F2B05BA1-4557-4BFD-B528-03A7BEBEF596}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set start date variable"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::PackageStartDate]=getdate()" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set Upserted Count"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{de34c765-5748-48c1-80cf-fdebf92b5c38}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set Upserted Count"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::UpsertedCount] = @[User::ExecutedRecordCount]" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{46DD35B9-63D5-4FB2-9B41-0D611FCE47D1}"
+      DTS:From="Package\Get Valuation List"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Iterate Valuations" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{5BC0F28E-BCF9-45F9-8326-B57D2E6A505C}"
+      DTS:From="Package\Get Auth Key"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Email Auth Failure"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{A7754DA0-3406-44DF-824D-CA55FE23EFA1}"
+      DTS:From="Package\Set SSIS Variables From XML"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 11"
+      DTS:To="Package\Set package start date" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 13]"
+      DTS:CreationName=""
+      DTS:DTSID="{AFA96FA1-55F0-448C-A339-551EA099692E}"
+      DTS:From="Package\Set package start date"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 13"
+      DTS:To="Package\Set start date variable" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 15]"
+      DTS:CreationName=""
+      DTS:DTSID="{8DF358C8-0053-4487-8C4E-3BAD90835B01}"
+      DTS:From="Package\Get Auth Key"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 15"
+      DTS:To="Package\Get Valuation List" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{1A6DA488-CB40-4180-AA6D-7FEB61910818}"
+      DTS:From="Package\Set SSIS Variables From XML"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Get Auth Key" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{A9645FDE-DF8F-4A41-A2F9-EF794843607A}"
+      DTS:From="Package\Iterate Valuations"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Set Upserted Count" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{FC27C442-0865-4CD4-B6A1-E94CE08A0586}"
+      DTS:From="Package\Iterate Valuations"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Set package run date" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{307da61e-881c-4156-b08f-17de4df18bd8}"
+      DTS:From="Package\Set Upserted Count"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Package Processed Data Log" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{69C353D8-40E2-4656-BE4F-17058101F74D}"
+      DTS:From="Package\Get Auth Key"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Auth Failure"
+      DTS:Value="1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{94385493-8DD6-43EE-906C-C99E402DE8D7}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{590D5F7C-C139-4957-AD8E-D9B28CB29BA9}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Email error"
+          DTS:CreationName="ZappySys.HtmlEmailTask"
+          DTS:Description="Email Auth Failure"
+          DTS:DTSID="{E236DDEC-CD06-4C58-9324-B2B8A7D3D51A}"
+          DTS:ExecutableType="ZappySys.HtmlEmailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Email error"
+          DTS:TaskContact="HTML Email Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <HtmlEmailTask
+              SmtpConnection="SMTP"
+              IsHtmlEmail="True"
+              DefaultStyle="&#xA;&lt;style type=&quot;text/css&quot;&gt;&#xA;body,div,p,span,td,th,table {&#xA; font-family: Helvetica, Arial, sans-serif;&#xA; font-size: 10pt; &#xA;}&#xA;h1,h2,h3,h4,h5{&#xA;font-family: Helvetica, Arial, sans-serif;&#xA;}&#xA;&#xA;table { &#xA; border-collapse: &#xA; collapse; border-spacing: 0; &#xA;}&#xA;&#xA;tr.odd    {background-color: #cccccc}&#xA;tr.even   {background-color: #fafafa}&#xA;td, th { border: 1px solid #bbb;padding: 5 5 5 5} &#xA;th { background: #F3F3F3;  font-weight: bold;}&#xA;&lt;/style&gt;&#xA;&#xA;"
+              Subject="Error occured in {{System::PackageName}}"
+              From="alerts@spicerhaart.co.uk"
+              To="{{User::PackageErrorEmail}}"
+              Cc=""
+              ReplyTo=""
+              Bcc=""
+              Attachments=""
+              EmailPriority="High"
+              MessageSourceType="Direct"
+              MessageDirectValue="&lt;p&gt;Error occured and could not be logged in database&lt;p /&gt;&#xA;&lt;br&gt;&#xA;&lt;p&gt;Error code: {{System::ErrorCode}}&lt;p /&gt;&#xA;&lt;br&gt;&#xA;&lt;p&gt;Error message: {{System::ErrorDescription}}&lt;p /&gt;"
+              MessageFileConnection=""
+              MessageVariable=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Insert error log into database"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E936D0B6-7508-4403-BDB6-EB852AEC9848}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert error log into database"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+              SQLTask:SqlStatementSource="INSERT INTO SSISErrorLog&#xA;(PackageName, StartTime, ErrorCode, ErrorDescription, AccountID)&#xA;VALUES&#xA;(?, ?, ?, ?, ?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@PackageName"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@StartTime"
+                SQLTask:DtsVariableName="System::StartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorCode"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorDescription"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@AccountID"
+                SQLTask:DtsVariableName="$Package::RexAccountID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{5D2E921C-E5BE-4804-87D0-79842F6339D1}"
+          DTS:From="Package.EventHandlers[OnError]\Insert error log into database"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Email error"
+          DTS:Value="1" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnTaskFailed]"
+      DTS:CreationName="OnTaskFailed"
+      DTS:DTSID="{D3A10D8F-1EC0-48F6-8C56-619866CF2F56}"
+      DTS:EventID="0"
+      DTS:EventName="OnTaskFailed"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{6448C70E-2B1D-4EF6-9ADB-55AE015CC051}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables />
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,42"
+          Id="Package\Auth Failure"
+          TopLeft="697,209.5" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Email Auth Failure"
+          TopLeft="249,209.5" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Get Auth Key"
+          TopLeft="484.5,107.5" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Get Valuation List"
+          TopLeft="474,209.5" />
+        <NodeLayout
+          Size="211,42"
+          Id="Package\Iterate Valuations\Convert Valuation ID To Int"
+          TopLeft="176.5,209.5" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Iterate Valuations\Create Active Valuation"
+          TopLeft="536.5,6.5" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\Iterate Valuations\Create Archived Valuation"
+          TopLeft="87.5,125.5" />
+        <NodeLayout
+          Size="140,42"
+          Id="Package\Iterate Valuations\Dummy task"
+          TopLeft="29.5,56.5" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Iterate Valuations\eTag Search Error"
+          TopLeft="200,413.5" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\Iterate Valuations\Increment Failed Count"
+          TopLeft="448.5,209.5" />
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Iterate Valuations\Increment Record Count 1"
+          TopLeft="226,617.5" />
+        <NodeLayout
+          Size="137,42"
+          Id="Package\Iterate Valuations\Link Contact"
+          TopLeft="411.5,311.5" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Iterate Valuations\Link Contact Error"
+          TopLeft="425,413.5" />
+        <NodeLayout
+          Size="188,42"
+          Id="Package\Iterate Valuations\Parse response JSON"
+          TopLeft="449,107.5" />
+        <NodeLayout
+          Size="229,42"
+          Id="Package\Iterate Valuations\Populate Valuation ID and eTag"
+          TopLeft="213.5,515.5" />
+        <NodeLayout
+          Size="138,42"
+          Id="Package\Iterate Valuations\Search eTag"
+          TopLeft="213,311.5" />
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Iterate Valuations\Set eTag"
+          TopLeft="18.5,413.5" />
+        <NodeLayout
+          Size="147,42"
+          Id="Package\Iterate Valuations\Set eTag Error"
+          TopLeft="5.5,515.5" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\Iterate Valuations\Valuation Create Error"
+          TopLeft="698.5,209.5" />
+        <EdgeLayout
+          Id="Package\Iterate Valuations.PrecedenceConstraints[Constraint]"
+          TopLeft="498,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-216,60.0000000000001"
+              Start="0,0"
+              End="-216,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.5594405594406" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.5594405594406"
+                    Point2="0,20.5594405594406"
+                    Point3="-4,20.5594405594406" />
+                  <mssgle:LineSegment
+                    End="-212,20.5594405594406" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-212,20.5594405594406"
+                    Point2="-216,20.5594405594406"
+                    Point3="-216,24.5594405594406" />
+                  <mssgle:LineSegment
+                    End="-216,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-116,25.5594405594406,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Valuations.PrecedenceConstraints[Constraint 1]"
+          TopLeft="543,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Valuations.PrecedenceConstraints[Constraint 12]"
+          TopLeft="480,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="27,60"
+              Start="0,0"
+              End="27,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="23,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="23,30"
+                    Point2="27,30"
+                    Point3="27,34" />
+                  <mssgle:LineSegment
+                    End="27,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-1.74134765625,35,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Valuations.PrecedenceConstraints[Constraint 13]"
+          TopLeft="633.5,48.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-90.5,59"
+              Start="0,0"
+              End="-90.5,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.5"
+                    Point2="0,29.5"
+                    Point3="-4,29.5" />
+                  <mssgle:LineSegment
+                    End="-86.5,29.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-86.5,29.5"
+                    Point2="-90.5,29.5"
+                    Point3="-90.5,33.5" />
+                  <mssgle:LineSegment
+                    End="-90.5,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Valuations.PrecedenceConstraints[Constraint 14]"
+          TopLeft="328,557.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Valuations.PrecedenceConstraints[Constraint 15]"
+          TopLeft="248.166666666667,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="33.8333333333333,60"
+              Start="0,0"
+              End="33.8333333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2709313264346" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2709313264346"
+                    Point2="0,24.2709313264346"
+                    Point3="4,24.2709313264346" />
+                  <mssgle:LineSegment
+                    End="29.8333333333333,24.2709313264346" />
+                  <mssgle:CubicBezierSegment
+                    Point1="29.8333333333333,24.2709313264346"
+                    Point2="33.8333333333333,24.2709313264346"
+                    Point3="33.8333333333333,28.2709313264346" />
+                  <mssgle:LineSegment
+                    End="33.8333333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="8.91666666666667,29.2709313264346,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Valuations.PrecedenceConstraints[Constraint 16]"
+          TopLeft="315.833333333333,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="164.166666666667,59.9999999999999"
+              Start="0,0"
+              End="164.166666666667,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2709313264346" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2709313264346"
+                    Point2="0,24.2709313264346"
+                    Point3="4,24.2709313264346" />
+                  <mssgle:LineSegment
+                    End="160.166666666667,24.2709313264346" />
+                  <mssgle:CubicBezierSegment
+                    Point1="160.166666666667,24.2709313264346"
+                    Point2="164.166666666667,24.2709313264346"
+                    Point3="164.166666666667,28.2709313264346" />
+                  <mssgle:LineSegment
+                    End="164.166666666667,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="74.0833333333333,29.2709313264346,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Valuations.PrecedenceConstraints[Constraint 2]"
+          TopLeft="169.5,77.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="367,-50"
+              Start="0,0"
+              End="359.5,-50">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="179.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="179.5,0"
+                    Point2="183.5,0"
+                    Point3="183.5,-4" />
+                  <mssgle:LineSegment
+                    End="183.5,-46" />
+                  <mssgle:CubicBezierSegment
+                    Point1="183.5,-46"
+                    Point2="183.5,-50"
+                    Point3="187.5,-50" />
+                  <mssgle:LineSegment
+                    End="359.5,-50" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="160.89,1,45.22,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Valuations.PrecedenceConstraints[Constraint 3]"
+          TopLeft="99.5,98.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="91.5,27"
+              Start="0,0"
+              End="91.5,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.5"
+                    Point2="0,13.5"
+                    Point3="4,13.5" />
+                  <mssgle:LineSegment
+                    End="87.5,13.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="87.5,13.5"
+                    Point2="91.5,13.5"
+                    Point3="91.5,17.5" />
+                  <mssgle:LineSegment
+                    End="91.5,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="17.658359375,18.5,56.18328125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Valuations.PrecedenceConstraints[Constraint 4]"
+          TopLeft="260.333333333333,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-181.333333333333,60"
+              Start="0,0"
+              End="-181.333333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4126074498567" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4126074498567"
+                    Point2="0,24.4126074498567"
+                    Point3="-4,24.4126074498567" />
+                  <mssgle:LineSegment
+                    End="-177.333333333333,24.4126074498567" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-177.333333333333,24.4126074498567"
+                    Point2="-181.333333333333,24.4126074498567"
+                    Point3="-181.333333333333,28.4126074498567" />
+                  <mssgle:LineSegment
+                    End="-181.333333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-98.6666666666667,29.4126074498567,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Valuations.PrecedenceConstraints[Constraint 5]"
+          TopLeft="303.666666666667,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-21.6666666666666,60"
+              Start="0,0"
+              End="-21.6666666666666,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4126074498567" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4126074498567"
+                    Point2="0,24.4126074498567"
+                    Point3="-4,24.4126074498567" />
+                  <mssgle:LineSegment
+                    End="-17.6666666666666,24.4126074498567" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-17.6666666666666,24.4126074498567"
+                    Point2="-21.6666666666666,24.4126074498567"
+                    Point3="-21.6666666666666,28.4126074498567" />
+                  <mssgle:LineSegment
+                    End="-21.6666666666666,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-26.0746809895833,29.4126074498567,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Valuations.PrecedenceConstraints[Constraint 6]"
+          TopLeft="60.1666666666667,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="18.8333333333333,60"
+              Start="0,0"
+              End="18.8333333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4698205546493" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4698205546493"
+                    Point2="0,24.4698205546493"
+                    Point3="4,24.4698205546493" />
+                  <mssgle:LineSegment
+                    End="14.8333333333333,24.4698205546493" />
+                  <mssgle:CubicBezierSegment
+                    Point1="14.8333333333333,24.4698205546493"
+                    Point2="18.8333333333333,24.4698205546493"
+                    Point3="18.8333333333333,28.4698205546493" />
+                  <mssgle:LineSegment
+                    End="18.8333333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-5.82468098958333,29.4698205546493,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Valuations.PrecedenceConstraints[Constraint 7]"
+          TopLeft="97.8333333333333,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="230.166666666667,59.9999999999999"
+              Start="0,0"
+              End="230.166666666667,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4698205546492" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4698205546492"
+                    Point2="0,24.4698205546492"
+                    Point3="4,24.4698205546492" />
+                  <mssgle:LineSegment
+                    End="226.166666666667,24.4698205546492" />
+                  <mssgle:CubicBezierSegment
+                    Point1="226.166666666667,24.4698205546492"
+                    Point2="230.166666666667,24.4698205546492"
+                    Point3="230.166666666667,28.4698205546492" />
+                  <mssgle:LineSegment
+                    End="230.166666666667,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Valuations.PrecedenceConstraints[Constraint 8]"
+          TopLeft="588,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="202,60"
+              Start="0,0"
+              End="202,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.5594405594406" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.5594405594406"
+                    Point2="0,20.5594405594406"
+                    Point3="4,20.5594405594406" />
+                  <mssgle:LineSegment
+                    End="198,20.5594405594406" />
+                  <mssgle:CubicBezierSegment
+                    Point1="198,20.5594405594406"
+                    Point2="202,20.5594405594406"
+                    Point3="202,24.5594405594406" />
+                  <mssgle:LineSegment
+                    End="202,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="93,25.5594405594406,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Valuations.PrecedenceConstraints[Constraint 9]"
+          TopLeft="294.5,146.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="154.5,-18"
+              Start="0,0"
+              End="147,-18">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="73.25,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="73.25,0"
+                    Point2="77.25,0"
+                    Point3="77.25,-4" />
+                  <mssgle:LineSegment
+                    End="77.25,-14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="77.25,-14"
+                    Point2="77.25,-18"
+                    Point3="81.25,-18" />
+                  <mssgle:LineSegment
+                    End="147,-18" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="887,817"
+          Size="887,860"
+          Id="Package\Iterate Valuations"
+          TopLeft="111.5,311.5" />
+        <NodeLayout
+          Size="214,42"
+          Id="Package\Package Processed Data Log"
+          TopLeft="212,1231.5" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Set package run date"
+          TopLeft="465.5,1129.5" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Set package start date"
+          TopLeft="238.5,107.5" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Set SSIS Variables From XML"
+          TopLeft="447,5.5" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\Set start date variable"
+          TopLeft="5.5,209.5" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Set Upserted Count"
+          TopLeft="233.5,1129.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="555,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="521.75,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-190.75,60"
+              Start="0,0"
+              End="-190.75,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.7424593967517" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.7424593967517"
+                    Point2="0,20.7424593967517"
+                    Point3="-4,20.7424593967517" />
+                  <mssgle:LineSegment
+                    End="-186.75,20.7424593967517" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-186.75,20.7424593967517"
+                    Point2="-190.75,20.7424593967517"
+                    Point3="-190.75,24.7424593967517" />
+                  <mssgle:LineSegment
+                    End="-190.75,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-110.61634765625,25.7424593967517,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="520.333333333333,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-189.333333333333,60"
+              Start="0,0"
+              End="-189.333333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2647058823529" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2647058823529"
+                    Point2="0,24.2647058823529"
+                    Point3="-4,24.2647058823529" />
+                  <mssgle:LineSegment
+                    End="-185.333333333333,24.2647058823529" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-185.333333333333,24.2647058823529"
+                    Point2="-189.333333333333,24.2647058823529"
+                    Point3="-189.333333333333,28.2647058823529" />
+                  <mssgle:LineSegment
+                    End="-189.333333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 13]"
+          TopLeft="331,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-234,60"
+              Start="0,0"
+              End="-234,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="-4,30" />
+                  <mssgle:LineSegment
+                    End="-230,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-230,30"
+                    Point2="-234,30"
+                    Point3="-234,34" />
+                  <mssgle:LineSegment
+                    End="-234,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 15]"
+          TopLeft="555,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="589.666666666667,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-34.6666666666666,60"
+              Start="0,0"
+              End="-34.6666666666666,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2647058823529" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2647058823529"
+                    Point2="0,24.2647058823529"
+                    Point3="-4,24.2647058823529" />
+                  <mssgle:LineSegment
+                    End="-30.6666666666666,24.2647058823529" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-30.6666666666666,24.2647058823529"
+                    Point2="-34.6666666666666,24.2647058823529"
+                    Point3="-34.6666666666666,28.2647058823529" />
+                  <mssgle:LineSegment
+                    End="-34.6666666666666,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="408.5,1171.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-89.5,-42"
+              Start="0,0"
+              End="-89.5,-34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-12.8453747467927" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-12.8453747467927"
+                    Point2="0,-16.8453747467927"
+                    Point3="-4,-16.8453747467927" />
+                  <mssgle:LineSegment
+                    End="-85.5,-16.8453747467927" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-85.5,-16.8453747467927"
+                    Point2="-89.5,-16.8453747467927"
+                    Point3="-89.5,-20.8453747467927" />
+                  <mssgle:LineSegment
+                    End="-89.5,-34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="701.5,1171.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-146.5,-42"
+              Start="0,0"
+              End="-146.5,-34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-12.8453747467927" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-12.8453747467927"
+                    Point2="0,-16.8453747467927"
+                    Point3="-4,-16.8453747467927" />
+                  <mssgle:LineSegment
+                    End="-142.5,-16.8453747467927" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-142.5,-16.8453747467927"
+                    Point2="-146.5,-16.8453747467927"
+                    Point3="-146.5,-20.8453747467927" />
+                  <mssgle:LineSegment
+                    End="-146.5,-34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="319,1171.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="588.25,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="176.75,60"
+              Start="0,0"
+              End="176.75,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.7424593967517" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.7424593967517"
+                    Point2="0,20.7424593967517"
+                    Point3="4,20.7424593967517" />
+                  <mssgle:LineSegment
+                    End="172.75,20.7424593967517" />
+                  <mssgle:CubicBezierSegment
+                    Point1="172.75,20.7424593967517"
+                    Point2="176.75,20.7424593967517"
+                    Point3="176.75,24.7424593967517" />
+                  <mssgle:LineSegment
+                    End="176.75,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="73.13365234375,25.7424593967517,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="131,42"
+          Id="Package.EventHandlers[OnError]\Email error"
+          TopLeft="103,162" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package.EventHandlers[OnError]\Insert error log into database"
+          TopLeft="60,60" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="168.5,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-15.24134765625,21.37548828125,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnTaskFailed]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="131,42"
+          Id="{7B24456E-71A1-42ED-8BF3-CE0C7825D6DF}"
+          TopLeft="203,130" />
+        <NodeLayout
+          Size="178,42"
+          Id="{1F31AF16-4BD6-4A53-A279-CE4F8DEAF5C6}"
+          TopLeft="179,23" />
+        <EdgeLayout
+          Id="{160B05A4-98A6-4E8D-887A-A70D0F08AA63}"
+          TopLeft="268.25,65">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,65"
+              Start="0,0"
+              End="0,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <PrecedenceConstraint
+    design-time-name="Package\Iterate Valuations.PrecedenceConstraints[Constraint 2]">
+    <ShowAnnotation>ConstraintDescription</ShowAnnotation>
+  </PrecedenceConstraint>
+  <PrecedenceConstraint
+    design-time-name="Package\Iterate Valuations.PrecedenceConstraints[Constraint 3]">
+    <ShowAnnotation>ConstraintDescription</ShowAnnotation>
+  </PrecedenceConstraint>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="InternetDB"
+  DTS:DTSID="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=COLSQL10;User ID=IDBSUser;Initial Catalog=InternetDB;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1"
+        p4:Salt="fYLZs/TwYA=="
+        p4:IV="v7Nyni4sZE8=" xmlns:p4="www.microsoft.com/SqlServer/SSIS">/ku+wVusTjaDqAVzp5vTI65Y28N/CCEoVKq/R4PICH9GxRdbrRgfH+YZR6zTIb2fkFgA8kp4tfJ4a2VMVSbWlXnzAnFuiiteCHA147y8kqJCGWP1iNvIH6aTt6yYGQO6IA9Is+2IaDvyS6hBNOhrWwOCEdlP0OTD</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

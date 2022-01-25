@@ -1,0 +1,853 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/25/2018 4:46:24 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WX9000ITD17"
+  DTS:CreatorName="SPICERHAART\1905887"
+  DTS:DTSID="{5A2E0E53-F96C-4A28-8F9E-C02A2A90112C}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.5026.0"
+  DTS:LocaleID="2057"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="RexSynxFramework"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="1"
+  DTS:VersionBuild="99"
+  DTS:VersionGUID="{44A3A341-118B-4245-80E8-2C21D004CC18}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HTTP Connection Manager]"
+      DTS:CreationName="HTTP"
+      DTS:DTSID="{D2FD5C04-1B9A-497B-A5A4-A1C7A9A1B1E6}"
+      DTS:ObjectName="HTTP Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="dummy2">
+          <DTS:HttpConnection
+            DTS:ServerURL="dummy2">
+            <DTS:Property
+              DTS:Name="ServerPassword"
+              Sensitive="1"
+              Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAVMlPrOXYg0KXzKv0lVo7kQAAAAACAAAAAAADZgAAwAAAABAAAAA2ytFrUKK6c/qIvapnFiDTAAAAAASAAACgAAAAEAAAAEc3aDGQfTRevRV+t/A9UFMIAAAA0gZmV3EhzyUUAAAARANZoozDFsp9cqHH4qRaRE1Uz7s=</DTS:Property>
+            <DTS:Property
+              DTS:Name="ProxyPassword"
+              Sensitive="1"
+              Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAVMlPrOXYg0KXzKv0lVo7kQAAAAACAAAAAAADZgAAwAAAABAAAABrDazfejytZns/RfJra7k0AAAAAASAAACgAAAAEAAAAOxEmbaXniAi5IDjTpRVoPsIAAAAXASdIwO26e0UAAAAkL116InZjRoJjz9WmA2Bb1pLNqg=</DTS:Property>
+          </DTS:HttpConnection>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RexSync.xml]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{DE36372E-0052-4755-BAE8-2EC371DBC607}"
+      DTS:ObjectName="RexSync.xml">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\SSISVariables\RexSync.xml" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP]"
+      DTS:CreationName="ZS-SMTP"
+      DTS:DTSID="{4422FA27-475B-402C-9906-56562B06CD2E}"
+      DTS:ObjectName="SMTP">
+      <DTS:ObjectData>
+        <ConnectionManager
+          ConnectionString="SmtpServer=outlookcol;UserName=;Port=25;EnableSsl=False;Timeout=10000;EnableAnonymousAuth=False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{0DCC40ED-8CFA-4574-8251-AEE8F032AD38}"
+      DTS:ObjectName="Partition"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">A</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9A2B73FC-05F0-4FA1-9862-748269A40420}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="AccountID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{88FC93DA-35A6-4035-BB14-76217E20A6D6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="HasMigrated">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{296FF694-8915-4C1C-9D91-728CA2FA5AA4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ListingImageOutput">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AC74307B-3B42-4023-8C07-2176D1E065F2}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ListingImageOutputCopy1">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{20F7B3BE-D712-4DAD-8F84-0AA8336F498D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ListingImageOutputCopy2">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2ABBEBDF-6309-4DB0-A3EB-89CDD49898FE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ListingImageOutputCopy3">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3C711F9B-3F9B-426A-9DBB-FE49F194BA96}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="OfficeID">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4FE22768-D650-4933-A8C1-2881741F1E9C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="OfficeMigrated">
+      <DTS:VariableValue
+        DTS:DataType="17">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EC36EB4E-7A26-4C77-845F-974A82E55577}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="OfficeMigratedDate">
+      <DTS:VariableValue
+        DTS:DataType="7">10/25/2018 5:23:35 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{53F5FD13-C553-403E-8B57-62F755EAD2E2}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Offices">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8B1623C8-E13F-4F6C-B1FD-EA366780D7CF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageErrorEmail">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{923BFE3A-5AF0-4A5D-ADA8-DD7340D8C7DC}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT partition, office_id, ISNULL(&#xA;r_account_id, 0) AS r_account_id, &#xA;ISNULL(migrated, 0) AS migrated, &#xA;&#x9;ISNULL(migrationDate, '2100-01-01') AS migrationDate&#xA;FROM RosieOfficeMigration&#xA;WHERE partition = '&quot; + @[$Package::Partition] + &quot;'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SQLSelectMigrationOffices">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT partition, office_id, ISNULL(
+r_account_id, 0) AS r_account_id, 
+ISNULL(migrated, 0) AS migrated, 
+	ISNULL(migrationDate, '2100-01-01') AS migrationDate
+FROM RosieOfficeMigration
+WHERE partition = 'A'</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Office"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{0A9CA091-6AB6-490C-B0E0-BAEDA6AE76F8}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:MaxErrorCount="0"
+      DTS:ObjectName="Foreach Office">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{ED8F432B-08EF-4868-9D1F-0678E6D32261}"
+        DTS:ObjectName="{ED8F432B-08EF-4868-9D1F-0678E6D32261}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::Offices" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Office\Office Migrated?"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{3672679D-DB27-4997-875F-319013EB4BEC}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Office Migrated?"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::HasMigrated] = @[User::OfficeMigratedDate]  &lt; GETDATE() ? true : false" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Office\Pull Packages"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{633D8CBF-D787-46B4-A2F0-6EBE82BDEB22}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="0"
+          DTS:ObjectName="Pull Packages"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:LoggingMode="2" />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>FrameworkChildPull.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>OfficeID</ParameterName>
+                <BindedVariableOrParameterName>User::OfficeID</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>RexAccountID</ParameterName>
+                <BindedVariableOrParameterName>User::AccountID</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>ListingImageOutput</ParameterName>
+                <BindedVariableOrParameterName>User::ListingImageOutput</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>ListingImageOutputCopy1</ParameterName>
+                <BindedVariableOrParameterName>User::ListingImageOutputCopy1</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>ListingImageOutputCopy2</ParameterName>
+                <BindedVariableOrParameterName>User::ListingImageOutputCopy2</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>ListingImageOutputCopy3</ParameterName>
+                <BindedVariableOrParameterName>User::ListingImageOutputCopy3</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Office\Push Packages"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{9F78EE0B-97E7-4EC6-A9C6-65F7A48A920F}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Push Packages"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>FrameworkChildPush.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>OfficeID</ParameterName>
+                <BindedVariableOrParameterName>User::OfficeID</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>RexAccountID</ParameterName>
+                <BindedVariableOrParameterName>User::AccountID</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Office.PrecedenceConstraints[Migrated1]"
+          DTS:CreationName=""
+          DTS:DTSID="{2F27BA5C-8500-4215-9711-9A1325F6C69F}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::HasMigrated]"
+          DTS:From="Package\Foreach Office\Office Migrated?"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Migrated"
+          DTS:To="Package\Foreach Office\Pull Packages" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Office.PrecedenceConstraints[Migrated]"
+          DTS:CreationName=""
+          DTS:DTSID="{F5C7C9D5-8EC4-4899-AC52-3112AA999653}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::HasMigrated] == False"
+          DTS:From="Package\Foreach Office\Office Migrated?"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Migrated"
+          DTS:To="Package\Foreach Office\Push Packages" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{18AB5965-5D77-4C29-9B25-5A5EFF6AFCE4}"
+          DTS:ObjectName="{18AB5965-5D77-4C29-9B25-5A5EFF6AFCE4}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::AccountID" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{B4B98FAC-4F20-4908-834D-EA9668F11033}"
+          DTS:ObjectName="{B4B98FAC-4F20-4908-834D-EA9668F11033}"
+          DTS:ValueIndex="3"
+          DTS:VariableName="User::OfficeMigrated" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{D1ABC283-D54C-4F99-AE0F-F7B4DE85D703}"
+          DTS:ObjectName="{D1ABC283-D54C-4F99-AE0F-F7B4DE85D703}"
+          DTS:ValueIndex="4"
+          DTS:VariableName="User::OfficeMigratedDate" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{32DBFBA2-B411-4D45-AD9E-1682BC468F7B}"
+          DTS:ObjectName="{32DBFBA2-B411-4D45-AD9E-1682BC468F7B}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::OfficeID" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Offices"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2CD55604-365C-437D-9832-360CE2808A2A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Offices"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}"
+          SQLTask:SqlStatementSource="SELECT partition, office_id, r_account_id AS r_account_id, ISNULL(migrated, 0) AS migrated, ISNULL(migrationDate, '2100-01-01') AS migrationDate&#xA;FROM RosieOfficeMigration&#xA;WHERE partition = ?&#xA;    AND r_account_id IS NOT NULL&#xA;    AND Sync = 1"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::Offices" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@Partition"
+            SQLTask:DtsVariableName="$Package::Partition"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Insert error log into database"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{727C771A-77F6-47F0-90BC-BCD7100155B6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Insert error log into database"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+          SQLTask:SqlStatementSource="INSERT INTO SSISErrorLog&#xA;(PackageName, StartTime, ErrorCode, ErrorDescription, AccountID)&#xA;VALUES&#xA;(?, ?, 0, 'Error retrieving access token: Response Auth: ' + CAST(? AS VARCHAR(500) + 'Response Code: ' + CAST(? AS VARCHAR(500)), 0)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@PackageName"
+            SQLTask:DtsVariableName="$Package::Partition"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@StartTime"
+            SQLTask:DtsVariableName="$Package::Partition"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@ErrorDescription"
+            SQLTask:DtsVariableName="$Package::Partition"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@ResponseAuthCode"
+            SQLTask:DtsVariableName="$Package::Partition"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set SSIS Variables From XML"
+      DTS:CreationName="ZappySys.XmlParserTask"
+      DTS:Description="ZS Xml Parser Task"
+      DTS:DTSID="{66E33622-4A17-4409-A570-DE8C0928C645}"
+      DTS:ExecutableType="ZappySys.XmlParserTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set SSIS Variables From XML"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <XmlParserTask
+          SourceAccessMode="Connection"
+          SourceVariable=""
+          SourceConnection="{DE36372E-0052-4755-BAE8-2EC371DBC607}"
+          SourceDirectValue="&lt;!-- &#xA;Using XML Parser Task you can extract values from XML document using XPath Expression &#xA;See example in below grid. Read description for each mapping.&#xA;See more examples: https://msdn.microsoft.com/en-us/library/ms256086(v=vs.110).aspx&#xA;--&gt;&#xA;&lt;catalog&gt;&#xA;   &lt;book id=&quot;bk101&quot;&gt;&#xA;      &lt;author&gt;Gambardella, Matthew&lt;/author&gt;&#xA;      &lt;title&gt;XML Developer's Guide&lt;/title&gt;&#xA;      &lt;genre&gt;Computer&lt;/genre&gt;&#xA;      &lt;price&gt;44.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-10-01&lt;/publish_date&gt;&#xA;      &lt;description&gt;An in-depth look at creating applications &#xA;      with XML.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk102&quot;&gt;&#xA;      &lt;author&gt;Ralls, Kim&lt;/author&gt;&#xA;      &lt;title&gt;Midnight Rain&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-12-16&lt;/publish_date&gt;&#xA;      &lt;description&gt;A former architect battles corporate zombies, &#xA;      an evil sorceress, and her own childhood to become queen &#xA;      of the world.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk103&quot;&gt;&#xA;      &lt;author&gt;Corets, Eva&lt;/author&gt;&#xA;      &lt;title&gt;Maeve Ascendant&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-11-17&lt;/publish_date&gt;&#xA;      &lt;description&gt;After the collapse of a nanotechnology &#xA;      society in England, the young survivors lay the &#xA;      foundation for a new society.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk104&quot;&gt;&#xA;      &lt;author&gt;Corets, Eva&lt;/author&gt;&#xA;      &lt;title&gt;Oberon's Legacy&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2001-03-10&lt;/publish_date&gt;&#xA;      &lt;description&gt;In post-apocalypse England, the mysterious &#xA;      agent known only as Oberon helps to create a new life &#xA;      for the inhabitants of London. Sequel to Maeve &#xA;      Ascendant.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;&lt;/catalog&gt;"
+          TargetSettings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;XmlParserSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;Mappings&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/PackageErrorEmail&lt;/Path&gt;&lt;Target&gt;User::PackageErrorEmail&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/ListingImageOutput&lt;/Path&gt;&lt;Target&gt;User::ListingImageOutput&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/ListingImageOutputCopy1&lt;/Path&gt;&lt;Target&gt;User::ListingImageOutputCopy1&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/ListingImageOutputCopy2&lt;/Path&gt;&lt;Target&gt;User::ListingImageOutputCopy2&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/ListingImageOutputCopy3&lt;/Path&gt;&lt;Target&gt;User::ListingImageOutputCopy3&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;/Mappings&gt;&lt;Path /&gt;&lt;/XmlParserSetting&gt;"
+          LogLevel="Normal"
+          PrefixTimestamp="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{51835E75-BDCE-4EF8-A00F-96372017ECFE}"
+      DTS:From="Package\Get Offices"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Foreach Office" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{2CEC6F58-3ABC-4414-97F1-FA9D2577F6C9}"
+      DTS:From="Package\Get Offices"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Insert error log into database"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{FCA53CA4-3B81-4B0D-851C-7534C0A79A59}"
+      DTS:From="Package\Set SSIS Variables From XML"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Get Offices" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{AE56C074-CF86-4BA3-A527-D15537B88955}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{50EF5931-00FE-435C-B2FD-EFAD6A8D526B}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Email error"
+          DTS:CreationName="ZappySys.HtmlEmailTask"
+          DTS:Description="ZS HTML Email Task"
+          DTS:DTSID="{79A77EF9-6568-4BCE-9C00-381029CBA316}"
+          DTS:ExecutableType="ZappySys.HtmlEmailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Email error">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <HtmlEmailTask
+              SmtpConnection="SMTP"
+              IsHtmlEmail="True"
+              DefaultStyle="&#xA;&lt;style type=&quot;text/css&quot;&gt;&#xA;body,div,p,span,td,th,table {&#xA; font-family: Helvetica, Arial, sans-serif;&#xA; font-size: 10pt; &#xA;}&#xA;h1,h2,h3,h4,h5{&#xA;font-family: Helvetica, Arial, sans-serif;&#xA;}&#xA;&#xA;table { &#xA; border-collapse: &#xA; collapse; border-spacing: 0; &#xA;}&#xA;&#xA;tr.odd    {background-color: #cccccc}&#xA;tr.even   {background-color: #fafafa}&#xA;td, th { border: 1px solid #bbb;padding: 5 5 5 5} &#xA;th { background: #F3F3F3;  font-weight: bold;}&#xA;&lt;/style&gt;&#xA;&#xA;"
+              Subject="Error occured in {{System::PackageName}}"
+              From="alerts@spicerhaart.co.uk"
+              To="{{User::PackageErrorEmail}}"
+              Cc=""
+              ReplyTo=""
+              Bcc=""
+              Attachments=""
+              EmailPriority="Low"
+              MessageSourceType="Direct"
+              MessageDirectValue="&lt;p&gt;Error occured and could not be logged in database&lt;p /&gt;&#xA;&lt;br&gt;&#xA;&lt;p&gt;Error code: {{System::ErrorCode}}&lt;p /&gt;&#xA;&lt;br&gt;&#xA;&lt;p&gt;Error message: {{System::ErrorDescription}}&lt;p /&gt;"
+              MessageFileConnection=""
+              MessageVariable=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Insert error log into database"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{595DDC3D-C0AE-4EF2-999E-1436FC4A1C38}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert error log into database">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+              SQLTask:SqlStatementSource="INSERT INTO SSISErrorLog&#xA;(PackageName, StartTime, ErrorCode, ErrorDescription, AccountID)&#xA;VALUES&#xA;(?, ?, ?, ?, ?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@PackageName"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@StartTime"
+                SQLTask:DtsVariableName="System::StartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorCode"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorDescription"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@AccountID"
+                SQLTask:DtsVariableName="User::AccountID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{2D8A88A8-BEF8-4B1E-902D-DE23CDABAD7D}"
+          DTS:From="Package.EventHandlers[OnError]\Insert error log into database"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Email error"
+          DTS:Value="1" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Foreach Office\Office Migrated?"
+          TopLeft="215,5.49999999999989" />
+        <NodeLayout
+          Size="143,42"
+          Id="Package\Foreach Office\Pull Packages"
+          TopLeft="221.5,107.5" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Foreach Office\Push Packages"
+          TopLeft="5.50000000000006,107.5" />
+        <EdgeLayout
+          Id="Package\Foreach Office.PrecedenceConstraints[Migrated]"
+          TopLeft="256,47.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-173,60"
+              Start="0,0"
+              End="-173,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.672268907563" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.672268907563"
+                    Point2="0,20.672268907563"
+                    Point3="-4,20.672268907563" />
+                  <mssgle:LineSegment
+                    End="-169,20.672268907563" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-169,20.672268907563"
+                    Point2="-173,20.672268907563"
+                    Point3="-173,24.672268907563" />
+                  <mssgle:LineSegment
+                    End="-173,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-114.921640625,25.672268907563,56.84328125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Office.PrecedenceConstraints[Migrated1]"
+          TopLeft="317.666666666667,47.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-24.6666666666666,60.0000000000001"
+              Start="0,0"
+              End="-24.6666666666666,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3654822335026" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3654822335026"
+                    Point2="0,24.3654822335026"
+                    Point3="-4,24.3654822335026" />
+                  <mssgle:LineSegment
+                    End="-20.6666666666666,24.3654822335026" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-20.6666666666666,24.3654822335026"
+                    Point2="-24.6666666666666,24.3654822335026"
+                    Point3="-24.6666666666666,28.3654822335026" />
+                  <mssgle:LineSegment
+                    End="-24.6666666666666,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-40.7549739583333,29.3654822335026,56.84328125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="614,204"
+          Size="614,247"
+          Id="Package\Foreach Office"
+          TopLeft="5.50000000000006,210.5" />
+        <NodeLayout
+          Size="131,43"
+          Id="Package\Get Offices"
+          TopLeft="723,107.5" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\Insert error log into database"
+          TopLeft="680,313" />
+        <NodeLayout
+          Size="227,42"
+          Id="Package\Set SSIS Variables From XML"
+          TopLeft="680.5,5.49999999999989" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="768,150.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-455.5,60.0000000000001"
+              Start="0,0"
+              End="-455.5,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4343891402715" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4343891402715"
+                    Point2="0,24.4343891402715"
+                    Point3="-4,24.4343891402715" />
+                  <mssgle:LineSegment
+                    End="-451.5,24.4343891402715" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-451.5,24.4343891402715"
+                    Point2="-455.5,24.4343891402715"
+                    Point3="-455.5,28.4343891402715" />
+                  <mssgle:LineSegment
+                    End="-455.5,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="809,150.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-20.5,162.5"
+              Start="0,0"
+              End="-20.5,155">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.1764705882353" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,62.1764705882353"
+                    Point2="0,66.1764705882353"
+                    Point3="-4,66.1764705882353" />
+                  <mssgle:LineSegment
+                    End="-16.5,66.1764705882353" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-16.5,66.1764705882353"
+                    Point2="-20.5,66.1764705882353"
+                    Point3="-20.5,70.1764705882353" />
+                  <mssgle:LineSegment
+                    End="-20.5,155" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-25.49134765625,71.1764705882353,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="791.25,47.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="131,42"
+          Id="Package.EventHandlers[OnError]\Email error"
+          TopLeft="48.5,107.5" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package.EventHandlers[OnError]\Insert error log into database"
+          TopLeft="5.50000000000001,5.5" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="114,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-15.24134765625,21.37548828125,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <PrecedenceConstraint
+    design-time-name="Package\Foreach Office.PrecedenceConstraints[Migrated]">
+    <ShowAnnotation>ConstraintName</ShowAnnotation>
+  </PrecedenceConstraint>
+  <PrecedenceConstraint
+    design-time-name="Package\Foreach Office.PrecedenceConstraints[Migrated1]">
+    <ShowAnnotation>ConstraintName</ShowAnnotation>
+  </PrecedenceConstraint>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

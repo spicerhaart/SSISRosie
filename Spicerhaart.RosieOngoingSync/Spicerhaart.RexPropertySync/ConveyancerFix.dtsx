@@ -1,0 +1,1093 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/20/2018 2:17:51 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WX9000ITD21"
+  DTS:CreatorName="SPICERHAART\1920191"
+  DTS:DTSID="{8AB8A6C2-D057-4363-854B-07383DDE4129}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.107"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="ConveyancerFix"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{1B0E89BB-C147-4F98-BD80-F8ED66BB311C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HTTP]"
+      DTS:CreationName="ZS-HTTP"
+      DTS:DTSID="{EAB32632-5690-49A8-9F61-0C52F66BBEC6}"
+      DTS:ObjectName="HTTP">
+      <DTS:ObjectData>
+        <ConnectionManager
+          ConnectionString="Url=https://api.rexsoftware.com/rex.php;CredentialType=Notset;UserName=;Timeout=100000;SoapWssPasswordType=Notset;JwtCustomClaims=;UseProxy=False;ProxyUrl=;UseProxyCreds=False;ProxyUserName=;DoNotUseDefaultProxy=False;UseClientCertificate=False;CertificatePath=;CertificateStorageType=CurrentUser;CertificateStoreName=My;CertificateThumbprint=;RetryMode=None;RetryCountMax=3;RetryWaitTimeMs=2000;RetryMultiplyWaitTime=False;RetryMessageList=;RetryStatusCodeList=;AuthScheme=Bearer;TokenAuthHeader=;TokenUrl=;TokenRequestData=;TokenRequestHeaders=;TokenRequestMethod=;TokenRequestContentType=Default;TokenResponseContentFilter=;TokenResponseValueExtractMode=Body;TokenResponseCookie=;TokenResponseHeader=;TokenResponseContentType=None;TokenExpirationTimeInSeconds=3600" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HTTP 2]"
+      DTS:CreationName="ZS-HTTP"
+      DTS:DTSID="{EE52B4DD-2141-4624-9EE4-13E710C8CE14}"
+      DTS:ObjectName="HTTP 2">
+      <DTS:ObjectData>
+        <ConnectionManager
+          ConnectionString="Url=https://api.rexsoftware.com/rex.php;CredentialType=Notset;UserName=;Timeout=100000;SoapWssPasswordType=Notset;JwtCustomClaims=;UseProxy=False;ProxyUrl=;UseProxyCreds=False;ProxyUserName=;DoNotUseDefaultProxy=False;UseClientCertificate=False;CertificatePath=;CertificateStorageType=CurrentUser;CertificateStoreName=My;CertificateThumbprint=;RetryMode=None;RetryCountMax=3;RetryWaitTimeMs=2000;RetryMultiplyWaitTime=False;RetryMessageList=;RetryStatusCodeList=;AuthScheme=Bearer;TokenAuthHeader=;TokenUrl=;TokenRequestData=;TokenRequestHeaders=;TokenRequestMethod=;TokenRequestContentType=Default;TokenResponseContentFilter=;TokenResponseValueExtractMode=Body;TokenResponseCookie=;TokenResponseHeader=;TokenResponseContentType=None;TokenExpirationTimeInSeconds=3600" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HTTP 3]"
+      DTS:CreationName="ZS-HTTP"
+      DTS:DTSID="{6C4B9EF8-E18A-4D02-B5D4-FE47309958DA}"
+      DTS:ObjectName="HTTP 3">
+      <DTS:ObjectData>
+        <ConnectionManager
+          ConnectionString="Url=https://api.rexsoftware.com/rex.php;CredentialType=Notset;UserName=;Timeout=100000;SoapWssPasswordType=Notset;JwtCustomClaims=;UseProxy=False;ProxyUrl=;UseProxyCreds=False;ProxyUserName=;DoNotUseDefaultProxy=False;UseClientCertificate=False;CertificatePath=;CertificateStorageType=CurrentUser;CertificateStoreName=My;CertificateThumbprint=;RetryMode=None;RetryCountMax=3;RetryWaitTimeMs=2000;RetryMultiplyWaitTime=False;RetryMessageList=;RetryStatusCodeList=;AuthScheme=Bearer;TokenAuthHeader=;TokenUrl=;TokenRequestData=;TokenRequestHeaders=;TokenRequestMethod=;TokenRequestContentType=Default;TokenResponseContentFilter=;TokenResponseValueExtractMode=Body;TokenResponseCookie=;TokenResponseHeader=;TokenResponseContentType=None;TokenExpirationTimeInSeconds=3600" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RexSync.xml]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{18897BFB-830F-405C-A2E5-3E7A8222B21F}"
+      DTS:ObjectName="RexSync.xml">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\SSISVariables\RexSync.xml" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP 1]"
+      DTS:CreationName="ZS-SMTP"
+      DTS:DTSID="{9032C3DC-0CED-4355-AD01-3CAD933F5DE8}"
+      DTS:ObjectName="SMTP 1">
+      <DTS:ObjectData>
+        <ConnectionManager
+          ConnectionString="SmtpServer=outlookcol;UserName=;Port=25;EnableSsl=False;Timeout=10000" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{75CD34CC-99BF-451D-8401-31C407C80C2C}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=outlookcol;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{13FDBADF-958B-486D-90E5-27FD5FC96BE2}"
+      DTS:ObjectName="AccountID">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">1780</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{EBF65F82-9176-40F1-BE9A-B934A7AF15BA}"
+      DTS:ObjectName="OfficeID">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">0179</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9F028089-FF4C-4F7F-BDCF-3C51C57DB7B8}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageErrorEmail">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{56B8D66C-254A-42F3-9F40-7F45E5D08449}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackagePassword">
+      <DTS:VariableValue
+        DTS:DataType="8">P4ssword</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4A80B0CF-6708-4C72-9492-D36598AB53BC}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageURL">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2BC5BB55-BA67-40C8-80E2-557CFC28FE2C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageUsername">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2B01106D-D442-4B8E-B3A6-4C6389D44FC7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ResponseAuth">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6288F1A9-DE62-4551-9796-A81674A88DF5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ResponseAuthCode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{49B9BF5D-F5CD-4754-A330-AF46EB5DD4CC}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="rowcount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Fix Conveyancers"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{38499A27-3268-4064-B928-A143E98168FB}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Fix Conveyancers"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Fix Conveyancers\JSON Generator Transform Update"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="JSON Generator Transform; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+              description="The JSON generator transform can be used to create JSON document from single or multiple inputs. You can create simple or nested JSON document."
+              name="JSON Generator Transform Update"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="LoggingMode determines how much information is logged during Package Execution. Set Logging mode to Debugging for maximum log."
+                  expressionType="Notify"
+                  name="LoggingMode"
+                  typeConverter="ZappySys.PowerPack.Common.LoggingMode, ZappySys.PowerPack140, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1903265a93eae502">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="When you enable this property it will prefix timestamp before Log messages."
+                  expressionType="Notify"
+                  name="PrefixTimestamp">false</property>
+                <property
+                  dataType="System.Null"
+                  expressionType="Notify"
+                  name="SelfRef"
+                  typeConverter="NOTBROWSABLE" />
+                <property
+                  dataType="System.Int32"
+                  description="Determines JSON format and output mode (e.g. one JSON for all input rows or one JSON for each input row)"
+                  expressionType="Notify"
+                  name="OutputMode"
+                  typeConverter="ZappySys.PowerPack.Transform.JsonGeneratorTransform.JsonOutputMode, ZappySys.PowerPack140, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1903265a93eae502">2</property>
+                <property
+                  dataType="System.String"
+                  description="Defines shape of output JSON string"
+                  expressionType="Notify"
+                  name="LayoutInfo">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;settings ver="3"&gt;
+  &lt;dataset id="tblPropEdit" main="True" inputid="1676" readfrominput="True"&gt;&lt;/dataset&gt;
+  &lt;map name="method" value="CustomFields::setFieldValues" datatype="String" /&gt;
+  &lt;map name="args"&gt;
+    &lt;map name="value_map"&gt;
+      &lt;map name="core.contact.More Details.Business Type" value="Conveyancer" datatype="String" /&gt;
+    &lt;/map&gt;
+    &lt;map name="service_name" value="Contacts" /&gt;
+    &lt;map src="rid_contact" name="service_object_id" datatype="Number" /&gt;
+  &lt;/map&gt;
+  &lt;map name="strip_response_prefix" value="True" datatype="String" /&gt;
+  &lt;map name="token" value="{{User::ResponseAuth}}" datatype="String" /&gt;
+&lt;/settings&gt;</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Do not output attribute if value is NULL. By default null attribute is output as &quot;MyColname&quot; : null "
+                  expressionType="Notify"
+                  name="DoNotOutputNullAttribute">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indent JSON Text generated by this transform (Pretty Print)"
+                  expressionType="Notify"
+                  name="IndentOutput">false</property>
+                <property
+                  dataType="System.String"
+                  description="Default output format for datetime columns"
+                  expressionType="Notify"
+                  name="DateTimeFormat">yyyy-MM-dd HH:mm:ss</property>
+                <property
+                  dataType="System.String"
+                  description="Culture setting for this task. This option is useful to control output format for certain data types (e.g. number, decimal) based on regional settings. In USA dot is used for decimal indicator but in Germany it may be comma. Leave this blank if you want to use system default settings."
+                  expressionType="Notify"
+                  name="Culture"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Document Header/Footer text come from upstream column rather than direct string"
+                  expressionType="Notify"
+                  name="UseColumnForHeaderFooter">false</property>
+                <property
+                  dataType="System.String"
+                  description="Header text for document (Added before each document in the output)"
+                  expressionType="Notify"
+                  name="DocumentHeader"></property>
+                <property
+                  dataType="System.String"
+                  description="Footer text for document (Added after each document in the output)"
+                  expressionType="Notify"
+                  name="DocumentFooter"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how many rows to include in each batch (Array records for single dataset array mode). 0=Include all in one batch. This setting is only valid for Mode=[Single Dataset Array]"
+                  expressionType="Notify"
+                  name="ArrayBatchSize">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">ZappySys.JsonGeneratorTransform</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Fix Conveyancers\JSON Generator Transform Update.Inputs[JsonInput1]"
+                  name="JsonInput1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Id for attached dataset with input. Use JSON Layout Editor to see attached dataset"
+                      expressionType="Notify"
+                      name="DatasetInputId">1676</property>
+                  </properties>
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Fix Conveyancers\JSON Generator Transform Update.Inputs[JsonInput1].Columns[rid_contact]"
+                      cachedDataType="i4"
+                      cachedName="rid_contact"
+                      lineageId="Package\Fix Conveyancers\OLE DB Source.Outputs[OLE DB Source Output].Columns[rid_contact]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Fix Conveyancers\JSON Generator Transform Update.Inputs[JsonInput2]"
+                  name="JsonInput2">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Fix Conveyancers\JSON Generator Transform Update.Outputs[JsonGeneratorTransformOutput]"
+                  errorOrTruncationOperation="Error"
+                  name="JsonGeneratorTransformOutput">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fix Conveyancers\JSON Generator Transform Update.Outputs[JsonGeneratorTransformOutput].Columns[ZS_JSON_OUT]"
+                      dataType="nText"
+                      description="This output column contains generated JSON string from JSON generator Transform"
+                      lineageId="Package\Fix Conveyancers\JSON Generator Transform Update.Outputs[JsonGeneratorTransformOutput].Columns[ZS_JSON_OUT]"
+                      name="ZS_JSON_OUT" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Fix Conveyancers\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select rid_contact from tbl_legal where rid_contact is not null</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Fix Conveyancers\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[InternetDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Fix Conveyancers\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fix Conveyancers\OLE DB Source.Outputs[OLE DB Source Output].Columns[rid_contact]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fix Conveyancers\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rid_contact]"
+                      lineageId="Package\Fix Conveyancers\OLE DB Source.Outputs[OLE DB Source Output].Columns[rid_contact]"
+                      name="rid_contact"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Fix Conveyancers\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rid_contact]"
+                      dataType="i4"
+                      name="rid_contact" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Fix Conveyancers\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fix Conveyancers\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rid_contact]"
+                      dataType="i4"
+                      lineageId="Package\Fix Conveyancers\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rid_contact]"
+                      name="rid_contact" />
+                    <outputColumn
+                      refId="Package\Fix Conveyancers\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Fix Conveyancers\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Fix Conveyancers\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Fix Conveyancers\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Fix Conveyancers\Trash Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Trash Destination; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+              description="The trash destination is used to create dummy destination which ends data path without any processing."
+              name="Trash Destination"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="LoggingMode determines how much information is logged during Package Execution. Set Logging mode to Debugging for maximum log."
+                  expressionType="Notify"
+                  name="LoggingMode"
+                  typeConverter="ZappySys.PowerPack.Common.LoggingMode, ZappySys.PowerPack130, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1903265a93eae502">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="When you enable this property it will prefix timestamp before Log messages."
+                  expressionType="Notify"
+                  name="PrefixTimestamp">false</property>
+                <property
+                  dataType="System.Null"
+                  expressionType="Notify"
+                  name="SelfRef"
+                  typeConverter="NOTBROWSABLE" />
+                <property
+                  dataType="System.String"
+                  description="File path where you want to save data"
+                  expressionType="Notify"
+                  name="FilePath"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates if you want to save input data to comma separated text file"
+                  expressionType="Notify"
+                  name="SaveDataToFile">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Append data to file"
+                  expressionType="Notify"
+                  name="Append">false</property>
+                <property
+                  dataType="System.String"
+                  description="RowSeparator"
+                  expressionType="Notify"
+                  name="RowSeparator">{NEWLINE}</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether you want to overwrite target file if exists"
+                  expressionType="Notify"
+                  name="OverwriteFileIfExists">true</property>
+                <property
+                  dataType="System.String"
+                  description="ColumnSeparator"
+                  expressionType="Notify"
+                  name="ColumnSeparator">,</property>
+                <property
+                  dataType="System.Boolean"
+                  description="SupportUnicode"
+                  expressionType="Notify"
+                  name="SupportUnicode">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="ColumnNamesInFirstRow"
+                  expressionType="Notify"
+                  name="ColumnNamesInFirstRow">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="QuoteDataIfNeeded"
+                  expressionType="Notify"
+                  name="QuoteDataIfNeeded">true</property>
+                <property
+                  dataType="System.String"
+                  description="Date time format string for any column with DT_DBDATETIME, DT_DBDATETIME2 or DB_DATE format"
+                  expressionType="Notify"
+                  name="DateTimeFormat">yyyy-MM-dd HH:mm:ss</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">ZappySys.TrashDestination</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Fix Conveyancers\Trash Destination.Inputs[TrashDestinationInput]"
+                  hasSideEffects="true"
+                  name="TrashDestinationInput">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Fix Conveyancers\Web API Destination Update"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Web API Destination; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+              description="The Web API destination can be used to send data to Web API URL (e.g. Submit or POST data to REST API/SOAP or other HTTP/HTTPS endpoints)"
+              name="Web API Destination Update"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="LoggingMode determines how much information is logged during Package Execution. Set Logging mode to Debugging for maximum log."
+                  expressionType="Notify"
+                  name="LoggingMode"
+                  typeConverter="ZappySys.PowerPack.Common.LoggingMode, ZappySys.PowerPack140, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1903265a93eae502">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="When you enable this property it will prefix timestamp before Log messages."
+                  expressionType="Notify"
+                  name="PrefixTimestamp">false</property>
+                <property
+                  dataType="System.Null"
+                  expressionType="Notify"
+                  name="SelfRef"
+                  typeConverter="NOTBROWSABLE" />
+                <property
+                  dataType="System.String"
+                  description="API URL you want to access"
+                  expressionType="Notify"
+                  name="HttpRequestUrl">{{User::PackageURL}}</property>
+                <property
+                  dataType="System.String"
+                  description="Http Web Request Method (e.g. POST, GET, PUT, LIST, DELETE...). Refer your API documentation if you are not sure which method you have to use."
+                  expressionType="Notify"
+                  name="HttpRequestMethod">POST</property>
+                <property
+                  dataType="System.String"
+                  description="Set this if you want to set custom Http headers. You may use variable anywhere in the header value using syntax {{User::YourVarName}}. Syntax of Header key value pair is : &amp;lt;request&amp;gt;&amp;lt;header&amp;gt;&amp;lt;name&amp;gt;x-myheader-1&amp;lt;/name&amp;gt;&amp;lt;value&amp;gt;AAA&amp;lt;/value&amp;gt;&amp;lt;/header&amp;gt; &amp;lt;header&amp;gt;&amp;lt;name&amp;gt;x-myheader-2&amp;lt;/name&amp;gt;&amp;lt;value&amp;gt;BBB&amp;lt;/value&amp;gt;&amp;lt;/header&amp;gt;&amp;lt;/request&amp;gt;"
+                  expressionType="Notify"
+                  name="HttpHeaders"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;</property>
+                <property
+                  dataType="System.String"
+                  description="User defined data you wish to send along with your HTTP Request (e.g. Upload file data, Form POST data). Usually you have to set content-type of your data but if you select RequestMethod=POST then system will automatically set content-type=application/x-www-form-urlencoded."
+                  expressionType="Notify"
+                  name="HttpRequestData"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies content type for data you wish to POST. If you select Default option then system default content type will be used (i.e. application/x-www-form-urlencoded). If you specify Content-Type header along with this option then header value takes precedence."
+                  expressionType="Notify"
+                  name="HttpRequestContentType"
+                  typeConverter="ZappySys.Common.Web.HttpRequestContentType, ZappySys.Common, Version=1.0.2018.10909, Culture=neutral, PublicKeyToken=1903265a93eae502">2</property>
+                <property
+                  dataType="System.Boolean"
+                  description="If this option is true then component will continue without exception on 404 error (Url not found). This allows you to consume data gracefully."
+                  expressionType="Notify"
+                  name="ContinueOnUrlNotFoundError">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Ignore SSL certificate related errors. Example: if you getting SSL/TLS errors because of certificate expired or certificate is not from trusted authority or certificate is self-signed. By checking this option you will not get SSL/TLS error."
+                  expressionType="Notify"
+                  name="IgnoreCertificateErrors">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Allow unsecure ciphers/suites and curves for SSLS/TLS communication. Use this option to communicate with web servers which needs legacy / unsecured ciphers support. This option is only trigged when you change default SSL/TLS Version on advanced settings tab."
+                  expressionType="Notify"
+                  name="AllowUnsecureSuite">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Enable support for gzip or deflate compression. When you check this option compressed response automatically de-compressed saving bandwidth. This option is only valid if web server supports compressed response stream. Check your API documentation for more information."
+                  expressionType="Notify"
+                  name="EnableCompressionSupport">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies which security protocol is supported for HTTPS communication. Using this option you can enable legacy protocol or enforce to use latest version of security protocol (Note: TLS 1.2 is only supported in SSIS 2014 or Higher)."
+                  expressionType="Notify"
+                  name="SecurityProtocol"
+                  typeConverter="ZappySys.PowerPack.Common.HttpsSecurityProtocolType, ZappySys.PowerPack140, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1903265a93eae502">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Wait time in milliseconds (Pause after each request). 0=No wait. Use this delay time if your API has limit on how many requests you can make in certain time frame."
+                  expressionType="Notify"
+                  name="WaitTime">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="When you redirect error to error output by default you get additional information in ErrorMessage column. Check this option if you need exact Response Body (Useful if its in JSON/XML format which needs to be parsed for additional information for later step)."
+                  expressionType="Notify"
+                  name="OnErrorOutputResponseBody">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Enable multiple requests using parallel threads."
+                  expressionType="Notify"
+                  name="EnableParallelRequests">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum parallel threads to use for processing multiple web requests."
+                  expressionType="Notify"
+                  name="MaxParallelThreads">64</property>
+                <property
+                  dataType="System.Boolean"
+                  description="By default one request is sent for each input row. If your API supports multiple records in a single call via HTTP Body then enable this setting. See also BodyBatchSize, BodyHeader, BodyFooter and BodyRowSeparator property."
+                  expressionType="Notify"
+                  name="EnableBodyBatch">false</property>
+                <property
+                  dataType="System.String"
+                  description="When you have to wrap input content between opening and closing tags for each call then set this property to specify opening for body content. For Example if you want to build Body like this (send max 100 rows per call) ==&gt; { records : [ {...}, {...}, {...} ] } then you can set BatchSize=100, BodyHeader as &quot;{ records: [&quot; , BodyFooter as &quot;] }&quot; and BodyRowSeperator as comma {,}. This property is ignored if EnableBodyBatch=false."
+                  expressionType="Notify"
+                  name="BodyHeader"></property>
+                <property
+                  dataType="System.String"
+                  description="When you have to wrap input content between opening and closing tags for each call then set this property to specify closing for body content. For Example if you want to build Body like this (send max 100 rows per call) ==&gt; { records : [ {...}, {...}, {...} ] } then you can set BatchSize=100, BodyHeader as &quot;{ records: [&quot; , BodyFooter as &quot;] }&quot; and BodyRowSeperator as comma {,}. This property is ignored if EnableBodyBatch=false."
+                  expressionType="Notify"
+                  name="BodyFooter"></property>
+                <property
+                  dataType="System.Int32"
+                  description="If your API supports multiple records via HTTP Body then change this setting &gt; 1 to include multiple upstream records into single call. See also BodyHeader, BodyFooter and BodyRowSeparator property. This property is ignored if EnableBodyBatch=false."
+                  expressionType="Notify"
+                  name="BodyBatchSize">100</property>
+                <property
+                  dataType="System.String"
+                  description="When you submit multiple rows in a batch you can separate multiple documents / records using custom separator (e.g. in JSON Array you can use comma {,} as record separator if POST document is in array format [ {...}, {...}, {...} ] ). For last row of batch blank separator is used."
+                  expressionType="Notify"
+                  name="BodyRowSeparator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Returns response data as binary data (e.g. Byte Array). Check this option is response is Zip file, Image file or any non text data which needs to be exported as raw data without any encoding."
+                  expressionType="Notify"
+                  name="TreatResponseAsBinary">false</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">ZappySys.WebApiDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Fix Conveyancers\Web API Destination Update.Connections[Connection]"
+                  connectionManagerID="Package.ConnectionManagers[HTTP 3]"
+                  connectionManagerRefId="Package.ConnectionManagers[HTTP 3]"
+                  description="Connection manager for authentication (e.g. HTTP or OAuth Connection)"
+                  name="Connection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Fix Conveyancers\Web API Destination Update.Inputs[WebApiDestinationInput]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="WebApiDestinationInput"
+                  truncationRowDisposition="FailComponent">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Fix Conveyancers\Web API Destination Update.Inputs[WebApiDestinationInput].Columns[ZS_JSON_OUT]"
+                      cachedDataType="nText"
+                      cachedName="ZS_JSON_OUT"
+                      externalMetadataColumnId="Package\Fix Conveyancers\Web API Destination Update.Inputs[WebApiDestinationInput].ExternalColumns[HttpRequestData]"
+                      lineageId="Package\Fix Conveyancers\JSON Generator Transform Update.Outputs[JsonGeneratorTransformOutput].Columns[ZS_JSON_OUT]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Fix Conveyancers\Web API Destination Update.Inputs[WebApiDestinationInput].ExternalColumns[HttpRequestUrl]"
+                      dataType="wstr"
+                      length="2000"
+                      name="HttpRequestUrl" />
+                    <externalMetadataColumn
+                      refId="Package\Fix Conveyancers\Web API Destination Update.Inputs[WebApiDestinationInput].ExternalColumns[HttpRequestData]"
+                      dataType="nText"
+                      name="HttpRequestData" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Fix Conveyancers\Web API Destination Update.Outputs[WebApiDestination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="WebApiDestination Error Output"
+                  synchronousInputId="Package\Fix Conveyancers\Web API Destination Update.Inputs[WebApiDestinationInput]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fix Conveyancers\Web API Destination Update.Outputs[WebApiDestination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Fix Conveyancers\Web API Destination Update.Outputs[WebApiDestination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Fix Conveyancers\Web API Destination Update.Outputs[WebApiDestination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Fix Conveyancers\Web API Destination Update.Outputs[WebApiDestination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Fix Conveyancers\Web API Destination Update.Outputs[WebApiDestination Error Output].Columns[ErrorColumnName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="128"
+                      lineageId="Package\Fix Conveyancers\Web API Destination Update.Outputs[WebApiDestination Error Output].Columns[ErrorColumnName]"
+                      name="ErrorColumnName" />
+                    <outputColumn
+                      refId="Package\Fix Conveyancers\Web API Destination Update.Outputs[WebApiDestination Error Output].Columns[ErrorMessage]"
+                      dataType="nText"
+                      lineageId="Package\Fix Conveyancers\Web API Destination Update.Outputs[WebApiDestination Error Output].Columns[ErrorMessage]"
+                      name="ErrorMessage" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Fix Conveyancers\Web API Destination Update.Outputs[Response Output]"
+                  exclusionGroup="1"
+                  name="Response Output"
+                  synchronousInputId="Package\Fix Conveyancers\Web API Destination Update.Inputs[WebApiDestinationInput]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fix Conveyancers\Web API Destination Update.Outputs[Response Output].Columns[ResponseText]"
+                      dataType="nText"
+                      lineageId="Package\Fix Conveyancers\Web API Destination Update.Outputs[Response Output].Columns[ResponseText]"
+                      name="ResponseText" />
+                    <outputColumn
+                      refId="Package\Fix Conveyancers\Web API Destination Update.Outputs[Response Output].Columns[StatusCode]"
+                      dataType="i4"
+                      lineageId="Package\Fix Conveyancers\Web API Destination Update.Outputs[Response Output].Columns[StatusCode]"
+                      name="StatusCode" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Fix Conveyancers.Paths[JsonGeneratorTransformOutput]"
+              endId="Package\Fix Conveyancers\Web API Destination Update.Inputs[WebApiDestinationInput]"
+              name="JsonGeneratorTransformOutput"
+              startId="Package\Fix Conveyancers\JSON Generator Transform Update.Outputs[JsonGeneratorTransformOutput]" />
+            <path
+              refId="Package\Fix Conveyancers.Paths[OLE DB Source Output]"
+              endId="Package\Fix Conveyancers\JSON Generator Transform Update.Inputs[JsonInput1]"
+              name="OLE DB Source Output"
+              startId="Package\Fix Conveyancers\OLE DB Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Fix Conveyancers.Paths[Response Output]"
+              endId="Package\Fix Conveyancers\Trash Destination.Inputs[TrashDestinationInput]"
+              name="Response Output"
+              startId="Package\Fix Conveyancers\Web API Destination Update.Outputs[Response Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Auth Key"
+      DTS:CreationName="ZappySys.RestApiTask"
+      DTS:Description="ZS REST API Task"
+      DTS:DTSID="{BAC1C343-8DEB-49E1-97BF-A2BD9B0EBE6F}"
+      DTS:ExecutableType="ZappySys.RestApiTask"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Auth Key"
+      DTS:TaskContact="REST API Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:LoggingMode="1" />
+      <DTS:ObjectData>
+        <RestApiTask
+          RequestAccessMode="UrlFromVariable"
+          RequestUrlVariable="User::PackageURL"
+          IsMultiPartUpload="False"
+          PreventAutoRedirect="False"
+          RequestTimeoutMs="0"
+          SecurityProtocol="Default"
+          EnableCompressionSupport="True"
+          AllowUnsecureSuite="False"
+          IgnoreCertificateErrors="False"
+          RequestUrl="https://api.rexsoftware.com/rex.php "
+          RequestUrlConnection=""
+          RequestMethod="POST"
+          RequestContentType="Raw"
+          OverrideConnectionUrl="False"
+          RequestHeaders="&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;"
+          RequestData="{&#xA;&quot;method&quot;:&quot;Authentication::login&quot;,&#xA;&quot;args&quot;:{&#xA;&quot;email&quot;:&quot;{{User::PackageUsername}}&quot;,&#xA;&quot;password&quot;:&quot;{{User::PackagePassword}}&quot;,&#xA;&quot;account_id&quot;:&quot;{{$Package::AccountID}}&quot;,&#xA;&quot;application&quot;:&quot;rex&quot;&#xA;}&#xA;}"
+          SaveResponse="True"
+          SaveResponseStatusCode="True"
+          ResponseAccessMode="Variable"
+          SaveAsBinary="False"
+          ResponseDataFilePath=""
+          ResponseHeaderMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Transfer-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Connection&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Origin&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Headers&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Methods&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Max-Age&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Vary&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Type&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Date&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Server&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;/ArrayOfKeyValueMapping&gt;"
+          ResponseCookieMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+          CookieContainerVariable=""
+          ConvertXmlToJson="False"
+          ResponseDataVariable="User::ResponseAuth"
+          ResponseStatusCodeVariable="User::ResponseAuthCode"
+          ResponseContentType="Json"
+          ResponseContentFilter="$.result"
+          ResponseCharset=""
+          ValidateResponse="False"
+          ValidationRules="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ResponseValidationSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;MatchAny&gt;false&lt;/MatchAny&gt;&lt;Rules&gt;&lt;ResponseValidationRule xsi:type=&quot;StatusCodeValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;StatusCode&gt;200&lt;/StatusCode&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;ContentValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;Value /&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;HeaderValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;KeyName /&gt;&lt;Value /&gt;&lt;DataType&gt;String&lt;/DataType&gt;&lt;/ResponseValidationRule&gt;&lt;/Rules&gt;&lt;/ResponseValidationSetting&gt;"
+          ConsumeResponseOnError="False"
+          ContineOnAnyError="False"
+          ContineOnErrorForMessage="False"
+          ContineOnErrorForStatusCode="False"
+          ErrorStatusCodeToMatch="404"
+          MatchForEqual="True"
+          ErrorSubstringToMatch=""
+          ContineOn404Error="False"
+          SaveErrorFlagToVariable="False"
+          ErrorFlagVariableName=""
+          LogLevel="Normal"
+          PrefixTimestamp="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set SSIS Variables From XML"
+      DTS:CreationName="ZappySys.XmlParserTask"
+      DTS:Description="ZS Xml Parser Task"
+      DTS:DTSID="{E4BB5C0D-7496-44FA-9D28-D52E38134EDA}"
+      DTS:ExecutableType="ZappySys.XmlParserTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set SSIS Variables From XML"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <XmlParserTask
+          SourceAccessMode="Connection"
+          SourceVariable=""
+          SourceConnection="{18897BFB-830F-405C-A2E5-3E7A8222B21F}"
+          SourceDirectValue="&lt;!-- &#xA;Using XML Parser Task you can extract values from XML document using XPath Expression &#xA;See example in below grid. Read description for each mapping.&#xA;See more examples: https://msdn.microsoft.com/en-us/library/ms256086(v=vs.110).aspx&#xA;--&gt;&#xA;&lt;catalog&gt;&#xA;   &lt;book id=&quot;bk101&quot;&gt;&#xA;      &lt;author&gt;Gambardella, Matthew&lt;/author&gt;&#xA;      &lt;title&gt;XML Developer's Guide&lt;/title&gt;&#xA;      &lt;genre&gt;Computer&lt;/genre&gt;&#xA;      &lt;price&gt;44.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-10-01&lt;/publish_date&gt;&#xA;      &lt;description&gt;An in-depth look at creating applications &#xA;      with XML.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk102&quot;&gt;&#xA;      &lt;author&gt;Ralls, Kim&lt;/author&gt;&#xA;      &lt;title&gt;Midnight Rain&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-12-16&lt;/publish_date&gt;&#xA;      &lt;description&gt;A former architect battles corporate zombies, &#xA;      an evil sorceress, and her own childhood to become queen &#xA;      of the world.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk103&quot;&gt;&#xA;      &lt;author&gt;Corets, Eva&lt;/author&gt;&#xA;      &lt;title&gt;Maeve Ascendant&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-11-17&lt;/publish_date&gt;&#xA;      &lt;description&gt;After the collapse of a nanotechnology &#xA;      society in England, the young survivors lay the &#xA;      foundation for a new society.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk104&quot;&gt;&#xA;      &lt;author&gt;Corets, Eva&lt;/author&gt;&#xA;      &lt;title&gt;Oberon's Legacy&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2001-03-10&lt;/publish_date&gt;&#xA;      &lt;description&gt;In post-apocalypse England, the mysterious &#xA;      agent known only as Oberon helps to create a new life &#xA;      for the inhabitants of London. Sequel to Maeve &#xA;      Ascendant.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;&lt;/catalog&gt;"
+          TargetSettings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;XmlParserSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;Mappings&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/RexAPIWebURL&lt;/Path&gt;&lt;Target&gt;User::PackageURL&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt; /SSISVariables/PackageUser&lt;/Path&gt;&lt;Target&gt;User::PackageUsername&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/PackageErrorEmail&lt;/Path&gt;&lt;Target&gt;User::PackageErrorEmail&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;/Mappings&gt;&lt;Path /&gt;&lt;/XmlParserSetting&gt;"
+          LogLevel="Normal"
+          PrefixTimestamp="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{6EDCC886-DCC8-4A6E-90F2-FCE47B569F08}"
+      DTS:From="Package\Set SSIS Variables From XML"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Get Auth Key" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C30CDBBD-9327-430E-9C8D-99F48D2B2337}"
+      DTS:From="Package\Get Auth Key"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Fix Conveyancers" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Fix Conveyancers"
+          TopLeft="370,276" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Get Auth Key"
+          TopLeft="226,169" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Set SSIS Variables From XML"
+          TopLeft="260.5,56" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="368.5,98">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-72,71"
+              Start="0,0"
+              End="-72,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5"
+                    Point2="0,35.5"
+                    Point3="-4,35.5" />
+                  <mssgle:LineSegment
+                    End="-68,35.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-68,35.5"
+                    Point2="-72,35.5"
+                    Point3="-72,39.5" />
+                  <mssgle:LineSegment
+                    End="-72,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="296.5,211">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="154,65"
+              Start="0,0"
+              End="154,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.5"
+                    Point2="0,32.5"
+                    Point3="4,32.5" />
+                  <mssgle:LineSegment
+                    End="150,32.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="150,32.5"
+                    Point2="154,32.5"
+                    Point3="154,36.5" />
+                  <mssgle:LineSegment
+                    End="154,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Fix Conveyancers">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Fix Conveyancers\OLE DB Source"
+          TopLeft="713,147" />
+        <NodeLayout
+          Size="243,42"
+          Id="Package\Fix Conveyancers\JSON Generator Transform Update"
+          TopLeft="613,271" />
+        <NodeLayout
+          Size="213,42"
+          Id="Package\Fix Conveyancers\Web API Destination Update"
+          TopLeft="640,391" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Fix Conveyancers\Trash Destination"
+          TopLeft="619,539" />
+        <EdgeLayout
+          Id="Package\Fix Conveyancers.Paths[OLE DB Source Output]"
+          TopLeft="788,189">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-53.5,82"
+              Start="0,0"
+              End="-53.5,74.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,37"
+                    Point2="0,41"
+                    Point3="-4,41" />
+                  <mssgle:LineSegment
+                    End="-49.5,41" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-49.5,41"
+                    Point2="-53.5,41"
+                    Point3="-53.5,45" />
+                  <mssgle:LineSegment
+                    End="-53.5,74.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Fix Conveyancers.Paths[JsonGeneratorTransformOutput]"
+          TopLeft="734.5,313">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="12,78"
+              Start="0,0"
+              End="12,70.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35"
+                    Point2="0,39"
+                    Point3="4,39" />
+                  <mssgle:LineSegment
+                    End="8,39" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8,39"
+                    Point2="12,39"
+                    Point3="12,43" />
+                  <mssgle:LineSegment
+                    End="12,70.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Fix Conveyancers.Paths[Response Output]"
+          TopLeft="746.5,433">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-46.5,106"
+              Start="0,0"
+              End="-46.5,98.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,49"
+                    Point2="0,53"
+                    Point3="-4,53" />
+                  <mssgle:LineSegment
+                    End="-42.5,53" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-42.5,53"
+                    Point2="-46.5,53"
+                    Point3="-46.5,57" />
+                  <mssgle:LineSegment
+                    End="-46.5,98.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Fix Conveyancers\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

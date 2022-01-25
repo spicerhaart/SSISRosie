@@ -1,0 +1,1303 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/5/2019 4:49:15 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WX9000ITD17"
+  DTS:CreatorName="SPICERHAART\1905887"
+  DTS:DTSID="{698DCDBF-5434-4B38-B41E-E70C4268CC72}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="LegalPush"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="1"
+  DTS:VersionBuild="32"
+  DTS:VersionGUID="{5129CF9C-4D96-469C-A330-03BC21045F47}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RexSync.xml]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{6453A0FD-48FC-4075-87BA-99C3EC265904}"
+      DTS:ObjectName="RexSync.xml">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\SSISVariables\RexSync.xml" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP]"
+      DTS:CreationName="ZS-SMTP"
+      DTS:DTSID="{7B4E7310-9E1F-459A-8FEE-817593980ED3}"
+      DTS:ObjectName="SMTP">
+      <DTS:ObjectData>
+        <ConnectionManager
+          ConnectionString="SmtpServer=outlookcol;UserName=;Port=25;EnableSsl=False;Timeout=10000;EnableAnonymousAuth=False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8B5DAFA5-09AE-445E-AB7B-A47822F8FC26}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="APILegalError">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1D867B8A-BD6A-498C-9AA8-D47EDF0F8465}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="APIPassword">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2D9FA28F-BACB-4CC9-94C0-1F6967BE534C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="APIResponseLegal">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{809DA979-1ABD-4841-AE45-A8C978A6A688}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="APIRexURL">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{40060C2D-4BA0-468D-8E65-E3B7DB17B57F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="APIToken">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0162791E-CF27-47CD-BCF1-135DE68C88A1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="APIUser">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6260D432-6191-4B72-891A-7F9875ECA0BF}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="GenerateNewToken">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E0CABD11-7EE4-47DE-A0C8-CA441D73871C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LegalSP_AccountID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1220AFAC-E9E5-4223-B29E-ABDDFE7D73BE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LegalSP_AppRef">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B09E594D-5BF2-4C0B-9888-027AD4C57DFA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LegalSP_ContactUpdateJSON">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0B9C89E7-064F-42FA-8D80-8A558AC5E69D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LegalSP_PropRef">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A9AE967C-09FA-478C-B96C-20042E0691D9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LegalSP_RecType">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{48BF821A-0898-47B0-9A54-2BDBDC2170FA}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LegalSP_RexContactID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9CE4AB8B-A54C-4D4B-ACC8-D7E2FC53FDBA}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LegalSP_WorkTableID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7C78660E-645C-4FF7-BFD0-F684EEE982A9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Legal_Success">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7270D379-DB8A-44D9-8B42-1A4C30E1CA72}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ObjectLegalDetails">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{ECFBD93F-0F89-46EC-AE25-208E6820EB02}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageErrorEmail">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3068F118-95EF-4686-ABAF-68F7AFDAC284}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PreviousRexAccountID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{DC3A6E0B-F765-4CE1-AA9C-13249AB8A7E2}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{9C4C959B-16FC-4350-9243-FC5FFFAE0436}"
+        DTS:ObjectName="{9C4C959B-16FC-4350-9243-FC5FFFAE0436}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::ObjectLegalDetails" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Check if new token is required"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{0ce794e6-0c71-4f0e-9010-dbff8ea31d8c}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Check if new token is required"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::GenerateNewToken] = @[User::PreviousRexAccountID] !=  @[User::LegalSP_AccountID]" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Get auth key"
+          DTS:CreationName="ZappySys.RestApiTask"
+          DTS:Description="ZS REST API Task"
+          DTS:DTSID="{016d6f81-fccd-48ba-b932-e8743e3181b4}"
+          DTS:ExecutableType="ZappySys.RestApiTask"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Get auth key"
+          DTS:TaskContact="REST API Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <RestApiTask
+              RequestAccessMode="UrlFromVariable"
+              RequestUrlVariable="User::APIRexURL"
+              EnableStatusCheck="False"
+              StatucCheckMaxWaitSeconds="0"
+              StatucCheckIterationWaitSeconds="0"
+              StatusCheckForFailedValue="False"
+              StatusSuccessValue=""
+              StatusFailedValue=""
+              IsMultiPartUpload="False"
+              PreventAutoRedirect="False"
+              RequestTimeoutMs="0"
+              SecurityProtocol="Default"
+              EnableCompressionSupport="True"
+              AllowUnsecureSuite="False"
+              IgnoreCertificateErrors="False"
+              RequestUrl="www.spicerhaart.co.uk"
+              RequestUrlConnection=""
+              RequestMethod="POST"
+              RequestContentType="ApplicationJson"
+              OverrideConnectionUrl="False"
+              RequestHeaders="&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;"
+              RequestData="{&#xA; &quot;method&quot;:&quot;Authentication::login&quot;,&#xA; &quot;args&quot;:&#xA; {&#xA;  &quot;email&quot;:&quot;{{User::APIUser}}&quot;,&#xA;  &quot;password&quot;:&quot;{{User::APIPassword}}&quot;,&#xA;  &quot;application&quot;:&quot;rex&quot;,&#xA;  &quot;account_id&quot;:{{User::LegalSP_AccountID}}&#xA; }&#xA;}"
+              SaveResponse="True"
+              SaveResponseStatusCode="False"
+              ResponseAccessMode="Variable"
+              SaveAsBinary="False"
+              ResponseDataFilePath=""
+              ResponseHeaderMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Transfer-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Connection&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Origin&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Headers&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Methods&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Max-Age&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Vary&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Type&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Date&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Server&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;/ArrayOfKeyValueMapping&gt;"
+              ResponseCookieMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+              CookieContainerVariable=""
+              ConvertXmlToJson="False"
+              ResponseDataVariable="User::APIToken"
+              ResponseStatusCodeVariable=""
+              ResponseContentType="Json"
+              ResponseContentFilter="$.result"
+              ResponseCharset=""
+              ValidateResponse="False"
+              ValidationRules="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ResponseValidationSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;MatchAny&gt;false&lt;/MatchAny&gt;&lt;Rules&gt;&lt;ResponseValidationRule xsi:type=&quot;StatusCodeValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;StatusCode&gt;200&lt;/StatusCode&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;ContentValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;Value /&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;HeaderValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;KeyName /&gt;&lt;Value /&gt;&lt;DataType&gt;String&lt;/DataType&gt;&lt;/ResponseValidationRule&gt;&lt;/Rules&gt;&lt;/ResponseValidationSetting&gt;"
+              ConsumeResponseOnError="False"
+              ContineOnAnyError="False"
+              ContineOnErrorForMessage="False"
+              ContineOnErrorForStatusCode="False"
+              ErrorStatusCodeToMatch="404"
+              MatchForEqual="True"
+              ErrorSubstringToMatch=""
+              ContineOn404Error="False"
+              SaveErrorFlagToVariable="False"
+              ErrorFlagVariableName=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Insert API error"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{76e556dd-e708-4df5-8d45-0c32ea8e893d}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert API error"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+              SQLTask:SqlStatementSource="INSERT INTO SSISErrorLog&#xA;(PackageName, StartTime, ErrorCode, AccountID, ErrorDescription)&#xA;VALUES&#xA;(?, ?, 0, ?, 'Error posting legal details. Request body: ' + ? + '. API Response: ' + ?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@PackageName"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@StartTime"
+                SQLTask:DtsVariableName="System::StartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@AccountID"
+                SQLTask:DtsVariableName="User::LegalSP_AccountID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@RequestBody"
+                SQLTask:DtsVariableName="User::LegalSP_ContactUpdateJSON"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@APIError"
+                SQLTask:DtsVariableName="User::APILegalError"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Parse response JSON"
+          DTS:CreationName="ZappySys.JsonParserTask"
+          DTS:Description="ZS JSON Parser Task"
+          DTS:DTSID="{74d6220c-30fd-439e-9edc-4809d17680e7}"
+          DTS:ExecutableType="ZappySys.JsonParserTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Parse response JSON"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <JsonParserTask
+              SourceAccessMode="Variable"
+              SourceVariable="User::APIResponseLegal"
+              SourceConnection=""
+              SourceDirectValue="{&#xA;&quot;CustomerID&quot;: &quot;ALFKI&quot;,&#xA;&quot;CustomerName&quot;: &quot;Alfredo Koli&quot;,&#xA;&quot;Age&quot;: 55,&#xA;&quot;LocationInfo&quot;: {&quot;City&quot;:&quot;Newyork&quot;, &quot;State&quot;:&quot;NY&quot;, &quot;Zip&quot;:&quot;23234&quot;},&#xA;&quot;OrderIDList&quot;: [111,222,333,444,555]&#xA;}"
+              TargetSettings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;JsonParserSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;Mappings&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;error.message&lt;/Path&gt;&lt;Target&gt;User::APILegalError&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;/Mappings&gt;&lt;Path /&gt;&lt;/JsonParserSetting&gt;"
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Post legal details"
+          DTS:CreationName="ZappySys.RestApiTask"
+          DTS:Description="ZS REST API Task"
+          DTS:DTSID="{87a513f1-74f1-4488-b38e-e8a9e0e30c6b}"
+          DTS:ExecutableType="ZappySys.RestApiTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Post legal details"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <RestApiTask
+              RequestAccessMode="UrlFromVariable"
+              RequestUrlVariable="User::APIRexURL"
+              EnableStatusCheck="False"
+              StatucCheckMaxWaitSeconds="0"
+              StatucCheckIterationWaitSeconds="0"
+              StatusCheckForFailedValue="False"
+              StatusSuccessValue=""
+              StatusFailedValue=""
+              IsMultiPartUpload="False"
+              PreventAutoRedirect="False"
+              RequestTimeoutMs="0"
+              SecurityProtocol="Default"
+              EnableCompressionSupport="True"
+              AllowUnsecureSuite="False"
+              IgnoreCertificateErrors="False"
+              RequestUrl="http://services.odata.org/V3/OData/OData.svc/Products?$format=json&amp;src={{System::PackageName,URLENCODE}}"
+              RequestUrlConnection=""
+              RequestMethod="POST"
+              RequestContentType="ApplicationJson"
+              OverrideConnectionUrl="False"
+              RequestHeaders="&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;"
+              RequestData="{{User::LegalSP_ContactUpdateJSON}}"
+              SaveResponse="True"
+              SaveResponseStatusCode="False"
+              ResponseAccessMode="Variable"
+              SaveAsBinary="False"
+              ResponseDataFilePath=""
+              ResponseHeaderMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+              ResponseCookieMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+              CookieContainerVariable=""
+              ConvertXmlToJson="False"
+              ResponseDataVariable="User::APIResponseLegal"
+              ResponseStatusCodeVariable=""
+              ResponseContentType="Json"
+              ResponseContentFilter=""
+              ResponseCharset=""
+              ValidateResponse="False"
+              ValidationRules="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ResponseValidationSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;MatchAny&gt;false&lt;/MatchAny&gt;&lt;Rules&gt;&lt;ResponseValidationRule xsi:type=&quot;StatusCodeValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;StatusCode&gt;200&lt;/StatusCode&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;ContentValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;Value /&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;HeaderValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;KeyName /&gt;&lt;Value /&gt;&lt;DataType&gt;String&lt;/DataType&gt;&lt;/ResponseValidationRule&gt;&lt;/Rules&gt;&lt;/ResponseValidationSetting&gt;"
+              ConsumeResponseOnError="False"
+              ContineOnAnyError="False"
+              ContineOnErrorForMessage="False"
+              ContineOnErrorForStatusCode="False"
+              ErrorStatusCodeToMatch="404"
+              MatchForEqual="True"
+              ErrorSubstringToMatch=""
+              ContineOn404Error="False"
+              SaveErrorFlagToVariable="False"
+              ErrorFlagVariableName=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Reset API error"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{42997478-f91e-4660-98cb-24e26df613cf}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Reset API error"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::APILegalError] = &quot;&quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Set previous account id"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{859714ce-01aa-4ad5-8c0d-8c631d98cc1b}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Set previous account id"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::PreviousRexAccountID] = @[User::LegalSP_AccountID]" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Set success or failure"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{8ebbde51-b2a4-40c5-b5f7-52f9d87b43d0}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Set success or failure"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::Legal_Success] = @[User::APILegalError] == &quot;&quot; ? &quot;P&quot; : &quot;F&quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Update legal JSON"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{860b2855-2901-4911-9bf7-b20d4e7480d9}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update legal JSON"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::LegalSP_ContactUpdateJSON] = REPLACE(@[User::LegalSP_ContactUpdateJSON], &quot;{{TOKEN}}&quot;, @[User::APIToken])" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Update Rosie LegalWorktable"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{ad15d776-a0ef-4f9e-9ff4-5cea47abec44}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Rosie LegalWorktable"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[ROSIE_updateLegalWorkTable] ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ID"
+                SQLTask:DtsVariableName="User::LegalSP_WorkTableID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@Status"
+                SQLTask:DtsVariableName="User::Legal_Success"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Update Rosie QSPWorktable (Incomplete)"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{9f33c3c3-51e6-4461-b06f-0cc284c94cde}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Rosie QSPWorktable (Incomplete)"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[ROSIE_updateLegalWorkTable] ?, 'X'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ID"
+                SQLTask:DtsVariableName="User::LegalSP_WorkTableID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[API error]"
+          DTS:CreationName=""
+          DTS:DTSID="{4AC3DE75-9A31-4FBA-9F83-07CCB02137B0}"
+          DTS:EvalOp="4"
+          DTS:Expression="@[User::APILegalError]  != &quot;&quot;"
+          DTS:From="Package\Foreach Loop Container\Parse response JSON"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="API error"
+          DTS:To="Package\Foreach Loop Container\Insert API error"
+          DTS:Value="1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{D2533520-6848-4827-94EB-07E5E4FC56DB}"
+          DTS:From="Package\Foreach Loop Container\Update Rosie QSPWorktable (Incomplete)"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach Loop Container\Check if new token is required" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{B1DD3D6E-4F3E-459C-8A58-5E8CD6AA0BD7}"
+          DTS:From="Package\Foreach Loop Container\Get auth key"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Foreach Loop Container\Update legal JSON" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{6BD3264B-D983-473B-940C-AB54FF79AD99}"
+          DTS:From="Package\Foreach Loop Container\Update legal JSON"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Foreach Loop Container\Post legal details" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{16D988A1-3835-4C97-A4D4-FF521A92FA18}"
+          DTS:From="Package\Foreach Loop Container\Post legal details"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Foreach Loop Container\Parse response JSON" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{9FC817A1-114E-4E4A-B07D-BF127B618FDA}"
+          DTS:From="Package\Foreach Loop Container\Update Rosie LegalWorktable"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Foreach Loop Container\Set previous account id" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{a0449275-651f-4a4f-93cc-f0b2e4b77881}"
+          DTS:From="Package\Foreach Loop Container\Set success or failure"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package\Foreach Loop Container\Update Rosie LegalWorktable" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 6]"
+          DTS:CreationName=""
+          DTS:DTSID="{7B9F5361-D078-49A7-B692-FBC083DA836F}"
+          DTS:From="Package\Foreach Loop Container\Parse response JSON"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 6"
+          DTS:To="Package\Foreach Loop Container\Set success or failure" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 7]"
+          DTS:CreationName=""
+          DTS:DTSID="{9445cb04-c31a-4af9-8904-909255c02e9f}"
+          DTS:From="Package\Foreach Loop Container\Insert API error"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 7"
+          DTS:To="Package\Foreach Loop Container\Reset API error" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Generate new token]"
+          DTS:CreationName=""
+          DTS:DTSID="{7E31E67E-477E-42FA-BA9D-02F9AF77AFB0}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::GenerateNewToken]"
+          DTS:From="Package\Foreach Loop Container\Check if new token is required"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Generate new token"
+          DTS:To="Package\Foreach Loop Container\Get auth key" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Same Token]"
+          DTS:CreationName=""
+          DTS:DTSID="{1F7D318E-053E-4602-87C0-5CCFA7BF5329}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::GenerateNewToken] == False"
+          DTS:From="Package\Foreach Loop Container\Check if new token is required"
+          DTS:ObjectName="Same Token"
+          DTS:To="Package\Foreach Loop Container\Update legal JSON" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{C83D2D66-D5A5-4B83-83EA-48C7E4992A91}"
+          DTS:ObjectName="{C83D2D66-D5A5-4B83-83EA-48C7E4992A91}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::LegalSP_RecType" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{236944AB-F20D-44F2-A0D0-096FBFB724D8}"
+          DTS:ObjectName="{236944AB-F20D-44F2-A0D0-096FBFB724D8}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::LegalSP_WorkTableID" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{A3230511-004A-4991-91BC-AD9223D59C4F}"
+          DTS:ObjectName="{A3230511-004A-4991-91BC-AD9223D59C4F}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::LegalSP_AccountID" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{00F3BC1B-8434-4547-BB92-831AC2FC5CFD}"
+          DTS:ObjectName="{00F3BC1B-8434-4547-BB92-831AC2FC5CFD}"
+          DTS:ValueIndex="3"
+          DTS:VariableName="User::LegalSP_PropRef" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{0D8CD76A-89BF-4937-8CBE-FDA555F78532}"
+          DTS:ObjectName="{0D8CD76A-89BF-4937-8CBE-FDA555F78532}"
+          DTS:ValueIndex="4"
+          DTS:VariableName="User::LegalSP_AppRef" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{0C19E0C8-7CB8-47A5-AFE3-34B99899FB8D}"
+          DTS:ObjectName="{0C19E0C8-7CB8-47A5-AFE3-34B99899FB8D}"
+          DTS:ValueIndex="5"
+          DTS:VariableName="User::LegalSP_RexContactID" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{D085CECF-716A-40E8-AA68-E3A32BE8660C}"
+          DTS:ObjectName="{D085CECF-716A-40E8-AA68-E3A32BE8660C}"
+          DTS:ValueIndex="6"
+          DTS:VariableName="User::LegalSP_ContactUpdateJSON" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get updated legal Details"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{79475b3b-cc90-46eb-9a67-3fd99a67c934}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get updated legal Details"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}"
+          SQLTask:SqlStatementSource="EXEC ROSIE_getUpdatedLegal"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::ObjectLegalDetails" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set Variables"
+      DTS:CreationName="ZappySys.XmlParserTask"
+      DTS:Description="ZS Xml Parser Task"
+      DTS:DTSID="{b57dff60-5729-4c66-87de-f62549d8eafe}"
+      DTS:ExecutableType="ZappySys.XmlParserTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set Variables"
+      DTS:TaskContact="Xml Parser Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <XmlParserTask
+          SourceAccessMode="Connection"
+          SourceVariable=""
+          SourceConnection="{6453A0FD-48FC-4075-87BA-99C3EC265904}"
+          SourceDirectValue="&lt;!-- &#xA;Using XML Parser Task you can extract values from XML document using XPath Expression &#xA;See example in below grid. Read description for each mapping.&#xA;See more examples: https://msdn.microsoft.com/en-us/library/ms256086(v=vs.110).aspx&#xA;--&gt;&#xA;&lt;catalog&gt;&#xA;   &lt;book id=&quot;bk101&quot;&gt;&#xA;      &lt;author&gt;Gambardella, Matthew&lt;/author&gt;&#xA;      &lt;title&gt;XML Developer's Guide&lt;/title&gt;&#xA;      &lt;genre&gt;Computer&lt;/genre&gt;&#xA;      &lt;price&gt;44.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-10-01&lt;/publish_date&gt;&#xA;      &lt;description&gt;An in-depth look at creating applications &#xA;      with XML.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk102&quot;&gt;&#xA;      &lt;author&gt;Ralls, Kim&lt;/author&gt;&#xA;      &lt;title&gt;Midnight Rain&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-12-16&lt;/publish_date&gt;&#xA;      &lt;description&gt;A former architect battles corporate zombies, &#xA;      an evil sorceress, and her own childhood to become queen &#xA;      of the world.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk103&quot;&gt;&#xA;      &lt;author&gt;Corets, Eva&lt;/author&gt;&#xA;      &lt;title&gt;Maeve Ascendant&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-11-17&lt;/publish_date&gt;&#xA;      &lt;description&gt;After the collapse of a nanotechnology &#xA;      society in England, the young survivors lay the &#xA;      foundation for a new society.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk104&quot;&gt;&#xA;      &lt;author&gt;Corets, Eva&lt;/author&gt;&#xA;      &lt;title&gt;Oberon's Legacy&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2001-03-10&lt;/publish_date&gt;&#xA;      &lt;description&gt;In post-apocalypse England, the mysterious &#xA;      agent known only as Oberon helps to create a new life &#xA;      for the inhabitants of London. Sequel to Maeve &#xA;      Ascendant.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;&lt;/catalog&gt;"
+          TargetSettings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;XmlParserSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;Mappings&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/RexAPIWebURL&lt;/Path&gt;&lt;Target&gt;User::APIRexURL&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/PackageUser&lt;/Path&gt;&lt;Target&gt;User::APIUser&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/PackagePassword&lt;/Path&gt;&lt;Target&gt;User::APIPassword&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/PackageErrorEmail&lt;/Path&gt;&lt;Target&gt;User::PackageErrorEmail&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;/Mappings&gt;&lt;Path /&gt;&lt;/XmlParserSetting&gt;"
+          LogLevel="Normal"
+          PrefixTimestamp="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{B5E0F46A-58C4-41AB-A5B1-D8783A6AB893}"
+      DTS:From="Package\Get updated legal Details"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Foreach Loop Container" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{9838c5cd-a8e6-4f72-8028-46f4ed2f4b34}"
+      DTS:From="Package\Set Variables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Get updated legal Details" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{895C705E-D5CA-4D3A-808B-66BDB90BC8C1}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{92E9EAFF-9CFE-4828-A8B3-2A32711CF7AB}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Insert error log into database"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{d4675a66-1927-461f-a687-ece8fe52f5e8}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert error log into database"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+              SQLTask:SqlStatementSource="INSERT INTO SSISErrorLog&#xA;(PackageName, StartTime, ErrorCode, ErrorDescription, AccountID)&#xA;VALUES&#xA;(?, ?, ?, ?, NULL)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@PackageName"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@StartTime"
+                SQLTask:DtsVariableName="System::StartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorCode"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorDescription"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="222,42"
+          Id="Package\Foreach Loop Container\Check if new token is required"
+          TopLeft="214.833333333333,107.5" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Foreach Loop Container\Get auth key"
+          TopLeft="126.5,209.5" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Foreach Loop Container\Insert API error"
+          TopLeft="22.1666666666667,619.5" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Foreach Loop Container\Parse response JSON"
+          TopLeft="236.5,516.833333333333" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Foreach Loop Container\Post legal details"
+          TopLeft="246.5,414.166666666667" />
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Foreach Loop Container\Reset API error"
+          TopLeft="5.50000000000007,721.833333333333" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\Foreach Loop Container\Set previous account id"
+          TopLeft="231.166666666667,824.166666666667" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Foreach Loop Container\Set success or failure"
+          TopLeft="236.5,619.5" />
+        <NodeLayout
+          Size="167,43"
+          Id="Package\Foreach Loop Container\Update legal JSON"
+          TopLeft="242.5,311.5" />
+        <NodeLayout
+          Size="217,43"
+          Id="Package\Foreach Loop Container\Update Rosie LegalWorktable"
+          TopLeft="217.166666666667,721.5" />
+        <NodeLayout
+          Size="276,42"
+          Id="Package\Foreach Loop Container\Update Rosie QSPWorktable (Incomplete)"
+          TopLeft="187.833333333333,5.5" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[API error]"
+          TopLeft="297.5,558.833333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-198.833333333333,60.666666666667"
+              Start="0,0"
+              End="-198.833333333333,53.166666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5891472868218" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5891472868218"
+                    Point2="0,24.5891472868218"
+                    Point3="-4,24.5891472868218" />
+                  <mssgle:LineSegment
+                    End="-194.833333333333,24.5891472868218" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-194.833333333333,24.5891472868218"
+                    Point2="-198.833333333333,24.5891472868218"
+                    Point3="-198.833333333333,28.5891472868218" />
+                  <mssgle:LineSegment
+                    End="-198.833333333333,53.166666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-128.824010416667,29.5891472868218,58.8146875,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          TopLeft="325.833333333333,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="195.833333333333,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="103.555555555556,59.9999999999999"
+              Start="0,0"
+              End="103.555555555556,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.6576862123613" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.6576862123613"
+                    Point2="0,35.6576862123613"
+                    Point3="4,35.6576862123613" />
+                  <mssgle:LineSegment
+                    End="99.5555555555556,35.6576862123613" />
+                  <mssgle:CubicBezierSegment
+                    Point1="99.5555555555556,35.6576862123613"
+                    Point2="103.555555555556,35.6576862123613"
+                    Point3="103.555555555556,39.6576862123613" />
+                  <mssgle:LineSegment
+                    End="103.555555555556,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 2]"
+          TopLeft="325.75,354.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.666666666667"
+              Start="0,0"
+              End="0,52.166666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.166666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 3]"
+          TopLeft="325.75,456.166666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.666666666666"
+              Start="0,0"
+              End="0,53.166666666666">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.166666666666" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 4]"
+          TopLeft="325.833333333333,764.166666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 5]"
+          TopLeft="325.833333333333,661.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 6]"
+          TopLeft="354.5,558.833333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-28.5,60.666666666667"
+              Start="0,0"
+              End="-28.5,53.166666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5891472868218" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5891472868218"
+                    Point2="0,24.5891472868218"
+                    Point3="-4,24.5891472868218" />
+                  <mssgle:LineSegment
+                    End="-24.5,24.5891472868218" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-24.5,24.5891472868218"
+                    Point2="-28.5,24.5891472868218"
+                    Point3="-28.5,28.5891472868218" />
+                  <mssgle:LineSegment
+                    End="-28.5,53.166666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 7]"
+          TopLeft="98.8333333333334,661.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-18,60.3333333333334"
+              Start="0,0"
+              End="-18,52.8333333333334">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.1666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.1666666666667"
+                    Point2="0,30.1666666666667"
+                    Point3="-4,30.1666666666667" />
+                  <mssgle:LineSegment
+                    End="-14,30.1666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-14,30.1666666666667"
+                    Point2="-18,30.1666666666667"
+                    Point3="-18,34.1666666666667" />
+                  <mssgle:LineSegment
+                    End="-18,52.8333333333334" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Generate new token]"
+          TopLeft="290.166666666667,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-94.3333333333333,60"
+              Start="0,0"
+              End="-94.3333333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.257602862254" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.257602862254"
+                    Point2="0,24.257602862254"
+                    Point3="-4,24.257602862254" />
+                  <mssgle:LineSegment
+                    End="-90.3333333333333,24.257602862254" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-90.3333333333333,24.257602862254"
+                    Point2="-94.3333333333333,24.257602862254"
+                    Point3="-94.3333333333333,28.257602862254" />
+                  <mssgle:LineSegment
+                    End="-94.3333333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-101.017252604167,29.257602862254,107.701171875,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Same Token]"
+          TopLeft="361.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9.22222222222217,162"
+              Start="0,0"
+              End="-9.22222222222217,154.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,76.7627148554689" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,76.7627148554689"
+                    Point2="0,80.7627148554689"
+                    Point3="-4,80.7627148554689" />
+                  <mssgle:LineSegment
+                    End="-5.22222222222217,80.7627148554689" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.22222222222217,80.7627148554689"
+                    Point2="-9.22222222222217,80.7627148554689"
+                    Point3="-9.22222222222217,84.7627148554689" />
+                  <mssgle:LineSegment
+                    End="-9.22222222222217,154.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-41.1466970486111,85.7627148554689,73.071171875,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="469,921"
+          Size="469,964"
+          Id="Package\Foreach Loop Container"
+          TopLeft="5.50000000000014,211.555555542641" />
+        <NodeLayout
+          Size="199,43"
+          Id="Package\Get updated legal Details"
+          TopLeft="140.833333333333,108.166666666666" />
+        <NodeLayout
+          Size="141,43"
+          Id="Package\Set Variables"
+          TopLeft="169.5,5.49999999999993" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="240.166666666667,150.833333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.7222222093078"
+              Start="0,0"
+              End="0,53.2222222093078">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.2222222093078" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="240.166666666667,48.1666666666666">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package.EventHandlers[OnError]\Insert error log into database"
+          TopLeft="NaN,NaN" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <PrecedenceConstraint
+    design-time-name="Package\Foreach Loop Container.PrecedenceConstraints[API error]">
+    <ShowAnnotation>ConstraintName</ShowAnnotation>
+  </PrecedenceConstraint>
+  <PrecedenceConstraint
+    design-time-name="Package\Foreach Loop Container.PrecedenceConstraints[Generate new token]">
+    <ShowAnnotation>ConstraintName</ShowAnnotation>
+  </PrecedenceConstraint>
+  <PrecedenceConstraint
+    design-time-name="Package\Foreach Loop Container.PrecedenceConstraints[Same Token]">
+    <ShowAnnotation>ConstraintName</ShowAnnotation>
+  </PrecedenceConstraint>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

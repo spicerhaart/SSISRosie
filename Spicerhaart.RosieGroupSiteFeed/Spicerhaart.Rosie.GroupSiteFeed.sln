@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1145
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Spicerhaart.Rosie.GroupSiteFeed", "Spicerhaart.RexPropertySync\Spicerhaart.Rosie.GroupSiteFeed.dtproj", "{09D0A6FE-1E16-4543-88AD-6E774F2D41EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{84AA4CE2-FD2C-496F-A813-B8C20D19E2EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1B579BD9-93E5-4BEA-8276-A61F4879C2F8}"
+	ProjectSection(SolutionItems) = preProject
+		RosieWebQueue.md = RosieWebQueue.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Development|Any CPU = Development|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09D0A6FE-1E16-4543-88AD-6E774F2D41EB}.Debug|Any CPU.ActiveCfg = Development
+		{09D0A6FE-1E16-4543-88AD-6E774F2D41EB}.Debug|Any CPU.Build.0 = Development
+		{09D0A6FE-1E16-4543-88AD-6E774F2D41EB}.Development|Any CPU.ActiveCfg = Development
+		{09D0A6FE-1E16-4543-88AD-6E774F2D41EB}.Development|Any CPU.Build.0 = Development
+		{09D0A6FE-1E16-4543-88AD-6E774F2D41EB}.Release|Any CPU.ActiveCfg = Development
+		{09D0A6FE-1E16-4543-88AD-6E774F2D41EB}.Release|Any CPU.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {73204AEA-EDB5-4914-9789-F518CC475F33}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://colapp01v:8085/tfs/spicerhaart
+		SccProjectUniqueName0 = Spicerhaart.RexPropertySync\\Spicerhaart.Rosie.GroupSiteFeed.dtproj
+		SccProjectName0 = Spicerhaart.RexPropertySync
+		SccLocalPath0 = Spicerhaart.RexPropertySync
+		SccLocalPath1 = .
+	EndGlobalSection
+EndGlobal

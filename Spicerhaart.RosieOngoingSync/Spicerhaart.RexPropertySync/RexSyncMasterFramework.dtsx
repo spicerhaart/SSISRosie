@@ -1,0 +1,488 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/5/2018 11:16:24 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WX9000ITD17"
+  DTS:CreatorName="SPICERHAART\1905887"
+  DTS:DTSID="{ABB272CD-3E92-43A7-977B-3A20A4533267}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="RexSyncMasterFramework"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="1"
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{EB47E42D-63FA-4940-83C6-13CAC616B525}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F8215087-AD4B-4AB1-B5E0-9BE1E46FC2FD}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PatitionA">
+      <DTS:VariableValue
+        DTS:DataType="8">A</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0BC2CBAE-6736-45A6-8440-6320ECF68575}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PatitionB">
+      <DTS:VariableValue
+        DTS:DataType="8">B</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{801D2412-A7B6-4A82-88CE-DDD25925E09A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PatitionC">
+      <DTS:VariableValue
+        DTS:DataType="8">C</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DE15CF82-7958-4081-ABED-D12CCFC361A4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PatitionD">
+      <DTS:VariableValue
+        DTS:DataType="8">D</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3395D8A1-F8E2-4D08-BC25-109612DE8AEB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PatitionE">
+      <DTS:VariableValue
+        DTS:DataType="8">E</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9267DE82-0FC6-47D0-85CE-09F3CA772536}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PatitionF">
+      <DTS:VariableValue
+        DTS:DataType="8">F</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C7B69E90-E2B2-42E6-9A80-121FA4716B20}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PatitionG">
+      <DTS:VariableValue
+        DTS:DataType="8">G</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F9BB11E7-8147-452C-958E-B3F68B7EEE74}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PatitionH">
+      <DTS:VariableValue
+        DTS:DataType="8">H</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\For Loop Container A"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For Loop Container"
+      DTS:DTSID="{485433D3-5A45-4C9D-ADCD-7EBAF031219F}"
+      DTS:EvalExpression="GETDATE() &lt; (DT_DATE)&quot;2100-01-01&quot;"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:MaxErrorCount="0"
+      DTS:ObjectName="For Loop Container A">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\For Loop Container A\Package - Framework Partition A"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{5355DFD1-EC07-448B-8574-F274F6D9D77C}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="0"
+          DTS:ObjectName="Package - Framework Partition A"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>RexSynxFramework.dtsx</PackageName>
+              <PackagePassword
+                Sensitive="1"
+                Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAVMlPrOXYg0KXzKv0lVo7kQAAAAACAAAAAAADZgAAwAAAABAAAABsGsKfXC8JGJXSAOio98suAAAAAASAAACgAAAAEAAAACmRKa6w0GwSIik16QajTzwYAAAAdiSNGWjUJYoAmb3dR+gFuNbssBwQPVYPFAAAAMmzabAB1sgvbgGG8lEzNtRTzIKE</PackagePassword>
+              <ParameterAssignment>
+                <ParameterName>Partition</ParameterName>
+                <BindedVariableOrParameterName>User::PatitionA</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\For Loop Container B"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For Loop Container"
+      DTS:DTSID="{a62023ef-44a0-42e8-b5ce-2a925efaf212}"
+      DTS:EvalExpression="GETDATE() &lt; (DT_DATE)&quot;2100-01-01&quot;"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="For Loop Container B">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\For Loop Container B\Package - Framework Partition B"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{d5e8e12d-443b-4413-9102-c1a2af8c3105}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Package - Framework Partition B"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>RexSynxFramework.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>Partition</ParameterName>
+                <BindedVariableOrParameterName>User::PatitionB</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\For Loop Container C"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For Loop Container"
+      DTS:DTSID="{66c72cef-2111-4356-a07f-8e45b08cdaaf}"
+      DTS:EvalExpression="GETDATE() &lt; (DT_DATE)&quot;2100-01-01&quot;"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="For Loop Container C">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\For Loop Container C\Package - Framework Partition C"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{10476c9e-507b-4d67-ba6e-85e58964dfab}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Package - Framework Partition C"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>RexSynxFramework.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>Partition</ParameterName>
+                <BindedVariableOrParameterName>User::PatitionC</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\For Loop Container D"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For Loop Container"
+      DTS:DTSID="{06045bea-da16-43d3-afdd-d680fcfcdac3}"
+      DTS:EvalExpression="GETDATE() &lt; (DT_DATE)&quot;2100-01-01&quot;"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="For Loop Container D">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\For Loop Container D\Package - Framework Partition D"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{6864ef6b-c623-4b0c-a85c-04b2cc5d12bd}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Package - Framework Partition D"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>RexSynxFramework.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>Partition</ParameterName>
+                <BindedVariableOrParameterName>User::PatitionD</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\For Loop Container E"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For Loop Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{c9fab5c0-4cb0-4ba0-a251-bd270a2b2689}"
+      DTS:EvalExpression="GETDATE() &lt; (DT_DATE)&quot;2100-01-01&quot;"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="For Loop Container E">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\For Loop Container E\Package - Framework Partition E"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{a262b702-147c-4ee7-865b-71cb6afbfaff}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Package - Framework Partition E"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>RexSynxFramework.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>Partition</ParameterName>
+                <BindedVariableOrParameterName>User::PatitionE</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\For Loop Container F"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For Loop Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{8f377f40-b792-4d0f-ab45-fbc1eda71460}"
+      DTS:EvalExpression="GETDATE() &lt; (DT_DATE)&quot;2100-01-01&quot;"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="For Loop Container F">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\For Loop Container F\Package - Framework Partition F"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{b0e8892c-472d-4dae-a9ee-03b22c0c03d3}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Package - Framework Partition F"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>RexSynxFramework.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>Partition</ParameterName>
+                <BindedVariableOrParameterName>User::PatitionF</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\For Loop Container G"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For Loop Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{9301764a-6fb9-490b-bbc8-f896c583576c}"
+      DTS:EvalExpression="GETDATE() &lt; (DT_DATE)&quot;2100-01-01&quot;"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="For Loop Container G">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\For Loop Container G\Package - Framework Partition G"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{58767037-9177-43a2-a19d-154f183cdc0c}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Package - Framework Partition G"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>RexSynxFramework.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>Partition</ParameterName>
+                <BindedVariableOrParameterName>User::PatitionG</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\For Loop Container H"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For Loop Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{fe3e0bba-38b6-4255-b138-7e2a4b7c2f49}"
+      DTS:EvalExpression="GETDATE() &lt; (DT_DATE)&quot;2100-01-01&quot;"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="For Loop Container H">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\For Loop Container H\Package - Framework Partition H"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{0ee5b581-4685-49d1-b9f4-6d88ae39fc93}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Package - Framework Partition H"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>RexSynxFramework.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>Partition</ParameterName>
+                <BindedVariableOrParameterName>User::PatitionH</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="233,42"
+          Id="Package\For Loop Container A\Package - Framework Partition A"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="244,103"
+          Size="244,146"
+          Id="Package\For Loop Container A"
+          TopLeft="23.5,7.5" />
+        <NodeLayout
+          Size="233,42"
+          Id="Package\For Loop Container B\Package - Framework Partition B"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="244,103"
+          Size="244,146"
+          Id="Package\For Loop Container B"
+          TopLeft="328.5,7.5" />
+        <NodeLayout
+          Size="233,42"
+          Id="Package\For Loop Container C\Package - Framework Partition C"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="244,103"
+          Size="244,146"
+          Id="Package\For Loop Container C"
+          TopLeft="633.5,7.5" />
+        <NodeLayout
+          Size="234,42"
+          Id="Package\For Loop Container D\Package - Framework Partition D"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="245,103"
+          Size="245,146"
+          Id="Package\For Loop Container D"
+          TopLeft="938,7.49999999999989" />
+        <NodeLayout
+          Size="233,42"
+          Id="Package\For Loop Container E\Package - Framework Partition E"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="244,103"
+          Size="244,146"
+          Id="Package\For Loop Container E"
+          TopLeft="23.5,185.5" />
+        <NodeLayout
+          Size="232,42"
+          Id="Package\For Loop Container F\Package - Framework Partition F"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="243,103"
+          Size="243,146"
+          Id="Package\For Loop Container F"
+          TopLeft="328,185.5" />
+        <NodeLayout
+          Size="234,42"
+          Id="Package\For Loop Container G\Package - Framework Partition G"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="245,103"
+          Size="245,146"
+          Id="Package\For Loop Container G"
+          TopLeft="632,185.5" />
+        <NodeLayout
+          Size="234,42"
+          Id="Package\For Loop Container H\Package - Framework Partition H"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="245,103"
+          Size="245,146"
+          Id="Package\For Loop Container H"
+          TopLeft="938,185.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

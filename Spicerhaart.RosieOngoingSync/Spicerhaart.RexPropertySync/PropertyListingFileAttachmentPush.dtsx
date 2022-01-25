@@ -1,0 +1,1014 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/23/2018 5:20:36 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WX9000ITD24"
+  DTS:CreatorName="SPICERHAART\1905803"
+  DTS:DTSID="{FC6A2D6C-BBED-431C-9F3B-B0A386EF5503}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="PropertyListingFileAttachmentPush"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="1"
+  DTS:VersionBuild="35"
+  DTS:VersionGUID="{A9530363-4CE3-40D7-9150-1D3F0E98DC10}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RexSync.xml]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{A5203D57-1A44-466E-AB12-3B5D7466CC96}"
+      DTS:ObjectName="RexSync.xml">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\SSISVariables\RexSync.xml" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP 1]"
+      DTS:CreationName="ZS-SMTP"
+      DTS:DTSID="{42D4FFC8-6E6B-4372-B72E-D6CC933882EC}"
+      DTS:ObjectName="SMTP 1">
+      <DTS:ObjectData>
+        <ConnectionManager
+          ConnectionString="SmtpServer=outlookcol;UserName=;Port=25;EnableSsl=False;Timeout=10000;EnableAnonymousAuth=False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{2D70590D-C317-4A85-9D15-03B478249406}"
+      DTS:ObjectName="RexAccountID">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{E26613F3-A14A-40F2-A7FC-D4B8B9CF06D0}"
+      DTS:ObjectName="RexListingID">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">136682</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{99ADB1AA-E18D-4570-BBB3-66E279101B3A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileDescription">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{34EB9D41-1122-4808-AB97-B826E4D6D85E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileList">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4CD9AC71-60AF-4369-B82A-D156241146FB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileToUplaod">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E50552F1-6EBB-454C-AF45-7E07DC676A03}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileToUpload">
+      <DTS:VariableValue
+        DTS:DataType="8">\\nas01\idbs\Docs\1036\hrt102806948_01.pdf</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{23FAA7B2-50B4-4756-AE32-2F6328A01F1C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileUri">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{548CC5B9-5330-44C3-9656-F5FD58354CAC}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileUrl">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8500E34A-554D-464D-BCD3-17A0F54BAAD7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageErrorEmail">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D57F3931-F4A0-4F16-94FD-10933BAC64EB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageUser">
+      <DTS:VariableValue
+        DTS:DataType="8">1897047@spicerhaart.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3EF0A100-0ABE-4838-A072-342508CEB5D5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageUserPassword">
+      <DTS:VariableValue
+        DTS:DataType="8">P4ssword</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1714B8AE-9CF5-4231-BD3A-AF13B44E5151}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ResponseAuth">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A4924ABC-D19C-46BF-AFB5-EFBEE9211441}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ResponseAuthCode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{08CCD005-6A5B-4AB3-AC5F-507E81013721}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RexAPIWebURL">
+      <DTS:VariableValue
+        DTS:DataType="8">https://api.rexsoftware.com/rex.php</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A3D040B7-9EDB-4481-AF19-C2B5C6D2F9EB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RexDocTypeID">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{102A474D-52E8-41DA-B9F4-8BD55AE9EDBA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RexDocTypeName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{06176EF5-76B6-4526-8455-85DD24830CB4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RexToken">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B0C7B7F3-348E-4394-A442-CC7BAF710CD2}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="DATEDIFF(&quot;S&quot;, (DT_DBTIMESTAMP)&quot;1970-01-01&quot;, (DT_DBTIMESTAMP)&quot;2018-09-01&quot;)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="system_ctime">
+      <DTS:VariableValue
+        DTS:DataType="3">1535760000</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Email Auth Failure"
+      DTS:CreationName="ZappySys.HtmlEmailTask"
+      DTS:Description="ZS HTML Email Task"
+      DTS:DTSID="{12C8D9D8-1C4D-4561-8842-E0474B2F43DE}"
+      DTS:ExecutableType="ZappySys.HtmlEmailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Email Auth Failure"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <HtmlEmailTask
+          SmtpConnection="SMTP 1"
+          IsHtmlEmail="True"
+          DefaultStyle="&#xA;&lt;style type=&quot;text/css&quot;&gt;&#xA;body,div,p,span,td,th,table {&#xA; font-family: Helvetica, Arial, sans-serif;&#xA; font-size: 10pt; &#xA;}&#xA;h1,h2,h3,h4,h5{&#xA;font-family: Helvetica, Arial, sans-serif;&#xA;}&#xA;&#xA;table { &#xA; border-collapse: &#xA; collapse; border-spacing: 0; &#xA;}&#xA;&#xA;tr.odd    {background-color: #cccccc}&#xA;tr.even   {background-color: #fafafa}&#xA;td, th { border: 1px solid #bbb;padding: 5 5 5 5} &#xA;th { background: #F3F3F3;  font-weight: bold;}&#xA;&lt;/style&gt;&#xA;&#xA;"
+          Subject="Error occured in {{System::PackageName}}"
+          From="alerts@spicerhaart.co.uk"
+          To="{{User::PackageErrorEmail}}"
+          Cc=""
+          ReplyTo=""
+          Bcc=""
+          Attachments=""
+          EmailPriority="High"
+          MessageSourceType="Direct"
+          MessageDirectValue="&lt;b&gt;Failed to get Authorization Key&lt;/b&gt;&lt;p /&gt;&#xA;&#xA;&lt;p&gt; Response Code =&gt; {{User::ResponseAuthCode}} &lt;p /&gt;"
+          MessageFileConnection=""
+          MessageVariable=""
+          LogLevel="Normal"
+          PrefixTimestamp="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Auth Key"
+      DTS:CreationName="ZappySys.RestApiTask"
+      DTS:Description="ZS REST API Task"
+      DTS:DTSID="{fdab415c-f8cf-45cb-ae25-afab3a29fc2f}"
+      DTS:ExecutableType="ZappySys.RestApiTask"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Auth Key"
+      DTS:TaskContact="REST API Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <RestApiTask
+          RequestAccessMode="DirectUrl"
+          RequestUrlVariable=""
+          EnableStatusCheck="False"
+          StatucCheckMaxWaitSeconds="0"
+          StatucCheckIterationWaitSeconds="0"
+          StatusCheckForFailedValue="False"
+          StatusSuccessValue=""
+          StatusFailedValue=""
+          IsMultiPartUpload="False"
+          PreventAutoRedirect="False"
+          RequestTimeoutMs="0"
+          SecurityProtocol="Default"
+          EnableCompressionSupport="True"
+          AllowUnsecureSuite="False"
+          IgnoreCertificateErrors="False"
+          RequestUrl="{{User::RexAPIWebURL}}"
+          RequestUrlConnection=""
+          RequestMethod="POST"
+          RequestContentType="ApplicationJson"
+          OverrideConnectionUrl="False"
+          RequestHeaders="&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;"
+          RequestData="{&#xA;&quot;method&quot;:&quot;Authentication::login&quot;,&#xA;&quot;args&quot;:{&#xA;&quot;email&quot;:&quot;{{User::PackageUser}}&quot;,&#xA;&quot;password&quot;:&quot;{{User::PackageUserPassword}}&quot;,&#xA;&quot;account_id&quot;:&quot;{{$Package::RexAccountID}}&quot;,&#xA;&quot;application&quot;:&quot;rex&quot;&#xA;}&#xA;}"
+          SaveResponse="True"
+          SaveResponseStatusCode="True"
+          ResponseAccessMode="Variable"
+          SaveAsBinary="False"
+          ResponseDataFilePath=""
+          ResponseHeaderMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Transfer-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Connection&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Origin&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Headers&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Methods&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Max-Age&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Vary&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Type&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Date&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Server&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;/ArrayOfKeyValueMapping&gt;"
+          ResponseCookieMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+          CookieContainerVariable=""
+          ConvertXmlToJson="False"
+          ResponseDataVariable="User::RexToken"
+          ResponseStatusCodeVariable="User::ResponseAuthCode"
+          ResponseContentType="Json"
+          ResponseContentFilter="$.result"
+          ResponseCharset=""
+          ValidateResponse="False"
+          ValidationRules="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ResponseValidationSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;MatchAny&gt;false&lt;/MatchAny&gt;&lt;Rules&gt;&lt;ResponseValidationRule xsi:type=&quot;StatusCodeValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;StatusCode&gt;200&lt;/StatusCode&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;ContentValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;Value /&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;HeaderValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;KeyName /&gt;&lt;Value /&gt;&lt;DataType&gt;String&lt;/DataType&gt;&lt;/ResponseValidationRule&gt;&lt;/Rules&gt;&lt;/ResponseValidationSetting&gt;"
+          ConsumeResponseOnError="False"
+          ContineOnAnyError="False"
+          ContineOnErrorForMessage="False"
+          ContineOnErrorForStatusCode="False"
+          ErrorStatusCodeToMatch="404"
+          MatchForEqual="True"
+          ErrorSubstringToMatch=""
+          ContineOn404Error="False"
+          SaveErrorFlagToVariable="False"
+          ErrorFlagVariableName=""
+          LogLevel="Normal"
+          PrefixTimestamp="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get File List"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2F7CC4F9-3764-4CC9-8B84-C9E29D363C91}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get File List"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="exec ROSIE_uspSelPropertyFilesByListingId @listingID = ?"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::FileList" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@ListingID"
+            SQLTask:DtsVariableName="$Package::RexListingID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Iterate Files"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{2c4d3623-2d55-4ef8-8d1b-0ee36df260cd}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:MaxErrorCount="0"
+      DTS:ObjectName="Iterate Files">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{bf3a61cb-ab3f-420b-9579-1d515109b8a9}"
+        DTS:ObjectName="{17AE96FA-1FD6-472E-8261-6FDC6FC555B2}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::FileList" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{11557707-8e0a-46b8-80ca-eb904b31ee6d}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="FilesToTransfer">
+          <DTS:VariableValue
+            DTS:DataType="8"
+            xml:space="preserve"></DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Files\Email File Link Error"
+          DTS:CreationName="ZappySys.HtmlEmailTask"
+          DTS:Description="Email Auth Failure"
+          DTS:DTSID="{79f9011d-1399-44c4-a876-72fb3db0db7c}"
+          DTS:ExecutableType="ZappySys.HtmlEmailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Email File Link Error"
+          DTS:TaskContact="HTML Email Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <HtmlEmailTask
+              SmtpConnection="SMTP 1"
+              IsHtmlEmail="True"
+              DefaultStyle="&#xA;&lt;style type=&quot;text/css&quot;&gt;&#xA;body,div,p,span,td,th,table {&#xA; font-family: Helvetica, Arial, sans-serif;&#xA; font-size: 10pt; &#xA;}&#xA;h1,h2,h3,h4,h5{&#xA;font-family: Helvetica, Arial, sans-serif;&#xA;}&#xA;&#xA;table { &#xA; border-collapse: &#xA; collapse; border-spacing: 0; &#xA;}&#xA;&#xA;tr.odd    {background-color: #cccccc}&#xA;tr.even   {background-color: #fafafa}&#xA;td, th { border: 1px solid #bbb;padding: 5 5 5 5} &#xA;th { background: #F3F3F3;  font-weight: bold;}&#xA;&lt;/style&gt;&#xA;&#xA;"
+              Subject="Error occured in {{System::PackageName}}"
+              From="alerts@spicerhaart.co.uk"
+              To="{{User::PackageErrorEmail}}"
+              Cc=""
+              ReplyTo=""
+              Bcc=""
+              Attachments=""
+              EmailPriority="High"
+              MessageSourceType="Direct"
+              MessageDirectValue="&lt;b&gt;Failed to parse response&lt;/b&gt;&lt;p /&gt;&#xA;&#xA;&lt;p&gt; Response Code =&gt; {{User::ResponseAuthCode}} &lt;p /&gt;&#xA;&#xA;&lt;p&gt; Response Variable =&gt; {{User::ResponseAuth}}&lt;/p&gt;&#xA;"
+              MessageFileConnection=""
+              MessageVariable=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Files\Email File Upload Failure"
+          DTS:CreationName="ZappySys.HtmlEmailTask"
+          DTS:Description="Email Auth Failure"
+          DTS:DTSID="{767e8d88-b83a-4845-b05e-632744720d98}"
+          DTS:ExecutableType="ZappySys.HtmlEmailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Email File Upload Failure"
+          DTS:TaskContact="HTML Email Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <HtmlEmailTask
+              SmtpConnection="SMTP 1"
+              IsHtmlEmail="True"
+              DefaultStyle="&#xA;&lt;style type=&quot;text/css&quot;&gt;&#xA;body,div,p,span,td,th,table {&#xA; font-family: Helvetica, Arial, sans-serif;&#xA; font-size: 10pt; &#xA;}&#xA;h1,h2,h3,h4,h5{&#xA;font-family: Helvetica, Arial, sans-serif;&#xA;}&#xA;&#xA;table { &#xA; border-collapse: &#xA; collapse; border-spacing: 0; &#xA;}&#xA;&#xA;tr.odd    {background-color: #cccccc}&#xA;tr.even   {background-color: #fafafa}&#xA;td, th { border: 1px solid #bbb;padding: 5 5 5 5} &#xA;th { background: #F3F3F3;  font-weight: bold;}&#xA;&lt;/style&gt;&#xA;&#xA;"
+              Subject="Error occured in {{System::PackageName}}"
+              From="alerts@spicerhaart.co.uk"
+              To="{{User::PackageErrorEmail}}"
+              Cc=""
+              ReplyTo=""
+              Bcc=""
+              Attachments=""
+              EmailPriority="High"
+              MessageSourceType="Direct"
+              MessageDirectValue="&lt;b&gt;Failed to upload file&lt;/b&gt;&lt;p /&gt;&#xA;&#xA;&lt;p&gt; Response Code =&gt; {{User::ResponseAuthCode}} &lt;p /&gt;&#xA;&#xA;&lt;p&gt; Response Variable =&gt; {{User::ResponseAuth}}&lt;/p&gt;&#xA;"
+              MessageFileConnection=""
+              MessageVariable=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Files\Link File To Listing"
+          DTS:CreationName="ZappySys.RestApiTask"
+          DTS:Description="Link Image"
+          DTS:DTSID="{b2eebf02-7939-486d-89b2-948078f98243}"
+          DTS:ExecutableType="ZappySys.RestApiTask"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Link File To Listing"
+          DTS:TaskContact="REST API Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <RestApiTask
+              RequestAccessMode="DirectUrl"
+              RequestUrlVariable=""
+              EnableStatusCheck="False"
+              StatucCheckMaxWaitSeconds="0"
+              StatucCheckIterationWaitSeconds="0"
+              StatusCheckForFailedValue="False"
+              StatusSuccessValue=""
+              StatusFailedValue=""
+              IsMultiPartUpload="False"
+              PreventAutoRedirect="False"
+              RequestTimeoutMs="0"
+              SecurityProtocol="Default"
+              EnableCompressionSupport="True"
+              AllowUnsecureSuite="False"
+              IgnoreCertificateErrors="False"
+              RequestUrl="{{User::RexAPIWebURL}}"
+              RequestUrlConnection=""
+              RequestMethod="POST"
+              RequestContentType="Raw"
+              OverrideConnectionUrl="False"
+              RequestHeaders="&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;"
+              RequestData="{&#xA;&quot;method&quot;:&quot;Listings::update&quot;,&#xA;&quot;args&quot;:{&#xA;&quot;_id&quot;:{{$Package::RexListingID}},&#xA;&quot;data&quot;:{&quot;_id&quot;:{{$Package::RexListingID}},&#xA;&quot;_related&quot;: {&#xA;  &quot;listing_documents&quot;:[&#xA;    {&#xA;     &quot;description&quot;:&quot;{{User::FileDescription}}&quot;,&#xA;     &quot;uri&quot;:&quot;{{User::FileUri}}&quot;,&#xA;     &quot;_url&quot;:&quot;{{User::FileUrl}}&quot;,&#xA;     &quot;system_ctime&quot;:{{User::system_ctime}},&#xA;   &quot;privacy&quot;:{&quot;text&quot;:&quot;Private&quot;,&quot;id&quot;:&quot;private&quot;},&#xA;   &quot;type&quot;:{&quot;text&quot;:&quot;{{User::RexDocTypeName}}&quot;,&quot;id&quot;:&quot;{{User::RexDocTypeID}}&quot;}&#xA;    }&#xA;    ]&#xA;    }&#xA;   }&#xA;},&#xA;&quot;token&quot;: &quot;{{User::RexToken}}&quot;&#xA;}&#xA;"
+              SaveResponse="True"
+              SaveResponseStatusCode="True"
+              ResponseAccessMode="Variable"
+              SaveAsBinary="False"
+              ResponseDataFilePath=""
+              ResponseHeaderMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Headers&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Methods&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Origin&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Max-Age&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Vary&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Connection&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Length&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Type&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Date&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Server&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;/ArrayOfKeyValueMapping&gt;"
+              ResponseCookieMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+              CookieContainerVariable=""
+              ConvertXmlToJson="False"
+              ResponseDataVariable="User::ResponseAuth"
+              ResponseStatusCodeVariable="User::ResponseAuthCode"
+              ResponseContentType="Json"
+              ResponseContentFilter=""
+              ResponseCharset=""
+              ValidateResponse="False"
+              ValidationRules="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ResponseValidationSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;MatchAny&gt;false&lt;/MatchAny&gt;&lt;Rules&gt;&lt;ResponseValidationRule xsi:type=&quot;StatusCodeValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;StatusCode&gt;200&lt;/StatusCode&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;ContentValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;Value /&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;HeaderValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;KeyName /&gt;&lt;Value /&gt;&lt;DataType&gt;String&lt;/DataType&gt;&lt;/ResponseValidationRule&gt;&lt;/Rules&gt;&lt;/ResponseValidationSetting&gt;"
+              ConsumeResponseOnError="False"
+              ContineOnAnyError="False"
+              ContineOnErrorForMessage="False"
+              ContineOnErrorForStatusCode="False"
+              ErrorStatusCodeToMatch="404"
+              MatchForEqual="True"
+              ErrorSubstringToMatch=""
+              ContineOn404Error="False"
+              SaveErrorFlagToVariable="False"
+              ErrorFlagVariableName=""
+              LogLevel="Debugging"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Files\Set URI"
+          DTS:CreationName="ZappySys.JsonParserTask"
+          DTS:Description="ZS JSON Parser Task"
+          DTS:DTSID="{10c08b4c-f5ff-44d0-9ede-92de5774b530}"
+          DTS:ExecutableType="ZappySys.JsonParserTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Set URI"
+          DTS:TaskContact="JSON Parser Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <JsonParserTask
+              SourceAccessMode="Variable"
+              SourceVariable="User::ResponseAuth"
+              SourceConnection=""
+              SourceDirectValue="{&#xA;    &quot;result&quot;: {&#xA;        &quot;uri&quot;: &quot;rextmp://1264/_4225028827_20181031071025.txt&quot;,&#xA;        &quot;url&quot;: &quot;//d1tc5nu51f8a53.cloudfront.net/app/tmpstore/accounts/1264/_4225028827_20181031071025.txt&quot;&#xA;    },&#xA;    &quot;error&quot;: null&#xA;}"
+              TargetSettings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;JsonParserSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;Mappings&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;uri&lt;/Path&gt;&lt;Target&gt;User::FileUri&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;url&lt;/Path&gt;&lt;Target&gt;User::FileUrl&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;/Mappings&gt;&lt;Path&gt;$.result&lt;/Path&gt;&lt;/JsonParserSetting&gt;"
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Files\Upload File"
+          DTS:CreationName="ZappySys.RestApiTask"
+          DTS:Description="ZS REST API Task"
+          DTS:DTSID="{84352e41-fa64-4bb7-a575-d2616759e2f5}"
+          DTS:ExecutableType="ZappySys.RestApiTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Upload File"
+          DTS:TaskContact="REST API Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <RestApiTask
+              RequestAccessMode="DirectUrl"
+              RequestUrlVariable=""
+              EnableStatusCheck="False"
+              StatucCheckMaxWaitSeconds="0"
+              StatucCheckIterationWaitSeconds="0"
+              StatusCheckForFailedValue="False"
+              StatusSuccessValue=""
+              StatusFailedValue=""
+              IsMultiPartUpload="True"
+              PreventAutoRedirect="False"
+              RequestTimeoutMs="0"
+              SecurityProtocol="Default"
+              EnableCompressionSupport="True"
+              AllowUnsecureSuite="False"
+              IgnoreCertificateErrors="False"
+              RequestUrl="{{User::RexAPIWebURL}}"
+              RequestUrlConnection=""
+              RequestMethod="POST"
+              RequestContentType="Default"
+              OverrideConnectionUrl="False"
+              RequestHeaders="&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;"
+              RequestData="method=Upload::uploadFile&#xA;file=@{{User::FileToUplaod}}&#xA;token={{User::RexToken}}&#xA;"
+              SaveResponse="True"
+              SaveResponseStatusCode="True"
+              ResponseAccessMode="Variable"
+              SaveAsBinary="False"
+              ResponseDataFilePath=""
+              ResponseHeaderMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Headers&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Methods&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Origin&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Max-Age&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Vary&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Connection&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Length&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Type&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Date&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Server&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;/ArrayOfKeyValueMapping&gt;"
+              ResponseCookieMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+              CookieContainerVariable=""
+              ConvertXmlToJson="False"
+              ResponseDataVariable="User::ResponseAuth"
+              ResponseStatusCodeVariable="User::ResponseAuthCode"
+              ResponseContentType="Json"
+              ResponseContentFilter=""
+              ResponseCharset=""
+              ValidateResponse="False"
+              ValidationRules="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ResponseValidationSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;MatchAny&gt;false&lt;/MatchAny&gt;&lt;Rules&gt;&lt;ResponseValidationRule xsi:type=&quot;StatusCodeValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;StatusCode&gt;200&lt;/StatusCode&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;ContentValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;Value /&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;HeaderValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;KeyName /&gt;&lt;Value /&gt;&lt;DataType&gt;String&lt;/DataType&gt;&lt;/ResponseValidationRule&gt;&lt;/Rules&gt;&lt;/ResponseValidationSetting&gt;"
+              ConsumeResponseOnError="False"
+              ContineOnAnyError="False"
+              ContineOnErrorForMessage="False"
+              ContineOnErrorForStatusCode="False"
+              ErrorStatusCodeToMatch="404"
+              MatchForEqual="True"
+              ErrorSubstringToMatch=""
+              ContineOn404Error="False"
+              SaveErrorFlagToVariable="False"
+              ErrorFlagVariableName=""
+              LogLevel="Debugging"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Files.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{140F97DC-6404-4DDF-B80E-65AB4F62AF12}"
+          DTS:From="Package\Iterate Files\Upload File"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Iterate Files\Set URI" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Files.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{61d07ed8-bfdd-4208-89cd-26c59444bda2}"
+          DTS:From="Package\Iterate Files\Upload File"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Iterate Files\Email File Upload Failure"
+          DTS:Value="1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Files.PrecedenceConstraints[Constraint 6]"
+          DTS:CreationName=""
+          DTS:DTSID="{5390006a-6de6-4bca-8326-e3ab2d122576}"
+          DTS:From="Package\Iterate Files\Set URI"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 6"
+          DTS:To="Package\Iterate Files\Link File To Listing" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Files.PrecedenceConstraints[Constraint 8]"
+          DTS:CreationName=""
+          DTS:DTSID="{64a9d0a2-cc02-48b6-af73-a0778dd7f88a}"
+          DTS:From="Package\Iterate Files\Link File To Listing"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 8"
+          DTS:To="Package\Iterate Files\Email File Link Error"
+          DTS:Value="1" />
+      </DTS:PrecedenceConstraints>
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\Iterate Files.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{5e32f13a-1699-4650-8437-86360ca88ec3}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{511d83c5-9fb1-4136-99b5-06f57a403ae9}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">0</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{AD1324A4-B174-478C-A2E9-4FCEFE03BC7D}"
+          DTS:ObjectName="{AD1324A4-B174-478C-A2E9-4FCEFE03BC7D}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::FileToUplaod" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{6352490E-6983-4D7B-8573-BC1EF57D2CF1}"
+          DTS:ObjectName="{6352490E-6983-4D7B-8573-BC1EF57D2CF1}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::FileDescription" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{1C564C05-33E9-49E9-B68B-2D8737EFE503}"
+          DTS:ObjectName="{1C564C05-33E9-49E9-B68B-2D8737EFE503}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::RexDocTypeID" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{B919A2FE-8ADC-4347-851D-FD75A1DAF7D9}"
+          DTS:ObjectName="{B919A2FE-8ADC-4347-851D-FD75A1DAF7D9}"
+          DTS:ValueIndex="3"
+          DTS:VariableName="User::RexDocTypeName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set SSIS Variables From XML"
+      DTS:CreationName="ZappySys.XmlParserTask"
+      DTS:Description="ZS Xml Parser Task"
+      DTS:DTSID="{FEA667C6-4F1E-4510-9748-BE14BA358F4C}"
+      DTS:ExecutableType="ZappySys.XmlParserTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set SSIS Variables From XML"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <XmlParserTask
+          SourceAccessMode="Connection"
+          SourceVariable=""
+          SourceConnection="{A5203D57-1A44-466E-AB12-3B5D7466CC96}"
+          SourceDirectValue="&lt;!-- &#xA;Using XML Parser Task you can extract values from XML document using XPath Expression &#xA;See example in below grid. Read description for each mapping.&#xA;See more examples: https://msdn.microsoft.com/en-us/library/ms256086(v=vs.110).aspx&#xA;--&gt;&#xA;&lt;catalog&gt;&#xA;   &lt;book id=&quot;bk101&quot;&gt;&#xA;      &lt;author&gt;Gambardella, Matthew&lt;/author&gt;&#xA;      &lt;title&gt;XML Developer's Guide&lt;/title&gt;&#xA;      &lt;genre&gt;Computer&lt;/genre&gt;&#xA;      &lt;price&gt;44.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-10-01&lt;/publish_date&gt;&#xA;      &lt;description&gt;An in-depth look at creating applications &#xA;      with XML.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk102&quot;&gt;&#xA;      &lt;author&gt;Ralls, Kim&lt;/author&gt;&#xA;      &lt;title&gt;Midnight Rain&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-12-16&lt;/publish_date&gt;&#xA;      &lt;description&gt;A former architect battles corporate zombies, &#xA;      an evil sorceress, and her own childhood to become queen &#xA;      of the world.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk103&quot;&gt;&#xA;      &lt;author&gt;Corets, Eva&lt;/author&gt;&#xA;      &lt;title&gt;Maeve Ascendant&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-11-17&lt;/publish_date&gt;&#xA;      &lt;description&gt;After the collapse of a nanotechnology &#xA;      society in England, the young survivors lay the &#xA;      foundation for a new society.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk104&quot;&gt;&#xA;      &lt;author&gt;Corets, Eva&lt;/author&gt;&#xA;      &lt;title&gt;Oberon's Legacy&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2001-03-10&lt;/publish_date&gt;&#xA;      &lt;description&gt;In post-apocalypse England, the mysterious &#xA;      agent known only as Oberon helps to create a new life &#xA;      for the inhabitants of London. Sequel to Maeve &#xA;      Ascendant.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;&lt;/catalog&gt;"
+          TargetSettings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;XmlParserSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;Mappings&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/RexAPIWebURL&lt;/Path&gt;&lt;Target&gt;User::RexAPIWebURL&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt; /SSISVariables/PackageUser&lt;/Path&gt;&lt;Target&gt;User::PackageUser&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/PackageErrorEmail&lt;/Path&gt;&lt;Target&gt;User::PackageErrorEmail&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt; /SSISVariables/PackagePassword&lt;/Path&gt;&lt;Target&gt;User::PackageUserPassword&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;/Mappings&gt;&lt;Path /&gt;&lt;/XmlParserSetting&gt;"
+          LogLevel="Normal"
+          PrefixTimestamp="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{EE181278-F698-4091-9C5E-1B978A581D19}"
+      DTS:From="Package\Set SSIS Variables From XML"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Get Auth Key" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{CEB9396A-A774-466A-B25E-E98B36768CBC}"
+      DTS:From="Package\Get Auth Key"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Get File List" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{0157AA13-21E2-405E-83B3-0EB9644ED65A}"
+      DTS:From="Package\Get Auth Key"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Email Auth Failure"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{72F42D6B-9A40-4FEB-9743-628D3130BFF5}"
+      DTS:From="Package\Get File List"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Iterate Files" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Email Auth Failure"
+          TopLeft="507,130" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Get Auth Key"
+          TopLeft="213,122" />
+        <NodeLayout
+          Size="134,42"
+          Id="Package\Get File List"
+          TopLeft="219,228" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Iterate Files\Email File Link Error"
+          TopLeft="433.5,260.5" />
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Iterate Files\Email File Upload Failure"
+          TopLeft="433.5,12.4999999999999" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Iterate Files\Link File To Listing"
+          TopLeft="235,261.5" />
+        <NodeLayout
+          Size="115,42"
+          Id="Package\Iterate Files\Set URI"
+          TopLeft="257.5,131.5" />
+        <NodeLayout
+          Size="131,42"
+          Id="Package\Iterate Files\Upload File"
+          TopLeft="252.5,11.4999999999999" />
+        <EdgeLayout
+          Id="Package\Iterate Files.PrecedenceConstraints[Constraint]"
+          TopLeft="316.5,53.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,78.0000000000001"
+              Start="0,0"
+              End="0,70.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,70.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Files.PrecedenceConstraints[Constraint 3]"
+          TopLeft="383.5,32.9999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="50,0"
+              Start="0,0"
+              End="42.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="42.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="6.00865234375,5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Files.PrecedenceConstraints[Constraint 6]"
+          TopLeft="316.5,173.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,88"
+              Start="0,0"
+              End="0,80.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,80.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Files.PrecedenceConstraints[Constraint 8]"
+          TopLeft="401,282">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="32.5,0"
+              Start="0,0"
+              End="25,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="25,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-2.74134765625,5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="643,357"
+          Size="643,400"
+          Id="Package\Iterate Files"
+          TopLeft="186,361" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Set SSIS Variables From XML"
+          TopLeft="180,28" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="285.75,70">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="284.75,164">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,64"
+              Start="0,0"
+              End="0,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="354,143">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="153,8"
+              Start="0,0"
+              End="145.5,8">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="72.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="72.5,0"
+                    Point2="76.5,0"
+                    Point3="76.5,4" />
+                  <mssgle:LineSegment
+                    End="76.5,4" />
+                  <mssgle:CubicBezierSegment
+                    Point1="76.5,4"
+                    Point2="76.5,8"
+                    Point3="80.5,8" />
+                  <mssgle:LineSegment
+                    End="145.5,8" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="61.25865234375,9,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="286,270">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="221.5,91"
+              Start="0,0"
+              End="221.5,83.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.5"
+                    Point2="0,45.5"
+                    Point3="4,45.5" />
+                  <mssgle:LineSegment
+                    End="217.5,45.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="217.5,45.5"
+                    Point2="221.5,45.5"
+                    Point3="221.5,49.5" />
+                  <mssgle:LineSegment
+                    End="221.5,83.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

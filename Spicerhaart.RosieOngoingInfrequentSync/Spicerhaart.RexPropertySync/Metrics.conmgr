@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Metrics"
+  DTS:DTSID="{BE9C8001-397B-40F7-8D95-DCB010580DE0}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=COLSQLBI01V;User ID=MetricsUser;Initial Catalog=Metrics;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1"
+        p4:Salt="leeGcQgz2g=="
+        p4:IV="8XG4TA9H+f8=" xmlns:p4="www.microsoft.com/SqlServer/SSIS">Z0+FwsvYygmQS3viHq0QVdtftcA38PLM08rzsvPPmwf9VOQp140UzYHV1UNl5w5Ez2Oztx6HZLecqGdVJqXdihVqiUtZIUHZm4eOFeH1UahmUOM9PocdoiYc9WPWTziKZdTF818x9wVh2cruhrkAuhUf8K4pmHL+</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

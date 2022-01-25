@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="PAF"
+  DTS:DTSID="{636D9125-8021-44BF-8E31-1A54C239CDB8}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=colsql10;User ID=IDBSUser;Initial Catalog=PAF;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1"
+        p4:Salt="l5NkhmsJ5A=="
+        p4:IV="2mwsB+lbsGg=" xmlns:p4="www.microsoft.com/SqlServer/SSIS">d3SbArksg3+ajX2b3errG8ZmwVtrFWEQ0b2kG0lM4cMbn6IbLqRwFKDcRRR/DRmj/M6obRFYOXgWawmhDwdZT03aBX9rRnsiZwbybFb/dhYR4o/FCa0lmB0SZ+GDoNvC46ALaBl9SqQMHT3VH805YfmZ9pdroK1G</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

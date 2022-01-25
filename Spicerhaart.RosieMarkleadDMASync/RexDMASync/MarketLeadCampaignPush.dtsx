@@ -1,0 +1,2736 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/26/2018 4:42:07 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="79000ITD10"
+  DTS:CreatorName="SPICERHAART\1901434"
+  DTS:DTSID="{6A364549-F725-4382-B72C-AAF54CADCC6F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="MarketLeadCampaignPush"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="533"
+  DTS:VersionGUID="{6C276EA3-82E8-4DC2-B8D9-C83F073F2AC4}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HTTP]"
+      DTS:CreationName="ZS-HTTP"
+      DTS:DTSID="{55827394-9A52-4D74-AFEC-0260D593A3D5}"
+      DTS:ObjectName="HTTP">
+      <DTS:ObjectData>
+        <ConnectionManager
+          ConnectionString="Url=https://api.uk.rexsoftware.com/rex.php;CredentialType=Notset;UserName=;Timeout=100000;SoapWssPasswordType=Notset;JwtCustomClaims=;RetainCookies=False;UseProxy=False;ProxyUrl=;UseProxyCreds=False;ProxyUserName=;DoNotUseDefaultProxy=False;UseClientCertificate=False;CertificatePath=;CertificateStorageType=CurrentUser;CertificateStoreName=My;CertificateThumbprint=;RetryMode=None;RetryCountMax=3;RetryWaitTimeMs=2000;RetryMultiplyWaitTime=False;RetryMessageList=;RetryStatusCodeList=;AuthScheme=Bearer;TokenAuthHeader=;TokenUrl=;TokenRequestData=;TokenRequestHeaders=;TokenRequestMethod=;TokenRequestContentType=Default;TokenRequestIsMultiPart=False;TokenResponseContentFilter=;TokenResponseValueExtractMode=Body;TokenResponseCookie=;TokenResponseHeader=;TokenResponseContentType=None;TokenExpirationTimeInSeconds=3600;EnableRequestHashing=False;HashAlgorithm=sha256;HashSignatureFormat=;HashSignatureFormatForLogin=;ExtraHeaders=;ExtraHeadersForLogin=;HashTimestampFormat=;HashTreatSecretAsNonBase64=False;HashSignWithApiKey=False;RetainSameConnection=False"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RexSync.xml]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{04D8CC84-B699-411E-9B23-4BF6EBEB7E7F}"
+      DTS:ObjectName="RexSync.xml">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\SSISVariables\RexSync.xml" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP]"
+      DTS:CreationName="ZS-SMTP"
+      DTS:DTSID="{2AED3C07-3C56-4B3D-A01A-899B81740616}"
+      DTS:ObjectName="SMTP">
+      <DTS:ObjectData>
+        <ConnectionManager
+          ConnectionString="SmtpServer=outlookcol;UserName=;Port=25;EnableSsl=False;Timeout=10000;EnableAnonymousAuth=False"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{7CF2C4BD-45F1-4BBD-BADB-18DCA81C16F4}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=outlookcol;UseWindowsAuthentication=False;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{0125BA86-E5E4-43BE-A8C6-EF9ACBEE04BF}"
+      DTS:ObjectName="RexAccountID"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">1738</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F0C13D79-96DA-4E9C-B3C9-15E44632B858}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="AgentID">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B64D1818-CB2D-4EB0-88CB-86283EACEEA3}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="AgentList">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BC698F90-5BEE-4533-9E00-E9DEE9DF741E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="APIMarketLeadID">
+      <DTS:VariableValue
+        DTS:DataType="8">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C1627784-3F98-4AF4-8124-051154BCD37A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="APIResponseError">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D6449BEB-CD48-4C80-884B-B8B18956D075}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="APIResponseErrorMsg">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CB160CAD-827B-475D-A14E-C78BB5DE698A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CampaignInfo">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E6A3F36B-5375-474B-A954-A67AEB0CCB17}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CampaignMemberID">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{40B460B8-8678-4D7B-9605-A5AE6D00DA28}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CampaignMemberStatusTable">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EFECC234-23B7-4059-BF2A-5CFBC2635017}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CampaignName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E71D72DB-8A8C-4044-ACC5-366B929558EA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CampaignStatus">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F1170A31-73DA-4212-94B2-9BB08365E8E0}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Campaign_rid">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F43ED0AA-DA6B-4DAB-993F-2D918D741442}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CampignTemplateID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B0F3E2F6-6161-436E-B34B-0D524EBFD37D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExecutedRecordCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{592309A5-EFE1-436F-AB26-499A85936367}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="FailedDMACount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{149C37BC-C921-47D3-83BD-52A6BB20BFBD}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Office_id">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BF94EAAB-5487-4C78-923C-D965E5A085D8}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageErrorEmail">
+      <DTS:VariableValue
+        DTS:DataType="8">saulius.samoska@spicerhaart.co.uk</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{95639CC1-DE6C-40E3-838A-89344011163E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageExecutionInfo">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{63296FA3-12EC-4391-906C-6FCE8D455625}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackagePassword">
+      <DTS:VariableValue
+        DTS:DataType="8">P4ssword</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CA3D4035-AA56-45A0-BED3-2F8762C587AA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageStartDate">
+      <DTS:VariableValue
+        DTS:DataType="7">11/21/2018 2:03:19 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3365A40A-9CAD-4892-8BB3-AB948B597DD9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageUser">
+      <DTS:VariableValue
+        DTS:DataType="8">1897047@spicerhaart.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{82C91160-0F2A-4D13-928B-1DCEC0B7EC3D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ResponseAuth">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E1EDB5AE-F41B-4868-A019-941CAF6E591F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ResponseAuthCode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1E23C282-805E-46A2-90A6-8467F6437E3D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RexAPIWebURL">
+      <DTS:VariableValue
+        DTS:DataType="8">https://api.rexsoftware.com/rex.php</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1B34E561-868B-461A-8F0C-123F46510C4B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RexToken">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6361E71F-A344-4BC6-9F3C-98DACD19E5B6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="rid_accountuser">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{04DF8719-5993-40F8-AD8C-11F7CFBAE3A3}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RosieUserID">
+      <DTS:VariableValue
+        DTS:DataType="3">18382</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3CD8BD64-D5FF-4113-A0F1-29B1AE29B505}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="DATEDIFF(&quot;S&quot;, (DT_DBTIMESTAMP)&quot;1970-01-01&quot;, (DT_DBTIMESTAMP)&quot;2018-09-01&quot;)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="system_ctime">
+      <DTS:VariableValue
+        DTS:DataType="3">1535760000</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{93E63E5C-8DE5-4FEE-9BBB-FBF25B59C519}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Tag">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{937098CC-D51A-4A30-81F5-7E9A470E631D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="UpsertedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:LoggingMode="2" />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Auth Failure"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{F53D98E6-83E0-4E1A-BDE9-69D9EF5A0336}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Auth Failure"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0533A634-9E92-4D46-8F14-E1BCF2F6C3FE}"
+          SQLTask:SqlStatementSource="exec [dbo].[ROSIE_uspInsDMAPushLog] ?,?,'Failed to set market lead id',?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@RexAccountID"
+            SQLTask:DtsVariableName="$Package::RexAccountID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@DMA_ID"
+            SQLTask:DtsVariableName="User::DMA_ID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@ResponseCode"
+            SQLTask:DtsVariableName="User::ResponseAuthCode"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@Response"
+            SQLTask:DtsVariableName="User::ResponseAuth"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Email Auth Failure"
+      DTS:CreationName="ZappySys.HtmlEmailTask"
+      DTS:Description="Email Auth Failure"
+      DTS:DTSID="{E43AC12C-3F1B-48F8-B48B-297E7C7EF4BE}"
+      DTS:ExecutableType="ZappySys.HtmlEmailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Email Auth Failure"
+      DTS:TaskContact="HTML Email Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <HtmlEmailTask
+          SmtpConnection="SMTP"
+          IsHtmlEmail="True"
+          DefaultStyle="&#xA;&lt;style type=&quot;text/css&quot;&gt;&#xA;body,div,p,span,td,th,table {&#xA; font-family: Helvetica, Arial, sans-serif;&#xA; font-size: 10pt; &#xA;}&#xA;h1,h2,h3,h4,h5{&#xA;font-family: Helvetica, Arial, sans-serif;&#xA;}&#xA;&#xA;table { &#xA; border-collapse: &#xA; collapse; border-spacing: 0; &#xA;}&#xA;&#xA;tr.odd    {background-color: #cccccc}&#xA;tr.even   {background-color: #fafafa}&#xA;td, th { border: 1px solid #bbb;padding: 5 5 5 5} &#xA;th { background: #F3F3F3;  font-weight: bold;}&#xA;&lt;/style&gt;&#xA;&#xA;"
+          Subject="Error occured in {{System::PackageName}}"
+          From="alerts@spicerhaart.co.uk"
+          To="{{User::PackageErrorEmail}}"
+          Cc=""
+          ReplyTo=""
+          Bcc=""
+          Attachments=""
+          EmailPriority="High"
+          MessageSourceType="Direct"
+          MessageDirectValue="&lt;b&gt;Failed to get Authorization Key&lt;/b&gt;&lt;p /&gt;&#xA;&#xA;&lt;p&gt; Response Code =&gt; {{User::ResponseAuthCode}} &lt;p /&gt;&#xA;&#xA;"
+          MessageFileConnection=""
+          MessageVariable=""
+          LogLevel="Normal"
+          PrefixTimestamp="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get agents list for process"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B1606302-60D2-4869-8C02-B0B26AEC6C2F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get agents list for process"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8AB72F9C-FCB9-4836-BC93-FC14F4226C1D}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="exec ROSIE_uspGetAgentCampaignSForCreation ?"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::AgentList" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@r_account_id"
+            SQLTask:DtsVariableName="$Package::RexAccountID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Auth Key"
+      DTS:CreationName="ZappySys.RestApiTask"
+      DTS:Description="ZS REST API Task"
+      DTS:DTSID="{3EC203F4-81A0-4C59-BE0D-4B902FA5F70E}"
+      DTS:ExecutableType="ZappySys.RestApiTask"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Auth Key"
+      DTS:TaskContact="REST API Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <RestApiTask
+          RequestAccessMode="DirectUrl"
+          RequestUrlVariable=""
+          EnableStatusCheck="False"
+          StatusCheckMaxWaitSeconds="0"
+          StatusFieldFilterType="None"
+          StatusFieldFilterExpr=""
+          StatusCheckIterationWaitSeconds="0"
+          StatusCheckForFailedValue="False"
+          StatusSuccessValue=""
+          StatusContinueValue=""
+          StatusFailedValue=""
+          IsMultiPartUpload="False"
+          AddMultiPartPostamble="False"
+          PreventAutoRedirect="False"
+          RequestTimeoutMs="0"
+          SecurityProtocol="Default"
+          EnableCompressionSupport="True"
+          AllowUnsecureSuite="False"
+          IgnoreCertificateErrors="False"
+          RequestUrl="{{User::RexAPIWebURL}}"
+          RequestUrlConnection=""
+          RequestMethod="POST"
+          RequestContentType="ApplicationJson"
+          OverrideConnectionUrl="False"
+          RequestHeaders="&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;"
+          RequestData="{&#xA;&quot;method&quot;:&quot;Authentication::login&quot;,&#xA;&quot;args&quot;:{&#xA;&quot;email&quot;:&quot;{{User::PackageUser}}&quot;,&#xA;&quot;password&quot;:&quot;{{User::PackagePassword}}&quot;,&#xA;&quot;account_id&quot;:&quot;{{$Package::RexAccountID}}&quot;,&#xA;&quot;application&quot;:&quot;rex&quot;&#xA;}&#xA;}"
+          SaveResponse="True"
+          SaveResponseStatusCode="True"
+          ResponseAccessMode="Variable"
+          SaveAsBinary="False"
+          ResponseDataFilePath=""
+          ResponseHeaderMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Transfer-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Connection&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Origin&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Headers&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Methods&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Max-Age&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Vary&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Type&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Date&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Server&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;/ArrayOfKeyValueMapping&gt;"
+          ResponseCookieMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+          CookieContainerVariable=""
+          ConvertXmlToJson="False"
+          ResponseDataVariable="User::RexToken"
+          ResponseStatusCodeVariable="User::ResponseAuthCode"
+          ResponseContentType="Json"
+          ResponseContentFilter="$.result"
+          ResponseCharset=""
+          ValidateResponse="False"
+          ValidationRules="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ResponseValidationSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;MatchAny&gt;false&lt;/MatchAny&gt;&lt;Rules&gt;&lt;ResponseValidationRule xsi:type=&quot;StatusCodeValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;StatusCode&gt;200&lt;/StatusCode&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;ContentValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;Value /&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;HeaderValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;KeyName /&gt;&lt;Value /&gt;&lt;DataType&gt;String&lt;/DataType&gt;&lt;/ResponseValidationRule&gt;&lt;/Rules&gt;&lt;/ResponseValidationSetting&gt;"
+          ConsumeResponseOnError="False"
+          ContineOnAnyError="False"
+          ContineOnErrorForMessage="False"
+          ContineOnErrorForStatusCode="False"
+          ErrorStatusCodeToMatch="404"
+          MatchForEqual="True"
+          ErrorSubstringToMatch=""
+          ContineOn404Error="False"
+          SaveErrorFlagToVariable="False"
+          ErrorFlagVariableName=""
+          LogLevel="Normal"
+          PrefixTimestamp="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Iterate Agent"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{8CA86AD6-3F81-4C1C-A3D1-28DB16D38DE5}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Iterate Agent">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{C35AF740-2087-46A2-BCB4-AC0BF58E010B}"
+        DTS:ObjectName="{C35AF740-2087-46A2-BCB4-AC0BF58E010B}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::AgentList" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Agent\Change Campaign Ownership"
+          DTS:CreationName="ZappySys.RestApiTask"
+          DTS:Description="Link Image"
+          DTS:DTSID="{aff088ee-bfa5-4054-a64f-d1548840442f}"
+          DTS:ExecutableType="ZappySys.RestApiTask"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Change Campaign Ownership"
+          DTS:TaskContact="REST API Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:LoggingMode="2" />
+          <DTS:ObjectData>
+            <RestApiTask
+              RequestAccessMode="DirectUrl"
+              RequestUrlVariable=""
+              EnableStatusCheck="False"
+              StatusCheckMaxWaitSeconds="0"
+              StatusFieldFilterType="None"
+              StatusFieldFilterExpr=""
+              StatusCheckIterationWaitSeconds="0"
+              StatusCheckForFailedValue="False"
+              StatusSuccessValue=""
+              StatusContinueValue=""
+              StatusFailedValue=""
+              IsMultiPartUpload="False"
+              AddMultiPartPostamble="False"
+              PreventAutoRedirect="False"
+              RequestTimeoutMs="0"
+              SecurityProtocol="Default"
+              EnableCompressionSupport="True"
+              AllowUnsecureSuite="False"
+              IgnoreCertificateErrors="False"
+              RequestUrl="{{User::RexAPIWebURL}}"
+              RequestUrlConnection=""
+              RequestMethod="POST"
+              RequestContentType="Raw"
+              OverrideConnectionUrl="False"
+              RequestHeaders="&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;X-App-Identifier&lt;/name&gt;&lt;value&gt;client:spicerhaart:{{System::PackageName}}:{{System::TaskName}}&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;"
+              RequestData="{&#xA;&#xA;&#xA;&quot;method&quot;: &quot;SecurityObjectPermissions::transferObjectOwnershipToUser&quot;,&#xA;      &quot;args&quot;: {&#xA;        &quot;object_type&quot;:&quot;campaigns&quot;,&#xA;        &quot;object_id&quot;:{{User::Campaign_rid}},&#xA;        &quot;new_owner_id&quot;:&quot;{{User::rid_accountuser}}&quot;&#xA;&#xA;         &#xA;      },&#xA;      &#xA;&quot;strip_response_prefix&quot;: true,&#xA;&quot;token&quot;: &quot;{{User::RexToken}}&quot;&#xA;}&#xA;&#xA;"
+              SaveResponse="True"
+              SaveResponseStatusCode="True"
+              ResponseAccessMode="Variable"
+              SaveAsBinary="False"
+              ResponseDataFilePath=""
+              ResponseHeaderMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Headers&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Methods&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Origin&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Max-Age&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Vary&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Connection&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Length&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Type&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Date&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Server&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;/ArrayOfKeyValueMapping&gt;"
+              ResponseCookieMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+              CookieContainerVariable=""
+              ConvertXmlToJson="False"
+              ResponseDataVariable="User::ResponseAuth"
+              ResponseStatusCodeVariable="User::ResponseAuthCode"
+              ResponseContentType="Json"
+              ResponseContentFilter=""
+              ResponseCharset=""
+              ValidateResponse="False"
+              ValidationRules="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ResponseValidationSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;MatchAny&gt;false&lt;/MatchAny&gt;&lt;Rules&gt;&lt;ResponseValidationRule xsi:type=&quot;StatusCodeValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;StatusCode&gt;200&lt;/StatusCode&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;ContentValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;Value /&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;HeaderValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;KeyName /&gt;&lt;Value /&gt;&lt;DataType&gt;String&lt;/DataType&gt;&lt;/ResponseValidationRule&gt;&lt;/Rules&gt;&lt;/ResponseValidationSetting&gt;"
+              ConsumeResponseOnError="False"
+              ContineOnAnyError="False"
+              ContineOnErrorForMessage="False"
+              ContineOnErrorForStatusCode="False"
+              ErrorStatusCodeToMatch="404"
+              MatchForEqual="True"
+              ErrorSubstringToMatch=""
+              ContineOn404Error="False"
+              SaveErrorFlagToVariable="False"
+              ErrorFlagVariableName=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Agent\Create campaign"
+          DTS:CreationName="ZappySys.RestApiTask"
+          DTS:Description="Link Image"
+          DTS:DTSID="{D8DB824E-5137-4EEA-97AC-BB46574FCED8}"
+          DTS:ExecutableType="ZappySys.RestApiTask"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create campaign"
+          DTS:TaskContact="REST API Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:LoggingMode="2" />
+          <DTS:ObjectData>
+            <RestApiTask
+              RequestAccessMode="DirectUrl"
+              RequestUrlVariable=""
+              EnableStatusCheck="False"
+              StatusCheckMaxWaitSeconds="0"
+              StatusFieldFilterType="None"
+              StatusFieldFilterExpr=""
+              StatusCheckIterationWaitSeconds="0"
+              StatusCheckForFailedValue="False"
+              StatusSuccessValue=""
+              StatusContinueValue=""
+              StatusFailedValue=""
+              IsMultiPartUpload="False"
+              AddMultiPartPostamble="False"
+              PreventAutoRedirect="False"
+              RequestTimeoutMs="0"
+              SecurityProtocol="Default"
+              EnableCompressionSupport="True"
+              AllowUnsecureSuite="False"
+              IgnoreCertificateErrors="False"
+              RequestUrl="{{User::RexAPIWebURL}}"
+              RequestUrlConnection=""
+              RequestMethod="POST"
+              RequestContentType="Raw"
+              OverrideConnectionUrl="False"
+              RequestHeaders="&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;X-App-Identifier&lt;/name&gt;&lt;value&gt;client:spicerhaart:{{System::PackageName}}:{{System::TaskName}}&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;"
+              RequestData="{&#xA; &quot;method&quot;:&quot;Campaigns::createFromTemplate&quot;,&#xA; &quot;args&quot;:&#xA; {&#xA;&#xA;  &quot;template_id&quot;: {{User::CampignTemplateID}},&#xA;  &quot;data&quot;: {&#xA;    &quot;name&quot;: &quot;{{User::CampaignName}}&quot;,&#xA;    &quot;status_id&quot;: &quot;{{User::CampaignStatus}}&quot;,&#xA;    &quot;start_date&quot;: &quot;&quot;,&#xA;    &quot;end_date&quot;: &quot;&quot;&#xA;  }&#xA;&#xA;},&#xA; &quot;strip_response_prefix&quot;: true,&#xA; &quot;token&quot;: &quot;{{User::RexToken}}&quot;&#xA;}&#xA;&#xA;"
+              SaveResponse="True"
+              SaveResponseStatusCode="True"
+              ResponseAccessMode="Variable"
+              SaveAsBinary="False"
+              ResponseDataFilePath=""
+              ResponseHeaderMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Headers&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Methods&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Origin&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Max-Age&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Vary&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Connection&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Length&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Type&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Date&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Server&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;/ArrayOfKeyValueMapping&gt;"
+              ResponseCookieMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+              CookieContainerVariable=""
+              ConvertXmlToJson="False"
+              ResponseDataVariable="User::ResponseAuth"
+              ResponseStatusCodeVariable="User::ResponseAuthCode"
+              ResponseContentType="Json"
+              ResponseContentFilter=""
+              ResponseCharset=""
+              ValidateResponse="False"
+              ValidationRules="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ResponseValidationSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;MatchAny&gt;false&lt;/MatchAny&gt;&lt;Rules&gt;&lt;ResponseValidationRule xsi:type=&quot;StatusCodeValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;StatusCode&gt;200&lt;/StatusCode&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;ContentValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;Value /&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;HeaderValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;KeyName /&gt;&lt;Value /&gt;&lt;DataType&gt;String&lt;/DataType&gt;&lt;/ResponseValidationRule&gt;&lt;/Rules&gt;&lt;/ResponseValidationSetting&gt;"
+              ConsumeResponseOnError="False"
+              ContineOnAnyError="False"
+              ContineOnErrorForMessage="False"
+              ContineOnErrorForStatusCode="False"
+              ErrorStatusCodeToMatch="404"
+              MatchForEqual="True"
+              ErrorSubstringToMatch=""
+              ContineOn404Error="False"
+              SaveErrorFlagToVariable="False"
+              ErrorFlagVariableName=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Agent\Get Campaign Member Statuses"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{cbe5d2dd-5921-4683-a2bd-3d8489d9221c}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Get Campaign Member Statuses"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Inputs[Derived Column Input].Columns[label]"
+                          cachedDataType="wstr"
+                          cachedLength="200"
+                          cachedName="label"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].Columns[label]" />
+                        <inputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Inputs[Derived Column Input].Columns[priority]"
+                          cachedDataType="i8"
+                          cachedName="priority"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].Columns[priority]" />
+                        <inputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Inputs[Derived Column Input].Columns[_id]"
+                          cachedDataType="i8"
+                          cachedName="_id"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].Columns[_id]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Output].Columns[campaignStatusName]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="200"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Output].Columns[campaignStatusName]"
+                          name="campaignStatusName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,200,1252)#{Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].Columns[label]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,200,1252)label</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Output].Columns[campaignStatusPriority]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Output].Columns[campaignStatusPriority]"
+                          name="campaignStatusPriority"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">#{Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].Columns[priority]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">priority</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Output].Columns[campaignStatusID]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Output].Columns[campaignStatusID]"
+                          name="campaignStatusID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">#{Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].Columns[_id]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">_id</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Output].Columns[r_account_id]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Output].Columns[r_account_id]"
+                          name="r_account_id"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[$Package::RexAccountID]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[$Package::RexAccountID]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Output].Columns[campaignID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Output].Columns[campaignID]"
+                          name="campaignID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[User::Campaign_rid]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[User::Campaign_rid]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="JSON Source (REST API or File); ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+                  description="The JSON source is used to read data from JSON files, RESTful Web Service or direct JSON String."
+                  name="Get Campaign Member Statuses"
+                  usesDispositions="true"
+                  version="33">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="LoggingMode determines how much information is logged during Package Execution. Set Logging mode to Debugging for maximum log."
+                      expressionType="Notify"
+                      name="LoggingMode"
+                      typeConverter="ZappySys.PowerPack.Common.LoggingMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="When you enable this property it will prefix timestamp before Log messages."
+                      expressionType="Notify"
+                      name="PrefixTimestamp">false</property>
+                    <property
+                      dataType="System.Null"
+                      expressionType="Notify"
+                      name="SelfRef"
+                      typeConverter="NOTBROWSABLE" />
+                    <property
+                      dataType="System.Boolean"
+                      description="Treat empty string as NULL for any numeric data types"
+                      expressionType="Notify"
+                      name="TreatBlankNumberAsNull">true</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Treat empty string as NULL for bool data types"
+                      expressionType="Notify"
+                      name="TreatBlankBoolAsNull">true</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Treat empty string as NULL for any date/time data types"
+                      expressionType="Notify"
+                      name="TreatBlankDateAsNull">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Defines how to read the JSON file or direct string"
+                      expressionType="Notify"
+                      name="AccessMode"
+                      typeConverter="ZappySys.Common.Ssis.FileValueAccessMode">3</property>
+                    <property
+                      dataType="System.String"
+                      description="Defines how to read the JSON file or direct string"
+                      expressionType="Notify"
+                      name="DirectValue"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="Variable name which holds JSON string"
+                      expressionType="Notify"
+                      name="ValueVariable"
+                      typeConverter="ZappySys.PowerPack.Converters.VariableEditor,ZappySys.PowerPack140.UI,Version=1.0.0.0,Culture=neutral,PublicKeyToken=1903265a93eae502"></property>
+                    <property
+                      dataType="System.String"
+                      description="Variable name which holds data file path or url"
+                      expressionType="Notify"
+                      name="PathVariable"
+                      typeConverter="ZappySys.PowerPack.Converters.VariableEditor,ZappySys.PowerPack140.UI,Version=1.0.0.0,Culture=neutral,PublicKeyToken=1903265a93eae502">User::RexAPIWebURL</property>
+                    <property
+                      dataType="System.String"
+                      description="JSON file file path (e.g. c:\data\myfile.json) or pattern to process multiple files (e.g. c:\data\*.json)"
+                      expressionType="Notify"
+                      name="DirectPath"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">https://api.uk.rexsoftware.com/rex.php</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Include files from sub folders too."
+                      expressionType="Notify"
+                      name="Recursive">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Set this if you want to set custom Http headers. You may use variable anywhere in the header value using syntax {{User::YourVarName}}. Syntax of Header key value pair is : &amp;lt;request&amp;gt;&amp;lt;header&amp;gt;&amp;lt;name&amp;gt;x-myheader-1&amp;lt;/name&amp;gt;&amp;lt;value&amp;gt;AAA&amp;lt;/value&amp;gt;&amp;lt;/header&amp;gt; &amp;lt;header&amp;gt;&amp;lt;name&amp;gt;x-myheader-2&amp;lt;/name&amp;gt;&amp;lt;value&amp;gt;BBB&amp;lt;/value&amp;gt;&amp;lt;/header&amp;gt;&amp;lt;/request&amp;gt;"
+                      expressionType="Notify"
+                      name="HttpHeaders">&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;</property>
+                    <property
+                      dataType="System.String"
+                      description="User defined data you wish to send along with your HTTP Request (e.g. Upload file data, Form POST data). Usually you have to set content-type of your data but if you select RequestMethod=POST then system will automatically set content-type=application/x-www-form-urlencoded."
+                      expressionType="Notify"
+                      name="HttpRequestData">{
+
+"method": "Campaigns::read",
+      "args": {
+        "id": {{User::Campaign_rid}}
+
+         
+      },
+      
+"strip_response_prefix": true,
+"token": "{{User::RexToken}}"
+}
+</property>
+                    <property
+                      dataType="System.String"
+                      description="Http Web Request Method (e.g. POST, GET, PUT, LIST, DELETE...). Refer your API documentation if you are not sure which method you have to use."
+                      expressionType="Notify"
+                      name="HttpRequestMethod">POST</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies content type for data you wish to POST. If you select Default option then system default content type will be used (i.e. application/x-www-form-urlencoded). If you specify Content-Type header along with this option then header value takes precedence."
+                      expressionType="Notify"
+                      name="HttpRequestContentType"
+                      typeConverter="ZappySys.Common.Web.HttpRequestContentType">2</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Data format coming from HTTP Response. This is useful for example when you have OData service and you want to automatically consume all pages of data using odata.netUrl. Setting JsonFormat=Odata will automatically do it for you. This setting is only applicable if JSON is coming from HTTP WebRequest."
+                      expressionType="Notify"
+                      name="JsonFormat"
+                      typeConverter="ZappySys.Json.JsonFormat">1</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Enable custom proxy settings (If this is not set then system default proxy will be used. To disable proxy totally uncheck this option and check DoNotUseDefaultProxy option if available)"
+                      expressionType="Notify"
+                      name="UseProxy">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Web URL of Proxy server (including port  if necessary). [e.g. http://myproxyserver:8080/]"
+                      expressionType="Notify"
+                      name="ProxyUrl"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Enable passing userid and password to proxy server"
+                      expressionType="Notify"
+                      name="UseProxyCreds">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Proxy username"
+                      expressionType="Notify"
+                      name="ProxyUserName"></property>
+                    <property
+                      dataType="System.String"
+                      description="Proxy password"
+                      expressionType="Notify"
+                      name="ProxyPassword"></property>
+                    <property
+                      dataType="System.String"
+                      description="If Service response support pagination using some sort of next url attribute then specify which attribute name in JSON Response string which holds next url. If no attribute found or its null then component will stop fetching next resultset. Example: $.pagingInfo.nextUrl"
+                      expressionType="Notify"
+                      name="NextUrlAttribute"></property>
+                    <property
+                      dataType="System.String"
+                      description="If Service response support pagination using some sort of prev/next url attribute then specify which previous link attribute name from JSON Response string which holds previous url."
+                      expressionType="Notify"
+                      name="PrevUrlAttribute"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies value for NextUrlAttribute or StopIndicatorAttribute which indicates last page to stop pagination. If you have specified StopIndicatorAttribute then you can use Regular expression rather than static value to indicate last page. To use regular expression value of this property must start with regex= prefix. Example : regex=FALSE|N  (assuming you set StopIndicatorAttribute to something like $.hasMore)"
+                      expressionType="Notify"
+                      name="NextUrlStopIndicator"></property>
+                    <property
+                      dataType="System.String"
+                      description="Attribute name or expression for attribute which can be used as stop indicator (e.g. hasmore --or-- $.pagination.hasmore). If this value is blank then NextUrlAttribute is used"
+                      expressionType="Notify"
+                      name="StopIndicatorAttribute"></property>
+                    <property
+                      dataType="System.String"
+                      description="If you want to include certain text (or parameters) at the end of Next url then specify this attribute (e.g. &amp;format=json). Another common usecase of this property is to supply pagination token to next Page URL. You can also use &lt;%nextlink%&gt; or  &lt;%nextlink_encoded%&gt; placeholder (e.g. &amp;cursor=&lt;%nextlink_encoded%&gt; )"
+                      expressionType="Notify"
+                      name="NextUrlSuffix"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="This property indicates total number of milliseconds you want to wait before sending next request. This option allows you to adjust how many API calls can be made within certain timeframe. If your API Service has no limit then set this option to zero"
+                      expressionType="Notify"
+                      name="NextUrlWait">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="If this option is true then component will continue without exception on 404 error (Url not found). This allows you to consume data gracefully."
+                      expressionType="Notify"
+                      name="ContinueOnUrlNotFoundError">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Continue when any type of exception occurs during http request"
+                      expressionType="Notify"
+                      name="ContineOnAnyError">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Continue on error when specified substring found in response"
+                      expressionType="Notify"
+                      name="ContineOnErrorForMessage">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Continue on error when specified status code returned from web server"
+                      expressionType="Notify"
+                      name="ContineOnErrorForStatusCode">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="When error occurs no data is returned. Use this option to get content eventhough error occurs. When this option is checked you can't use [continue on error when specific string found in response] option"
+                      expressionType="Notify"
+                      name="ConsumeResponseOnError">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Status code to match when error occurs and ContineOnErrorForStatusCode option is true. If Response status code matches to this code then task continues to run"
+                      expressionType="Notify"
+                      name="ErrorStatusCodeToMatch">404</property>
+                    <property
+                      dataType="System.String"
+                      description="Error substring to match when error occurs and ContineOnErrorForMessage option is true. If Response status code matches to this code then task continues to run"
+                      expressionType="Notify"
+                      name="ErrorSubstringToMatch"></property>
+                    <property
+                      dataType="System.String"
+                      description="Cookie Container can be used to maintain state between multiple web requests. Example: You can login to site like wordpress and then extract any private page content by simply passing authentication cookies using this variable."
+                      expressionType="Notify"
+                      name="CookieContainerVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Http request Timeout in seconds. Set this to 0 if you want to use system default value (i.e. 100 seconds)"
+                      expressionType="Notify"
+                      name="RequestTimeout">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies which security protocol is supported for HTTPS communication. Using this option you can enable legacy protocol or enforce to use latest version of security protocol (Note: TLS 1.2 is only supported in SSIS 2014 or Higher)."
+                      expressionType="Notify"
+                      name="SecurityProtocol"
+                      typeConverter="ZappySys.PowerPack.Common.HttpsSecurityProtocolType">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Enable support for gzip or deflate compression. When you check this option compressed response automatically de-compressed saving bandwidth. This option is only valid if web server supports compressed response stream. Check your API documentation for more information."
+                      expressionType="Notify"
+                      name="EnableCompressionSupport">true</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Ignore SSL certificate related errors. Example: if you getting SSL/TLS errors because of certificate expired or certificate is not from trusted authority or certificate is self-signed. By checking this option you will not get SSL/TLS error."
+                      expressionType="Notify"
+                      name="IgnoreCertificateErrors">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Allow unsecure ciphers/suites and curves for SSLS/TLS communication. Use this option to communicate with web servers which needs legacy / unsecured ciphers support. This option is only trigged when you change default SSL/TLS Version on advanced settings tab."
+                      expressionType="Notify"
+                      name="AllowUnsecureSuite">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Use connection to pass credentials for authentication (e.g. Use UserID/Password or Use OAuth Protocol for token based approach)"
+                      expressionType="Notify"
+                      name="UseConnection">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specified how you want to loop through multiple pages returned by REST API."
+                      expressionType="Notify"
+                      name="PagingMode"
+                      typeConverter="ZappySys.Common.RestApiPagingMode">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="If you wish to pass extracted pagination token or current page number in the body of next request then set this option to true. You can use [$pagetoken$] and [$pagetoken$] placeholders anywhere in the Body where you wish to insert extracted Page token. You must set encoded token you can use &lt;%nextlink_encoded%&gt; inside SuffixForNextUrl Property. If you dont use SuffixForNextUrl then raw nextLink or Token will be inserted inside the body. If you dont specify [$pagetoken$] placeholder in the body then NextPage Token will be appended at the end. NextPage Token is extracted by filter expression specified using property NextUrlSuffix"
+                      expressionType="Notify"
+                      name="EnablePageTokenForBody">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Set this to true if you wish to specify different URL, Header, Body or Filter for first page and next page (i.e. Paginated response). Some APIs like Amazon MWS, NetSuite, Zuora) you may need to set this to true."
+                      expressionType="Notify"
+                      name="HasDifferentNextPageInfo">false</property>
+                    <property
+                      dataType="System.String"
+                      description="When HasDifferentNextPageInfo=true you can set this property to indicate first page and next page. You can specify different URL, Header, Body or Filter for first page and next page (i.e. Paginated response). Use [$tag$] as placeholder anywhere in the URL, Header, Body or Filter and at runtime system will replace it with correct value (first page or next page value). Syntax to specify placeholder for first page vs next page is like a connectionstring url=FirstPageValue|NextPageValue;header=FirstPageValue|NextPageValue;body=FirstPageValue|NextPageValue;filter=FirstPageValue|NextPageValue; You can use one or more key/value pairs to make things dynamic (e.g. url, header, body or filter)  .For example if you have pagination in your API and First URL is http://abc.com/api/items/get and to get more records you have to call http://abc.com/api/items/getNext then you can use [$tag$] as placeholder in the URL http://abc.com/api/items/[$tag$] and specify this property with first page tag and next page tag as url=get|getNext  (Tags are separated using vertical bar). "
+                      expressionType="Notify"
+                      name="PagePlaceholders"></property>
+                    <property
+                      dataType="System.String"
+                      description="Use this property to set request body fragment for first page. HasDifferentNextPageInfo must be set to true to use this property."
+                      expressionType="Notify"
+                      name="FirstPageBodyPart"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="Use this property to set request body fragment for any request after first request. HasDifferentNextPageInfo must be set to true to use this property."
+                      expressionType="Notify"
+                      name="NextPageBodyPart"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="Expression to extract Maximum pages to loop through. Some APIs don't stop pagination and keep returning last page data when you try to read data after last page. Specify expression (e.g. $.page_count ) to read total pages to loop through using this property."
+                      expressionType="Notify"
+                      name="PagingMaxPagesExpr"></property>
+                    <property
+                      dataType="System.String"
+                      description="e.g. Type page_num if URL looks like this =&gt; http://abc.com/?page_num=1&amp;sort=true  (page number via query string)&#xA;--or-- Type &lt;%page%&gt; if page number is inside URL path like this =&gt; http://abc.com/1/?sort=true  (e.g. replace page number in url with placeholder http://abc.com/&lt;%page%&gt;/?sort=true)&#xA;Page number will be incremented by one for next URL until last page is reached or [Max Page Number] is reached"
+                      expressionType="Notify"
+                      name="PageNumberAttributeNameInUrl"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum page number until which auto increment is allowed. Type zero for no limit. Next URL contains next page number (increment by one) until last page is detected or [Max Page Number] limit is reached."
+                      expressionType="Notify"
+                      name="MaxPageNumber">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Variable name which will hold starting page number. This is ignored if you useing parameter name from query string to indicate page number."
+                      expressionType="Notify"
+                      name="StartPageNumberVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Page counter increment. By default next page is incremented by one if this value is zero. You can also enter negative number if you want to decrease page counter."
+                      expressionType="Notify"
+                      name="PageNumberIncrement">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specified how you want detect last page."
+                      expressionType="Notify"
+                      name="PagingEndStrategy"
+                      typeConverter="ZappySys.Common.UrlPagingEndDetectionStrategy">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Condition result to compare to detect last page. Set this property to True if you want detect last page if condition is true else set this to False."
+                      expressionType="Notify"
+                      name="LastPageWhenConditionEqualsTo">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Minimum bytes expected from response."
+                      expressionType="Notify"
+                      name="ResponseMinBytes">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum bytes from response."
+                      expressionType="Notify"
+                      name="ResponseMaxBytes">3</property>
+                    <property
+                      dataType="System.String"
+                      description="Expected error message sub string from response."
+                      expressionType="Notify"
+                      name="ResponseErrorString">not found</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Expected status code from response when page number you trying to access not found."
+                      expressionType="Notify"
+                      name="ResponseStatusCode">404</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum JSON records to fetch. Set this value to 0 for all records"
+                      expressionType="Notify"
+                      name="MaxRows">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Enter expression here to filter data.(Example:  $.Users[*].UserName ) This will fetch User names from users records"
+                      expressionType="Notify"
+                      name="Filter"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">$.result._related.campaign_member_statuses[*]</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Use this option to include parent properties (Non array) in the output along with Filtered Rows"
+                      expressionType="Notify"
+                      name="IncludeParentColumns">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="By default child and parent information is not included in the output if children not found for specified expression. For example if you want to extract all orders from all customers nodes then you can type $.Customers[*].Orders[*]. This will fetch all orders from all customers. By default customers records without orders wont be included in the output. If you want to include those customers where orders not found then check this option (Output null information for order attributes). This behavior is similar to LEFT OUTER JOIN in SQL (Left side is parent, right side is child). This option is ***resource intensive*** so only check if you really care about this behavior."
+                      expressionType="Notify"
+                      name="IncludeParentColumnsWhenChildMissing">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Set this option to true if you want to output parent columns which are array. By default any parent column which is an array is not included in output. See also FilterForParentColumnsWithArrayType property if you set this property"
+                      expressionType="Notify"
+                      name="IncludeParentColumnsWithArrayType">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Filter expression to extract value form parent"
+                      expressionType="Notify"
+                      name="FilterForParentColumnsWithArrayType"></property>
+                    <property
+                      dataType="System.String"
+                      description="Prefix for parent column name. This option is only valid if you have set IncludeParentColumns=True"
+                      expressionType="Notify"
+                      name="ParentColumnPrefix">P_</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Throw error if property name specified in filter expression is missing. By default it will ignore any missing property errors."
+                      expressionType="Notify"
+                      name="ThrowErrorIfPropertyMissing">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="This property how many nested levels should be scanned to fetch various properties. 0=Scan all child levels."
+                      expressionType="Notify"
+                      name="MaxLevelsToScan">0</property>
+                    <property
+                      dataType="System.String"
+                      description="List comma separated property names from JSON document which you want to exclude from output. Specify parent property name to exclude all child nodes."
+                      expressionType="Notify"
+                      name="ExcludedProperties"></property>
+                    <property
+                      dataType="System.String"
+                      description="Property level separator used in generated property name (separator for outer properties - Above selected filter node). Use this if default separator is producing duplicate property name which is conflicting with existing name."
+                      expressionType="Notify"
+                      name="LevelSeparator">_</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Enables deep array flattening for selected filtered hierarchy. When you turn on this property it will flatten each property of each array item and expose as column (e.g. If you have Filter set as $.customers[*] and for each customer you have an array of Addresses then you may see output columns like Addresses.1.City, Addresses.1.State, Addresses.2.City, Addresses.2.State .... Addresses.N.City, Addresses.N.State). You can control how many array items you want to flatten by setting MaxArrayItemsToFlatten property."
+                      expressionType="Notify"
+                      name="EnableArrayFlattening">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum number of array items to flatten. inner array flattening. Adjust this property to control how many columns being generated. This option is ignored if you set EnableArrayFlattening=false"
+                      expressionType="Notify"
+                      name="MaxArrayItemsToFlatten">20</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Compression format for source file (e.g. gzip, zip)"
+                      expressionType="Notify"
+                      name="FileCompressionType"
+                      typeConverter="ZappySys.Common.FileCompressionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Array Transformation you want to apply. Useful for case when you have 2-Dimensional arrays with rows/columns in separate arrays."
+                      expressionType="Notify"
+                      name="ArrayTransformationType"
+                      typeConverter="ZappySys.Json.ArrayTransformType">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Filter expression to use to extract column names for array transformation."
+                      expressionType="Notify"
+                      name="ArrayTransColumnNameFilter"></property>
+                    <property
+                      dataType="System.String"
+                      description="Filter expression for row values (Not applicable for simple array transformation)."
+                      expressionType="Notify"
+                      name="ArrayTransRowValueFilter"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="When you have 2D array but don't have column list specified in a separate array then use this option (e.g. { arr: [[10,11],[21,22]] } )."
+                      expressionType="Notify"
+                      name="ArrayTransEnableCustomColumns">false</property>
+                    <property
+                      dataType="System.String"
+                      description="When you have 2D array but don't have column list specified in a separate array then use specify column names here. Use comma separated list (e.g col1,col2,col3 ). Column name Order must match value order."
+                      expressionType="Notify"
+                      name="ArrayTransCustomColumns"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies how custom date formatted strings are parsed when reading JSON."
+                      expressionType="Notify"
+                      name="DateFormatString"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how date formatted strings, e.g. Date(1198908717056) and 2012-03-21T05:40Z, are parsed when reading JSON."
+                      expressionType="Notify"
+                      name="DateParseHandling"
+                      typeConverter="ZappySys.Common.DateParseHandling">1</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Output as raw JSON document rather than parsing individual fields. This option is helpful if you have documents stored in a file and you want to pass them downstream as raw JSON string rather than parsing into columns."
+                      expressionType="Notify"
+                      name="OutputRawDocument">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indent JSON output so its easy to read."
+                      expressionType="Notify"
+                      name="IndentOutput">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Set this option to true if you want to output FilePath. This option is ignored when you consume DirectValue or data from Url rather than local files. Output column name will be __FilePath"
+                      expressionType="Notify"
+                      name="OutputFilePath">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Set this option to true if you want to output FileName. This option is ignored when you consume DirectValue or data from Url rather than local files. Output column name will be __FileName"
+                      expressionType="Notify"
+                      name="OutputFileName">true</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Set this option to true if you want to move processed file to archive folder."
+                      expressionType="Notify"
+                      name="EnableArchiveFile">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Folder path where you want to move processed file."
+                      expressionType="Notify"
+                      name="ArchiveFolderPath"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Folder path where you want to move processed file."
+                      expressionType="Notify"
+                      name="OverwriteFileInArchiveFolder">false</property>
+                    <property
+                      dataType="System.String"
+                      description="File naming convention for archived file. By default it will same name as original source file processed. But you can control naming format using {%name%} and {%ext%} placeholders. e.g. {%name%}_processed{%ext%} or {%name%}{%ext%}.{{System::ContainerStartTime,yyyyMMdd_HHmmss_fff}}"
+                      expressionType="Notify"
+                      name="ArchiveFileNamingConvention"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="When this property is true then Column is converted to Row. Pivoted names will appear under  Pivot_Name column and values will appear under Pivot_Value field."
+                      expressionType="Notify"
+                      name="EnablePivot">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Metadata scan mode controls how data type and length is determined. By default few records scanned to determine datatype/length. Changing ScanMode affects length/datatype accuracy."
+                      expressionType="Notify"
+                      name="MetaDataScanMode"
+                      typeConverter="ZappySys.Common.Data.MetaDataScanMode">4</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Length for all string column. This option is only valid for MetaDataScanMode=Custom"
+                      expressionType="Notify"
+                      name="MetaDataCustomLength">1000</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">ZappySys.JsonSource</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Encoding of source file"
+                      expressionType="Notify"
+                      name="Encoding"
+                      typeConverter="ZappySys.Common.EncodingType">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Character set for text (e.g. utf-8 )"
+                      expressionType="Notify"
+                      name="CharacterSet"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="By default process stops with error if specified local file is not found. Set this property to true if you wish to continue rather than throwing file not found error."
+                      expressionType="Notify"
+                      name="ContinueOnFileNotFoundError">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Check this option if you want to upload file(s) (i.e. POST RAW file data) or send data using Multi-Part encoding method (i.e. Content-Type: multipart/form-data). Multi-Part request allows you to mix key/value and upload files in same request. On the other hand raw upload allows only single file upload (without any key/value) &#xA;&#xA;==== Raw Upload (Content-Type: application/octet-stream) =====   &#xA;To upload single file in raw mode check this option and specify full file path starting with @ sign in the Body (e.g.  @c:\data\myfile.zip ) &#xA;&#xA;==== Form-Data / Multipart Upload (Content-Type: multipart/form-data) =====   &#xA;To treat your Request data as multi part fields you must specify key/value pairs separated by new lines into RequestData field (i.e. Body). Each key value pair is entered on new-line and key/value are separated using equal sign (=). Preceding and trailing spaces are ignored also blank lines are ignored. &#xA;If field value has some any special character(s) then use escape sequence (e.g. For NewLine: \r\n, For Tab: \t, For at (@): \@). When value of any field starts with at sign (@) its automatically treated as File you want to upload. By default file content type is determined based on extension however you can supply content type manually for any field using this way [ fieldname.Content-Type=some content type ]. In below example we have supplied Content-Type for file2 and SomeField1, all other fields are using default content-type.&#xA;See below Example of uploading multiple files along with additional fields.&#xA;&#xA;file1=@c:\data\Myfile1.txt&#xA;file2=@c:\data\Myfile2.json&#xA;file2.Content-Type=application/json&#xA;SomeField1=aaaaaaa&#xA;SomeField1.Content-Type=text/plain&#xA;SomeField2=12345&#xA;SomeFieldWithNewLineAndTab=This is line1\r\nThis is line2\r\nThis is \ttab \ttab \ttab&#xA;SomeFieldStartingWithAtSign=\@MyTwitterHandle&#xA;"
+                      expressionType="Notify"
+                      name="IsMultiPartUpload">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Expression to extract Maximum records to loop through. Some APIs don't stop pagination and keep returning last page data when you try to read data after last page. Specify expression (e.g. $.total_rows ) to read total pages to loop through using this property. This setting is ignored if you set PagingMaxPagesExpr."
+                      expressionType="Notify"
+                      name="PagingMaxRowsExpr"></property>
+                    <property
+                      dataType="System.String"
+                      description="When you enable PagingMaxRowsExpr (end pagination based on MaxRowCount) then you need to count records coming in each response. This expression extract all rows found under specified expression (e.g. $.orders[*] if all records found under orders node)."
+                      expressionType="Notify"
+                      name="PagingMaxRowsDataPathExpr"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="When this option is checked, system allows to parse large number (Higher than Int64) in JSON document (i.e. { id: 76000009353950433247780 } ). If you do not turn on this option then it may throw error if large number is encountered. This option is SLOW because it has to perform additional checks in order to avoid Large number overflow error so do not turn on unless you getting Large number error."
+                      expressionType="Notify"
+                      name="EnableBigNumberHandling">false</property>
+                  </properties>
+                  <outputs>
+                    <output
+                      refId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput]"
+                      errorOrTruncationOperation="Error"
+                      errorRowDisposition="FailComponent"
+                      name="JsonSourceOutput"
+                      truncationRowDisposition="FailComponent">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].Columns[label]"
+                          dataType="wstr"
+                          externalMetadataColumnId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].ExternalColumns[label]"
+                          length="200"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].Columns[label]"
+                          name="label" />
+                        <outputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].Columns[priority]"
+                          dataType="i8"
+                          externalMetadataColumnId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].ExternalColumns[priority]"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].Columns[priority]"
+                          name="priority" />
+                        <outputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].Columns[_id]"
+                          dataType="i8"
+                          externalMetadataColumnId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].ExternalColumns[_id]"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].Columns[_id]"
+                          name="_id" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].ExternalColumns[label]"
+                          dataType="wstr"
+                          length="80"
+                          name="label" />
+                        <externalMetadataColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].ExternalColumns[priority]"
+                          dataType="i8"
+                          name="priority" />
+                        <externalMetadataColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].ExternalColumns[_id]"
+                          dataType="i8"
+                          name="_id" />
+                        <externalMetadataColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].ExternalColumns[base_status.id]"
+                          dataType="wstr"
+                          length="28"
+                          name="base_status.id" />
+                        <externalMetadataColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].ExternalColumns[base_status.text]"
+                          dataType="wstr"
+                          length="28"
+                          name="base_status.text" />
+                        <externalMetadataColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput].ExternalColumns[__FileName]"
+                          dataType="wstr"
+                          length="600"
+                          name="__FileName" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSource Error Output]"
+                      isErrorOut="true"
+                      name="JsonSource Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSource Error Output].Columns[label]"
+                          dataType="wstr"
+                          length="200"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSource Error Output].Columns[label]"
+                          name="label" />
+                        <outputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSource Error Output].Columns[priority]"
+                          dataType="i8"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSource Error Output].Columns[priority]"
+                          name="priority" />
+                        <outputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSource Error Output].Columns[_id]"
+                          dataType="i8"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSource Error Output].Columns[_id]"
+                          name="_id" />
+                        <outputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSource Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSource Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSource Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSource Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                        <outputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSource Error Output].Columns[ErrorColumnName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="128"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSource Error Output].Columns[ErrorColumnName]"
+                          name="ErrorColumnName" />
+                        <outputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSource Error Output].Columns[ErrorMessage]"
+                          dataType="wstr"
+                          length="1024"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSource Error Output].Columns[ErrorMessage]"
+                          name="ErrorMessage" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses"
+                  componentClassID="Microsoft.OLEDBCommand"
+                  contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+                  name="Populate statuses"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">exec ROSIE_uspInsCampaignMemberStatus ?,?,?,?,?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Connections[OleDbConnection]"
+                      connectionManagerID="{8AB72F9C-FCB9-4836-BC93-FC14F4226C1D}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[InternetDB]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Inputs[OLE DB Command Input].Columns[r_account_id]"
+                          cachedDataType="i4"
+                          cachedName="r_account_id"
+                          externalMetadataColumnId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Inputs[OLE DB Command Input].ExternalColumns[@r_account_id]"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Output].Columns[r_account_id]" />
+                        <inputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Inputs[OLE DB Command Input].Columns[campaignID]"
+                          cachedDataType="i4"
+                          cachedName="campaignID"
+                          externalMetadataColumnId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Inputs[OLE DB Command Input].ExternalColumns[@campaignID]"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Output].Columns[campaignID]" />
+                        <inputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Inputs[OLE DB Command Input].Columns[campaignStatusID]"
+                          cachedDataType="i8"
+                          cachedName="campaignStatusID"
+                          externalMetadataColumnId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Inputs[OLE DB Command Input].ExternalColumns[@campaignMemberStatusID]"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Output].Columns[campaignStatusID]" />
+                        <inputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Inputs[OLE DB Command Input].Columns[campaignStatusName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="200"
+                          cachedName="campaignStatusName"
+                          externalMetadataColumnId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Inputs[OLE DB Command Input].ExternalColumns[@campaignMemberStatusLabel]"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Output].Columns[campaignStatusName]" />
+                        <inputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Inputs[OLE DB Command Input].Columns[campaignStatusPriority]"
+                          cachedDataType="i8"
+                          cachedName="campaignStatusPriority"
+                          externalMetadataColumnId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Inputs[OLE DB Command Input].ExternalColumns[@campaignMemberStatusPriority]"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Output].Columns[campaignStatusPriority]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Inputs[OLE DB Command Input].ExternalColumns[@r_account_id]"
+                          dataType="i4"
+                          name="@r_account_id">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">81</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Inputs[OLE DB Command Input].ExternalColumns[@campaignID]"
+                          dataType="i4"
+                          name="@campaignID">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">81</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Inputs[OLE DB Command Input].ExternalColumns[@campaignMemberStatusID]"
+                          dataType="i4"
+                          name="@campaignMemberStatusID">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">81</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Inputs[OLE DB Command Input].ExternalColumns[@campaignMemberStatusLabel]"
+                          codePage="1252"
+                          dataType="str"
+                          length="200"
+                          name="@campaignMemberStatusLabel">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Inputs[OLE DB Command Input].ExternalColumns[@campaignMemberStatusPriority]"
+                          dataType="i4"
+                          name="@campaignMemberStatusPriority">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">81</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Iterate Agent\Get Campaign Member Statuses.Paths[Derived Column Output]"
+                  endId="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses.Inputs[OLE DB Command Input]"
+                  name="Derived Column Output"
+                  startId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Iterate Agent\Get Campaign Member Statuses.Paths[JsonSourceOutput]"
+                  endId="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column.Inputs[Derived Column Input]"
+                  name="JsonSourceOutput"
+                  startId="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses.Outputs[JsonSourceOutput]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Agent\Insert error log into database"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{6a482a1f-dcf7-4805-814d-f7d47afbf9d3}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert error log into database"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{0533A634-9E92-4D46-8F14-E1BCF2F6C3FE}"
+              SQLTask:SqlStatementSource="INSERT INTO SSISErrorLog&#xA;(PackageName, StartTime, ErrorCode, ErrorDescription, AccountID)&#xA;VALUES&#xA;(?, ?, ?, ?, ?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@PackageName"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@StartTime"
+                SQLTask:DtsVariableName="System::StartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorCode"
+                SQLTask:DtsVariableName="User::ResponseAuthCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorDescription"
+                SQLTask:DtsVariableName="User::APIResponseErrorMsg"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@AccountID"
+                SQLTask:DtsVariableName="$Package::RexAccountID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Agent\Parse ID"
+          DTS:CreationName="ZappySys.JsonParserTask"
+          DTS:Description="ZS JSON Parser Task"
+          DTS:DTSID="{2a4289e4-d070-47e2-bece-95da696cc074}"
+          DTS:ExecutableType="ZappySys.JsonParserTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Parse ID"
+          DTS:TaskContact="JSON Parser Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:LoggingMode="2" />
+          <DTS:ObjectData>
+            <JsonParserTask
+              SourceAccessMode="Variable"
+              SourceVariable="User::ResponseAuth"
+              SourceConnection=""
+              SourceDirectValue="{&#xA;    &quot;result&quot;: {&#xA;        &quot;system_record_state&quot;: &quot;active&quot;,&#xA;        &quot;system_ctime&quot;: 1585563110,&#xA;        &quot;system_modtime&quot;: 1585563110,&#xA;        &quot;system_created_from_template_name&quot;: &quot;Knock Knock&quot;,&#xA;        &quot;name&quot;: &quot;SS test campaign&quot;,&#xA;        &quot;start_date&quot;: null,&#xA;        &quot;end_date&quot;: null,&#xA;        &quot;etag&quot;: &quot;1803-1585563110&quot;,&#xA;        &quot;system_owner_user&quot;: {&#xA;            &quot;id&quot;: &quot;19443&quot;,&#xA;            &quot;_name&quot;: &quot;Rosie API&quot;,&#xA;            &quot;_first_name&quot;: &quot;Rosie&quot;,&#xA;            &quot;_last_name&quot;: &quot;API&quot;,&#xA;            &quot;_email_address&quot;: &quot;rosie@spicerhaart.co.uk&quot;&#xA;        },&#xA;        &quot;system_modified_user&quot;: {&#xA;            &quot;id&quot;: &quot;19443&quot;,&#xA;            &quot;_name&quot;: &quot;Rosie API&quot;,&#xA;            &quot;_first_name&quot;: &quot;Rosie&quot;,&#xA;            &quot;_last_name&quot;: &quot;API&quot;,&#xA;            &quot;_email_address&quot;: &quot;rosie@spicerhaart.co.uk&quot;&#xA;        },&#xA;        &quot;system_created_user&quot;: {&#xA;            &quot;id&quot;: &quot;19443&quot;,&#xA;            &quot;_name&quot;: &quot;Rosie API&quot;,&#xA;            &quot;_first_name&quot;: &quot;Rosie&quot;,&#xA;            &quot;_last_name&quot;: &quot;API&quot;,&#xA;            &quot;_email_address&quot;: &quot;rosie@spicerhaart.co.uk&quot;&#xA;        },&#xA;        &quot;_security_user_rights&quot;: [&#xA;            &quot;read&quot;,&#xA;            &quot;update&quot;,&#xA;            &quot;archive&quot;,&#xA;            &quot;purge&quot;,&#xA;            &quot;perms&quot;&#xA;        ],&#xA;        &quot;type&quot;: {&#xA;            &quot;id&quot;: &quot;door_knocking&quot;,&#xA;            &quot;text&quot;: &quot;Door Knocking&quot;&#xA;        },&#xA;        &quot;status&quot;: {&#xA;            &quot;id&quot;: &quot;in_progress&quot;,&#xA;            &quot;text&quot;: &quot;In Progress&quot;&#xA;        },&#xA;        &quot;archive_reason&quot;: null,&#xA;        &quot;system_created_from_template&quot;: {&#xA;            &quot;_name&quot;: &quot;Knock Knock&quot;,&#xA;            &quot;_type&quot;: {&#xA;                &quot;id&quot;: &quot;door_knocking&quot;,&#xA;                &quot;text&quot;: &quot;Door Knocking&quot;&#xA;            },&#xA;            &quot;id&quot;: 17&#xA;        },&#xA;        &quot;_related&quot;: {&#xA;            &quot;campaign_member_statuses&quot;: [&#xA;                {&#xA;                    &quot;label&quot;: &quot;Door Number Required&quot;,&#xA;                    &quot;priority&quot;: 1,&#xA;                    &quot;_id&quot;: 27882,&#xA;                    &quot;base_status&quot;: {&#xA;                        &quot;id&quot;: &quot;pending&quot;,&#xA;                        &quot;text&quot;: &quot;Pending&quot;&#xA;                    }&#xA;                },&#xA;                {&#xA;                    &quot;label&quot;: &quot;Door Knock 1&quot;,&#xA;                    &quot;priority&quot;: 2,&#xA;                    &quot;_id&quot;: 27883,&#xA;                    &quot;base_status&quot;: {&#xA;                        &quot;id&quot;: &quot;pending&quot;,&#xA;                        &quot;text&quot;: &quot;Pending&quot;&#xA;                    }&#xA;                }&#xA;            ]&#xA;        },&#xA;        &quot;_id&quot;: 1803&#xA;    },&#xA;    &quot;error&quot;: null&#xA;}"
+              TargetSettings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;JsonParserSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;Mappings&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_record_state&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_ctime&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_modtime&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_created_from_template_name&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.name&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.start_date&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.end_date&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.etag&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_owner_user.id&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_owner_user._name&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_owner_user._first_name&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_owner_user._last_name&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_owner_user._email_address&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_modified_user.id&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_modified_user._name&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_modified_user._first_name&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_modified_user._last_name&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_modified_user._email_address&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_created_user.id&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_created_user._name&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_created_user._first_name&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_created_user._last_name&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_created_user._email_address&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result._security_user_rights&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.type.id&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.type.text&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.status.id&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.status.text&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.archive_reason&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_created_from_template._name&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_created_from_template._type.id&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_created_from_template._type.text&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.system_created_from_template.id&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result._related.campaign_member_statuses&lt;/Path&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result._id&lt;/Path&gt;&lt;Target&gt;User::Campaign_rid&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;error.message&lt;/Path&gt;&lt;Target&gt;User::APIResponseErrorMsg&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result&lt;/Path&gt;&lt;Target&gt;User::CampaignInfo&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;/Mappings&gt;&lt;Path /&gt;&lt;/JsonParserSetting&gt;"
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Iterate Agent\Populate Campaign rid"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{66881112-c1c9-4b61-8a0f-bbfe5f0aadba}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Populate Campaign rid"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8AB72F9C-FCB9-4836-BC93-FC14F4226C1D}"
+              SQLTask:SqlStatementSource="INSERT INTO ROSIE_agent_campaign_mapping (emp_id, rid_campaign,CampaignInfo,r_account_id)  Values (?,?,?,?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@agentid"
+                SQLTask:DtsVariableName="User::AgentID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@campaignrid"
+                SQLTask:DtsVariableName="User::Campaign_rid"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@CampaignInfo"
+                SQLTask:DtsVariableName="User::CampaignInfo"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@rexaccountid"
+                SQLTask:DtsVariableName="$Package::RexAccountID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Agent.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{39D4EEE3-694A-49B9-9B25-A0A79E670D42}"
+          DTS:From="Package\Iterate Agent\Create campaign"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Iterate Agent\Parse ID" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Agent.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{89762DBC-0AF5-4539-910A-45C0FAE972D9}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::APIResponseErrorMsg]==&quot;&quot;"
+          DTS:From="Package\Iterate Agent\Parse ID"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Iterate Agent\Populate Campaign rid" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Agent.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{0E325AB6-427F-4803-9ACF-6B80323EA68A}"
+          DTS:From="Package\Iterate Agent\Populate Campaign rid"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Iterate Agent\Get Campaign Member Statuses" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Agent.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{BB41CFCF-533A-4EA5-8079-89F4306929FC}"
+          DTS:From="Package\Iterate Agent\Get Campaign Member Statuses"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Iterate Agent\Change Campaign Ownership" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Iterate Agent.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{1856A739-49BE-45A1-9629-B80A67E7CB0A}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::APIResponseErrorMsg]!=&quot;&quot;"
+          DTS:From="Package\Iterate Agent\Parse ID"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Iterate Agent\Insert error log into database" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{C3B534B5-283C-499F-9120-A1E2636FED86}"
+          DTS:ObjectName="{C3B534B5-283C-499F-9120-A1E2636FED86}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::CampignTemplateID" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{5FD92AA4-4101-464E-B983-2F2724C6EF0C}"
+          DTS:ObjectName="{5FD92AA4-4101-464E-B983-2F2724C6EF0C}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::CampaignName" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{2E9EE709-24E4-4A62-A3C1-72831A879028}"
+          DTS:ObjectName="{2E9EE709-24E4-4A62-A3C1-72831A879028}"
+          DTS:ValueIndex="3"
+          DTS:VariableName="User::CampaignStatus" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{8E859D2A-F0EF-42DB-BB48-A799B7CD9560}"
+          DTS:ObjectName="{8E859D2A-F0EF-42DB-BB48-A799B7CD9560}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::AgentID" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{4D91A493-0BBB-4511-971A-277F4778DFD4}"
+          DTS:ObjectName="{4D91A493-0BBB-4511-971A-277F4778DFD4}"
+          DTS:ValueIndex="4"
+          DTS:VariableName="User::rid_accountuser" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set SSIS Variables From XML"
+      DTS:CreationName="ZappySys.XmlParserTask"
+      DTS:Description="ZS Xml Parser Task"
+      DTS:DTSID="{EDA55C70-70AA-4ED9-BD18-A3F49714B634}"
+      DTS:ExecutableType="ZappySys.XmlParserTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set SSIS Variables From XML"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <XmlParserTask
+          SourceAccessMode="Connection"
+          SourceVariable=""
+          SourceConnection="{04D8CC84-B699-411E-9B23-4BF6EBEB7E7F}"
+          SourceDirectValue="&lt;!-- &#xA;Using XML Parser Task you can extract values from XML document using XPath Expression &#xA;See example in below grid. Read description for each mapping.&#xA;See more examples: https://msdn.microsoft.com/en-us/library/ms256086(v=vs.110).aspx&#xA;--&gt;&#xA;&lt;catalog&gt;&#xA;   &lt;book id=&quot;bk101&quot;&gt;&#xA;      &lt;author&gt;Gambardella, Matthew&lt;/author&gt;&#xA;      &lt;title&gt;XML Developer's Guide&lt;/title&gt;&#xA;      &lt;genre&gt;Computer&lt;/genre&gt;&#xA;      &lt;price&gt;44.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-10-01&lt;/publish_date&gt;&#xA;      &lt;description&gt;An in-depth look at creating applications &#xA;      with XML.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk102&quot;&gt;&#xA;      &lt;author&gt;Ralls, Kim&lt;/author&gt;&#xA;      &lt;title&gt;Midnight Rain&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-12-16&lt;/publish_date&gt;&#xA;      &lt;description&gt;A former architect battles corporate zombies, &#xA;      an evil sorceress, and her own childhood to become queen &#xA;      of the world.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk103&quot;&gt;&#xA;      &lt;author&gt;Corets, Eva&lt;/author&gt;&#xA;      &lt;title&gt;Maeve Ascendant&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-11-17&lt;/publish_date&gt;&#xA;      &lt;description&gt;After the collapse of a nanotechnology &#xA;      society in England, the young survivors lay the &#xA;      foundation for a new society.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk104&quot;&gt;&#xA;      &lt;author&gt;Corets, Eva&lt;/author&gt;&#xA;      &lt;title&gt;Oberon's Legacy&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2001-03-10&lt;/publish_date&gt;&#xA;      &lt;description&gt;In post-apocalypse England, the mysterious &#xA;      agent known only as Oberon helps to create a new life &#xA;      for the inhabitants of London. Sequel to Maeve &#xA;      Ascendant.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;&lt;/catalog&gt;"
+          TargetSettings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;XmlParserSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;Mappings&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/RexAPIWebURL&lt;/Path&gt;&lt;Target&gt;User::RexAPIWebURL&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt; /SSISVariables/PackageUser&lt;/Path&gt;&lt;Target&gt;User::PackageUser&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/PackageErrorEmail&lt;/Path&gt;&lt;Target&gt;User::PackageErrorEmail&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/PackagePassword&lt;/Path&gt;&lt;Target&gt;User::PackagePassword&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;/Mappings&gt;&lt;Path /&gt;&lt;/XmlParserSetting&gt;"
+          LogLevel="Normal"
+          PrefixTimestamp="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{0E4158E4-21EC-4A02-8294-AEEE3F1DC4EB}"
+      DTS:From="Package\Get Auth Key"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Email Auth Failure"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 15]"
+      DTS:CreationName=""
+      DTS:DTSID="{682FF689-A352-4528-85DF-109E87FA33A6}"
+      DTS:From="Package\Get Auth Key"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 15"
+      DTS:To="Package\Get agents list for process" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 16]"
+      DTS:CreationName=""
+      DTS:DTSID="{6DBE2B86-49C6-4731-84B0-F254E4599C05}"
+      DTS:From="Package\Get agents list for process"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 16"
+      DTS:To="Package\Iterate Agent" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{2D4696D0-D11F-4568-AEC7-346F32533FC2}"
+      DTS:From="Package\Set SSIS Variables From XML"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Get Auth Key" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{82AC700B-0B27-4402-B1CB-E728DE87FBB0}"
+      DTS:From="Package\Get Auth Key"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Auth Failure"
+      DTS:Value="1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{6385ABCE-F402-4E60-8FE3-57D8A6C61979}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{6CC77FC3-830E-4786-BDBA-6B0345CE39BC}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Email error"
+          DTS:CreationName="ZappySys.HtmlEmailTask"
+          DTS:Description="Email Auth Failure"
+          DTS:DTSID="{41A3149E-6135-4BE7-9AD3-EE2E986019E3}"
+          DTS:ExecutableType="ZappySys.HtmlEmailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Email error"
+          DTS:TaskContact="HTML Email Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <HtmlEmailTask
+              SmtpConnection="SMTP"
+              IsHtmlEmail="True"
+              DefaultStyle="&#xA;&lt;style type=&quot;text/css&quot;&gt;&#xA;body,div,p,span,td,th,table {&#xA; font-family: Helvetica, Arial, sans-serif;&#xA; font-size: 10pt; &#xA;}&#xA;h1,h2,h3,h4,h5{&#xA;font-family: Helvetica, Arial, sans-serif;&#xA;}&#xA;&#xA;table { &#xA; border-collapse: &#xA; collapse; border-spacing: 0; &#xA;}&#xA;&#xA;tr.odd    {background-color: #cccccc}&#xA;tr.even   {background-color: #fafafa}&#xA;td, th { border: 1px solid #bbb;padding: 5 5 5 5} &#xA;th { background: #F3F3F3;  font-weight: bold;}&#xA;&lt;/style&gt;&#xA;&#xA;"
+              Subject="Error occured in {{System::PackageName}}"
+              From="alerts@spicerhaart.co.uk"
+              To="{{User::PackageErrorEmail}}"
+              Cc=""
+              ReplyTo=""
+              Bcc=""
+              Attachments=""
+              EmailPriority="High"
+              MessageSourceType="Direct"
+              MessageDirectValue="&lt;p&gt;Error occured and could not be logged in database&lt;p /&gt;&#xA;&lt;br&gt;&#xA;&lt;p&gt;Error code: {{System::ErrorCode}}&lt;p /&gt;&#xA;&lt;br&gt;&#xA;&lt;p&gt;Error message: {{System::ErrorDescription}}&lt;p /&gt;"
+              MessageFileConnection=""
+              MessageVariable=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Insert error log into database"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{87D3CC72-2546-43D1-889A-2D56236ACBAD}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert error log into database"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{0533A634-9E92-4D46-8F14-E1BCF2F6C3FE}"
+              SQLTask:SqlStatementSource="INSERT INTO SSISErrorLog&#xA;(PackageName, StartTime, ErrorCode, ErrorDescription, AccountID)&#xA;VALUES&#xA;(?, ?, ?, ?, ?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@PackageName"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@StartTime"
+                SQLTask:DtsVariableName="System::StartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorCode"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorDescription"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@AccountID"
+                SQLTask:DtsVariableName="$Package::RexAccountID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{CBAE19D1-6092-4ABF-BB9A-34FA88AD1B00}"
+          DTS:From="Package.EventHandlers[OnError]\Insert error log into database"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Email error"
+          DTS:Value="1" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnTaskFailed]"
+      DTS:CreationName="OnTaskFailed"
+      DTS:DTSID="{DF2EF198-99AF-4FDE-8311-ADDF206A7BBC}"
+      DTS:EventID="0"
+      DTS:EventName="OnTaskFailed"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{A0E3E156-91D5-41A1-901A-3D3694D7AADD}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnTaskFailed]\Email error"
+          DTS:CreationName="ZappySys.HtmlEmailTask"
+          DTS:Description="Email Auth Failure"
+          DTS:Disabled="True"
+          DTS:DTSID="{F77283C3-4FA2-44BE-96F1-20A712AC96AB}"
+          DTS:ExecutableType="ZappySys.HtmlEmailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Email error"
+          DTS:TaskContact="HTML Email Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <HtmlEmailTask
+              SmtpConnection="SMTP"
+              IsHtmlEmail="True"
+              DefaultStyle="&#xA;&lt;style type=&quot;text/css&quot;&gt;&#xA;body,div,p,span,td,th,table {&#xA; font-family: Helvetica, Arial, sans-serif;&#xA; font-size: 10pt; &#xA;}&#xA;h1,h2,h3,h4,h5{&#xA;font-family: Helvetica, Arial, sans-serif;&#xA;}&#xA;&#xA;table { &#xA; border-collapse: &#xA; collapse; border-spacing: 0; &#xA;}&#xA;&#xA;tr.odd    {background-color: #cccccc}&#xA;tr.even   {background-color: #fafafa}&#xA;td, th { border: 1px solid #bbb;padding: 5 5 5 5} &#xA;th { background: #F3F3F3;  font-weight: bold;}&#xA;&lt;/style&gt;&#xA;&#xA;"
+              Subject="Error occured in {{System::PackageName}}"
+              From="alerts@spicerhaart.co.uk"
+              To="{{User::PackageErrorEmail}}"
+              Cc=""
+              ReplyTo=""
+              Bcc=""
+              Attachments=""
+              EmailPriority="High"
+              MessageSourceType="Direct"
+              MessageDirectValue="&lt;p&gt;Error occured and could not be logged in database&lt;p /&gt;&#xA;&lt;br&gt;&#xA;&lt;p&gt;Error code: {{User::ResponseAuthCode}}&lt;p /&gt;&#xA;&lt;br&gt;&#xA;&lt;p&gt;Error message: {{User::ResponseAuth}}&lt;p /&gt;"
+              MessageFileConnection=""
+              MessageVariable=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnTaskFailed]\Ml campaign push errror"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{CAB321DD-EF02-42D2-91CF-CB64AA1E101A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Ml campaign push errror"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{0533A634-9E92-4D46-8F14-E1BCF2F6C3FE}"
+              SQLTask:SqlStatementSource="exec [dbo].[ROSIE_uspInsDMAPushLog] ?,0,?,?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@RexAccountID"
+                SQLTask:DtsVariableName="$Package::RexAccountID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@Action"
+                SQLTask:DtsVariableName="System::TaskName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ResponseCode"
+                SQLTask:DtsVariableName="User::ResponseAuthCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@Response"
+                SQLTask:DtsVariableName="User::ResponseAuth"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnTaskFailed].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{8B5E2333-218F-4868-A1D6-AFBC3E0F9B93}"
+          DTS:From="Package.EventHandlers[OnTaskFailed]\Ml campaign push errror"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnTaskFailed]\Email error" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,42"
+          Id="Package\Auth Failure"
+          TopLeft="497.5,209.5" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Email Auth Failure"
+          TopLeft="5.5,209.5" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\Get agents list for process"
+          TopLeft="230.5,209.5" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Get Auth Key"
+          TopLeft="261.5,107.5" />
+        <NodeLayout
+          Size="226,42"
+          Id="Package\Iterate Agent\Change Campaign Ownership"
+          TopLeft="12.0000000000001,413.5" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Iterate Agent\Create campaign"
+          TopLeft="308.5,5.5" />
+        <NodeLayout
+          Size="239,42"
+          Id="Package\Iterate Agent\Get Campaign Member Statuses"
+          TopLeft="5.50000000000006,311.5" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\Iterate Agent\Insert error log into database"
+          TopLeft="281.5,209.5" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\Iterate Agent\Parse ID"
+          TopLeft="329,107.5" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Iterate Agent\Populate Campaign rid"
+          TopLeft="29.5,209.5" />
+        <EdgeLayout
+          Id="Package\Iterate Agent.PrecedenceConstraints[Constraint]"
+          TopLeft="390,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Agent.PrecedenceConstraints[Constraint 1]"
+          TopLeft="371,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-246,60"
+              Start="0,0"
+              End="-246,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4660194174757" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4660194174757"
+                    Point2="0,24.4660194174757"
+                    Point3="-4,24.4660194174757" />
+                  <mssgle:LineSegment
+                    End="-242,24.4660194174757" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-242,24.4660194174757"
+                    Point2="-246,24.4660194174757"
+                    Point3="-246,28.4660194174757" />
+                  <mssgle:LineSegment
+                    End="-246,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-131,29.4660194174757,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Agent.PrecedenceConstraints[Constraint 2]"
+          TopLeft="125,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Agent.PrecedenceConstraints[Constraint 3]"
+          TopLeft="125,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Agent.PrecedenceConstraints[Constraint 4]"
+          TopLeft="409,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-19,60"
+              Start="0,0"
+              End="-19,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4660194174757" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4660194174757"
+                    Point2="0,24.4660194174757"
+                    Point3="-4,24.4660194174757" />
+                  <mssgle:LineSegment
+                    End="-15,24.4660194174757" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-15,24.4660194174757"
+                    Point2="-19,24.4660194174757"
+                    Point3="-19,28.4660194174757" />
+                  <mssgle:LineSegment
+                    End="-19,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-17.5,29.4660194174757,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="504,511"
+          Size="504,554"
+          Id="Package\Iterate Agent"
+          TopLeft="81.5,311.5" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Set SSIS Variables From XML"
+          TopLeft="225.5,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="299.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-212,60"
+              Start="0,0"
+              End="-212,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.7272727272727" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.7272727272727"
+                    Point2="0,20.7272727272727"
+                    Point3="-4,20.7272727272727" />
+                  <mssgle:LineSegment
+                    End="-208,20.7272727272727" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-208,20.7272727272727"
+                    Point2="-212,20.7272727272727"
+                    Point3="-212,24.7272727272727" />
+                  <mssgle:LineSegment
+                    End="-212,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-121.24134765625,25.7272727272727,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 15]"
+          TopLeft="333.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 16]"
+          TopLeft="333.5,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="333.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="367.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="198,60"
+              Start="0,0"
+              End="198,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.7272727272727" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.7272727272727"
+                    Point2="0,20.7272727272727"
+                    Point3="4,20.7272727272727" />
+                  <mssgle:LineSegment
+                    End="194,20.7272727272727" />
+                  <mssgle:CubicBezierSegment
+                    Point1="194,20.7272727272727"
+                    Point2="198,20.7272727272727"
+                    Point3="198,24.7272727272727" />
+                  <mssgle:LineSegment
+                    End="198,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="83.75865234375,25.7272727272727,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="131,42"
+          Id="Package.EventHandlers[OnError]\Email error"
+          TopLeft="103,162" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package.EventHandlers[OnError]\Insert error log into database"
+          TopLeft="60,60" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="168.5,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-15.24134765625,21.37548828125,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnTaskFailed]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="131,42"
+          Id="Package.EventHandlers[OnTaskFailed]\Email error"
+          TopLeft="203,130" />
+        <NodeLayout
+          Size="198,42"
+          Id="Package.EventHandlers[OnTaskFailed]\Ml campaign push errror"
+          TopLeft="179,23" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnTaskFailed].PrecedenceConstraints[Constraint]"
+          TopLeft="278,65">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9.5,65"
+              Start="0,0"
+              End="-9.5,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.5"
+                    Point2="0,32.5"
+                    Point3="-4,32.5" />
+                  <mssgle:LineSegment
+                    End="-5.5,32.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.5,32.5"
+                    Point2="-9.5,32.5"
+                    Point3="-9.5,36.5" />
+                  <mssgle:LineSegment
+                    End="-9.5,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\Iterate Agent\Get Campaign Member Statuses">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="239,42"
+          Id="Package\Iterate Agent\Get Campaign Member Statuses\Get Campaign Member Statuses"
+          TopLeft="250,4.5" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Iterate Agent\Get Campaign Member Statuses\Populate statuses"
+          TopLeft="276,241" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Iterate Agent\Get Campaign Member Statuses\Derived Column"
+          TopLeft="260,132" />
+        <EdgeLayout
+          Id="Package\Iterate Agent\Get Campaign Member Statuses.Paths[JsonSourceOutput]"
+          TopLeft="369.5,46.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-30.5,85.5"
+              Start="0,0"
+              End="-30.5,78">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38.75"
+                    Point2="0,42.75"
+                    Point3="-4,42.75" />
+                  <mssgle:LineSegment
+                    End="-26.5,42.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-26.5,42.75"
+                    Point2="-30.5,42.75"
+                    Point3="-30.5,46.75" />
+                  <mssgle:LineSegment
+                    End="-30.5,78" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Agent\Get Campaign Member Statuses.Paths[Derived Column Output]"
+          TopLeft="339,174">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="23.5,67"
+              Start="0,0"
+              End="23.5,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.5"
+                    Point2="0,33.5"
+                    Point3="4,33.5" />
+                  <mssgle:LineSegment
+                    End="19.5,33.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="19.5,33.5"
+                    Point2="23.5,33.5"
+                    Point3="23.5,37.5" />
+                  <mssgle:LineSegment
+                    End="23.5,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

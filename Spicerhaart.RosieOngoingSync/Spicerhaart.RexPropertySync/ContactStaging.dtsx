@@ -1,0 +1,925 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/5/2019 4:00:21 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WX9000ITD17"
+  DTS:CreatorName="SPICERHAART\1905887"
+  DTS:DTSID="{6180DEC2-5338-45CF-B9B4-CB64A33044AE}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="ContactStaging"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="1"
+  DTS:VersionBuild="55"
+  DTS:VersionGUID="{6E3206AC-3091-4FBD-82A7-5AB862BC6374}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[COLSQLBI01V]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D59C6879-F81C-4418-8737-BEAA8E5D7385}"
+      DTS:ObjectName="COLSQLBI01V">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=COLSQLBI01V;User ID=ThirdPartyApiUser;Initial Catalog=master;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAVMlPrOXYg0KXzKv0lVo7kQAAAAACAAAAAAADZgAAwAAAABAAAADjr7hObSm344k8QSxcXQDzAAAAAASAAACgAAAAEAAAAJzZ0BmrZ2NcXLADeYHKNEkgAAAAfgbhzzGOaG7oD8BoA5EzwcaCrHheoYPLnCu9DU76FcgUAAAA7ZlS2vxp/TBL0Xc0dDUNGcsqqK8=</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{0057CC97-8820-4EE5-863B-41F6FDC25567}"
+      DTS:ObjectName="AlertEmail"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">ITDevelopers2@spicerhaart.co.uk</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AE4AEA08-C702-4B02-8052-B4FAE27626F5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="InvalidJSONRef">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3488E839-17DE-4850-B6F5-D72EBD7817D0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="InvalidJSONRefs">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{143B9F31-1A16-497B-9B3C-9C85B3012E2D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="InvalidLegalJSONRef">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{98E6CEE4-109D-4FA0-8832-346EABBBB3DF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="InvalidLegalJSONRefs">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{359FD594-5FC9-4694-8F61-8078C1962A70}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ObjectInvalidJSONRefs">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4BEEBA47-6D1F-4AD7-979D-69E48CEBD60C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ObjectInvalidLegalJSONRefs">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9C138D67-39CE-4FA8-B5CB-B4B3DAD8E351}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ObjectOffices">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9B2B9DAE-2F55-4CAD-9115-5CB62701C656}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="OfficeID">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Foreach office"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{AA7A86E5-1B0B-478B-80BA-DF4C16D2F33B}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach office">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{EC8FD3B8-4D31-48A3-8A1B-FDEE736612D5}"
+        DTS:ObjectName="{EC8FD3B8-4D31-48A3-8A1B-FDEE736612D5}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::ObjectOffices" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach office\Check valid JSON"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{392B7A27-C805-44B0-85FD-8F514CBBBD37}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Check valid JSON"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D59C6879-F81C-4418-8737-BEAA8E5D7385}"
+              SQLTask:SqlStatementSource="SELECT Reference&#xA;FROM COLSQL10.InternetDB.dbo.ROSIE_ContactPush_staging&#xA;WHERE office_id = ?&#xA;&#x9;AND (&#xA;&#x9;&#x9;ISJSON(REPLACE(REPLACE(ContactJSON, '{{RID_CONTACT}}', 1), '{{TOKEN}}', '123')) = 0&#xA;&#x9;&#x9;OR ISJSON(REPLACE(REPLACE(CustJSON, '{{RID_CONTACT}}', 1), '{{TOKEN}}', '123')) = 0&#xA;&#x9;&#x9;OR ISJSON(REPLACE(REPLACE(AMLJSON, '{{RID_CONTACT}}', 1), '{{TOKEN}}', '123')) = 0&#xA;&#x9;&#x9;OR ISJSON(REPLACE(REPLACE(IDCHECKJSON, '{{RID_CONTACT}}', 1), '{{TOKEN}}', '123')) = 0&#xA;&#x9;)"
+              SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::ObjectInvalidJSONRefs" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@office_id"
+                SQLTask:DtsVariableName="User::OfficeID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach office\Check valid legal JSON"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{AEA24C55-0579-463B-979B-33B576F7A390}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Check valid legal JSON"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D59C6879-F81C-4418-8737-BEAA8E5D7385}"
+              SQLTask:SqlStatementSource="DECLARE @office_id VARCHAR(4) = ?&#xA;&#xA;SELECT DISTINCT legal_id AS LegalID&#xA;FROM (&#xA;&#x9;SELECT leg.legal_id,&#xA;&#x9;&#x9;'{' + &#xA;&#x9;&#x9;&#x9;'&quot;method&quot; : &quot;Contacts::create&quot;,'+&#xA;&#x9;&#x9;&#x9;'&quot;args&quot; : {'+&#xA;&#x9;&#x9;&#x9;   '&quot;data&quot; : {' + &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;'&quot;address&quot; : &quot;' + (rtrim(ltrim(isnull(replace(dbo.RemoveNonAlphaCharactersForPortalleads(leg.addr_1),'&quot;',''),''))) + &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;case when isnull(dbo.RemoveNonAlphaCharactersForPortalleads(leg.addr_2),'')='' then ''&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else ', ' + rtrim(ltrim(isnull(dbo.RemoveNonAlphaCharactersForPortalleads(leg.addr_2),''))) end &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;+ ', ' + rtrim(ltrim(isnull(dbo.RemoveNonAlphaCharactersForPortalleads(leg.Town),''))) + ', ' + &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;rtrim(ltrim(isnull(dbo.RemoveNonAlphaCharactersForPortalleads(leg.county),''))) + ', ' + &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;rtrim(ltrim(isnull(dbo.RemoveNonAlphaCharactersForPortalleads(leg.pcode),'')))) + '&quot;,' +&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;'&quot;marketing_postcode&quot; : &quot;' + rtrim(ltrim(isnull(pcode,''))) +'&quot;,' +&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;'&quot;company_name&quot; : &quot;' + isnull(leg.company,'') + '&quot;,'+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;'&quot;is_dnd&quot; : &quot;{{DNC}}&quot;,' +&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;case when ltrim(rtrim(isnull(email,''))) = '' and isnull(telno,'') =''  then '' else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;'&quot;_related&quot; : {' +&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;case when ltrim(rtrim(isnull(email,''))) ='' then '' else ' &quot;contact_emails&quot;:[{'  + '&quot;email_desc&quot; : &quot;default&quot;,' + '&quot;email_primary&quot; : &quot;1&quot;,' + '&quot;email_address&quot; : &quot;' + ltrim(rtrim(email)) +'&quot;}]' end + &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;case when ltrim(rtrim(isnull(email,''))) = '' and isnull(telno,'') =''  then '' &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when ltrim(rtrim(isnull(email,''))) &lt;&gt; '' and isnull(telno,'') =''  then ''&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when ltrim(rtrim(isnull(email,''))) = '' and isnull(telno,'') &lt;&gt;''  then ''&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else ',' end +&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;case when isnull(telno,'') ='' then '' else ' &quot;contact_phones&quot;:[{'  + '&quot;phone_type&quot; : &quot;default&quot;,' + '&quot;phone_primary&quot; : &quot;1&quot;,' + '&quot;phone_number&quot; : &quot;' + isnull(dbo.RemoveNonAlphaCharactersForPortalleads(telno),'') +'&quot;}]' end +&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;'},'  end +&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;'&quot;type&quot; : &quot;company&quot;,' + &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;'&quot;notes&quot; :&quot;' + convert(varchar(50),isnull(leg.id,0)) + '&quot;' +&#xA;&#x9;&#x9;&#x9;&#x9;'}' +&#xA;&#x9;&#x9;&#x9;'},' +&#xA;&#x9;&#x9;&#x9;'&quot;strip_response_prefix&quot; : &quot;True&quot;,' +&#xA;&#x9;&#x9;&#x9;'&quot;token&quot; : &quot;{{TOKEN}}&quot;&#xA;&#x9;&#x9;}' as ConveyancerCreateJSON&#xA;&#x9;FROM COLSQL10.InternetDB.dbo.tbl_prop p WITH (NOLOCK)&#xA;&#x9;&#x9;left join COLSQL10.InternetDB.dbo.tbl_legal leg WITH (NOLOCK) on p.legal_cd=leg.legal_id&#xA;&#x9;&#x9;left join COLSQL10.InternetDB.dbo.RosieLegalMigration  l with (nolock) on leg.id=l.LegalID and l.OfficeID=@office_id&#xA;&#x9;WHERE p.office_id = @office_id and isnull(leg.company,'') &lt;&gt; ''&#xA;&#x9;and leg.id &gt; 0&#xA;&#x9;and l.ID is null&#xA;&#x9;UNION&#xA;&#x9;SELECT leg.legal_id,&#xA;&#x9;&#x9;'{' + &#xA;&#x9;&#x9;&#x9;'&quot;method&quot; : &quot;Contacts::create&quot;,'+&#xA;&#x9;&#x9;&#x9;'&quot;args&quot; : {'+&#xA;&#x9;&#x9;&#x9;   '&quot;data&quot; : {' + &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;'&quot;address&quot; : &quot;' + (rtrim(ltrim(isnull(replace(dbo.RemoveNonAlphaCharactersForPortalleads(leg.addr_1),'&quot;',''),''))) + &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;case when isnull(dbo.RemoveNonAlphaCharactersForPortalleads(leg.addr_2),'')='' then ''&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else ', ' + rtrim(ltrim(isnull(dbo.RemoveNonAlphaCharactersForPortalleads(leg.addr_2),''))) end &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;+ ', ' + rtrim(ltrim(isnull(dbo.RemoveNonAlphaCharactersForPortalleads(leg.Town),''))) + ', ' + &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;rtrim(ltrim(isnull(dbo.RemoveNonAlphaCharactersForPortalleads(leg.county),''))) + ', ' + &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;rtrim(ltrim(isnull(dbo.RemoveNonAlphaCharactersForPortalleads(leg.pcode),'')))) + '&quot;,' +&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;'&quot;marketing_postcode&quot; : &quot;' + rtrim(ltrim(isnull(pcode,''))) +'&quot;,' +&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;'&quot;company_name&quot; : &quot;' + isnull(leg.company,'') + '&quot;,'+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;'&quot;is_dnd&quot; : &quot;{{DNC}}&quot;,' +&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;case when ltrim(rtrim(isnull(email,''))) = '' and isnull(telno,'') =''  then '' else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;'&quot;_related&quot; : {' +&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;case when ltrim(rtrim(isnull(email,''))) ='' then '' else ' &quot;contact_emails&quot;:[{'  + '&quot;email_desc&quot; : &quot;default&quot;,' + '&quot;email_primary&quot; : &quot;1&quot;,' + '&quot;email_address&quot; : &quot;' + ltrim(rtrim(email)) +'&quot;}]' end + &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;case when ltrim(rtrim(isnull(email,''))) = '' and isnull(telno,'') =''  then '' &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when ltrim(rtrim(isnull(email,''))) &lt;&gt; '' and isnull(telno,'') =''  then ''&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;when ltrim(rtrim(isnull(email,''))) = '' and isnull(telno,'') &lt;&gt;''  then ''&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else ',' end +&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;case when isnull(telno,'') ='' then '' else ' &quot;contact_phones&quot;:[{'  + '&quot;phone_type&quot; : &quot;default&quot;,' + '&quot;phone_primary&quot; : &quot;1&quot;,' + '&quot;phone_number&quot; : &quot;' + isnull(dbo.RemoveNonAlphaCharactersForPortalleads(telno),'') +'&quot;}]' end +&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;'},'  end +&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;'&quot;type&quot; : &quot;company&quot;,' + &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;'&quot;notes&quot; :&quot;' + convert(varchar(50),isnull(leg.id,0)) + '&quot;' +&#xA;&#x9;&#x9;&#x9;&#x9;'}' +&#xA;&#x9;&#x9;&#x9;'},' +&#xA;&#x9;&#x9;&#x9;'&quot;strip_response_prefix&quot; : &quot;True&quot;,' +&#xA;&#x9;&#x9;&#x9;'&quot;token&quot; : &quot;{{TOKEN}}&quot;&#xA;&#x9;&#x9;}' as ConveyancerCreateJSON&#xA;&#x9;FROM COLSQL10.InternetDB.dbo.tbl_apps a WITH (NOLOCK) &#xA;&#x9;&#x9;left join COLSQL10.InternetDB.dbo.tbl_legal leg WITH (NOLOCK) on a.legal_cd=leg.legal_id&#xA;&#x9;&#x9;left join COLSQL10.InternetDB.dbo.RosieLegalMigration  l with (nolock) on leg.id=l.LegalID and l.OfficeID=@office_id&#xA;&#x9;WHERE a.office_id  =@office_id and isnull(leg.company,'') &lt;&gt; ''&#xA;&#x9;and leg.id &gt; 0&#xA;&#x9;and l.ID is null&#xA;) data&#xA;WHERE ISJSON(ConveyancerCreateJSON) = 0"
+              SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::ObjectInvalidLegalJSONRefs" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@office_id"
+                SQLTask:DtsVariableName="User::OfficeID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach office\Fix customers"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{85b080df-f675-4f4d-a16d-ee4b5d0450a2}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Fix customers"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}"
+              SQLTask:SqlStatementSource="exec ROSIE_uspInsMissingCustomers ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@office_id"
+                SQLTask:DtsVariableName="User::OfficeID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach office\Foreach invalid legal ref"
+          DTS:CreationName="STOCK:FOREACHLOOP"
+          DTS:Description="Foreach Loop Container"
+          DTS:DTSID="{B3D22373-0EE9-4E90-AD46-07056FF93DF6}"
+          DTS:ExecutableType="STOCK:FOREACHLOOP"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Foreach invalid legal ref">
+          <DTS:ForEachEnumerator
+            DTS:CreationName="Microsoft.ForEachADOEnumerator"
+            DTS:DTSID="{E567DCEA-9A23-401A-984C-0CCCF5DC8717}"
+            DTS:ObjectName="{E567DCEA-9A23-401A-984C-0CCCF5DC8717}">
+            <DTS:ObjectData>
+              <FEEADO
+                EnumType="EnumerateRowsInFirstTable"
+                VarName="User::ObjectInvalidLegalJSONRefs" />
+            </DTS:ObjectData>
+          </DTS:ForEachEnumerator>
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Foreach office\Foreach invalid legal ref\Form invalid legal refs string"
+              DTS:CreationName="Microsoft.ExpressionTask"
+              DTS:Description="Expression Task"
+              DTS:DTSID="{5BC946CF-F8F1-4DCF-8895-E098909AB524}"
+              DTS:ExecutableType="Microsoft.ExpressionTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Form invalid legal refs string"
+              DTS:ThreadHint="1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExpressionTask
+                  Expression="@[User::InvalidLegalJSONRefs] = @[User::InvalidLegalJSONRefs] + (@[User::InvalidLegalJSONRef] == &quot;&quot; ? &quot;&quot; : &quot;&lt;/br&gt;&quot; + @[User::InvalidLegalJSONRef])" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:ForEachVariableMappings>
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{C2CF5FED-8D12-4F58-9CF3-3376F246FD13}"
+              DTS:ObjectName="{C2CF5FED-8D12-4F58-9CF3-3376F246FD13}"
+              DTS:ValueIndex="0"
+              DTS:VariableName="User::InvalidLegalJSONRef" />
+          </DTS:ForEachVariableMappings>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach office\Foreach invalid ref"
+          DTS:CreationName="STOCK:FOREACHLOOP"
+          DTS:Description="Foreach Loop Container"
+          DTS:DTSID="{43D69B52-3472-4296-A3CB-B6CE1CA96619}"
+          DTS:ExecutableType="STOCK:FOREACHLOOP"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Foreach invalid ref">
+          <DTS:ForEachEnumerator
+            DTS:CreationName="Microsoft.ForEachADOEnumerator"
+            DTS:DTSID="{9DD3CF54-F62E-428D-8F3B-5DE854C0ED7E}"
+            DTS:ObjectName="{9DD3CF54-F62E-428D-8F3B-5DE854C0ED7E}">
+            <DTS:ObjectData>
+              <FEEADO
+                EnumType="EnumerateRowsInFirstTable"
+                VarName="User::ObjectInvalidJSONRefs" />
+            </DTS:ObjectData>
+          </DTS:ForEachEnumerator>
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Foreach office\Foreach invalid ref\Form invalid refs string"
+              DTS:CreationName="Microsoft.ExpressionTask"
+              DTS:Description="Expression Task"
+              DTS:DTSID="{B87D3828-2AE3-4CD9-80DA-10BDCAD9CEF1}"
+              DTS:ExecutableType="Microsoft.ExpressionTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Form invalid refs string"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExpressionTask
+                  Expression="@[User::InvalidJSONRefs] = @[User::InvalidJSONRefs] + (@[User::InvalidJSONRef] == &quot;&quot; ? &quot;&quot; : &quot;&lt;/br&gt;&quot; + @[User::InvalidJSONRef])" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:ForEachVariableMappings>
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{932431BA-656D-4346-B421-5EBA8218530A}"
+              DTS:ObjectName="{932431BA-656D-4346-B421-5EBA8218530A}"
+              DTS:ValueIndex="0"
+              DTS:VariableName="User::InvalidJSONRef" />
+          </DTS:ForEachVariableMappings>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach office\Prepare applicants for staging"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{aebba3e3-f1f3-4822-ba42-a7ee0bd0fe07}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Prepare applicants for staging"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}"
+              SQLTask:SqlStatementSource="exec [ROSIE_uspGetApplicantContacts] ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@office_id"
+                SQLTask:DtsVariableName="User::OfficeID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach office\Prepare vendors for staging"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{c741a2c0-4ae4-429d-849e-1bbbc949129d}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Prepare vendors for staging"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}"
+              SQLTask:SqlStatementSource="exec [ROSIE_uspGetVendorContacts] ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@office_id"
+                SQLTask:DtsVariableName="User::OfficeID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach office\Reset InvalidJSONRefs"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{1F8F0B3D-6B77-455A-8190-F8C8503ACF23}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Reset InvalidJSONRefs"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::InvalidJSONRefs] = &quot;&quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach office\Reset InvalidLegalJSONRefs"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{8e535127-12c5-440d-acb2-f725cf69a95d}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Reset InvalidLegalJSONRefs"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::InvalidLegalJSONRefs] = &quot;&quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach office\Send alert email for invalid JSON"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{AA550C6F-8239-4999-8E61-7C1DF5FE9552}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send alert email for invalid JSON"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}"
+              SQLTask:SqlStatementSource="DECLARE @SendDatetime DATETIME = GETDATE(), @MailID INT, @SendAlertsTo VARCHAR(254) = ?, @EmailBody VARCHAR(500) = 'Office: ' + ? + ' has failed contact staging. Failed references with invalid JSON:&lt;/br&gt;' + ?&#xA;&#xA;EXEC [COLSQL15\INST02].SHServices.dbo.uspASInsertSMTPPost&#xA;&#x9;   'RosieStaging',&#xA;&#x9;   @@SERVERNAME,&#xA;&#x9;   NULL,&#xA;&#x9;   1,&#xA;&#x9;   0,&#xA;&#x9;   'alerts@spicerhaart.co.uk', &#xA;&#x9;   @SendAlertsTo,&#xA;&#x9;   '',&#xA;&#x9;   '',&#xA;&#x9;   'Customer staging failed',&#xA;&#x9;   @EmailBody,&#xA;&#x9;   @SendDatetime,&#xA;&#x9;   NULL,&#xA;&#x9;   'W',&#xA;&#x9;   NULL,&#xA;&#x9;   @MailID OUTPUT;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@AlertEmail"
+                SQLTask:DtsVariableName="$Package::AlertEmail"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@OfficeID"
+                SQLTask:DtsVariableName="User::OfficeID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@InvalidReferences"
+                SQLTask:DtsVariableName="User::InvalidJSONRefs"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach office\Send alert email for invalid legal JSON"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{36331abb-2dd0-439a-a44a-150bd6ad4a09}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send alert email for invalid legal JSON"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}"
+              SQLTask:SqlStatementSource="DECLARE @SendDatetime DATETIME = GETDATE(), @MailID INT, @SendAlertsTo VARCHAR(254) = ?, @EmailBody VARCHAR(500) = 'Office: ' + ? + ' has failed conveyancer staging. Failed references with invalid JSON:&lt;/br&gt;' + ?&#xA;&#xA;EXEC [COLSQL15\INST02].SHServices.dbo.uspASInsertSMTPPost&#xA;    'RosieStaging',&#xA;    @@SERVERNAME,&#xA;    NULL,&#xA;    1,&#xA;    0,&#xA;    'alerts@spicerhaart.co.uk', &#xA;    @SendAlertsTo,&#xA;    '',&#xA;    '',&#xA;    'Conveyancer staging failed',&#xA;    @EmailBody,&#xA;    @SendDatetime,&#xA;    NULL,&#xA;    'W',&#xA;    NULL,&#xA;    @MailID OUTPUT;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@AlertEmail"
+                SQLTask:DtsVariableName="$Package::AlertEmail"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@OfficeID"
+                SQLTask:DtsVariableName="User::OfficeID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@InvalidReferences"
+                SQLTask:DtsVariableName="User::InvalidLegalJSONRefs"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach office.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{2F329BF8-23C3-46AF-BC72-F8EC0D6A18E3}"
+          DTS:From="Package\Foreach office\Fix customers"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach office\Prepare vendors for staging" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach office.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{017B32A9-1C00-453A-B9ED-BD975D26BCD9}"
+          DTS:From="Package\Foreach office\Prepare vendors for staging"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Foreach office\Prepare applicants for staging" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach office.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{11682632-5476-4C96-83C4-14FD70CAA897}"
+          DTS:From="Package\Foreach office\Prepare applicants for staging"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Foreach office\Check valid JSON" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach office.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{DC79ADEA-25FF-434E-BBBA-FBB9D9F66EE8}"
+          DTS:From="Package\Foreach office\Check valid JSON"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Foreach office\Foreach invalid ref" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach office.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{A55D1977-10DD-4BE0-B281-310D0A772CA6}"
+          DTS:From="Package\Foreach office\Send alert email for invalid JSON"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Foreach office\Reset InvalidJSONRefs" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach office.PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{90C1616A-E20D-4F28-9FC5-9D2B7EEB57C5}"
+          DTS:From="Package\Foreach office\Check valid legal JSON"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package\Foreach office\Foreach invalid legal ref" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach office.PrecedenceConstraints[Constraint 6]"
+          DTS:CreationName=""
+          DTS:DTSID="{DB1B836F-712C-494E-96B1-610F31F558D6}"
+          DTS:From="Package\Foreach office\Send alert email for invalid legal JSON"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 6"
+          DTS:To="Package\Foreach office\Reset InvalidLegalJSONRefs" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach office.PrecedenceConstraints[Has invalid JSON?]"
+          DTS:CreationName=""
+          DTS:DTSID="{8482D6CF-A07C-4F5B-A622-012058C6FAAA}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::InvalidLegalJSONRefs] != &quot;&quot;"
+          DTS:From="Package\Foreach office\Foreach invalid legal ref"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Has invalid JSON?"
+          DTS:To="Package\Foreach office\Send alert email for invalid legal JSON" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach office.PrecedenceConstraints[Has invlid JSON?]"
+          DTS:CreationName=""
+          DTS:DTSID="{8D904C18-0985-4A3C-8F50-98C0BF449F48}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::InvalidJSONRefs] != &quot;&quot;"
+          DTS:From="Package\Foreach office\Foreach invalid ref"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Has invlid JSON?"
+          DTS:To="Package\Foreach office\Send alert email for invalid JSON" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{4C69CF65-55F1-454F-9FAE-6F2229C472B0}"
+          DTS:ObjectName="{4C69CF65-55F1-454F-9FAE-6F2229C472B0}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::OfficeID" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get offices for migration"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{953F12D5-8527-47E9-8004-DD2738FC11CA}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get offices for migration"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}"
+          SQLTask:SqlStatementSource="SELECT office_id FROM RosieOfficeMigration WHERE migrated = 0 AND office_id IS NOT NULL AND migrationDate &lt; DATEADD(WEEK, 1, GETDATE())"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::ObjectOffices" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{448AC128-8C63-45A7-97A9-6C6C30A7B422}"
+      DTS:From="Package\Get offices for migration"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Foreach office" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Foreach office\Check valid JSON"
+          TopLeft="361.5,311.5" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Foreach office\Check valid legal JSON"
+          TopLeft="42.0000000000001,311.5" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Foreach office\Fix customers"
+          TopLeft="370,5.5" />
+        <NodeLayout
+          Size="213,42"
+          Id="Package\Foreach office\Foreach invalid legal ref\Form invalid legal refs string"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="224,103"
+          Size="224,146"
+          Id="Package\Foreach office\Foreach invalid legal ref"
+          TopLeft="23.0000000000001,413.5" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\Foreach office\Foreach invalid ref\Form invalid refs string"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="198,103"
+          Size="198,146"
+          Id="Package\Foreach office\Foreach invalid ref"
+          TopLeft="343,413.5" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\Foreach office\Prepare applicants for staging"
+          TopLeft="332.5,209.5" />
+        <NodeLayout
+          Size="210,42"
+          Id="Package\Foreach office\Prepare vendors for staging"
+          TopLeft="337,107.5" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Foreach office\Reset InvalidJSONRefs"
+          TopLeft="349,721.5" />
+        <NodeLayout
+          Size="210,42"
+          Id="Package\Foreach office\Reset InvalidLegalJSONRefs"
+          TopLeft="30.0000000000001,721.5" />
+        <NodeLayout
+          Size="233,42"
+          Id="Package\Foreach office\Send alert email for invalid JSON"
+          TopLeft="325.5,619.5" />
+        <NodeLayout
+          Size="259,42"
+          Id="Package\Foreach office\Send alert email for invalid legal JSON"
+          TopLeft="5.50000000000011,619.5" />
+        <EdgeLayout
+          Id="Package\Foreach office.PrecedenceConstraints[Constraint]"
+          TopLeft="442,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach office.PrecedenceConstraints[Constraint 1]"
+          TopLeft="442,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach office.PrecedenceConstraints[Constraint 2]"
+          TopLeft="442,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach office.PrecedenceConstraints[Constraint 3]"
+          TopLeft="442,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach office.PrecedenceConstraints[Constraint 4]"
+          TopLeft="442,661.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach office.PrecedenceConstraints[Constraint 5]"
+          TopLeft="135,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach office.PrecedenceConstraints[Constraint 6]"
+          TopLeft="135,661.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach office.PrecedenceConstraints[Has invalid JSON?]"
+          TopLeft="135,559.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.9365625,18.25,97.873125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach office.PrecedenceConstraints[Has invlid JSON?]"
+          TopLeft="442,559.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-46.3115625,18.25,92.623125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="564,819"
+          Size="564,862"
+          Id="Package\Foreach office"
+          TopLeft="5.50000000000011,107.5" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Get offices for migration"
+          TopLeft="191,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="287.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <PrecedenceConstraint
+    design-time-name="Package\Foreach office.PrecedenceConstraints[Has invalid JSON?]">
+    <ShowAnnotation>ConstraintName</ShowAnnotation>
+  </PrecedenceConstraint>
+  <PrecedenceConstraint
+    design-time-name="Package\Foreach office.PrecedenceConstraints[Has invlid JSON?]">
+    <ShowAnnotation>ConstraintName</ShowAnnotation>
+  </PrecedenceConstraint>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

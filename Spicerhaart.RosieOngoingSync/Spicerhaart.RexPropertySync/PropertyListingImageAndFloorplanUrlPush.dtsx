@@ -1,0 +1,3204 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/23/2019 4:48:38 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WX9000ITD17"
+  DTS:CreatorName="SPICERHAART\1905887"
+  DTS:DTSID="{23E6CCFD-30F3-4398-90FC-85DD6E03F044}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="PropertyListingImageAndFloorplanUrlPush"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="1"
+  DTS:VersionBuild="51"
+  DTS:VersionGUID="{22352E42-1501-4F84-8117-5399BA944EFE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Rex API Http Connection]"
+      DTS:CreationName="ZS-HTTP"
+      DTS:DTSID="{592ECD64-4AB6-4839-A9AF-7EA6561CA0F0}"
+      DTS:ObjectName="Rex API Http Connection">
+      <DTS:ObjectData>
+        <ConnectionManager
+          ConnectionString="Url=https://beta-api.uk.rexsoftware.com/rex.php;CredentialType=Notset;UserName=;Timeout=60000;SoapWssPasswordType=Notset;JwtCustomClaims=;UseProxy=False;ProxyUrl=;UseProxyCreds=False;ProxyUserName=;DoNotUseDefaultProxy=False;UseClientCertificate=False;CertificatePath=;CertificateStorageType=CurrentUser;CertificateStoreName=My;CertificateThumbprint=;RetryMode=RetryAny;RetryCountMax=5;RetryWaitTimeMs=2000;RetryMultiplyWaitTime=False;RetryMessageList=;RetryStatusCodeList=;AuthScheme=Bearer;TokenAuthHeader=;TokenUrl=;TokenRequestData=;TokenRequestHeaders=;TokenRequestMethod=;TokenRequestContentType=Default;TokenResponseContentFilter=;TokenResponseValueExtractMode=Body;TokenResponseCookie=;TokenResponseHeader=;TokenResponseContentType=None;TokenExpirationTimeInSeconds=3600" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RexSync.xml]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{BF212CF9-B312-4839-8DAD-C3DDBDBB096C}"
+      DTS:ObjectName="RexSync.xml">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\SSISVariables\RexSync.xml" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP]"
+      DTS:CreationName="ZS-SMTP"
+      DTS:DTSID="{62F0A84F-89DE-4EB7-B5E4-4F16B98BCEA8}"
+      DTS:ObjectName="SMTP">
+      <DTS:ObjectData>
+        <ConnectionManager
+          ConnectionString="SmtpServer=localhost;UserName=;Port=25;EnableSsl=False;Timeout=10000;EnableAnonymousAuth=False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{EF9DD069-1A7B-42FF-A6E5-9807FF045952}"
+      DTS:ObjectName="RexAccountID"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">1864</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{0DAC147D-0554-45A5-9900-3B9C53ADA2D2}"
+      DTS:ObjectName="RexListingID"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">1269</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{765DBBFF-465E-456E-9985-3E075C18271B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="API_Password">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A78FD408-E12B-4962-ACFA-DE5B19FB5669}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="API_StatusCode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C71D8137-125C-4B2C-B7AC-F524A17D69A7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="API_Token">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{ED0938AB-29BD-4627-80D4-ED13EF0683E2}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="API_URL">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5FD566F7-1D14-4FA7-ABBB-EBBA61EC0DCE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="API_User">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0FACA546-CDC7-42E1-AACA-5DD3C50EA403}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorEmail">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F711A692-5F1C-4AB7-8B3D-E7EBBAC8F044}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FloorplanError">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9D6F2BF6-7B6D-4250-9BF3-2D455E057AF9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FloorplanID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C5EBF229-1E52-47FA-B33F-C2432154EFEC}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FloorplanName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{216AC31C-CFDF-4E74-84C3-04B53315987D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FloorplanResponse">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{566816E7-B27B-4CCC-90AD-218E852D8E92}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="FloorplanResponseCode">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9D0A8579-183A-4EC3-B012-53135DD0EA7F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FloorplanReturnUri">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{32026403-D478-44D1-AA88-5C0ACB4B1E09}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FloorplanUrl">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{96FF23A7-B18E-4B5E-8A62-D86F7786C8F1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ImageError">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{928B2159-E356-4B95-BEFA-B5F9167C79A1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ImageID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1C95004F-54F5-4FE1-87E4-92313C09C59E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ImageName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A5B2A96F-E2C0-4CE1-9987-29FD61CF7FEE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ImageResponse">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FBEC1381-F070-40B1-BE78-A0952E501A5D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ImageResponseCode">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4AF28B51-8B1B-4A2C-AC74-652F896389E3}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ImageReturnUri">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9DB796BD-BADD-41EA-B065-1C9F1A2090F3}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ImageUrl">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{ECE5E7EA-18FC-4131-8999-3D9837FDB5C3}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Object_FloorplanList">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A0E98D94-0EDD-4C6E-9390-97E871FE515C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Object_ImageList">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Clear Image Migration Table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E95666A4-08F3-4997-BE14-9ABFF969F647}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear Image Migration Table"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+          SQLTask:SqlStatementSource="delete RosiePropertyImageUpload where RexListingID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::RexListingID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Email Auth Failure"
+      DTS:CreationName="ZappySys.HtmlEmailTask"
+      DTS:Description="ZS HTML Email Task"
+      DTS:DTSID="{90C4F7F8-3CDA-4876-ADC9-9ED24E39EE5D}"
+      DTS:ExecutableType="ZappySys.HtmlEmailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Email Auth Failure"
+      DTS:ThreadHint="6">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <HtmlEmailTask
+          SmtpConnection="SMTP"
+          IsHtmlEmail="True"
+          DefaultStyle="&#xA;&lt;style type=&quot;text/css&quot;&gt;&#xA;body,div,p,span,td,th,table {&#xA; font-family: Helvetica, Arial, sans-serif;&#xA; font-size: 10pt; &#xA;}&#xA;h1,h2,h3,h4,h5{&#xA;font-family: Helvetica, Arial, sans-serif;&#xA;}&#xA;&#xA;table { &#xA; border-collapse: &#xA; collapse; border-spacing: 0; &#xA;}&#xA;&#xA;tr.odd    {background-color: #cccccc}&#xA;tr.even   {background-color: #fafafa}&#xA;td, th { border: 1px solid #bbb;padding: 5 5 5 5} &#xA;th { background: #F3F3F3;  font-weight: bold;}&#xA;&lt;/style&gt;&#xA;&#xA;"
+          Subject="Error occured in {{System::PackageName}}"
+          From="alerts@spicerhaart.co.uk"
+          To="{{User::ErrorEmail}}"
+          Cc=""
+          ReplyTo=""
+          Bcc=""
+          Attachments=""
+          EmailPriority="High"
+          MessageSourceType="Direct"
+          MessageDirectValue="&lt;b&gt;Failed to get Authorization Key&lt;/b&gt;&lt;p /&gt;&#xA;&#xA;&lt;p&gt; Response Code =&gt; {{User::API_StatusCode}} &lt;p /&gt;"
+          MessageFileConnection=""
+          MessageVariable=""
+          LogLevel="Normal"
+          PrefixTimestamp="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach floorplan"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{68DFAE50-33EE-4AFF-89AB-F9804AB7B573}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach floorplan">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{D6BB9461-C90F-401F-AC50-7651AD207D05}"
+        DTS:ObjectName="{D6BB9461-C90F-401F-AC50-7651AD207D05}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::Object_FloorplanList" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach floorplan\Email floorplan upload failure"
+          DTS:CreationName="ZappySys.HtmlEmailTask"
+          DTS:Description="ZS HTML Email Task"
+          DTS:DTSID="{A25BABD0-F023-4DEF-906B-88884E9CF1F2}"
+          DTS:ExecutableType="ZappySys.HtmlEmailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Email floorplan upload failure"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <HtmlEmailTask
+              SmtpConnection="SMTP"
+              IsHtmlEmail="True"
+              DefaultStyle="&#xA;&lt;style type=&quot;text/css&quot;&gt;&#xA;body,div,p,span,td,th,table {&#xA; font-family: Helvetica, Arial, sans-serif;&#xA; font-size: 10pt; &#xA;}&#xA;h1,h2,h3,h4,h5{&#xA;font-family: Helvetica, Arial, sans-serif;&#xA;}&#xA;&#xA;table { &#xA; border-collapse: &#xA; collapse; border-spacing: 0; &#xA;}&#xA;&#xA;tr.odd    {background-color: #cccccc}&#xA;tr.even   {background-color: #fafafa}&#xA;td, th { border: 1px solid #bbb;padding: 5 5 5 5} &#xA;th { background: #F3F3F3;  font-weight: bold;}&#xA;&lt;/style&gt;&#xA;&#xA;"
+              Subject="Error occured in {{System::PackageName}}"
+              From="alerts@spicerhaart.co.uk"
+              To="{{User::ErrorEmail}}"
+              Cc=""
+              ReplyTo=""
+              Bcc=""
+              Attachments=""
+              EmailPriority="High"
+              MessageSourceType="Direct"
+              MessageDirectValue="&lt;b&gt;Failed to upload listing floorplan&lt;/b&gt;&lt;p /&gt;&#xA;&#xA;&lt;p&gt; Response Code =&gt; {{User::FloorplanResponseCode}} &lt;p /&gt;&#xA;&#xA;&lt;p&gt; Response Variable =&gt; {{User::FloorplanResponse}} &lt;/p&gt;&#xA;&#xA;"
+              MessageFileConnection=""
+              MessageVariable=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach floorplan\Get floorplan uri"
+          DTS:CreationName="ZappySys.JsonParserTask"
+          DTS:Description="ZS JSON Parser Task"
+          DTS:DTSID="{E5EBEE10-E276-45C4-8EDD-D1C0D55FB6E3}"
+          DTS:ExecutableType="ZappySys.JsonParserTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Get floorplan uri"
+          DTS:ThreadHint="4">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <JsonParserTask
+              SourceAccessMode="Variable"
+              SourceVariable="User::FloorplanResponse"
+              SourceConnection=""
+              SourceDirectValue="{&#xA;&quot;CustomerID&quot;: &quot;ALFKI&quot;,&#xA;&quot;CustomerName&quot;: &quot;Alfredo Koli&quot;,&#xA;&quot;Age&quot;: 55,&#xA;&quot;LocationInfo&quot;: {&quot;City&quot;:&quot;Newyork&quot;, &quot;State&quot;:&quot;NY&quot;, &quot;Zip&quot;:&quot;23234&quot;},&#xA;&quot;OrderIDList&quot;: [111,222,333,444,555]&#xA;}"
+              TargetSettings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;JsonParserSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;Mappings&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.uri&lt;/Path&gt;&lt;Target&gt;User::FloorplanReturnUri&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;error.message&lt;/Path&gt;&lt;Target&gt;User::FloorplanError&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;/Mappings&gt;&lt;Path /&gt;&lt;/JsonParserSetting&gt;"
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach floorplan\Insert API error"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1b89cfc8-b6b1-4099-b6fc-98e908afb78f}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert API error"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="5">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+              SQLTask:SqlStatementSource="INSERT INTO SSISErrorLog&#xA;(PackageName, StartTime, ErrorCode, AccountID, ErrorDescription)&#xA;VALUES&#xA;(?, ?, 0, ?, 'Error posting listing floorplan url. Floorplan url: ' + ? + '. API Response: ' + ?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@PackageName"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@StartTime"
+                SQLTask:DtsVariableName="System::StartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@AccountID"
+                SQLTask:DtsVariableName="$Package::RexAccountID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@FloorplanURL"
+                SQLTask:DtsVariableName="User::FloorplanUrl"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@APIError"
+                SQLTask:DtsVariableName="User::FloorplanError"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach floorplan\POST floorplan url"
+          DTS:CreationName="ZappySys.RestApiTask"
+          DTS:Description="ZS REST API Task"
+          DTS:DTSID="{B3DAE959-7D68-4A1C-8861-FFBE1F06FBF3}"
+          DTS:ExecutableType="ZappySys.RestApiTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="POST floorplan url"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <RestApiTask
+              RequestAccessMode="UrlFromConnection"
+              RequestUrlVariable="User::API_URL"
+              EnableStatusCheck="False"
+              StatucCheckMaxWaitSeconds="1200"
+              StatucCheckIterationWaitSeconds="10"
+              StatusCheckForFailedValue="False"
+              StatusSuccessValue=""
+              StatusFailedValue=""
+              IsMultiPartUpload="False"
+              PreventAutoRedirect="False"
+              RequestTimeoutMs="0"
+              SecurityProtocol="Default"
+              EnableCompressionSupport="True"
+              AllowUnsecureSuite="False"
+              IgnoreCertificateErrors="False"
+              RequestUrl="{{User::API_URL}}"
+              RequestUrlConnection="Rex API Http Connection"
+              RequestMethod="POST"
+              RequestContentType="ApplicationJson"
+              OverrideConnectionUrl="True"
+              RequestHeaders="&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;"
+              RequestData="{&#xA;&#x9;&quot;method&quot;: &quot;Upload::uploadListingFloorplanImage&quot;,&#xA;&#x9;&quot;args&quot;:&#xA;&#x9;{&#xA;&#x9;    &quot;url&quot;: &quot;{{User::FloorplanUrl}}&quot;&#xA;    },&#xA;&#x9;&quot;strip_response_prefix&quot;: true,&#xA;&#x9;&quot;token&quot;: &quot;{{User::API_Token}}&quot;&#xA;}"
+              SaveResponse="True"
+              SaveResponseStatusCode="True"
+              ResponseAccessMode="Variable"
+              SaveAsBinary="False"
+              ResponseDataFilePath=""
+              ResponseHeaderMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+              ResponseCookieMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+              CookieContainerVariable=""
+              ConvertXmlToJson="False"
+              ResponseDataVariable="User::FloorplanResponse"
+              ResponseStatusCodeVariable="User::FloorplanResponseCode"
+              ResponseContentType="Json"
+              ResponseContentFilter=""
+              ResponseCharset=""
+              ValidateResponse="False"
+              ValidationRules="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ResponseValidationSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;MatchAny&gt;false&lt;/MatchAny&gt;&lt;Rules&gt;&lt;ResponseValidationRule xsi:type=&quot;StatusCodeValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;StatusCode&gt;200&lt;/StatusCode&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;ContentValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;Value /&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;HeaderValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;KeyName /&gt;&lt;Value /&gt;&lt;DataType&gt;String&lt;/DataType&gt;&lt;/ResponseValidationRule&gt;&lt;/Rules&gt;&lt;/ResponseValidationSetting&gt;"
+              ConsumeResponseOnError="False"
+              ContineOnAnyError="False"
+              ContineOnErrorForMessage="False"
+              ContineOnErrorForStatusCode="False"
+              ErrorStatusCodeToMatch="404"
+              MatchForEqual="True"
+              ErrorSubstringToMatch=""
+              ContineOn404Error="False"
+              SaveErrorFlagToVariable="False"
+              ErrorFlagVariableName=""
+              LogLevel="Debugging"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach floorplan\Reset floorplan api error"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{d6f66090-7ff2-4916-9f9b-b40fafc04fbe}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Reset floorplan api error"
+          DTS:ThreadHint="5">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::FloorplanError] = &quot;&quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach floorplan\Update floorplan migration table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{75D34F05-3EF7-4677-9E21-3C798E3D07DB}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update floorplan migration table"
+          DTS:ThreadHint="4">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+              SQLTask:SqlStatementSource="exec ROSIE_uspInsRosiePropertyImageUpload ?, ?, ?, ?, 'PropertyFloorplan', ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@RexListingID"
+                SQLTask:DtsVariableName="$Package::RexListingID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@FileToUpload"
+                SQLTask:DtsVariableName="User::FloorplanUrl"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@FileID"
+                SQLTask:DtsVariableName="User::FloorplanID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@FileDescription"
+                SQLTask:DtsVariableName="User::FloorplanName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@FileUri"
+                SQLTask:DtsVariableName="User::FloorplanReturnUri"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach floorplan.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{C0E51E58-BA21-41CC-BC17-FDF4E0FE2C0F}"
+          DTS:From="Package\Foreach floorplan\POST floorplan url"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach floorplan\Get floorplan uri" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach floorplan.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{3B8BAA53-F9E4-4ADA-8C7C-2CA0239A283B}"
+          DTS:From="Package\Foreach floorplan\Insert API error"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Foreach floorplan\Reset floorplan api error"
+          DTS:Value="2" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach floorplan.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{C1CEDB4B-3590-462C-B81F-6D92CCDC3982}"
+          DTS:From="Package\Foreach floorplan\POST floorplan url"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Foreach floorplan\Email floorplan upload failure"
+          DTS:Value="1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach floorplan.PrecedenceConstraints[Error]"
+          DTS:CreationName=""
+          DTS:DTSID="{CDA44A2E-17CF-4683-A689-33EAC6B24E7D}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::FloorplanError] != &quot;&quot;"
+          DTS:From="Package\Foreach floorplan\Get floorplan uri"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Error"
+          DTS:To="Package\Foreach floorplan\Insert API error" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach floorplan.PrecedenceConstraints[No error]"
+          DTS:CreationName=""
+          DTS:DTSID="{E1C330BF-BC0E-4343-827C-F00456EE422A}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::FloorplanError] == &quot;&quot;"
+          DTS:From="Package\Foreach floorplan\Get floorplan uri"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="No error"
+          DTS:To="Package\Foreach floorplan\Update floorplan migration table" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{3C697357-3249-4C51-AF88-DDC275E2F566}"
+          DTS:ObjectName="{3C697357-3249-4C51-AF88-DDC275E2F566}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::FloorplanUrl" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{1D432621-9DA7-48D2-8FB3-BB1E816B19FB}"
+          DTS:ObjectName="{1D432621-9DA7-48D2-8FB3-BB1E816B19FB}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::FloorplanID" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{D4A9A833-2219-4E61-AE41-78BBECBAC145}"
+          DTS:ObjectName="{D4A9A833-2219-4E61-AE41-78BBECBAC145}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::FloorplanName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach image"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{E38208EB-5982-48A4-B0F9-6EABA1C07474}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach image">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{2ECB5546-B26C-4EBA-9370-95A4EE49D442}"
+        DTS:ObjectName="{2ECB5546-B26C-4EBA-9370-95A4EE49D442}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::Object_ImageList" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach image\Email image upload failure"
+          DTS:CreationName="ZappySys.HtmlEmailTask"
+          DTS:Description="ZS HTML Email Task"
+          DTS:DTSID="{563753B9-0162-40F3-B452-8D8CFD5324AE}"
+          DTS:ExecutableType="ZappySys.HtmlEmailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Email image upload failure"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <HtmlEmailTask
+              SmtpConnection="SMTP"
+              IsHtmlEmail="True"
+              DefaultStyle="&#xA;&lt;style type=&quot;text/css&quot;&gt;&#xA;body,div,p,span,td,th,table {&#xA; font-family: Helvetica, Arial, sans-serif;&#xA; font-size: 10pt; &#xA;}&#xA;h1,h2,h3,h4,h5{&#xA;font-family: Helvetica, Arial, sans-serif;&#xA;}&#xA;&#xA;table { &#xA; border-collapse: &#xA; collapse; border-spacing: 0; &#xA;}&#xA;&#xA;tr.odd    {background-color: #cccccc}&#xA;tr.even   {background-color: #fafafa}&#xA;td, th { border: 1px solid #bbb;padding: 5 5 5 5} &#xA;th { background: #F3F3F3;  font-weight: bold;}&#xA;&lt;/style&gt;&#xA;&#xA;"
+              Subject="Error occured in {{System::PackageName}}"
+              From="alerts@spicerhaart.co.uk"
+              To="{{User::ErrorEmail}}"
+              Cc=""
+              ReplyTo=""
+              Bcc=""
+              Attachments=""
+              EmailPriority="High"
+              MessageSourceType="Direct"
+              MessageDirectValue="&lt;b&gt;Failed to upload listing image&lt;/b&gt;&lt;p /&gt;&#xA;&#xA;&lt;p&gt; Response Code =&gt; {{User::ImageResponseCode}} &lt;p /&gt;&#xA;&#xA;&lt;p&gt; Response Variable =&gt; {{User::ImageResponse}} &lt;/p&gt;"
+              MessageFileConnection=""
+              MessageVariable=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach image\Get image uri"
+          DTS:CreationName="ZappySys.JsonParserTask"
+          DTS:Description="ZS JSON Parser Task"
+          DTS:DTSID="{55F082A7-0E7D-46CF-9DD1-496489DDCC0C}"
+          DTS:ExecutableType="ZappySys.JsonParserTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Get image uri"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <JsonParserTask
+              SourceAccessMode="Variable"
+              SourceVariable="User::ImageResponse"
+              SourceConnection=""
+              SourceDirectValue="{&#xA;&quot;CustomerID&quot;: &quot;ALFKI&quot;,&#xA;&quot;CustomerName&quot;: &quot;Alfredo Koli&quot;,&#xA;&quot;Age&quot;: 55,&#xA;&quot;LocationInfo&quot;: {&quot;City&quot;:&quot;Newyork&quot;, &quot;State&quot;:&quot;NY&quot;, &quot;Zip&quot;:&quot;23234&quot;},&#xA;&quot;OrderIDList&quot;: [111,222,333,444,555]&#xA;}"
+              TargetSettings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;JsonParserSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;Mappings&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;result.uri&lt;/Path&gt;&lt;Target&gt;User::ImageReturnUri&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;JsonParserMapping&gt;&lt;Path&gt;error.message&lt;/Path&gt;&lt;Target&gt;User::ImageError&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;Description /&gt;&lt;/JsonParserMapping&gt;&lt;/Mappings&gt;&lt;Path /&gt;&lt;/JsonParserSetting&gt;"
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach image\Insert API error"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{f33fda27-f02f-47a2-81c0-e446b61dcc84}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert API error"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+              SQLTask:SqlStatementSource="INSERT INTO SSISErrorLog&#xA;(PackageName, StartTime, ErrorCode, AccountID, ErrorDescription)&#xA;VALUES&#xA;(?, ?, 0, ?, 'Error posting listing image url. Image URL: ' + ? + '. API Response: ' + ?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@PackageName"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@StartTime"
+                SQLTask:DtsVariableName="System::StartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@AccountID"
+                SQLTask:DtsVariableName="$Package::RexAccountID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ImageURL"
+                SQLTask:DtsVariableName="User::ImageUrl"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@APIError"
+                SQLTask:DtsVariableName="User::ImageError"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach image\POST image url"
+          DTS:CreationName="ZappySys.RestApiTask"
+          DTS:Description="ZS REST API Task"
+          DTS:DTSID="{56783547-3C39-497A-85D3-39A892F58978}"
+          DTS:ExecutableType="ZappySys.RestApiTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="POST image url"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <RestApiTask
+              RequestAccessMode="UrlFromConnection"
+              RequestUrlVariable="User::API_URL"
+              EnableStatusCheck="False"
+              StatucCheckMaxWaitSeconds="1200"
+              StatucCheckIterationWaitSeconds="10"
+              StatusCheckForFailedValue="False"
+              StatusSuccessValue=""
+              StatusFailedValue=""
+              IsMultiPartUpload="False"
+              PreventAutoRedirect="False"
+              RequestTimeoutMs="0"
+              SecurityProtocol="Default"
+              EnableCompressionSupport="True"
+              AllowUnsecureSuite="False"
+              IgnoreCertificateErrors="False"
+              RequestUrl="{{User::API_URL}}"
+              RequestUrlConnection="Rex API Http Connection"
+              RequestMethod="POST"
+              RequestContentType="Default"
+              OverrideConnectionUrl="True"
+              RequestHeaders="&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;"
+              RequestData="{&#xA;&#x9;&quot;method&quot;: &quot;Upload::uploadListingImage&quot;,&#xA;&#x9;&quot;args&quot;:&#xA;&#x9;{&#xA;&#x9;    &quot;url&quot;: &quot;{{User::ImageUrl}}&quot;&#xA;    },&#xA;&#x9;&quot;strip_response_prefix&quot;: true,&#xA;&#x9;&quot;token&quot;: &quot;{{User::API_Token}}&quot;&#xA;}"
+              SaveResponse="True"
+              SaveResponseStatusCode="True"
+              ResponseAccessMode="Variable"
+              SaveAsBinary="False"
+              ResponseDataFilePath=""
+              ResponseHeaderMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+              ResponseCookieMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+              CookieContainerVariable=""
+              ConvertXmlToJson="False"
+              ResponseDataVariable="User::ImageResponse"
+              ResponseStatusCodeVariable="User::ImageResponseCode"
+              ResponseContentType="Json"
+              ResponseContentFilter=""
+              ResponseCharset=""
+              ValidateResponse="False"
+              ValidationRules="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ResponseValidationSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;MatchAny&gt;false&lt;/MatchAny&gt;&lt;Rules&gt;&lt;ResponseValidationRule xsi:type=&quot;StatusCodeValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;StatusCode&gt;200&lt;/StatusCode&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;ContentValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;Value /&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;HeaderValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;KeyName /&gt;&lt;Value /&gt;&lt;DataType&gt;String&lt;/DataType&gt;&lt;/ResponseValidationRule&gt;&lt;/Rules&gt;&lt;/ResponseValidationSetting&gt;"
+              ConsumeResponseOnError="False"
+              ContineOnAnyError="False"
+              ContineOnErrorForMessage="False"
+              ContineOnErrorForStatusCode="False"
+              ErrorStatusCodeToMatch="404"
+              MatchForEqual="True"
+              ErrorSubstringToMatch=""
+              ContineOn404Error="False"
+              SaveErrorFlagToVariable="False"
+              ErrorFlagVariableName=""
+              LogLevel="Debugging"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach image\Reset image api error"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{4fb2641e-72f5-40e0-a9c0-1c4981e76634}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Reset image api error"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::ImageError] = &quot;&quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach image\Update image migration table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{25C71502-F16F-41A9-867C-E2C343CDF41B}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update image migration table"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+              SQLTask:SqlStatementSource="exec ROSIE_uspInsRosiePropertyImageUpload ?, ?, ?, ?, 'PropertyImage',?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@RexListingID"
+                SQLTask:DtsVariableName="$Package::RexListingID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@FileToUpload"
+                SQLTask:DtsVariableName="User::ImageUrl"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@FileID"
+                SQLTask:DtsVariableName="User::ImageID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@FileDescription"
+                SQLTask:DtsVariableName="User::ImageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@FileUri"
+                SQLTask:DtsVariableName="User::ImageReturnUri"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach image.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{5E739CAD-5D49-44F6-B3FB-6A52546C9541}"
+          DTS:From="Package\Foreach image\POST image url"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach image\Get image uri" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach image.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{C92F770B-28DA-4EC3-98D2-C451D79B7389}"
+          DTS:From="Package\Foreach image\POST image url"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Foreach image\Email image upload failure"
+          DTS:Value="1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach image.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{87C33F49-8E52-4714-BF9E-ADEF137D092E}"
+          DTS:From="Package\Foreach image\Insert API error"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Foreach image\Reset image api error"
+          DTS:Value="2" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach image.PrecedenceConstraints[Error]"
+          DTS:CreationName=""
+          DTS:DTSID="{34CA0DB3-AE99-4FC6-8A29-7CF637CBB241}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::ImageError] != &quot;&quot;"
+          DTS:From="Package\Foreach image\Get image uri"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Error"
+          DTS:To="Package\Foreach image\Insert API error" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach image.PrecedenceConstraints[No error]"
+          DTS:CreationName=""
+          DTS:DTSID="{8CECD984-EFF7-49F6-8465-B2CD33874CBE}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::ImageError] == &quot;&quot;"
+          DTS:From="Package\Foreach image\Get image uri"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="No error"
+          DTS:To="Package\Foreach image\Update image migration table" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{4F5DCA09-BBC0-428E-BA00-AC6455F79245}"
+          DTS:ObjectName="{4F5DCA09-BBC0-428E-BA00-AC6455F79245}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::ImageUrl" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{FE8878D7-76D6-4E64-AB75-20C07EAE8985}"
+          DTS:ObjectName="{FE8878D7-76D6-4E64-AB75-20C07EAE8985}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::ImageID" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{C75C35DC-CD52-4BA3-A691-74A84A96DB3F}"
+          DTS:ObjectName="{C75C35DC-CD52-4BA3-A691-74A84A96DB3F}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::ImageName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Auth Key"
+      DTS:CreationName="ZappySys.RestApiTask"
+      DTS:Description="ZS REST API Task"
+      DTS:DTSID="{718FD8B6-C828-4E72-8E9D-B365ACDE0FEA}"
+      DTS:ExecutableType="ZappySys.RestApiTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Auth Key"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <RestApiTask
+          RequestAccessMode="UrlFromVariable"
+          RequestUrlVariable="User::API_URL"
+          EnableStatusCheck="False"
+          StatucCheckMaxWaitSeconds="0"
+          StatucCheckIterationWaitSeconds="0"
+          StatusCheckForFailedValue="False"
+          StatusSuccessValue=""
+          StatusFailedValue=""
+          IsMultiPartUpload="False"
+          PreventAutoRedirect="False"
+          RequestTimeoutMs="0"
+          SecurityProtocol="Default"
+          EnableCompressionSupport="True"
+          AllowUnsecureSuite="False"
+          IgnoreCertificateErrors="False"
+          RequestUrl="{{User::API_URL}}"
+          RequestUrlConnection=""
+          RequestMethod="POST"
+          RequestContentType="ApplicationJson"
+          OverrideConnectionUrl="False"
+          RequestHeaders="&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;"
+          RequestData="{&#xA;&#x9;&quot;method&quot;:&quot;Authentication::login&quot;,&#xA;&#x9;&quot;args&quot;:&#xA;&#x9;{&#xA;&#x9;&#x9;&quot;email&quot;:&quot;{{User::API_User}}&quot;,&#xA;&#x9;&#x9;&quot;password&quot;:&quot;{{User::API_Password}}&quot;,&#xA;&#x9;&#x9;&quot;account_id&quot;:&quot;{{$Package::RexAccountID}}&quot;,&#xA;&#x9;&#x9;&quot;application&quot;:&quot;rex&quot;&#xA;&#x9;}&#xA;}"
+          SaveResponse="True"
+          SaveResponseStatusCode="True"
+          ResponseAccessMode="Variable"
+          SaveAsBinary="False"
+          ResponseDataFilePath=""
+          ResponseHeaderMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Headers&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Methods&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Origin&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Max-Age&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Vary&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Connection&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Length&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Type&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Date&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Server&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;/ArrayOfKeyValueMapping&gt;"
+          ResponseCookieMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+          CookieContainerVariable=""
+          ConvertXmlToJson="False"
+          ResponseDataVariable="User::API_Token"
+          ResponseStatusCodeVariable="User::API_StatusCode"
+          ResponseContentType="Json"
+          ResponseContentFilter="$.result"
+          ResponseCharset=""
+          ValidateResponse="False"
+          ValidationRules="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ResponseValidationSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;MatchAny&gt;false&lt;/MatchAny&gt;&lt;Rules&gt;&lt;ResponseValidationRule xsi:type=&quot;StatusCodeValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;StatusCode&gt;200&lt;/StatusCode&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;ContentValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;Value /&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;HeaderValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;KeyName /&gt;&lt;Value /&gt;&lt;DataType&gt;String&lt;/DataType&gt;&lt;/ResponseValidationRule&gt;&lt;/Rules&gt;&lt;/ResponseValidationSetting&gt;"
+          ConsumeResponseOnError="False"
+          ContineOnAnyError="False"
+          ContineOnErrorForMessage="False"
+          ContineOnErrorForStatusCode="False"
+          ErrorStatusCodeToMatch="404"
+          MatchForEqual="True"
+          ErrorSubstringToMatch=""
+          ContineOn404Error="False"
+          SaveErrorFlagToVariable="False"
+          ErrorFlagVariableName=""
+          LogLevel="Normal"
+          PrefixTimestamp="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get floorplan List"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2EDD6F39-F511-4866-9D4D-DDD13CD8AD99}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get floorplan List"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="exec ROSIE_uspSelPropertyImagesAndFloorplanUrlsByListingId @listingID = ?,@fileType = 2"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::Object_FloorplanList" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::RexListingID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Image List"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{00CB5853-B9B2-4F8A-93F9-E6CA6E796F21}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Image List"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="exec ROSIE_uspSelPropertyImagesAndFloorplanUrlsByListingId @listingID = ?,@fileType = 1"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::Object_ImageList" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::RexListingID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Link Images To Listing"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B43BEEBB-0970-44C9-B0B4-770794D2C81B}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Link Images To Listing"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Link Images To Listing\FloorPlans"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="FloorPlans"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">exec ROSIE_uspGetRosieMigrationImages ?, 'PropertyFloorplan'</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"@RexListingID:Input",{0DAC147D-FAAB-45A5-9900-3B9C53ADA2D2};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Link Images To Listing\FloorPlans.Connections[OleDbConnection]"
+                  connectionManagerID="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Rosie]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].Columns[RexListingID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].ExternalColumns[RexListingID]"
+                      lineageId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].Columns[RexListingID]"
+                      name="RexListingID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].Columns[FileToUpload]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].ExternalColumns[FileToUpload]"
+                      length="500"
+                      lineageId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].Columns[FileToUpload]"
+                      name="FileToUpload"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].Columns[FileID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].ExternalColumns[FileID]"
+                      lineageId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].Columns[FileID]"
+                      name="FileID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].Columns[FileDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].ExternalColumns[FileDescription]"
+                      length="500"
+                      lineageId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].Columns[FileDescription]"
+                      name="FileDescription"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].Columns[FileUri]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].ExternalColumns[FileUri]"
+                      length="500"
+                      lineageId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].Columns[FileUri]"
+                      name="FileUri"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].ExternalColumns[RexListingID]"
+                      dataType="i4"
+                      name="RexListingID" />
+                    <externalMetadataColumn
+                      refId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].ExternalColumns[FileToUpload]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      name="FileToUpload" />
+                    <externalMetadataColumn
+                      refId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].ExternalColumns[FileID]"
+                      dataType="i4"
+                      name="FileID" />
+                    <externalMetadataColumn
+                      refId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].ExternalColumns[FileDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      name="FileDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].ExternalColumns[FileUri]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      name="FileUri" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Error Output].Columns[RexListingID]"
+                      dataType="i4"
+                      lineageId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Error Output].Columns[RexListingID]"
+                      name="RexListingID" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Error Output].Columns[FileToUpload]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      lineageId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Error Output].Columns[FileToUpload]"
+                      name="FileToUpload" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Error Output].Columns[FileID]"
+                      dataType="i4"
+                      lineageId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Error Output].Columns[FileID]"
+                      name="FileID" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Error Output].Columns[FileDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      lineageId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Error Output].Columns[FileDescription]"
+                      name="FileDescription" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Error Output].Columns[FileUri]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      lineageId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Error Output].Columns[FileUri]"
+                      name="FileUri" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Link Images To Listing\Images"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Images"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">exec ROSIE_uspGetRosieMigrationImages ?, 'PropertyImage'</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"@RexListingID:Input",{0DAC147D-FAAB-45A5-9900-3B9C53ADA2D2};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Link Images To Listing\Images.Connections[OleDbConnection]"
+                  connectionManagerID="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Rosie]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].Columns[RexListingID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].ExternalColumns[RexListingID]"
+                      lineageId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].Columns[RexListingID]"
+                      name="RexListingID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].Columns[FileToUpload]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].ExternalColumns[FileToUpload]"
+                      length="500"
+                      lineageId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].Columns[FileToUpload]"
+                      name="FileToUpload"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].Columns[FileID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].ExternalColumns[FileID]"
+                      lineageId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].Columns[FileID]"
+                      name="FileID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].Columns[FileDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].ExternalColumns[FileDescription]"
+                      length="500"
+                      lineageId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].Columns[FileDescription]"
+                      name="FileDescription"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].Columns[FileUri]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].ExternalColumns[FileUri]"
+                      length="500"
+                      lineageId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].Columns[FileUri]"
+                      name="FileUri"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].ExternalColumns[RexListingID]"
+                      dataType="i4"
+                      name="RexListingID" />
+                    <externalMetadataColumn
+                      refId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].ExternalColumns[FileToUpload]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      name="FileToUpload" />
+                    <externalMetadataColumn
+                      refId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].ExternalColumns[FileID]"
+                      dataType="i4"
+                      name="FileID" />
+                    <externalMetadataColumn
+                      refId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].ExternalColumns[FileDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      name="FileDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].ExternalColumns[FileUri]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      name="FileUri" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Error Output].Columns[RexListingID]"
+                      dataType="i4"
+                      lineageId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Error Output].Columns[RexListingID]"
+                      name="RexListingID" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Error Output].Columns[FileToUpload]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      lineageId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Error Output].Columns[FileToUpload]"
+                      name="FileToUpload" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Error Output].Columns[FileID]"
+                      dataType="i4"
+                      lineageId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Error Output].Columns[FileID]"
+                      name="FileID" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Error Output].Columns[FileDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      lineageId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Error Output].Columns[FileDescription]"
+                      name="FileDescription" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Error Output].Columns[FileUri]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      lineageId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Error Output].Columns[FileUri]"
+                      name="FileUri" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Link Images To Listing\JSON Generator Transform"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="JSON Generator Transform; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+              description="The JSON generator transform can be used to create JSON document from single or multiple inputs. You can create simple or nested JSON document."
+              name="JSON Generator Transform"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="LoggingMode determines how much information is logged during Package Execution. Set Logging mode to Debugging for maximum log."
+                  expressionType="Notify"
+                  name="LoggingMode"
+                  typeConverter="ZappySys.PowerPack.Common.LoggingMode, ZappySys.PowerPack130, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1903265a93eae502">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="When you enable this property it will prefix timestamp before Log messages."
+                  expressionType="Notify"
+                  name="PrefixTimestamp">false</property>
+                <property
+                  dataType="System.Null"
+                  expressionType="Notify"
+                  name="SelfRef"
+                  typeConverter="NOTBROWSABLE" />
+                <property
+                  dataType="System.Int32"
+                  description="Determines JSON format and output mode (e.g. one JSON for all input rows or one JSON for each input row)"
+                  expressionType="Notify"
+                  name="OutputMode"
+                  typeConverter="ZappySys.PowerPack.Transform.JsonGeneratorTransform.JsonOutputMode, ZappySys.PowerPack130, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1903265a93eae502">2</property>
+                <property
+                  dataType="System.String"
+                  description="Defines shape of output JSON string"
+                  expressionType="Notify"
+                  name="LayoutInfo">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;settings ver="3"&gt;
+  &lt;dataset id="Listing" main="True" inputid="79" readfrominput="True"&gt;&lt;/dataset&gt;
+  &lt;dataset id="Images" inputid="97" readfrominput="True"&gt;&lt;/dataset&gt;
+  &lt;dataset id="Floorplans" inputid="108" readfrominput="True"&gt;&lt;/dataset&gt;
+  &lt;join parentid="Listing" childid="Images"&gt;
+    &lt;key parent="RexListingID" child="RexListingID" /&gt;
+  &lt;/join&gt;
+  &lt;join parentid="Listing" childid="Floorplans"&gt;
+    &lt;key parent="RexListingID" child="RexListingID" /&gt;
+  &lt;/join&gt;
+  &lt;map name="method" value="Listings::update" datatype="String" /&gt;
+  &lt;map name="args"&gt;
+    &lt;map src="RexListingID" name="_id" datatype="Number" /&gt;
+    &lt;map name="data"&gt;
+      &lt;map src="RexListingID" name="_id" datatype="Number" /&gt;
+      &lt;map name="_related"&gt;
+        &lt;map name="listing_images" dataset="Images" parentdataset="Listing" maptype="DocArray"&gt;
+          &lt;map src="FileUri" name="uri" datatype="String" /&gt;
+          &lt;map src="FileID" name="priority" datatype="Number" /&gt;
+        &lt;/map&gt;
+        &lt;map name="listing_floorplans" dataset="Floorplans" parentdataset="Listing" maptype="DocArray"&gt;
+          &lt;map src="FileUri" name="uri" datatype="String" /&gt;
+          &lt;map src="FileID" name="priority" datatype="Number" /&gt;
+        &lt;/map&gt;
+      &lt;/map&gt;
+    &lt;/map&gt;
+  &lt;/map&gt;
+  &lt;map name="strip_response_prefix" value="True" datatype="String" /&gt;
+  &lt;map name="token" value="{{User::API_Token}}" datatype="String" /&gt;
+&lt;/settings&gt;</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Do not output attribute if value is NULL. By default null attribute is output as &quot;MyColname&quot; : null "
+                  expressionType="Notify"
+                  name="DoNotOutputNullAttribute">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indent JSON Text generated by this transform (Pretty Print)"
+                  expressionType="Notify"
+                  name="IndentOutput">false</property>
+                <property
+                  dataType="System.String"
+                  description="Default output format for datetime columns"
+                  expressionType="Notify"
+                  name="DateTimeFormat">yyyy-MM-dd HH:mm:ss</property>
+                <property
+                  dataType="System.String"
+                  description="Culture setting for this task. This option is useful to control output format for certain data types (e.g. number, decimal) based on regional settings. In USA dot is used for decimal indicator but in Germany it may be comma. Leave this blank if you want to use system default settings."
+                  expressionType="Notify"
+                  name="Culture"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Document Header/Footer text come from upstream column rather than direct string"
+                  expressionType="Notify"
+                  name="UseColumnForHeaderFooter">false</property>
+                <property
+                  dataType="System.String"
+                  description="Header text for document (Added before each document in the output)"
+                  expressionType="Notify"
+                  name="DocumentHeader"></property>
+                <property
+                  dataType="System.String"
+                  description="Footer text for document (Added after each document in the output)"
+                  expressionType="Notify"
+                  name="DocumentFooter"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how many rows to include in each batch (Array records for single dataset array mode). 0=Include all in one batch. This setting is only valid for Mode=[Single Dataset Array]"
+                  expressionType="Notify"
+                  name="ArrayBatchSize">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">ZappySys.JsonGeneratorTransform</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Link Images To Listing\JSON Generator Transform.Inputs[JsonInput1]"
+                  name="JsonInput1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Id for attached dataset with input. Use JSON Layout Editor to see attached dataset"
+                      expressionType="Notify"
+                      name="DatasetInputId">79</property>
+                  </properties>
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Link Images To Listing\JSON Generator Transform.Inputs[JsonInput1].Columns[RexListingID]"
+                      cachedDataType="i4"
+                      cachedName="RexListingID"
+                      lineageId="Package\Link Images To Listing\Listing.Outputs[OLE DB Source Output].Columns[RexListingID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Link Images To Listing\JSON Generator Transform.Inputs[JsonInput2]"
+                  name="JsonInput2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Id for attached dataset with input. Use JSON Layout Editor to see attached dataset"
+                      expressionType="Notify"
+                      name="DatasetInputId">97</property>
+                  </properties>
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Link Images To Listing\JSON Generator Transform.Inputs[JsonInput2].Columns[RexListingID]"
+                      cachedDataType="i4"
+                      cachedName="RexListingID"
+                      lineageId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].Columns[RexListingID]" />
+                    <inputColumn
+                      refId="Package\Link Images To Listing\JSON Generator Transform.Inputs[JsonInput2].Columns[FileToUpload]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="FileToUpload"
+                      lineageId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].Columns[FileToUpload]" />
+                    <inputColumn
+                      refId="Package\Link Images To Listing\JSON Generator Transform.Inputs[JsonInput2].Columns[FileID]"
+                      cachedDataType="i4"
+                      cachedName="FileID"
+                      lineageId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].Columns[FileID]" />
+                    <inputColumn
+                      refId="Package\Link Images To Listing\JSON Generator Transform.Inputs[JsonInput2].Columns[FileDescription]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="FileDescription"
+                      lineageId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].Columns[FileDescription]" />
+                    <inputColumn
+                      refId="Package\Link Images To Listing\JSON Generator Transform.Inputs[JsonInput2].Columns[FileUri]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="FileUri"
+                      lineageId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output].Columns[FileUri]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Link Images To Listing\JSON Generator Transform.Inputs[JsonInput3]"
+                  name="JsonInput3">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Id for attached dataset with input. Use JSON Layout Editor to see attached dataset"
+                      expressionType="Notify"
+                      name="DatasetInputId">108</property>
+                  </properties>
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Link Images To Listing\JSON Generator Transform.Inputs[JsonInput3].Columns[RexListingID]"
+                      cachedDataType="i4"
+                      cachedName="RexListingID"
+                      lineageId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].Columns[RexListingID]" />
+                    <inputColumn
+                      refId="Package\Link Images To Listing\JSON Generator Transform.Inputs[JsonInput3].Columns[FileToUpload]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="FileToUpload"
+                      lineageId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].Columns[FileToUpload]" />
+                    <inputColumn
+                      refId="Package\Link Images To Listing\JSON Generator Transform.Inputs[JsonInput3].Columns[FileID]"
+                      cachedDataType="i4"
+                      cachedName="FileID"
+                      lineageId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].Columns[FileID]" />
+                    <inputColumn
+                      refId="Package\Link Images To Listing\JSON Generator Transform.Inputs[JsonInput3].Columns[FileDescription]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="FileDescription"
+                      lineageId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].Columns[FileDescription]" />
+                    <inputColumn
+                      refId="Package\Link Images To Listing\JSON Generator Transform.Inputs[JsonInput3].Columns[FileUri]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="FileUri"
+                      lineageId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output].Columns[FileUri]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Link Images To Listing\JSON Generator Transform.Inputs[JsonInput4]"
+                  name="JsonInput4">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Link Images To Listing\JSON Generator Transform.Outputs[JsonGeneratorTransformOutput]"
+                  errorOrTruncationOperation="Error"
+                  name="JsonGeneratorTransformOutput">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Link Images To Listing\JSON Generator Transform.Outputs[JsonGeneratorTransformOutput].Columns[ZS_JSON_OUT]"
+                      dataType="nText"
+                      description="This output column contains generated JSON string from JSON generator Transform"
+                      lineageId="Package\Link Images To Listing\JSON Generator Transform.Outputs[JsonGeneratorTransformOutput].Columns[ZS_JSON_OUT]"
+                      name="ZS_JSON_OUT" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Link Images To Listing\Listing"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Listing"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select distinct(RexListingID)
+from RosiePropertyImageUpload
+where RexListingID =?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"@RexListingID:Input",{0DAC147D-FAAB-45A5-9900-3B9C53ADA2D2};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Link Images To Listing\Listing.Connections[OleDbConnection]"
+                  connectionManagerID="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Rosie]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Link Images To Listing\Listing.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Listing.Outputs[OLE DB Source Output].Columns[RexListingID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Link Images To Listing\Listing.Outputs[OLE DB Source Output].ExternalColumns[RexListingID]"
+                      lineageId="Package\Link Images To Listing\Listing.Outputs[OLE DB Source Output].Columns[RexListingID]"
+                      name="RexListingID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Link Images To Listing\Listing.Outputs[OLE DB Source Output].ExternalColumns[RexListingID]"
+                      dataType="i4"
+                      name="RexListingID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Link Images To Listing\Listing.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Listing.Outputs[OLE DB Source Error Output].Columns[RexListingID]"
+                      dataType="i4"
+                      lineageId="Package\Link Images To Listing\Listing.Outputs[OLE DB Source Error Output].Columns[RexListingID]"
+                      name="RexListingID" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Listing.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Link Images To Listing\Listing.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Listing.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Link Images To Listing\Listing.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Link Images To Listing\Web API Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Web API Destination; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+              description="The Web API destination can be used to send data to Web API URL (e.g. Submit or POST data to REST API/SOAP or other HTTP/HTTPS endpoints)"
+              name="Web API Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="LoggingMode determines how much information is logged during Package Execution. Set Logging mode to Debugging for maximum log."
+                  expressionType="Notify"
+                  name="LoggingMode"
+                  typeConverter="ZappySys.PowerPack.Common.LoggingMode, ZappySys.PowerPack130, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1903265a93eae502">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="When you enable this property it will prefix timestamp before Log messages."
+                  expressionType="Notify"
+                  name="PrefixTimestamp">false</property>
+                <property
+                  dataType="System.Null"
+                  expressionType="Notify"
+                  name="SelfRef"
+                  typeConverter="NOTBROWSABLE" />
+                <property
+                  dataType="System.String"
+                  description="API URL you want to access"
+                  expressionType="Notify"
+                  name="HttpRequestUrl">{{User::API_URL}}</property>
+                <property
+                  dataType="System.String"
+                  description="Http Web Request Method (e.g. POST, GET, PUT, LIST, DELETE...). Refer your API documentation if you are not sure which method you have to use."
+                  expressionType="Notify"
+                  name="HttpRequestMethod">POST</property>
+                <property
+                  dataType="System.String"
+                  description="Set this if you want to set custom Http headers. You may use variable anywhere in the header value using syntax {{User::YourVarName}}. Syntax of Header key value pair is : &amp;lt;request&amp;gt;&amp;lt;header&amp;gt;&amp;lt;name&amp;gt;x-myheader-1&amp;lt;/name&amp;gt;&amp;lt;value&amp;gt;AAA&amp;lt;/value&amp;gt;&amp;lt;/header&amp;gt; &amp;lt;header&amp;gt;&amp;lt;name&amp;gt;x-myheader-2&amp;lt;/name&amp;gt;&amp;lt;value&amp;gt;BBB&amp;lt;/value&amp;gt;&amp;lt;/header&amp;gt;&amp;lt;/request&amp;gt;"
+                  expressionType="Notify"
+                  name="HttpHeaders"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;</property>
+                <property
+                  dataType="System.String"
+                  description="User defined data you wish to send along with your HTTP Request (e.g. Upload file data, Form POST data). Usually you have to set content-type of your data but if you select RequestMethod=POST then system will automatically set content-type=application/x-www-form-urlencoded."
+                  expressionType="Notify"
+                  name="HttpRequestData"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies content type for data you wish to POST. If you select Default option then system default content type will be used (i.e. application/x-www-form-urlencoded). If you specify Content-Type header along with this option then header value takes precedence."
+                  expressionType="Notify"
+                  name="HttpRequestContentType"
+                  typeConverter="ZappySys.Common.Web.HttpRequestContentType, ZappySys.Common, Version=1.0.2018.10909, Culture=neutral, PublicKeyToken=1903265a93eae502">2</property>
+                <property
+                  dataType="System.Boolean"
+                  description="If this option is true then component will continue without exception on 404 error (Url not found). This allows you to consume data gracefully."
+                  expressionType="Notify"
+                  name="ContinueOnUrlNotFoundError">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Ignore SSL certificate related errors. Example: if you getting SSL/TLS errors because of certificate expired or certificate is not from trusted authority or certificate is self-signed. By checking this option you will not get SSL/TLS error."
+                  expressionType="Notify"
+                  name="IgnoreCertificateErrors">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Allow unsecure ciphers/suites and curves for SSLS/TLS communication. Use this option to communicate with web servers which needs legacy / unsecured ciphers support. This option is only trigged when you change default SSL/TLS Version on advanced settings tab."
+                  expressionType="Notify"
+                  name="AllowUnsecureSuite">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Enable support for gzip or deflate compression. When you check this option compressed response automatically de-compressed saving bandwidth. This option is only valid if web server supports compressed response stream. Check your API documentation for more information."
+                  expressionType="Notify"
+                  name="EnableCompressionSupport">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies which security protocol is supported for HTTPS communication. Using this option you can enable legacy protocol or enforce to use latest version of security protocol (Note: TLS 1.2 is only supported in SSIS 2014 or Higher)."
+                  expressionType="Notify"
+                  name="SecurityProtocol"
+                  typeConverter="ZappySys.PowerPack.Common.HttpsSecurityProtocolType, ZappySys.PowerPack130, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1903265a93eae502">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Wait time in milliseconds (Pause after each request). 0=No wait. Use this delay time if your API has limit on how many requests you can make in certain time frame."
+                  expressionType="Notify"
+                  name="WaitTime">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="When you redirect error to error output by default you get additional information in ErrorMessage column. Check this option if you need exact Response Body (Useful if its in JSON/XML format which needs to be parsed for additional information for later step)."
+                  expressionType="Notify"
+                  name="OnErrorOutputResponseBody">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Enable multiple requests using parallel threads."
+                  expressionType="Notify"
+                  name="EnableParallelRequests">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum parallel threads to use for processing multiple web requests."
+                  expressionType="Notify"
+                  name="MaxParallelThreads">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="By default one request is sent for each input row. If your API supports multiple records in a single call via HTTP Body then enable this setting. See also BodyBatchSize, BodyHeader, BodyFooter and BodyRowSeparator property."
+                  expressionType="Notify"
+                  name="EnableBodyBatch">false</property>
+                <property
+                  dataType="System.String"
+                  description="When you have to wrap input content between opening and closing tags for each call then set this property to specify opening for body content. For Example if you want to build Body like this (send max 100 rows per call) ==&gt; { records : [ {...}, {...}, {...} ] } then you can set BatchSize=100, BodyHeader as &quot;{ records: [&quot; , BodyFooter as &quot;] }&quot; and BodyRowSeperator as comma {,}. This property is ignored if EnableBodyBatch=false."
+                  expressionType="Notify"
+                  name="BodyHeader"></property>
+                <property
+                  dataType="System.String"
+                  description="When you have to wrap input content between opening and closing tags for each call then set this property to specify closing for body content. For Example if you want to build Body like this (send max 100 rows per call) ==&gt; { records : [ {...}, {...}, {...} ] } then you can set BatchSize=100, BodyHeader as &quot;{ records: [&quot; , BodyFooter as &quot;] }&quot; and BodyRowSeperator as comma {,}. This property is ignored if EnableBodyBatch=false."
+                  expressionType="Notify"
+                  name="BodyFooter"></property>
+                <property
+                  dataType="System.Int32"
+                  description="If your API supports multiple records via HTTP Body then change this setting &gt; 1 to include multiple upstream records into single call. See also BodyHeader, BodyFooter and BodyRowSeparator property. This property is ignored if EnableBodyBatch=false."
+                  expressionType="Notify"
+                  name="BodyBatchSize">100</property>
+                <property
+                  dataType="System.String"
+                  description="When you submit multiple rows in a batch you can separate multiple documents / records using custom separator (e.g. in JSON Array you can use comma {,} as record separator if POST document is in array format [ {...}, {...}, {...} ] ). For last row of batch blank separator is used."
+                  expressionType="Notify"
+                  name="BodyRowSeparator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Returns response data as binary data (e.g. Byte Array). Check this option is response is Zip file, Image file or any non text data which needs to be exported as raw data without any encoding."
+                  expressionType="Notify"
+                  name="TreatResponseAsBinary">false</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">ZappySys.WebApiDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Link Images To Listing\Web API Destination.Connections[Connection]"
+                  connectionManagerID="Package.ConnectionManagers[Rex API Http Connection]"
+                  connectionManagerRefId="Package.ConnectionManagers[Rex API Http Connection]"
+                  description="Connection manager for authentication (e.g. HTTP or OAuth Connection)"
+                  name="Connection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Link Images To Listing\Web API Destination.Inputs[WebApiDestinationInput]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="WebApiDestinationInput"
+                  truncationRowDisposition="FailComponent">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Link Images To Listing\Web API Destination.Inputs[WebApiDestinationInput].Columns[ZS_JSON_OUT]"
+                      cachedDataType="nText"
+                      cachedName="ZS_JSON_OUT"
+                      externalMetadataColumnId="Package\Link Images To Listing\Web API Destination.Inputs[WebApiDestinationInput].ExternalColumns[HttpRequestData]"
+                      lineageId="Package\Link Images To Listing\JSON Generator Transform.Outputs[JsonGeneratorTransformOutput].Columns[ZS_JSON_OUT]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Link Images To Listing\Web API Destination.Inputs[WebApiDestinationInput].ExternalColumns[HttpRequestUrl]"
+                      dataType="wstr"
+                      length="2000"
+                      name="HttpRequestUrl" />
+                    <externalMetadataColumn
+                      refId="Package\Link Images To Listing\Web API Destination.Inputs[WebApiDestinationInput].ExternalColumns[HttpRequestData]"
+                      dataType="nText"
+                      name="HttpRequestData" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Link Images To Listing\Web API Destination.Outputs[WebApiDestination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="WebApiDestination Error Output"
+                  synchronousInputId="Package\Link Images To Listing\Web API Destination.Inputs[WebApiDestinationInput]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Web API Destination.Outputs[WebApiDestination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Link Images To Listing\Web API Destination.Outputs[WebApiDestination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Web API Destination.Outputs[WebApiDestination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Link Images To Listing\Web API Destination.Outputs[WebApiDestination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Web API Destination.Outputs[WebApiDestination Error Output].Columns[ErrorColumnName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="128"
+                      lineageId="Package\Link Images To Listing\Web API Destination.Outputs[WebApiDestination Error Output].Columns[ErrorColumnName]"
+                      name="ErrorColumnName" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Web API Destination.Outputs[WebApiDestination Error Output].Columns[ErrorMessage]"
+                      dataType="nText"
+                      lineageId="Package\Link Images To Listing\Web API Destination.Outputs[WebApiDestination Error Output].Columns[ErrorMessage]"
+                      name="ErrorMessage" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Link Images To Listing\Web API Destination.Outputs[Response Output]"
+                  exclusionGroup="1"
+                  name="Response Output"
+                  synchronousInputId="Package\Link Images To Listing\Web API Destination.Inputs[WebApiDestinationInput]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Web API Destination.Outputs[Response Output].Columns[ResponseText]"
+                      dataType="nText"
+                      lineageId="Package\Link Images To Listing\Web API Destination.Outputs[Response Output].Columns[ResponseText]"
+                      name="ResponseText" />
+                    <outputColumn
+                      refId="Package\Link Images To Listing\Web API Destination.Outputs[Response Output].Columns[StatusCode]"
+                      dataType="i4"
+                      lineageId="Package\Link Images To Listing\Web API Destination.Outputs[Response Output].Columns[StatusCode]"
+                      name="StatusCode" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Link Images To Listing.Paths[JsonGeneratorTransformOutput]"
+              endId="Package\Link Images To Listing\Web API Destination.Inputs[WebApiDestinationInput]"
+              name="JsonGeneratorTransformOutput"
+              startId="Package\Link Images To Listing\JSON Generator Transform.Outputs[JsonGeneratorTransformOutput]" />
+            <path
+              refId="Package\Link Images To Listing.Paths[OLE DB Source Output]"
+              endId="Package\Link Images To Listing\JSON Generator Transform.Inputs[JsonInput1]"
+              name="OLE DB Source Output"
+              startId="Package\Link Images To Listing\Listing.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Link Images To Listing.Paths[OLE DB Source Output1]"
+              endId="Package\Link Images To Listing\JSON Generator Transform.Inputs[JsonInput2]"
+              name="OLE DB Source Output"
+              startId="Package\Link Images To Listing\Images.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Link Images To Listing.Paths[OLE DB Source Output2]"
+              endId="Package\Link Images To Listing\JSON Generator Transform.Inputs[JsonInput3]"
+              name="OLE DB Source Output"
+              startId="Package\Link Images To Listing\FloorPlans.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set SSIS Variables From XML"
+      DTS:CreationName="ZappySys.XmlParserTask"
+      DTS:Description="ZS Xml Parser Task"
+      DTS:DTSID="{F09D6656-462F-48BB-B7A8-B6B57C5555D2}"
+      DTS:ExecutableType="ZappySys.XmlParserTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set SSIS Variables From XML"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <XmlParserTask
+          SourceAccessMode="Connection"
+          SourceVariable=""
+          SourceConnection="{BF212CF9-B312-4839-8DAD-C3DDBDBB096C}"
+          SourceDirectValue="{{User::RexAPIWebURL}}&lt;!-- &#xA;Using XML Parser Task you can extract values from XML document using XPath Expression &#xA;See example in below grid. Read description for each mapping.&#xA;See more examples: https://msdn.microsoft.com/en-us/library/ms256086(v=vs.110).aspx&#xA;--&gt;&#xA;&lt;catalog&gt;&#xA;   &lt;book id=&quot;bk101&quot;&gt;&#xA;      &lt;author&gt;Gambardella, Matthew&lt;/author&gt;&#xA;      &lt;title&gt;XML Developer's Guide&lt;/title&gt;&#xA;      &lt;genre&gt;Computer&lt;/genre&gt;&#xA;      &lt;price&gt;44.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-10-01&lt;/publish_date&gt;&#xA;      &lt;description&gt;An in-depth look at creating applications &#xA;      with XML.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk102&quot;&gt;&#xA;      &lt;author&gt;Ralls, Kim&lt;/author&gt;&#xA;      &lt;title&gt;Midnight Rain&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-12-16&lt;/publish_date&gt;&#xA;      &lt;description&gt;A former architect battles corporate zombies, &#xA;      an evil sorceress, and her own childhood to become queen &#xA;      of the world.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk103&quot;&gt;&#xA;      &lt;author&gt;Corets, Eva&lt;/author&gt;&#xA;      &lt;title&gt;Maeve Ascendant&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-11-17&lt;/publish_date&gt;&#xA;      &lt;description&gt;After the collapse of a nanotechnology &#xA;      society in England, the young survivors lay the &#xA;      foundation for a new society.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk104&quot;&gt;&#xA;      &lt;author&gt;Corets, Eva&lt;/author&gt;&#xA;      &lt;title&gt;Oberon's Legacy&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2001-03-10&lt;/publish_date&gt;&#xA;      &lt;description&gt;In post-apocalypse England, the mysterious &#xA;      agent known only as Oberon helps to create a new life &#xA;      for the inhabitants of London. Sequel to Maeve &#xA;      Ascendant.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;&lt;/catalog&gt;"
+          TargetSettings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;XmlParserSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;Mappings&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/RexAPIWebURL&lt;/Path&gt;&lt;Target&gt;User::API_URL&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/PackageUser&lt;/Path&gt;&lt;Target&gt;User::API_User&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/PackageErrorEmail&lt;/Path&gt;&lt;Target&gt;User::ErrorEmail&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt; /SSISVariables/PackagePassword&lt;/Path&gt;&lt;Target&gt;User::API_Password&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;/Mappings&gt;&lt;Path /&gt;&lt;/XmlParserSetting&gt;"
+          LogLevel="Normal"
+          PrefixTimestamp="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{8AC16D3A-4609-4E04-85BE-2B576BA5C574}"
+      DTS:From="Package\Set SSIS Variables From XML"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Get Auth Key" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{6CF68384-E194-41B9-9F7E-0DB35A51BADC}"
+      DTS:From="Package\Get Auth Key"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Email Auth Failure"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{FF0279CD-6B32-4691-B934-2827C260DAFF}"
+      DTS:From="Package\Clear Image Migration Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Get Image List" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{0799E669-A496-47EA-8FDE-691E644DEDC6}"
+      DTS:From="Package\Get Auth Key"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Clear Image Migration Table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{B9CB9946-1890-4391-9A46-AFE89AD6BEF5}"
+      DTS:From="Package\Get Image List"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Foreach image" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{AE9D1CC8-F73B-4C1C-8079-9599B7BDCDA0}"
+      DTS:From="Package\Clear Image Migration Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Get floorplan List" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{B76973F0-E9BA-4D4E-B8C9-C6EAEB930FAE}"
+      DTS:From="Package\Get floorplan List"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Foreach floorplan" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{D61E9DE1-1E60-4FDE-B1D5-16345DE4D57E}"
+      DTS:From="Package\Foreach image"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Link Images To Listing" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{CE66115F-F125-4574-AC8E-912F5D7EE8BF}"
+      DTS:From="Package\Foreach floorplan"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Link Images To Listing" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{C4116D29-7ED1-4607-AA6F-8C8F8631531C}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{AF846C5B-6CE7-49CC-A786-9F796DCD846A}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Insert error log into database"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1F973A9B-623F-4D8E-B570-67E2C5994A7D}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert error log into database"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+              SQLTask:SqlStatementSource="INSERT INTO SSISErrorLog&#xA;(PackageName, StartTime, ErrorCode, ErrorDescription, AccountID)&#xA;VALUES&#xA;(?, ?, ?, ?, ?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@PackageName"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@StartTime"
+                SQLTask:DtsVariableName="System::StartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorCode"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorDescription"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@RexAccountID"
+                SQLTask:DtsVariableName="$Package::RexAccountID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="212,42"
+          Id="Package\Clear Image Migration Table"
+          TopLeft="658.5,209.5" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Email Auth Failure"
+          TopLeft="433.5,209.5" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Foreach floorplan\Email floorplan upload failure"
+          TopLeft="259,107.5" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Foreach floorplan\Get floorplan uri"
+          TopLeft="42.5,106.5" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Foreach floorplan\POST floorplan url"
+          TopLeft="284.5,5.5" />
+        <NodeLayout
+          Size="231,42"
+          Id="Package\Foreach floorplan\Update floorplan migration table"
+          TopLeft="5.50000000000003,209.5" />
+        <EdgeLayout
+          Id="Package\Foreach floorplan.PrecedenceConstraints[Constraint]"
+          TopLeft="340.833333333333,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-219.833333333333,60"
+              Start="0,0"
+              End="-219.833333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3457382953181" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3457382953181"
+                    Point2="0,24.3457382953181"
+                    Point3="-4,24.3457382953181" />
+                  <mssgle:LineSegment
+                    End="-215.833333333333,24.3457382953181" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-215.833333333333,24.3457382953181"
+                    Point2="-219.833333333333,24.3457382953181"
+                    Point3="-219.833333333333,28.3457382953181" />
+                  <mssgle:LineSegment
+                    End="-219.833333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach floorplan.PrecedenceConstraints[No error]"
+          TopLeft="96.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="24.5,60"
+              Start="0,0"
+              End="24.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.367816091954" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.367816091954"
+                    Point2="0,24.367816091954"
+                    Point3="4,24.367816091954" />
+                  <mssgle:LineSegment
+                    End="20.5,24.367816091954" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20.5,24.367816091954"
+                    Point2="24.5,24.367816091954"
+                    Point3="24.5,28.367816091954" />
+                  <mssgle:LineSegment
+                    End="24.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-15.58734375,29.367816091954,55.6746875,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach floorplan.PrecedenceConstraints[Constraint 2]"
+          TopLeft="393.166666666667,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-26.1666666666666,60"
+              Start="0,0"
+              End="-26.1666666666666,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3457382953181" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3457382953181"
+                    Point2="0,24.3457382953181"
+                    Point3="-4,24.3457382953181" />
+                  <mssgle:LineSegment
+                    End="-22.1666666666666,24.3457382953181" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22.1666666666666,24.3457382953181"
+                    Point2="-26.1666666666666,24.3457382953181"
+                    Point3="-26.1666666666666,28.3457382953181" />
+                  <mssgle:LineSegment
+                    End="-26.1666666666666,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-28.3246809895833,29.3457382953181,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Foreach floorplan\Insert API error"
+          TopLeft="297.5,209.5" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Foreach floorplan\Reset floorplan api error"
+          TopLeft="277.5,311.5" />
+        <EdgeLayout
+          Id="Package\Foreach floorplan.PrecedenceConstraints[Error]"
+          TopLeft="145.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="228.5,60"
+              Start="0,0"
+              End="228.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.367816091954" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.367816091954"
+                    Point2="0,24.367816091954"
+                    Point3="4,24.367816091954" />
+                  <mssgle:LineSegment
+                    End="224.5,24.367816091954" />
+                  <mssgle:CubicBezierSegment
+                    Point1="224.5,24.367816091954"
+                    Point2="228.5,24.367816091954"
+                    Point3="228.5,28.367816091954" />
+                  <mssgle:LineSegment
+                    End="228.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="93.85265625,29.367816091954,40.7946875,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach floorplan.PrecedenceConstraints[Constraint 1]"
+          TopLeft="374,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-25.304453125,20.4453125,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="480,408"
+          Size="480,452"
+          Id="Package\Foreach floorplan"
+          TopLeft="524.5,413.5" />
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Foreach image\Email image upload failure"
+          TopLeft="247,107.5" />
+        <NodeLayout
+          Size="143,42"
+          Id="Package\Foreach image\Get image uri"
+          TopLeft="43.5,107.5" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Foreach image\POST image url"
+          TopLeft="273,5.5" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\Foreach image\Update image migration table"
+          TopLeft="5.50000000000003,209.5" />
+        <EdgeLayout
+          Id="Package\Foreach image.PrecedenceConstraints[Constraint]"
+          TopLeft="325,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-210,60"
+              Start="0,0"
+              End="-210,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.375"
+                    Point2="0,24.375"
+                    Point3="-4,24.375" />
+                  <mssgle:LineSegment
+                    End="-206,24.375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-206,24.375"
+                    Point2="-210,24.375"
+                    Point3="-210,28.375" />
+                  <mssgle:LineSegment
+                    End="-210,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach image.PrecedenceConstraints[No error]"
+          TopLeft="92.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="22.5,60"
+              Start="0,0"
+              End="22.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3983402489627" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3983402489627"
+                    Point2="0,24.3983402489627"
+                    Point3="4,24.3983402489627" />
+                  <mssgle:LineSegment
+                    End="18.5,24.3983402489627" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.5,24.3983402489627"
+                    Point2="22.5,24.3983402489627"
+                    Point3="22.5,28.3983402489627" />
+                  <mssgle:LineSegment
+                    End="22.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-16.58734375,29.3983402489627,55.6746875,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach image.PrecedenceConstraints[Constraint 2]"
+          TopLeft="373,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-24,60"
+              Start="0,0"
+              End="-24,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.375"
+                    Point2="0,24.375"
+                    Point3="-4,24.375" />
+                  <mssgle:LineSegment
+                    End="-20,24.375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-20,24.375"
+                    Point2="-24,24.375"
+                    Point3="-24,28.375" />
+                  <mssgle:LineSegment
+                    End="-24,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-27.24134765625,29.375,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Foreach image\Insert API error"
+          TopLeft="285.5,209.5" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Foreach image\Reset image api error"
+          TopLeft="271.5,311.5" />
+        <EdgeLayout
+          Id="Package\Foreach image.PrecedenceConstraints[Constraint 3]"
+          TopLeft="362,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-25.304453125,20.4453125,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach image.PrecedenceConstraints[Error]"
+          TopLeft="137.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="224.5,60"
+              Start="0,0"
+              End="224.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3983402489627" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3983402489627"
+                    Point2="0,24.3983402489627"
+                    Point3="4,24.3983402489627" />
+                  <mssgle:LineSegment
+                    End="220.5,24.3983402489627" />
+                  <mssgle:CubicBezierSegment
+                    Point1="220.5,24.3983402489627"
+                    Point2="224.5,24.3983402489627"
+                    Point3="224.5,28.3983402489627" />
+                  <mssgle:LineSegment
+                    End="224.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="91.85265625,29.3983402489627,40.7946875,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="458,408"
+          Size="458,452"
+          Id="Package\Foreach image"
+          TopLeft="5.50000000000011,413.5" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Get Auth Key"
+          TopLeft="694,107.5" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Get floorplan List"
+          TopLeft="685,311.5" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\Get Image List"
+          TopLeft="476.5,311.5" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Link Images To Listing"
+          TopLeft="672,925.5" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Set SSIS Variables From XML"
+          TopLeft="656.5,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="764.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="742.333333333333,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-226.833333333333,60"
+              Start="0,0"
+              End="-226.833333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4039270687237" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4039270687237"
+                    Point2="0,24.4039270687237"
+                    Point3="-4,24.4039270687237" />
+                  <mssgle:LineSegment
+                    End="-222.833333333333,24.4039270687237" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-222.833333333333,24.4039270687237"
+                    Point2="-226.833333333333,24.4039270687237"
+                    Point3="-226.833333333333,28.4039270687237" />
+                  <mssgle:LineSegment
+                    End="-226.833333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-128.658014322917,29.4039270687237,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="730.5,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-180,60"
+              Start="0,0"
+              End="-180,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2696629213483" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2696629213483"
+                    Point2="0,24.2696629213483"
+                    Point3="-4,24.2696629213483" />
+                  <mssgle:LineSegment
+                    End="-176,24.2696629213483" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-176,24.2696629213483"
+                    Point2="-180,24.2696629213483"
+                    Point3="-180,28.2696629213483" />
+                  <mssgle:LineSegment
+                    End="-180,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="786.666666666667,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-22.1666666666666,60"
+              Start="0,0"
+              End="-22.1666666666666,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4039270687237" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4039270687237"
+                    Point2="0,24.4039270687237"
+                    Point3="-4,24.4039270687237" />
+                  <mssgle:LineSegment
+                    End="-18.1666666666666,24.4039270687237" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.1666666666666,24.4039270687237"
+                    Point2="-22.1666666666666,24.4039270687237"
+                    Point3="-22.1666666666666,28.4039270687237" />
+                  <mssgle:LineSegment
+                    End="-22.1666666666666,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="550.5,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-316,60.0000000000001"
+              Start="0,0"
+              End="-316,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.0000000000001" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.0000000000001"
+                    Point2="0,30.0000000000001"
+                    Point3="-4,30.0000000000001" />
+                  <mssgle:LineSegment
+                    End="-312,30.0000000000001" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-312,30.0000000000001"
+                    Point2="-316,30.0000000000001"
+                    Point3="-316,34.0000000000001" />
+                  <mssgle:LineSegment
+                    End="-316,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="798.5,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-34,60"
+              Start="0,0"
+              End="-34,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2696629213483" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2696629213483"
+                    Point2="0,24.2696629213483"
+                    Point3="-4,24.2696629213483" />
+                  <mssgle:LineSegment
+                    End="-30,24.2696629213483" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-30,24.2696629213483"
+                    Point2="-34,24.2696629213483"
+                    Point3="-34,28.2696629213483" />
+                  <mssgle:LineSegment
+                    End="-34,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="764.5,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="234.5,865.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="500.5,59.9999999999999"
+              Start="0,0"
+              End="500.5,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.6913183279742" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.6913183279742"
+                    Point2="0,35.6913183279742"
+                    Point3="4,35.6913183279742" />
+                  <mssgle:LineSegment
+                    End="496.5,35.6913183279742" />
+                  <mssgle:CubicBezierSegment
+                    Point1="496.5,35.6913183279742"
+                    Point2="500.5,35.6913183279742"
+                    Point3="500.5,39.6913183279742" />
+                  <mssgle:LineSegment
+                    End="500.5,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="764.5,865.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="29.5,60"
+              Start="0,0"
+              End="29.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.6913183279743" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.6913183279743"
+                    Point2="0,35.6913183279743"
+                    Point3="4,35.6913183279743" />
+                  <mssgle:LineSegment
+                    End="25.5,35.6913183279743" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25.5,35.6913183279743"
+                    Point2="29.5,35.6913183279743"
+                    Point3="29.5,39.6913183279743" />
+                  <mssgle:LineSegment
+                    End="29.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="217,42"
+          Id="Package.EventHandlers[OnError]\Insert error log into database"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <PrecedenceConstraint
+    design-time-name="Package\Foreach floorplan.PrecedenceConstraints[No error]">
+    <ShowAnnotation>ConstraintName</ShowAnnotation>
+  </PrecedenceConstraint>
+  <PrecedenceConstraint
+    design-time-name="Package\Foreach image.PrecedenceConstraints[No error]">
+    <ShowAnnotation>ConstraintName</ShowAnnotation>
+  </PrecedenceConstraint>
+  <TaskHost
+    design-time-name="Package\Link Images To Listing">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="114,42"
+          Id="Package\Link Images To Listing\Images"
+          TopLeft="175,5.5" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Link Images To Listing\Web API Destination"
+          TopLeft="144,209.5" />
+        <NodeLayout
+          Size="109,42"
+          Id="Package\Link Images To Listing\Listing"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\Link Images To Listing\JSON Generator Transform"
+          TopLeft="129,107.5" />
+        <NodeLayout
+          Size="127,42"
+          Id="Package\Link Images To Listing\FloorPlans"
+          TopLeft="349.5,5.5" />
+        <EdgeLayout
+          Id="Package\Link Images To Listing.Paths[JsonGeneratorTransformOutput]"
+          TopLeft="232,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Link Images To Listing.Paths[OLE DB Source Output2]"
+          TopLeft="413,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-131.5,60"
+              Start="0,0"
+              End="-131.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.4888178913738" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.4888178913738"
+                    Point2="0,39.4888178913738"
+                    Point3="-4,39.4888178913738" />
+                  <mssgle:LineSegment
+                    End="-127.5,39.4888178913738" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-127.5,39.4888178913738"
+                    Point2="-131.5,39.4888178913738"
+                    Point3="-131.5,43.4888178913738" />
+                  <mssgle:LineSegment
+                    End="-131.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Link Images To Listing.Paths[OLE DB Source Output1]"
+          TopLeft="232,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Link Images To Listing.Paths[OLE DB Source Output]"
+          TopLeft="60,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="122.5,60"
+              Start="0,0"
+              End="122.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.4888178913738" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.4888178913738"
+                    Point2="0,39.4888178913738"
+                    Point3="4,39.4888178913738" />
+                  <mssgle:LineSegment
+                    End="118.5,39.4888178913738" />
+                  <mssgle:CubicBezierSegment
+                    Point1="118.5,39.4888178913738"
+                    Point2="122.5,39.4888178913738"
+                    Point3="122.5,43.4888178913738" />
+                  <mssgle:LineSegment
+                    End="122.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Link Images To Listing\Listing">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Link Images To Listing\Images">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Link Images To Listing\FloorPlans">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PrecedenceConstraint
+    design-time-name="Package\Foreach image.PrecedenceConstraints[Error]">
+    <ShowAnnotation>ConstraintName</ShowAnnotation>
+  </PrecedenceConstraint>
+  <PrecedenceConstraint
+    design-time-name="Package\Foreach floorplan.PrecedenceConstraints[Error]">
+    <ShowAnnotation>ConstraintName</ShowAnnotation>
+  </PrecedenceConstraint>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

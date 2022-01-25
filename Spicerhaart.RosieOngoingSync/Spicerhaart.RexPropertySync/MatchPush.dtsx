@@ -1,0 +1,3309 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/12/2018 4:02:07 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WX9000ITD21"
+  DTS:CreatorName="SPICERHAART\1920191"
+  DTS:DTSID="{9921673C-1EF1-49CC-85C6-C6A1C37F5C6D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="MatchPush"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="1"
+  DTS:VersionBuild="146"
+  DTS:VersionGUID="{AB42E785-BF63-4226-B673-632A5C58D123}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HTTP]"
+      DTS:CreationName="ZS-HTTP"
+      DTS:DTSID="{6C4B9EF8-E18A-4D02-B5D4-FE47309958DA}"
+      DTS:ObjectName="HTTP">
+      <DTS:ObjectData>
+        <ConnectionManager
+          ConnectionString="Url=https://api.rexsoftware.com/rex.php;CredentialType=Notset;UserName=;Timeout=100000;SoapWssPasswordType=Notset;JwtCustomClaims=;UseProxy=False;ProxyUrl=;UseProxyCreds=False;ProxyUserName=;DoNotUseDefaultProxy=False;UseClientCertificate=False;CertificatePath=;CertificateStorageType=CurrentUser;CertificateStoreName=My;CertificateThumbprint=;RetryMode=RetryAny;RetryCountMax=5;RetryWaitTimeMs=2000;RetryMultiplyWaitTime=False;RetryMessageList=;RetryStatusCodeList=;AuthScheme=Bearer;TokenAuthHeader=;TokenUrl=;TokenRequestData=;TokenRequestHeaders=;TokenRequestMethod=;TokenRequestContentType=Default;TokenResponseContentFilter=;TokenResponseValueExtractMode=Body;TokenResponseCookie=;TokenResponseHeader=;TokenResponseContentType=None;TokenExpirationTimeInSeconds=3600" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RexSync.xml]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{573D3594-1740-4160-BA0A-1B680E5FA229}"
+      DTS:ObjectName="RexSync.xml">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\SSISVariables\RexSync.xml" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP 1]"
+      DTS:CreationName="ZS-SMTP"
+      DTS:DTSID="{EF623DE9-0810-42E3-87E4-857E9C083388}"
+      DTS:ObjectName="SMTP 1">
+      <DTS:ObjectData>
+        <ConnectionManager
+          ConnectionString="SmtpServer=outlookcol;UserName=;Port=25;EnableSsl=False;Timeout=10000;EnableAnonymousAuth=False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{6C78B798-1943-43F1-B8E2-0CAD2532E39D}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=outlookcol;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{87675024-0645-4A2B-8FA1-84B632D18692}"
+      DTS:ObjectName="AccountID">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">1734</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{AC959B0E-8E38-4DF2-9CA8-F80A8CE0A4C5}"
+      DTS:ObjectName="OfficeID">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">0307</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F156DCDB-C50A-4B90-8C93-D8BD793C907A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageErrorEmail">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{410A6D4E-F1BA-4E5C-814D-6E5C2DC4C1C1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackagePassword">
+      <DTS:VariableValue
+        DTS:DataType="8">P4ssword</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E2A42755-3D0F-4E23-8B93-81775A731FC3}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageRosieURL">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A15CA085-BA28-4F44-AC0F-88C663C79FFB}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageStartForNextRun">
+      <DTS:VariableValue
+        DTS:DataType="7">11/23/2018 9:57:08 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{01A9826D-5F0F-4E61-A6A8-EF7BD726C18A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageUsername">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{79FE875C-B8B0-4AD9-A7B1-BBB583B2034C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ProcessingStart">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{25E3AB99-F3E8-4A64-A481-5DB562A773CF}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RecordsetMatchProfiles">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{701E8D3A-F5C2-4746-9B8B-1215B1D77604}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ResponseAuth">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E52A5C16-DCA6-437A-A063-7153B51E11A5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ResponseAuthCode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{83C4CAD4-180E-446B-9B05-1A00659A475F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ResponseCreate">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{317DCE47-6ECF-49AE-A2E8-0786868A75AE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ResponseCreateCode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FF43CE49-4D1E-49A1-9D40-4BF01C9E78CE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowsFailed">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9356DC0D-E869-406C-AFE5-BE3B6BAEB393}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowsSuccess">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FF77396C-A3E9-48D2-9488-DC9AF9B7E44C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varAppRef">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D14DA56A-57FE-4A7E-9C98-4F7EA8A3BE41}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varBedroomEnd">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7F3433AA-7B64-4CBE-86CF-963E049C68C0}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varBedrooms">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{207D3469-0820-4E49-A039-F390E9D749F2}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varBedroomStart">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7763DE32-C1C7-4105-9383-DF5AA2F136CE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varCodeDesc">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{29B4381A-10DF-4BF7-919B-7584107CDEE9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varCounty">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{93142EE5-74E9-49CF-B6D1-13EC929512F6}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varEtagContact">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{47356310-B478-4D5E-BB6F-9F9E1B8E22EF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varEtagMatchProfile">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EF13459C-B53A-41E8-9BEA-D8BD70AA42B8}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varPostCode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{506E42DC-C2CE-4053-A00F-EE7C5056C6F0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varPostTown">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9AC85C0A-9AE1-4E2D-985A-519FD1A57E12}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varPriceEnd">
+      <DTS:VariableValue
+        DTS:DataType="14">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BC59A6DB-ECEA-402D-964A-861CB95723AD}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varPriceStart">
+      <DTS:VariableValue
+        DTS:DataType="14">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F0AFED46-3B87-4715-8C82-7019245B5743}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varPropRef">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{808D4CA0-7207-4B5C-96EF-E58B154C7808}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varPropType">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2F778CBA-5A79-43A5-81AF-4FC880B25F62}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varReceptions">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{721B0DC1-098D-43B6-AD5F-DB6972762F65}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varRexPropSubCat">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{95C57F16-8292-4034-9370-15E396AF0AA5}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varRidContact">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BA634727-144D-4ADF-A279-50E108F48E78}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varRidMatchProfile">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7D4D87E4-37C4-4179-ABBB-5CD513B85113}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varRidMatchProfileInt">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{71CDC9FC-7566-41DA-98C4-57CCA79B40B8}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSearchComma">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{171BF352-EF5A-4A6E-915B-4AE972CBB1EC}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSearchPostCode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{990C01F3-CA29-4996-BD02-3D01A833316F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSearchTown">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E08614CC-7F1F-46E0-9022-528A742192A9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSQLID">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9EFFFEFB-955C-462C-8552-5761397F4B73}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSurn">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E7FE3F8D-60F1-4FBE-A9E6-EC00F16FD913}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTitle">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{83AFF3C3-2552-40EE-9D95-17A19CDCF4B5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varType">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:LoggingMode="1" />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Create Match Profiles"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{F424A686-6A62-4655-A1C7-0AE6D8875C06}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Create Match Profiles"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Create Match Profiles\Convert to INT"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Convert to INT"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Create Match Profiles\Convert to INT.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Create Match Profiles\Convert to INT.Inputs[Data Conversion Input].Columns[result._id]"
+                      cachedDataType="i8"
+                      cachedName="result._id"
+                      lineageId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].Columns[result._id]" />
+                    <inputColumn
+                      refId="Package\Create Match Profiles\Convert to INT.Inputs[Data Conversion Input].Columns[result.contact.id]"
+                      cachedDataType="wstr"
+                      cachedLength="24"
+                      cachedName="result.contact.id"
+                      lineageId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].Columns[result.contact.id]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Create Match Profiles\Convert to INT.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Create Match Profiles\Convert to INT.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Convert to INT.Outputs[Data Conversion Output].Columns[rid_matchprofile]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Create Match Profiles\Convert to INT.Outputs[Data Conversion Output].Columns[rid_matchprofile]"
+                      name="rid_matchprofile"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].Columns[result._id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Convert to INT.Outputs[Data Conversion Output].Columns[rid_contact]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Create Match Profiles\Convert to INT.Outputs[Data Conversion Output].Columns[rid_contact]"
+                      name="rid_contact"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].Columns[result.contact.id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Create Match Profiles\Convert to INT.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Create Match Profiles\Convert to INT.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Convert to INT.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Create Match Profiles\Convert to INT.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Convert to INT.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Create Match Profiles\Convert to INT.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Create Match Profiles\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Create Match Profiles\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Create Match Profiles\Derived Column.Inputs[Derived Column Input].Columns[rid_matchprofile]"
+                      cachedDataType="i8"
+                      cachedName="rid_matchprofile"
+                      lineageId="Package\Create Match Profiles\Convert to INT.Outputs[Data Conversion Output].Columns[rid_matchprofile]" />
+                    <inputColumn
+                      refId="Package\Create Match Profiles\Derived Column.Inputs[Derived Column Input].Columns[rid_contact]"
+                      cachedDataType="i8"
+                      cachedName="rid_contact"
+                      lineageId="Package\Create Match Profiles\Convert to INT.Outputs[Data Conversion Output].Columns[rid_contact]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Create Match Profiles\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Create Match Profiles\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Derived Column.Outputs[Derived Column Output].Columns[@rid_contact_1]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Create Match Profiles\Derived Column.Outputs[Derived Column Output].Columns[@rid_contact_1]"
+                      name="@rid_contact_1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Create Match Profiles\Convert to INT.Outputs[Data Conversion Output].Columns[rid_contact]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">rid_contact</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Derived Column.Outputs[Derived Column Output].Columns[@rid_matchprofile]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Create Match Profiles\Derived Column.Outputs[Derived Column Output].Columns[@rid_matchprofile]"
+                      name="@rid_matchprofile"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Create Match Profiles\Convert to INT.Outputs[Data Conversion Output].Columns[rid_matchprofile]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">rid_matchprofile</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Create Match Profiles\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Create Match Profiles\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Create Match Profiles\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Create Match Profiles\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Create Match Profiles\Get Applicants"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Get Applicants"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">exec ROSIE_GetApplicants ?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"@OfficeID:Input",{AC959B0E-71C7-4DF2-9CA8-F80A8CE0A4C5};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Create Match Profiles\Get Applicants.Connections[OleDbConnection]"
+                  connectionManagerID="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[InternetDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Create Match Profiles\Get Applicants.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Get Applicants.Outputs[OLE DB Source Output].Columns[JSON]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create Match Profiles\Get Applicants.Outputs[OLE DB Source Output].ExternalColumns[JSON]"
+                      length="8000"
+                      lineageId="Package\Create Match Profiles\Get Applicants.Outputs[OLE DB Source Output].Columns[JSON]"
+                      name="JSON"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Applicants.Outputs[OLE DB Source Output].ExternalColumns[JSON]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="JSON" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Create Match Profiles\Get Applicants.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Get Applicants.Outputs[OLE DB Source Error Output].Columns[JSON]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      lineageId="Package\Create Match Profiles\Get Applicants.Outputs[OLE DB Source Error Output].Columns[JSON]"
+                      name="JSON" />
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Get Applicants.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Create Match Profiles\Get Applicants.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Get Applicants.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Create Match Profiles\Get Applicants.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Create Match Profiles\Get Results"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="JSON Parser Transform; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+              description="Parse incoming JSON String into columns. You can also parse and transform single JSON record into multiple rows by filtering data based on JSON Path (e.g. $.Customer.Orders[*])"
+              name="Get Results"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="LoggingMode determines how much information is logged during Package Execution. Set Logging mode to Debugging for maximum log."
+                  expressionType="Notify"
+                  name="LoggingMode"
+                  typeConverter="ZappySys.PowerPack.Common.LoggingMode, ZappySys.PowerPack130, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1903265a93eae502">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="When you enable this property it will prefix timestamp before Log messages."
+                  expressionType="Notify"
+                  name="PrefixTimestamp">false</property>
+                <property
+                  dataType="System.Null"
+                  expressionType="Notify"
+                  name="SelfRef"
+                  typeConverter="NOTBROWSABLE" />
+                <property
+                  dataType="System.Boolean"
+                  description="Treat empty string as NULL for any numeric data types"
+                  expressionType="Notify"
+                  name="TreatBlankNumberAsNull">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Treat empty string as NULL for bool data types"
+                  expressionType="Notify"
+                  name="TreatBlankBoolAsNull">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Treat empty string as NULL for any date/time data types"
+                  expressionType="Notify"
+                  name="TreatBlankDateAsNull">true</property>
+                <property
+                  dataType="System.String"
+                  description="Sample JSON data used to parse output columns."
+                  expressionType="Notify"
+                  name="SampleData"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">{
+    "result": {
+        "system_ctime": 1553187346,
+        "system_modtime": 1553187346,
+        "system_record_state": "active",
+        "profile_name": "Residential Sale Match Profile for Mr.Pearce",
+        "category": "residential_sale",
+        "contact": {
+            "_name": "Thomas Pearce",
+            "_email_address": "t.m.pearce@hotmail.co.uk",
+            "_phone_number": "07468 464382",
+            "_address_postal": null,
+            "_address": "65 Longfield Road\r\nSheffield\r\nSouth Yorkshire\r\nS10 1QW",
+            "id": "266059"
+        },
+        "_related": {
+            "campaigns": [],
+            "buildings": [],
+            "towns": [],
+            "streets": [],
+            "postcode_areas": [],
+            "postcode_districts": [],
+            "postcode_sectors": [],
+            "postcodes": [],
+            "tags_any": [],
+            "tags": [],
+            "features": [],
+            "views": [],
+            "ideal_for": [],
+            "rental_attributes": [],
+            "listing_categories": []
+        },
+        "_category_name": "Residential Sale",
+        "price_match": {
+            "min": null,
+            "max": null
+        },
+        "attr_energy_rating": {
+            "min": null,
+            "max": null
+        },
+        "attr_bathrooms": {
+            "min": null,
+            "max": null
+        },
+        "attr_bedrooms": {
+            "min": null,
+            "max": "9999"
+        },
+        "attr_garages": {
+            "min": null,
+            "max": null
+        },
+        "attr_carports": {
+            "min": null,
+            "max": null
+        },
+        "attr_ensuites": {
+            "min": null,
+            "max": null
+        },
+        "attr_toilets": {
+            "min": null,
+            "max": null
+        },
+        "attr_living_areas": {
+            "min": null,
+            "max": null
+        },
+        "attr_open_spaces": {
+            "min": null,
+            "max": null
+        },
+        "attr_roi_pa": {
+            "min": null,
+            "max": null
+        },
+        "attr_takings_pa": {
+            "min": null,
+            "max": null
+        },
+        "attr_build_year": {
+            "min": null,
+            "max": null
+        },
+        "attr_sleeps": {
+            "min": null,
+            "max": null
+        },
+        "attr_frontage": {
+            "min": null,
+            "max": null
+        },
+        "attr_depth_left": {
+            "min": null,
+            "max": null
+        },
+        "attr_depth_right": {
+            "min": null,
+            "max": null
+        },
+        "attr_depth_rear": {
+            "min": null,
+            "max": null
+        },
+        "car_spaces": {
+            "min": null,
+            "max": null
+        },
+        "attr_buildarea": {
+            "min": null,
+            "max": null,
+            "m2_min": null,
+            "m2_max": null
+        },
+        "attr_buildarea_unit": {
+            "min": null,
+            "max": null
+        },
+        "attr_landarea": {
+            "min": null,
+            "max": null,
+            "m2_min": null,
+            "m2_max": null
+        },
+        "attr_landarea_unit": {
+            "min": null,
+            "max": null
+        },
+        "attr_is_house_land": null,
+        "attr_is_corner_block": null,
+        "attr_franchise": null,
+        "attr_whole_building": null,
+        "rent_sqm": {
+            "min": null,
+            "max": null
+        },
+        "_id": 37521
+    },
+    "error": null
+}</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Include all upstream parent columns into output except the one you selected to parse. By default only parsed columns from Input document is included in the output. If you wish to include all other upstream columns in the output too then check this option."
+                  expressionType="Notify"
+                  name="OutputAllUpstreamColumns">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum JSON records to fetch. Set this value to 0 for all records"
+                  expressionType="Notify"
+                  name="MaxRows">0</property>
+                <property
+                  dataType="System.String"
+                  description="Enter expression here to filter data.(Example:  $.Users[*].UserName ) This will fetch User names from users records"
+                  expressionType="Notify"
+                  name="Filter"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Use this option to include parent properties (Non array) in the output along with Filtered Rows"
+                  expressionType="Notify"
+                  name="IncludeParentColumns">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="By default child and parent information is not included in the output if children not found for specified expression. For example if you want to extract all orders from all customers nodes then you can type $.Customers[*].Orders[*]. This will fetch all orders from all customers. By default customers records without orders wont be included in the output. If you want to include those customers where orders not found then check this option (Output null information for order attributes). This behavior is similar to LEFT OUTER JOIN in SQL (Left side is parent, right side is child). This option is ***resource intensive*** so only check if you really care about this behavior."
+                  expressionType="Notify"
+                  name="IncludeParentColumnsWhenChildMissing">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Set this option to true if you want to output parent columns which are array. By default any parent column which is an array is not included in output. See also FilterForParentColumnsWithArrayType property if you set this property"
+                  expressionType="Notify"
+                  name="IncludeParentColumnsWithArrayType">false</property>
+                <property
+                  dataType="System.String"
+                  description="Filter expression to extract value form parent"
+                  expressionType="Notify"
+                  name="FilterForParentColumnsWithArrayType"></property>
+                <property
+                  dataType="System.String"
+                  description="Prefix for parent column name. This option is only valid if you have set IncludeParentColumns=True"
+                  expressionType="Notify"
+                  name="ParentColumnPrefix">P_</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Throw error if property name specified in filter expression is missing. By default it will ignore any missing property errors."
+                  expressionType="Notify"
+                  name="ThrowErrorIfPropertyMissing">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="This property how many nested levels should be scanned to fetch various properties. 0=Scan all child levels."
+                  expressionType="Notify"
+                  name="MaxLevelsToScan">0</property>
+                <property
+                  dataType="System.String"
+                  description="List comma separated property names from JSON document which you want to exclude from output. Specify parent property name to exclude all child nodes."
+                  expressionType="Notify"
+                  name="ExcludedProperties"></property>
+                <property
+                  dataType="System.String"
+                  description="Property level separator used in generated property name (separator for outer properties - Above selected filter node). Use this if default separator is producing duplicate property name which is conflicting with existing name."
+                  expressionType="Notify"
+                  name="LevelSeparator">_</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Enables deep array flattening for selected filtered hierarchy. When you turn on this property it will flatten each property of each array item and expose as column (e.g. If you have Filter set as $.customers[*] and for each customer you have an array of Addresses then you may see output columns like Addresses.1.City, Addresses.1.State, Addresses.2.City, Addresses.2.State .... Addresses.N.City, Addresses.N.State). You can control how many array items you want to flatten by setting MaxArrayItemsToFlatten property."
+                  expressionType="Notify"
+                  name="EnableArrayFlattening">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum number of array items to flatten. inner array flattening. Adjust this property to control how many columns being generated. This option is ignored if you set EnableArrayFlattening=false"
+                  expressionType="Notify"
+                  name="MaxArrayItemsToFlatten">10</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies how custom date formatted strings are parsed when reading JSON."
+                  expressionType="Notify"
+                  name="DateFormatString"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how date formatted strings, e.g. Date(1198908717056) and 2012-03-21T05:40Z, are parsed when reading JSON."
+                  expressionType="Notify"
+                  name="DateParseHandling"
+                  typeConverter="ZappySys.Common.DateParseHandling, ZappySys.Common, Version=1.0.2018.11017, Culture=neutral, PublicKeyToken=1903265a93eae502">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Output as raw JSON document rather than parsing individual fields. This option is helpful if you have documents stored in a file and you want to pass them downstream as raw JSON string rather than parsing into columns."
+                  expressionType="Notify"
+                  name="OutputRawDocument">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indent JSON output so its easy to read."
+                  expressionType="Notify"
+                  name="IndentOutput">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="When this property is true then Column is converted to Row. Pivoted names will appear under  Pivot_Name column and values will appear under Pivot_Value field."
+                  expressionType="Notify"
+                  name="EnablePivot">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Array Transformation you want to apply. Useful for case when you have 2-Dimensional arrays with rows/columns in separate arrays."
+                  expressionType="Notify"
+                  name="ArrayTransformationType"
+                  typeConverter="ZappySys.Json.ArrayTransformType, ZappySys.Json, Version=1.0.2018.11017, Culture=neutral, PublicKeyToken=1903265a93eae502">0</property>
+                <property
+                  dataType="System.String"
+                  description="Filter expression to use to extract column names for array transformation."
+                  expressionType="Notify"
+                  name="ArrayTransColumnNameFilter"></property>
+                <property
+                  dataType="System.String"
+                  description="Filter expression for row values (Not applicable for simple array transformation)."
+                  expressionType="Notify"
+                  name="ArrayTransRowValueFilter"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="When you have 2D array but don't have column list specified in a separate array then use this option (e.g. { arr: [[10,11],[21,22]] } )."
+                  expressionType="Notify"
+                  name="ArrayTransEnableCustomColumns">false</property>
+                <property
+                  dataType="System.String"
+                  description="When you have 2D array but don't have column list specified in a separate array then use specify column names here. Use comma separated list (e.g col1,col2,col3 ). Column name Order must match value order."
+                  expressionType="Notify"
+                  name="ArrayTransCustomColumns"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Metadata scan mode controls how data type and length is determined. By default few records scanned to determine datatype/length. Changing ScanMode affects length/datatype accuracy."
+                  expressionType="Notify"
+                  name="MetaDataScanMode"
+                  typeConverter="ZappySys.Common.Data.MetaDataScanMode, ZappySys.Common, Version=1.0.2018.11017, Culture=neutral, PublicKeyToken=1903265a93eae502">4</property>
+                <property
+                  dataType="System.Int32"
+                  description="Length for all string column. This option is only valid for MetaDataScanMode=Custom"
+                  expressionType="Notify"
+                  name="MetaDataCustomLength">1000</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">ZappySys.JsonParserTransform</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Create Match Profiles\Get Results.Inputs[JsonParserTransformInput]"
+                  errorRowDisposition="FailComponent"
+                  name="JsonParserTransformInput"
+                  truncationRowDisposition="FailComponent">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Create Match Profiles\Get Results.Inputs[JsonParserTransformInput].Columns[ResponseText]"
+                      cachedDataType="nText"
+                      cachedName="ResponseText"
+                      lineageId="Package\Create Match Profiles\Send to Rosie.Outputs[Response Output].Columns[ResponseText]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput]"
+                  errorOrTruncationOperation="Error"
+                  errorRowDisposition="FailComponent"
+                  name="JsonParserTransformOutput"
+                  truncationRowDisposition="FailComponent">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].Columns[result._id]"
+                      dataType="i8"
+                      externalMetadataColumnId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result._id]"
+                      lineageId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].Columns[result._id]"
+                      name="result._id" />
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].Columns[result.contact.id]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.contact.id]"
+                      length="24"
+                      lineageId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].Columns[result.contact.id]"
+                      name="result.contact.id" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.system_ctime]"
+                      dataType="i8"
+                      name="result.system_ctime" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.system_modtime]"
+                      dataType="i8"
+                      name="result.system_modtime" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.system_record_state]"
+                      dataType="wstr"
+                      length="24"
+                      name="result.system_record_state" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.profile_name]"
+                      dataType="wstr"
+                      length="176"
+                      name="result.profile_name" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.category]"
+                      dataType="wstr"
+                      length="64"
+                      name="result.category" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.contact._name]"
+                      dataType="wstr"
+                      length="52"
+                      name="result.contact._name" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.contact._email_address]"
+                      dataType="wstr"
+                      length="96"
+                      name="result.contact._email_address" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.contact._phone_number]"
+                      dataType="wstr"
+                      length="48"
+                      name="result.contact._phone_number" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.contact._address_postal]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.contact._address_postal" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.contact._address]"
+                      dataType="wstr"
+                      length="216"
+                      name="result.contact._address" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.contact.id]"
+                      dataType="wstr"
+                      length="24"
+                      name="result.contact.id" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result._related.campaigns]"
+                      dataType="wstr"
+                      length="8"
+                      name="result._related.campaigns" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result._related.buildings]"
+                      dataType="wstr"
+                      length="8"
+                      name="result._related.buildings" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result._related.towns]"
+                      dataType="wstr"
+                      length="8"
+                      name="result._related.towns" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result._related.streets]"
+                      dataType="wstr"
+                      length="8"
+                      name="result._related.streets" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result._related.postcode_areas]"
+                      dataType="wstr"
+                      length="8"
+                      name="result._related.postcode_areas" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result._related.postcode_districts]"
+                      dataType="wstr"
+                      length="8"
+                      name="result._related.postcode_districts" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result._related.postcode_sectors]"
+                      dataType="wstr"
+                      length="8"
+                      name="result._related.postcode_sectors" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result._related.postcodes]"
+                      dataType="wstr"
+                      length="8"
+                      name="result._related.postcodes" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result._related.tags_any]"
+                      dataType="wstr"
+                      length="8"
+                      name="result._related.tags_any" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result._related.tags]"
+                      dataType="wstr"
+                      length="8"
+                      name="result._related.tags" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result._related.features]"
+                      dataType="wstr"
+                      length="8"
+                      name="result._related.features" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result._related.views]"
+                      dataType="wstr"
+                      length="8"
+                      name="result._related.views" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result._related.ideal_for]"
+                      dataType="wstr"
+                      length="8"
+                      name="result._related.ideal_for" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result._related.rental_attributes]"
+                      dataType="wstr"
+                      length="8"
+                      name="result._related.rental_attributes" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result._related.listing_categories]"
+                      dataType="wstr"
+                      length="8"
+                      name="result._related.listing_categories" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result._category_name]"
+                      dataType="wstr"
+                      length="64"
+                      name="result._category_name" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.price_match.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.price_match.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.price_match.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.price_match.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_energy_rating.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_energy_rating.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_energy_rating.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_energy_rating.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_bathrooms.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_bathrooms.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_bathrooms.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_bathrooms.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_bedrooms.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_bedrooms.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_bedrooms.max]"
+                      dataType="wstr"
+                      length="16"
+                      name="result.attr_bedrooms.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_garages.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_garages.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_garages.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_garages.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_carports.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_carports.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_carports.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_carports.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_ensuites.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_ensuites.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_ensuites.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_ensuites.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_toilets.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_toilets.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_toilets.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_toilets.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_living_areas.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_living_areas.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_living_areas.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_living_areas.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_open_spaces.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_open_spaces.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_open_spaces.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_open_spaces.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_roi_pa.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_roi_pa.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_roi_pa.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_roi_pa.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_takings_pa.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_takings_pa.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_takings_pa.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_takings_pa.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_build_year.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_build_year.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_build_year.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_build_year.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_sleeps.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_sleeps.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_sleeps.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_sleeps.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_frontage.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_frontage.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_frontage.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_frontage.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_depth_left.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_depth_left.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_depth_left.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_depth_left.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_depth_right.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_depth_right.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_depth_right.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_depth_right.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_depth_rear.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_depth_rear.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_depth_rear.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_depth_rear.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.car_spaces.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.car_spaces.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.car_spaces.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.car_spaces.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_buildarea.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_buildarea.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_buildarea.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_buildarea.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_buildarea.m2_min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_buildarea.m2_min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_buildarea.m2_max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_buildarea.m2_max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_buildarea_unit.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_buildarea_unit.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_buildarea_unit.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_buildarea_unit.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_landarea.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_landarea.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_landarea.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_landarea.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_landarea.m2_min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_landarea.m2_min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_landarea.m2_max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_landarea.m2_max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_landarea_unit.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_landarea_unit.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_landarea_unit.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_landarea_unit.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_is_house_land]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_is_house_land" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_is_corner_block]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_is_corner_block" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_franchise]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_franchise" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.attr_whole_building]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.attr_whole_building" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.rent_sqm.min]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.rent_sqm.min" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result.rent_sqm.max]"
+                      dataType="wstr"
+                      length="1020"
+                      name="result.rent_sqm.max" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[result._id]"
+                      dataType="i8"
+                      name="result._id" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput].ExternalColumns[error]"
+                      dataType="wstr"
+                      length="1020"
+                      name="error" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransform Error Output]"
+                  isErrorOut="true"
+                  name="JsonParserTransform Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransform Error Output].Columns[result._id]"
+                      dataType="i8"
+                      lineageId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransform Error Output].Columns[result._id]"
+                      name="result._id" />
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransform Error Output].Columns[result.contact.id]"
+                      dataType="wstr"
+                      length="24"
+                      lineageId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransform Error Output].Columns[result.contact.id]"
+                      name="result.contact.id" />
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransform Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransform Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransform Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransform Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransform Error Output].Columns[ErrorColumnName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="128"
+                      lineageId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransform Error Output].Columns[ErrorColumnName]"
+                      name="ErrorColumnName" />
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransform Error Output].Columns[ErrorMessage]"
+                      dataType="wstr"
+                      length="1024"
+                      lineageId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransform Error Output].Columns[ErrorMessage]"
+                      name="ErrorMessage" />
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransform Error Output].Columns[ErrorRawData]"
+                      dataType="nText"
+                      lineageId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransform Error Output].Columns[ErrorRawData]"
+                      name="ErrorRawData" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Create Match Profiles\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">exec Rosie_uspUpdMPRid ?,?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Create Match Profiles\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[InternetDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Create Match Profiles\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Create Match Profiles\OLE DB Command.Inputs[OLE DB Command Input].Columns[@rid_contact_1]"
+                      cachedDataType="i8"
+                      cachedName="@rid_contact_1"
+                      externalMetadataColumnId="Package\Create Match Profiles\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@rid_contact_1]"
+                      lineageId="Package\Create Match Profiles\Derived Column.Outputs[Derived Column Output].Columns[@rid_contact_1]" />
+                    <inputColumn
+                      refId="Package\Create Match Profiles\OLE DB Command.Inputs[OLE DB Command Input].Columns[@rid_matchprofile]"
+                      cachedDataType="i8"
+                      cachedName="@rid_matchprofile"
+                      externalMetadataColumnId="Package\Create Match Profiles\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@rid_matchprofile]"
+                      lineageId="Package\Create Match Profiles\Derived Column.Outputs[Derived Column Output].Columns[@rid_matchprofile]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@rid_contact_1]"
+                      dataType="i4"
+                      name="@rid_contact_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@rid_matchprofile]"
+                      dataType="i4"
+                      name="@rid_matchprofile">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Create Match Profiles\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Create Match Profiles\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Create Match Profiles\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Create Match Profiles\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Create Match Profiles\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Create Match Profiles\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Create Match Profiles\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Create Match Profiles\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Create Match Profiles\Replace TOKEN"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Replace TOKEN"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Create Match Profiles\Replace TOKEN.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Create Match Profiles\Replace TOKEN.Inputs[Derived Column Input].Columns[JSON]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="JSON"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Create Match Profiles\Get Applicants.Outputs[OLE DB Source Output].Columns[JSON]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLACE](#{Package\Create Match Profiles\Get Applicants.Outputs[OLE DB Source Output].Columns[JSON]},"{{TOKEN}}",@[User::ResponseAuth])</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE(JSON,"{{TOKEN}}",@[User::ResponseAuth])</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Create Match Profiles\Replace TOKEN.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Create Match Profiles\Replace TOKEN.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Create Match Profiles\Replace TOKEN.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Create Match Profiles\Replace TOKEN.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Replace TOKEN.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Create Match Profiles\Replace TOKEN.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Replace TOKEN.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Create Match Profiles\Replace TOKEN.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Create Match Profiles\Send to Rosie"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Web API Destination; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+              description="The Web API destination can be used to send data to Web API URL (e.g. Submit or POST data to REST API/SOAP or other HTTP/HTTPS endpoints)"
+              name="Send to Rosie"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="LoggingMode determines how much information is logged during Package Execution. Set Logging mode to Debugging for maximum log."
+                  expressionType="Notify"
+                  name="LoggingMode"
+                  typeConverter="ZappySys.PowerPack.Common.LoggingMode, ZappySys.PowerPack130, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1903265a93eae502">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="When you enable this property it will prefix timestamp before Log messages."
+                  expressionType="Notify"
+                  name="PrefixTimestamp">false</property>
+                <property
+                  dataType="System.Null"
+                  expressionType="Notify"
+                  name="SelfRef"
+                  typeConverter="NOTBROWSABLE" />
+                <property
+                  dataType="System.String"
+                  description="API URL you want to access"
+                  expressionType="Notify"
+                  name="HttpRequestUrl">{{User::PackageRosieURL}}</property>
+                <property
+                  dataType="System.String"
+                  description="Http Web Request Method (e.g. POST, GET, PUT, LIST, DELETE...). Refer your API documentation if you are not sure which method you have to use."
+                  expressionType="Notify"
+                  name="HttpRequestMethod">POST</property>
+                <property
+                  dataType="System.String"
+                  description="Set this if you want to set custom Http headers. You may use variable anywhere in the header value using syntax {{User::YourVarName}}. Syntax of Header key value pair is : &amp;lt;request&amp;gt;&amp;lt;header&amp;gt;&amp;lt;name&amp;gt;x-myheader-1&amp;lt;/name&amp;gt;&amp;lt;value&amp;gt;AAA&amp;lt;/value&amp;gt;&amp;lt;/header&amp;gt; &amp;lt;header&amp;gt;&amp;lt;name&amp;gt;x-myheader-2&amp;lt;/name&amp;gt;&amp;lt;value&amp;gt;BBB&amp;lt;/value&amp;gt;&amp;lt;/header&amp;gt;&amp;lt;/request&amp;gt;"
+                  expressionType="Notify"
+                  name="HttpHeaders"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;</property>
+                <property
+                  dataType="System.String"
+                  description="User defined data you wish to send along with your HTTP Request (e.g. Upload file data, Form POST data). Usually you have to set content-type of your data but if you select RequestMethod=POST then system will automatically set content-type=application/x-www-form-urlencoded."
+                  expressionType="Notify"
+                  name="HttpRequestData"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies content type for data you wish to POST. If you select Default option then system default content type will be used (i.e. application/x-www-form-urlencoded). If you specify Content-Type header along with this option then header value takes precedence."
+                  expressionType="Notify"
+                  name="HttpRequestContentType"
+                  typeConverter="ZappySys.Common.Web.HttpRequestContentType, ZappySys.Common, Version=1.0.2018.11017, Culture=neutral, PublicKeyToken=1903265a93eae502">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="If this option is true then component will continue without exception on 404 error (Url not found). This allows you to consume data gracefully."
+                  expressionType="Notify"
+                  name="ContinueOnUrlNotFoundError">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Ignore SSL certificate related errors. Example: if you getting SSL/TLS errors because of certificate expired or certificate is not from trusted authority or certificate is self-signed. By checking this option you will not get SSL/TLS error."
+                  expressionType="Notify"
+                  name="IgnoreCertificateErrors">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Allow unsecure ciphers/suites and curves for SSLS/TLS communication. Use this option to communicate with web servers which needs legacy / unsecured ciphers support. This option is only trigged when you change default SSL/TLS Version on advanced settings tab."
+                  expressionType="Notify"
+                  name="AllowUnsecureSuite">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Enable support for gzip or deflate compression. When you check this option compressed response automatically de-compressed saving bandwidth. This option is only valid if web server supports compressed response stream. Check your API documentation for more information."
+                  expressionType="Notify"
+                  name="EnableCompressionSupport">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies which security protocol is supported for HTTPS communication. Using this option you can enable legacy protocol or enforce to use latest version of security protocol (Note: TLS 1.2 is only supported in SSIS 2014 or Higher)."
+                  expressionType="Notify"
+                  name="SecurityProtocol"
+                  typeConverter="ZappySys.PowerPack.Common.HttpsSecurityProtocolType, ZappySys.PowerPack130, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1903265a93eae502">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Wait time in milliseconds (Pause after each request). 0=No wait. Use this delay time if your API has limit on how many requests you can make in certain time frame."
+                  expressionType="Notify"
+                  name="WaitTime">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="When you redirect error to error output by default you get additional information in ErrorMessage column. Check this option if you need exact Response Body (Useful if its in JSON/XML format which needs to be parsed for additional information for later step)."
+                  expressionType="Notify"
+                  name="OnErrorOutputResponseBody">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Enable multiple requests using parallel threads."
+                  expressionType="Notify"
+                  name="EnableParallelRequests">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum parallel threads to use for processing multiple web requests."
+                  expressionType="Notify"
+                  name="MaxParallelThreads">20</property>
+                <property
+                  dataType="System.Boolean"
+                  description="By default one request is sent for each input row. If your API supports multiple records in a single call via HTTP Body then enable this setting. See also BodyBatchSize, BodyHeader, BodyFooter and BodyRowSeparator property."
+                  expressionType="Notify"
+                  name="EnableBodyBatch">false</property>
+                <property
+                  dataType="System.String"
+                  description="When you have to wrap input content between opening and closing tags for each call then set this property to specify opening for body content. For Example if you want to build Body like this (send max 100 rows per call) ==&gt; { records : [ {...}, {...}, {...} ] } then you can set BatchSize=100, BodyHeader as &quot;{ records: [&quot; , BodyFooter as &quot;] }&quot; and BodyRowSeperator as comma {,}. This property is ignored if EnableBodyBatch=false."
+                  expressionType="Notify"
+                  name="BodyHeader"></property>
+                <property
+                  dataType="System.String"
+                  description="When you have to wrap input content between opening and closing tags for each call then set this property to specify closing for body content. For Example if you want to build Body like this (send max 100 rows per call) ==&gt; { records : [ {...}, {...}, {...} ] } then you can set BatchSize=100, BodyHeader as &quot;{ records: [&quot; , BodyFooter as &quot;] }&quot; and BodyRowSeperator as comma {,}. This property is ignored if EnableBodyBatch=false."
+                  expressionType="Notify"
+                  name="BodyFooter"></property>
+                <property
+                  dataType="System.Int32"
+                  description="If your API supports multiple records via HTTP Body then change this setting &gt; 1 to include multiple upstream records into single call. See also BodyHeader, BodyFooter and BodyRowSeparator property. This property is ignored if EnableBodyBatch=false."
+                  expressionType="Notify"
+                  name="BodyBatchSize">100</property>
+                <property
+                  dataType="System.String"
+                  description="When you submit multiple rows in a batch you can separate multiple documents / records using custom separator (e.g. in JSON Array you can use comma {,} as record separator if POST document is in array format [ {...}, {...}, {...} ] ). For last row of batch blank separator is used."
+                  expressionType="Notify"
+                  name="BodyRowSeparator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Returns response data as binary data (e.g. Byte Array). Check this option is response is Zip file, Image file or any non text data which needs to be exported as raw data without any encoding."
+                  expressionType="Notify"
+                  name="TreatResponseAsBinary">false</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">ZappySys.WebApiDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Create Match Profiles\Send to Rosie.Connections[Connection]"
+                  connectionManagerID="Package.ConnectionManagers[HTTP]"
+                  connectionManagerRefId="Package.ConnectionManagers[HTTP]"
+                  description="Connection manager for authentication (e.g. HTTP or OAuth Connection)"
+                  name="Connection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Create Match Profiles\Send to Rosie.Inputs[WebApiDestinationInput]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="WebApiDestinationInput"
+                  truncationRowDisposition="FailComponent">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Create Match Profiles\Send to Rosie.Inputs[WebApiDestinationInput].Columns[JSON]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="JSON"
+                      externalMetadataColumnId="Package\Create Match Profiles\Send to Rosie.Inputs[WebApiDestinationInput].ExternalColumns[HttpRequestData]"
+                      lineageId="Package\Create Match Profiles\Get Applicants.Outputs[OLE DB Source Output].Columns[JSON]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Send to Rosie.Inputs[WebApiDestinationInput].ExternalColumns[HttpRequestUrl]"
+                      dataType="wstr"
+                      length="2000"
+                      name="HttpRequestUrl" />
+                    <externalMetadataColumn
+                      refId="Package\Create Match Profiles\Send to Rosie.Inputs[WebApiDestinationInput].ExternalColumns[HttpRequestData]"
+                      dataType="nText"
+                      name="HttpRequestData" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Create Match Profiles\Send to Rosie.Outputs[WebApiDestination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="WebApiDestination Error Output"
+                  synchronousInputId="Package\Create Match Profiles\Send to Rosie.Inputs[WebApiDestinationInput]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Send to Rosie.Outputs[WebApiDestination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Create Match Profiles\Send to Rosie.Outputs[WebApiDestination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Send to Rosie.Outputs[WebApiDestination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Create Match Profiles\Send to Rosie.Outputs[WebApiDestination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Send to Rosie.Outputs[WebApiDestination Error Output].Columns[ErrorColumnName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="128"
+                      lineageId="Package\Create Match Profiles\Send to Rosie.Outputs[WebApiDestination Error Output].Columns[ErrorColumnName]"
+                      name="ErrorColumnName" />
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Send to Rosie.Outputs[WebApiDestination Error Output].Columns[ErrorMessage]"
+                      dataType="nText"
+                      lineageId="Package\Create Match Profiles\Send to Rosie.Outputs[WebApiDestination Error Output].Columns[ErrorMessage]"
+                      name="ErrorMessage" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Create Match Profiles\Send to Rosie.Outputs[Response Output]"
+                  exclusionGroup="1"
+                  name="Response Output"
+                  synchronousInputId="Package\Create Match Profiles\Send to Rosie.Inputs[WebApiDestinationInput]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Send to Rosie.Outputs[Response Output].Columns[ResponseText]"
+                      dataType="nText"
+                      lineageId="Package\Create Match Profiles\Send to Rosie.Outputs[Response Output].Columns[ResponseText]"
+                      name="ResponseText" />
+                    <outputColumn
+                      refId="Package\Create Match Profiles\Send to Rosie.Outputs[Response Output].Columns[StatusCode]"
+                      dataType="i4"
+                      lineageId="Package\Create Match Profiles\Send to Rosie.Outputs[Response Output].Columns[StatusCode]"
+                      name="StatusCode" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Create Match Profiles\Trash Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Trash Destination; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+              description="The trash destination is used to create dummy destination which ends data path without any processing."
+              name="Trash Destination"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="LoggingMode determines how much information is logged during Package Execution. Set Logging mode to Debugging for maximum log."
+                  expressionType="Notify"
+                  name="LoggingMode"
+                  typeConverter="ZappySys.PowerPack.Common.LoggingMode, ZappySys.PowerPack130, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1903265a93eae502">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="When you enable this property it will prefix timestamp before Log messages."
+                  expressionType="Notify"
+                  name="PrefixTimestamp">false</property>
+                <property
+                  dataType="System.Null"
+                  expressionType="Notify"
+                  name="SelfRef"
+                  typeConverter="NOTBROWSABLE" />
+                <property
+                  dataType="System.String"
+                  description="File path where you want to save data"
+                  expressionType="Notify"
+                  name="FilePath"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates if you want to save input data to comma separated text file"
+                  expressionType="Notify"
+                  name="SaveDataToFile">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Append data to file"
+                  expressionType="Notify"
+                  name="Append">false</property>
+                <property
+                  dataType="System.String"
+                  description="RowSeparator"
+                  expressionType="Notify"
+                  name="RowSeparator">{NEWLINE}</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether you want to overwrite target file if exists"
+                  expressionType="Notify"
+                  name="OverwriteFileIfExists">true</property>
+                <property
+                  dataType="System.String"
+                  description="ColumnSeparator"
+                  expressionType="Notify"
+                  name="ColumnSeparator">,</property>
+                <property
+                  dataType="System.Boolean"
+                  description="SupportUnicode"
+                  expressionType="Notify"
+                  name="SupportUnicode">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="ColumnNamesInFirstRow"
+                  expressionType="Notify"
+                  name="ColumnNamesInFirstRow">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="QuoteDataIfNeeded"
+                  expressionType="Notify"
+                  name="QuoteDataIfNeeded">true</property>
+                <property
+                  dataType="System.String"
+                  description="Date time format string for any column with DT_DBDATETIME, DT_DBDATETIME2 or DB_DATE format"
+                  expressionType="Notify"
+                  name="DateTimeFormat">yyyy-MM-dd HH:mm:ss</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">ZappySys.TrashDestination</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Create Match Profiles\Trash Destination.Inputs[TrashDestinationInput]"
+                  hasSideEffects="true"
+                  name="TrashDestinationInput">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Create Match Profiles.Paths[Data Conversion Output]"
+              endId="Package\Create Match Profiles\Derived Column.Inputs[Derived Column Input]"
+              name="Data Conversion Output"
+              startId="Package\Create Match Profiles\Convert to INT.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Create Match Profiles.Paths[Derived Column Output]"
+              endId="Package\Create Match Profiles\Send to Rosie.Inputs[WebApiDestinationInput]"
+              name="Derived Column Output"
+              startId="Package\Create Match Profiles\Replace TOKEN.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Create Match Profiles.Paths[Derived Column Output1]"
+              endId="Package\Create Match Profiles\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Derived Column Output"
+              startId="Package\Create Match Profiles\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Create Match Profiles.Paths[JsonParserTransformOutput]"
+              endId="Package\Create Match Profiles\Convert to INT.Inputs[Data Conversion Input]"
+              name="JsonParserTransformOutput"
+              startId="Package\Create Match Profiles\Get Results.Outputs[JsonParserTransformOutput]" />
+            <path
+              refId="Package\Create Match Profiles.Paths[OLE DB Command Output]"
+              endId="Package\Create Match Profiles\Trash Destination.Inputs[TrashDestinationInput]"
+              name="OLE DB Command Output"
+              startId="Package\Create Match Profiles\OLE DB Command.Outputs[OLE DB Command Output]" />
+            <path
+              refId="Package\Create Match Profiles.Paths[OLE DB Source Output]"
+              endId="Package\Create Match Profiles\Replace TOKEN.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Create Match Profiles\Get Applicants.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Create Match Profiles.Paths[Response Output]"
+              endId="Package\Create Match Profiles\Get Results.Inputs[JsonParserTransformInput]"
+              name="Response Output"
+              startId="Package\Create Match Profiles\Send to Rosie.Outputs[Response Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Email Auth Failure"
+      DTS:CreationName="ZappySys.HtmlEmailTask"
+      DTS:Description="Email Auth Failure"
+      DTS:DTSID="{eac12306-3182-4507-9069-361a8e39969a}"
+      DTS:ExecutableType="ZappySys.HtmlEmailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Email Auth Failure"
+      DTS:TaskContact="HTML Email Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <HtmlEmailTask
+          SmtpConnection="SMTP 1"
+          IsHtmlEmail="True"
+          DefaultStyle="&#xA;&lt;style type=&quot;text/css&quot;&gt;&#xA;body,div,p,span,td,th,table {&#xA; font-family: Helvetica, Arial, sans-serif;&#xA; font-size: 10pt; &#xA;}&#xA;h1,h2,h3,h4,h5{&#xA;font-family: Helvetica, Arial, sans-serif;&#xA;}&#xA;&#xA;table { &#xA; border-collapse: &#xA; collapse; border-spacing: 0; &#xA;}&#xA;&#xA;tr.odd    {background-color: #cccccc}&#xA;tr.even   {background-color: #fafafa}&#xA;td, th { border: 1px solid #bbb;padding: 5 5 5 5} &#xA;th { background: #F3F3F3;  font-weight: bold;}&#xA;&lt;/style&gt;&#xA;&#xA;"
+          Subject="Error occured in {{System::PackageName}}"
+          From="alerts@spicerhaart.co.uk"
+          To="{{User::PackageErrorEmail}}"
+          Cc=""
+          ReplyTo=""
+          Bcc=""
+          Attachments=""
+          EmailPriority="High"
+          MessageSourceType="Direct"
+          MessageDirectValue="&lt;b&gt;Failed to get Authorization Key&lt;/b&gt;&lt;p /&gt;&#xA;&#xA;&lt;p&gt; Response Code =&gt;{{User::ResponseAuthCode}} &lt;p /&gt;&#xA;"
+          MessageFileConnection=""
+          MessageVariable=""
+          LogLevel="Normal"
+          PrefixTimestamp="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Email Success"
+      DTS:CreationName="ZappySys.HtmlEmailTask"
+      DTS:Description="ZS HTML Email Task"
+      DTS:DTSID="{11bf3a57-7ef3-4852-b153-042382a8c28b}"
+      DTS:ExecutableType="ZappySys.HtmlEmailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Email Success"
+      DTS:TaskContact="HTML Email Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <HtmlEmailTask
+          SmtpConnection="SMTP 1"
+          IsHtmlEmail="True"
+          DefaultStyle="&#xA;&lt;style type=&quot;text/css&quot;&gt;&#xA;body,div,p,span,td,th,table {&#xA; font-family: Helvetica, Arial, sans-serif;&#xA; font-size: 10pt; &#xA;}&#xA;h1,h2,h3,h4,h5{&#xA;font-family: Helvetica, Arial, sans-serif;&#xA;}&#xA;&#xA;table { &#xA; border-collapse: &#xA; collapse; border-spacing: 0; &#xA;}&#xA;&#xA;tr.odd    {background-color: #cccccc}&#xA;tr.even   {background-color: #fafafa}&#xA;td, th { border: 1px solid #bbb;padding: 5 5 5 5} &#xA;th { background: #F3F3F3;  font-weight: bold;}&#xA;&lt;/style&gt;&#xA;&#xA;"
+          Subject="Package {{System::PackageName}} Completed"
+          From="alerts@spicerhaart.com"
+          To="{{User::PackageErrorEmail}}"
+          Cc=""
+          ReplyTo=""
+          Bcc=""
+          Attachments=""
+          EmailPriority="Normal"
+          MessageSourceType="Direct"
+          MessageDirectValue="Finished migration to: {{$Package::AccountID}} &lt;BR /&gt;&#xA;"
+          MessageFileConnection=""
+          MessageVariable=""
+          LogLevel="Normal"
+          PrefixTimestamp="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Auth Key"
+      DTS:CreationName="ZappySys.RestApiTask"
+      DTS:Description="ZS REST API Task"
+      DTS:DTSID="{ca6b8140-4e5b-4fd5-b4d8-34ebfaf13b5d}"
+      DTS:ExecutableType="ZappySys.RestApiTask"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Auth Key"
+      DTS:TaskContact="REST API Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <RestApiTask
+          RequestAccessMode="UrlFromVariable"
+          RequestUrlVariable="User::PackageRosieURL"
+          EnableStatusCheck="False"
+          StatucCheckMaxWaitSeconds="0"
+          StatucCheckIterationWaitSeconds="0"
+          StatusCheckForFailedValue="False"
+          StatusSuccessValue=""
+          StatusFailedValue=""
+          IsMultiPartUpload="False"
+          PreventAutoRedirect="False"
+          RequestTimeoutMs="0"
+          SecurityProtocol="Default"
+          EnableCompressionSupport="True"
+          AllowUnsecureSuite="False"
+          IgnoreCertificateErrors="False"
+          RequestUrl="https://api.rexsoftware.com/rex.php "
+          RequestUrlConnection=""
+          RequestMethod="POST"
+          RequestContentType="Raw"
+          OverrideConnectionUrl="False"
+          RequestHeaders="&lt;request&gt;&lt;header&gt;&lt;name&gt;Accept&lt;/name&gt;&lt;value&gt;*/*&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Cache-Control&lt;/name&gt;&lt;value&gt;no-cache&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;"
+          RequestData="{&#xA;&quot;method&quot;:&quot;Authentication::login&quot;,&#xA;&quot;args&quot;:{&#xA;&#x9;&quot;email&quot;:&quot;{{User::PackageUsername}}&quot;,&#xA;&#x9;&quot;password&quot;:&quot;{{User::PackagePassword}}&quot;,&#xA;&#x9;&quot;account_id&quot;:&quot;{{$Package::AccountID}}&quot;,&#xA;&#x9;&quot;application&quot;:&quot;rex&quot;&#xA;&#x9;}&#xA;}"
+          SaveResponse="True"
+          SaveResponseStatusCode="True"
+          ResponseAccessMode="Variable"
+          SaveAsBinary="False"
+          ResponseDataFilePath=""
+          ResponseHeaderMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Transfer-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Connection&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Origin&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Headers&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Allow-Methods&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Access-Control-Max-Age&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Vary&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Encoding&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Content-Type&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Date&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;KeyValueMapping&gt;&lt;Key&gt;Server&lt;/Key&gt;&lt;Target&gt;&amp;lt;NOT-MAPPED&amp;gt;&lt;/Target&gt;&lt;Required&gt;false&lt;/Required&gt;&lt;/KeyValueMapping&gt;&lt;/ArrayOfKeyValueMapping&gt;"
+          ResponseCookieMappings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfKeyValueMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+          CookieContainerVariable=""
+          ConvertXmlToJson="False"
+          ResponseDataVariable="User::ResponseAuth"
+          ResponseStatusCodeVariable="User::ResponseAuthCode"
+          ResponseContentType="Json"
+          ResponseContentFilter="$.result"
+          ResponseCharset=""
+          ValidateResponse="False"
+          ValidationRules="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ResponseValidationSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;MatchAny&gt;false&lt;/MatchAny&gt;&lt;Rules&gt;&lt;ResponseValidationRule xsi:type=&quot;StatusCodeValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;StatusCode&gt;200&lt;/StatusCode&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;ContentValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;Value /&gt;&lt;/ResponseValidationRule&gt;&lt;ResponseValidationRule xsi:type=&quot;HeaderValidationRule&quot;&gt;&lt;Enabled&gt;false&lt;/Enabled&gt;&lt;Operator&gt;Eq&lt;/Operator&gt;&lt;KeyName /&gt;&lt;Value /&gt;&lt;DataType&gt;String&lt;/DataType&gt;&lt;/ResponseValidationRule&gt;&lt;/Rules&gt;&lt;/ResponseValidationSetting&gt;"
+          ConsumeResponseOnError="False"
+          ContineOnAnyError="False"
+          ContineOnErrorForMessage="False"
+          ContineOnErrorForStatusCode="False"
+          ErrorStatusCodeToMatch="404"
+          MatchForEqual="True"
+          ErrorSubstringToMatch=""
+          ContineOn404Error="False"
+          SaveErrorFlagToVariable="False"
+          ErrorFlagVariableName=""
+          LogLevel="Normal"
+          PrefixTimestamp="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Last Run Dates"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{b8baff75-c4df-42e4-88bd-1999a70bf359}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Last Run Dates"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+          SQLTask:SqlStatementSource="IF NOT EXISTS (&#xA;    SELECT NULL FROM dbo.PackageLastRun WHERE PackageName = 'MatchPush' AND AccountId = ?&#xA;)&#xA;BEGIN&#xA;    INSERT INTO dbo.PackageLastRun&#xA;    VALUES ('MatchPush', ?, '2010-01-01', GETDATE())&#xA;END&#xA;&#xA;SELECT GETDATE() AS NextRunTime,&#xA; DATEDIFF(SECOND, '19700101', LastRunTime) AS LastRunTime&#xA;FROM dbo.PackageLastRun&#xA;WHERE PackageName = 'MatchPush' AND AccountId = ?"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="NextRunTime"
+            SQLTask:DtsVariableName="User::PackageStartForNextRun" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="LastRunTime"
+            SQLTask:DtsVariableName="User::ProcessingStart" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@AccountID"
+            SQLTask:DtsVariableName="$Package::AccountID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@AccountID"
+            SQLTask:DtsVariableName="$Package::AccountID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@AccountID"
+            SQLTask:DtsVariableName="$Package::AccountID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Insert success log into database"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{a0c770a1-ad8b-4a2b-b394-2c67bdf94231}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Insert success log into database"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+          SQLTask:SqlStatementSource="INSERT INTO SSISSuccessLog&#xA;(PackageName, StartTime, Ignored, Upserted, Failed, AccountID, EndTime)&#xA;VALUES&#xA;(?, ?, 0, ?, ?, ?, getdate())" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@PackageName"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@StartTime"
+            SQLTask:DtsVariableName="System::StartTime"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@Upserted"
+            SQLTask:DtsVariableName="User::RowsSuccess"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@Failed"
+            SQLTask:DtsVariableName="User::RowsFailed"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@AccountID"
+            SQLTask:DtsVariableName="$Package::AccountID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set SSIS Variables From XML"
+      DTS:CreationName="ZappySys.XmlParserTask"
+      DTS:Description="ZS Xml Parser Task"
+      DTS:DTSID="{018c73dc-2e0d-4095-badc-9384dfeca5c0}"
+      DTS:ExecutableType="ZappySys.XmlParserTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set SSIS Variables From XML"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <XmlParserTask
+          SourceAccessMode="Connection"
+          SourceVariable=""
+          SourceConnection="{573D3594-1740-4160-BA0A-1B680E5FA229}"
+          SourceDirectValue="&lt;!-- &#xA;Using XML Parser Task you can extract values from XML document using XPath Expression &#xA;See example in below grid. Read description for each mapping.&#xA;See more examples: https://msdn.microsoft.com/en-us/library/ms256086(v=vs.110).aspx&#xA;--&gt;&#xA;&lt;catalog&gt;&#xA;   &lt;book id=&quot;bk101&quot;&gt;&#xA;      &lt;author&gt;Gambardella, Matthew&lt;/author&gt;&#xA;      &lt;title&gt;XML Developer's Guide&lt;/title&gt;&#xA;      &lt;genre&gt;Computer&lt;/genre&gt;&#xA;      &lt;price&gt;44.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-10-01&lt;/publish_date&gt;&#xA;      &lt;description&gt;An in-depth look at creating applications &#xA;      with XML.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk102&quot;&gt;&#xA;      &lt;author&gt;Ralls, Kim&lt;/author&gt;&#xA;      &lt;title&gt;Midnight Rain&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-12-16&lt;/publish_date&gt;&#xA;      &lt;description&gt;A former architect battles corporate zombies, &#xA;      an evil sorceress, and her own childhood to become queen &#xA;      of the world.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk103&quot;&gt;&#xA;      &lt;author&gt;Corets, Eva&lt;/author&gt;&#xA;      &lt;title&gt;Maeve Ascendant&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-11-17&lt;/publish_date&gt;&#xA;      &lt;description&gt;After the collapse of a nanotechnology &#xA;      society in England, the young survivors lay the &#xA;      foundation for a new society.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk104&quot;&gt;&#xA;      &lt;author&gt;Corets, Eva&lt;/author&gt;&#xA;      &lt;title&gt;Oberon's Legacy&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2001-03-10&lt;/publish_date&gt;&#xA;      &lt;description&gt;In post-apocalypse England, the mysterious &#xA;      agent known only as Oberon helps to create a new life &#xA;      for the inhabitants of London. Sequel to Maeve &#xA;      Ascendant.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;&lt;/catalog&gt;"
+          TargetSettings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;XmlParserSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;Mappings&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/RexAPIWebURL&lt;/Path&gt;&lt;Target&gt;User::PackageRosieURL&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt; /SSISVariables/PackageUser&lt;/Path&gt;&lt;Target&gt;User::PackageUsername&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/PackageErrorEmail&lt;/Path&gt;&lt;Target&gt;User::PackageErrorEmail&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/PackagePassword&lt;/Path&gt;&lt;Target&gt;User::PackagePassword&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;/Mappings&gt;&lt;Path /&gt;&lt;/XmlParserSetting&gt;"
+          LogLevel="Normal"
+          PrefixTimestamp="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update Last Run Dates"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{ca0d5291-202d-4999-807d-7402e758220d}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update Last Run Dates"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+          SQLTask:SqlStatementSource="UPDATE dbo.PackageLastRun&#xA;SET LastRunTime = ?&#xA;WHERE PackageName = 'MatchPush'&#xA; AND AccountId = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@LastRunDate"
+            SQLTask:DtsVariableName="User::PackageStartForNextRun"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@AccountID"
+            SQLTask:DtsVariableName="$Package::AccountID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{3c832751-a6b4-4d23-8af6-3b7fe762fc57}"
+      DTS:From="Package\Get Auth Key"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Email Auth Failure"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{053EC519-158E-4ECB-938E-03B9DDCEB8D0}"
+      DTS:From="Package\Get Auth Key"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Get Last Run Dates" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{0673A1D8-366B-4CA5-8AF1-39688CECEEC6}"
+      DTS:From="Package\Set SSIS Variables From XML"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Get Auth Key" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{0E9B3EE4-586E-41B1-BEBF-A37DFB804187}"
+      DTS:From="Package\Get Last Run Dates"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Create Match Profiles" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{87246D20-081A-4BF5-B51A-B964701CEA07}"
+      DTS:From="Package\Create Match Profiles"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Update Last Run Dates" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{e8ef66a3-6a9d-4359-bcba-822ebcb45cc8}"
+      DTS:From="Package\Update Last Run Dates"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4 1"
+      DTS:To="Package\Insert success log into database" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{858C2E31-EBDE-4DE9-AF45-D101B8DE082C}"
+      DTS:From="Package\Insert success log into database"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Email Success" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{F1C2C96C-E43F-4BAD-A193-BDBB2BD5CAD6}"
+      DTS:EventID="3"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{801F2584-C518-4B13-8449-4C40A5EC9F09}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Email error"
+          DTS:CreationName="ZappySys.HtmlEmailTask"
+          DTS:Description="Email Auth Failure"
+          DTS:DTSID="{6f1d9208-8f9e-4916-ac31-b2957ca5cdbd}"
+          DTS:ExecutableType="ZappySys.HtmlEmailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Email error"
+          DTS:TaskContact="HTML Email Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <HtmlEmailTask
+              SmtpConnection="SMTP 1"
+              IsHtmlEmail="True"
+              DefaultStyle="&#xA;&lt;style type=&quot;text/css&quot;&gt;&#xA;body,div,p,span,td,th,table {&#xA; font-family: Helvetica, Arial, sans-serif;&#xA; font-size: 10pt; &#xA;}&#xA;h1,h2,h3,h4,h5{&#xA;font-family: Helvetica, Arial, sans-serif;&#xA;}&#xA;&#xA;table { &#xA; border-collapse: &#xA; collapse; border-spacing: 0; &#xA;}&#xA;&#xA;tr.odd    {background-color: #cccccc}&#xA;tr.even   {background-color: #fafafa}&#xA;td, th { border: 1px solid #bbb;padding: 5 5 5 5} &#xA;th { background: #F3F3F3;  font-weight: bold;}&#xA;&lt;/style&gt;&#xA;&#xA;"
+              Subject="Error occured in {{System::PackageName}}"
+              From="alerts@spicerhaart.co.uk"
+              To="{{User::PackageErrorEmail}}"
+              Cc=""
+              ReplyTo=""
+              Bcc=""
+              Attachments=""
+              EmailPriority="High"
+              MessageSourceType="Direct"
+              MessageDirectValue="&lt;p&gt;Error occured and could not be logged in database&lt;p /&gt;&#xA;&lt;br&gt;&#xA;&lt;p&gt;Error code: {{System::ErrorCode}}&lt;p /&gt;&#xA;&lt;br&gt;&#xA;&lt;p&gt;Error message: {{System::ErrorDescription}}&lt;p /&gt;"
+              MessageFileConnection=""
+              MessageVariable=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Insert error log into database"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{90d76eac-54b0-494c-8be7-bf1eda620811}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert error log into database"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+              SQLTask:SqlStatementSource="INSERT INTO SSISErrorLog&#xA;(PackageName, StartTime, ErrorCode, ErrorDescription,AccountID)&#xA;VALUES&#xA;(?, ?, ?, ?, ?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@PackageName"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@StartTime"
+                SQLTask:DtsVariableName="System::StartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorCode"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorDescription"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@AccountID"
+                SQLTask:DtsVariableName="$Package::AccountID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{0b1ecb27-6c20-464a-b939-f5daad95d692}"
+          DTS:From="Package.EventHandlers[OnError]\Insert error log into database"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Email error"
+          DTS:Value="1" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnTaskFailed]"
+      DTS:CreationName="OnTaskFailed"
+      DTS:DTSID="{CA7353C0-E558-4633-9550-7B03AADA35EB}"
+      DTS:EventID="-3"
+      DTS:EventName="OnTaskFailed"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{3A215766-9077-4526-B80E-E8C1C1543882}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnTaskFailed]\Email error"
+          DTS:CreationName="ZappySys.HtmlEmailTask"
+          DTS:Description="Email Auth Failure"
+          DTS:DTSID="{56e6964e-3c01-4db1-998f-20e55285063e}"
+          DTS:ExecutableType="ZappySys.HtmlEmailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Email error"
+          DTS:TaskContact="HTML Email Task; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <HtmlEmailTask
+              SmtpConnection="SMTP 1"
+              IsHtmlEmail="True"
+              DefaultStyle="&#xA;&lt;style type=&quot;text/css&quot;&gt;&#xA;body,div,p,span,td,th,table {&#xA; font-family: Helvetica, Arial, sans-serif;&#xA; font-size: 10pt; &#xA;}&#xA;h1,h2,h3,h4,h5{&#xA;font-family: Helvetica, Arial, sans-serif;&#xA;}&#xA;&#xA;table { &#xA; border-collapse: &#xA; collapse; border-spacing: 0; &#xA;}&#xA;&#xA;tr.odd    {background-color: #cccccc}&#xA;tr.even   {background-color: #fafafa}&#xA;td, th { border: 1px solid #bbb;padding: 5 5 5 5} &#xA;th { background: #F3F3F3;  font-weight: bold;}&#xA;&lt;/style&gt;&#xA;&#xA;"
+              Subject="Error occured in {{System::PackageName}}"
+              From="alerts@spicerhaart.co.uk"
+              To="{{User::PackageErrorEmail}}"
+              Cc=""
+              ReplyTo=""
+              Bcc=""
+              Attachments=""
+              EmailPriority="High"
+              MessageSourceType="Direct"
+              MessageDirectValue="&lt;p&gt;Error occured and could not be logged in database&lt;p /&gt;&#xA;&lt;br&gt;&#xA;&lt;p&gt;Error code: 0&lt;p /&gt;&#xA;&lt;br&gt;&#xA;&lt;p&gt;Error message: {{System::FailedConfigurations}}&lt;p /&gt;"
+              MessageFileConnection=""
+              MessageVariable=""
+              LogLevel="Normal"
+              PrefixTimestamp="False" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnTaskFailed]\Insert error log into database"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1a35ea5a-2e4c-4f5d-add1-c81e0e3ef369}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert error log into database"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+              SQLTask:SqlStatementSource="INSERT INTO SSISErrorLog&#xA;(PackageName, StartTime, ErrorCode, ErrorDescription,AccountID)&#xA;VALUES&#xA;(?, ?, 0, ?, ?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@PackageName"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@StartTime"
+                SQLTask:DtsVariableName="System::StartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ErrorDescription"
+                SQLTask:DtsVariableName="System::FailedConfigurations"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@AccountID"
+                SQLTask:DtsVariableName="$Package::AccountID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnTaskFailed].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{4026889f-43ac-45bc-947a-0582fa76c370}"
+          DTS:From="Package.EventHandlers[OnTaskFailed]\Insert error log into database"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnTaskFailed]\Email error"
+          DTS:Value="1" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Create Match Profiles"
+          TopLeft="226,311.5" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Email Auth Failure"
+          TopLeft="5.50000000000006,209.5" />
+        <NodeLayout
+          Size="145,42"
+          Id="Package\Email Success"
+          TopLeft="243,617.5" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Get Auth Key"
+          TopLeft="245,107.5" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Get Last Run Dates"
+          TopLeft="230.5,209.5" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\Insert success log into database"
+          TopLeft="200.5,515.5" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Set SSIS Variables From XML"
+          TopLeft="207.5,5.5" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\Update Last Run Dates"
+          TopLeft="222,413.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="293.333333333333,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-205.833333333333,60"
+              Start="0,0"
+              End="-205.833333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4039270687237" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4039270687237"
+                    Point2="0,24.4039270687237"
+                    Point3="-4,24.4039270687237" />
+                  <mssgle:LineSegment
+                    End="-201.833333333333,24.4039270687237" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-201.833333333333,24.4039270687237"
+                    Point2="-205.833333333333,24.4039270687237"
+                    Point3="-205.833333333333,28.4039270687237" />
+                  <mssgle:LineSegment
+                    End="-205.833333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-118.158014322917,29.4039270687237,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="337.666666666667,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-22.1666666666666,60"
+              Start="0,0"
+              End="-22.1666666666666,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4039270687237" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4039270687237"
+                    Point2="0,24.4039270687237"
+                    Point3="-4,24.4039270687237" />
+                  <mssgle:LineSegment
+                    End="-18.1666666666666,24.4039270687237" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.1666666666666,24.4039270687237"
+                    Point2="-22.1666666666666,24.4039270687237"
+                    Point3="-22.1666666666666,28.4039270687237" />
+                  <mssgle:LineSegment
+                    End="-22.1666666666666,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="315.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="315.5,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="315.5,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4 1]"
+          TopLeft="315.5,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="315.5,557.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package.EventHandlers[OnError]\Email error"
+          TopLeft="NaN,NaN" />
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package.EventHandlers[OnError]\Insert error log into database"
+          TopLeft="NaN,NaN" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="NaN,NaN">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="{assembly:Null}"
+              Start="0,0"
+              End="0,0">
+              <mssgle:Curve.Segments>
+                <assembly:Null />
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnTaskFailed]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package.EventHandlers[OnTaskFailed]\Email error"
+          TopLeft="NaN,NaN" />
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package.EventHandlers[OnTaskFailed]\Insert error log into database"
+          TopLeft="NaN,NaN" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnTaskFailed].PrecedenceConstraints[Constraint]"
+          TopLeft="NaN,NaN">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="{assembly:Null}"
+              Start="0,0"
+              End="0,0">
+              <mssgle:Curve.Segments>
+                <assembly:Null />
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\Create Match Profiles">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Create Match Profiles\Derived Column"
+          TopLeft="821,584" />
+        <NodeLayout
+          Size="132,42"
+          Id="Package\Create Match Profiles\Get Results"
+          TopLeft="796,352" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Create Match Profiles\Get Applicants"
+          TopLeft="867,65" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Create Match Profiles\OLE DB Command"
+          TopLeft="796,698" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Create Match Profiles\Replace TOKEN"
+          TopLeft="843,192" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Create Match Profiles\Send to Rosie"
+          TopLeft="870,269" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Create Match Profiles\Trash Destination"
+          TopLeft="778,784" />
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Create Match Profiles\Convert to INT"
+          TopLeft="790.5,446" />
+        <EdgeLayout
+          Id="Package\Create Match Profiles.Paths[Response Output]"
+          TopLeft="942,311">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-80,41"
+              Start="0,0"
+              End="-80,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.5"
+                    Point2="0,20.5"
+                    Point3="-4,20.5" />
+                  <mssgle:LineSegment
+                    End="-76,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-76,20.5"
+                    Point2="-80,20.5"
+                    Point3="-80,24.5" />
+                  <mssgle:LineSegment
+                    End="-80,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Create Match Profiles.Paths[OLE DB Source Output]"
+          TopLeft="940,107">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-21,85"
+              Start="0,0"
+              End="-21,77.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38.5"
+                    Point2="0,42.5"
+                    Point3="-4,42.5" />
+                  <mssgle:LineSegment
+                    End="-17,42.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-17,42.5"
+                    Point2="-21,42.5"
+                    Point3="-21,46.5" />
+                  <mssgle:LineSegment
+                    End="-21,77.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Create Match Profiles.Paths[OLE DB Command Output]"
+          TopLeft="879,740">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-20,44"
+              Start="0,0"
+              End="-20,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18"
+                    Point2="0,22"
+                    Point3="-4,22" />
+                  <mssgle:LineSegment
+                    End="-16,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-16,22"
+                    Point2="-20,22"
+                    Point3="-20,26" />
+                  <mssgle:LineSegment
+                    End="-20,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Create Match Profiles.Paths[JsonParserTransformOutput]"
+          TopLeft="863.5,394">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Create Match Profiles.Paths[Derived Column Output1]"
+          TopLeft="898,626">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-19,72"
+              Start="0,0"
+              End="-19,64.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32"
+                    Point2="0,36"
+                    Point3="-4,36" />
+                  <mssgle:LineSegment
+                    End="-15,36" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-15,36"
+                    Point2="-19,36"
+                    Point3="-19,40" />
+                  <mssgle:LineSegment
+                    End="-19,64.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Create Match Profiles.Paths[Derived Column Output]"
+          TopLeft="919,234">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="23,35"
+              Start="0,0"
+              End="23,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.5"
+                    Point2="0,17.5"
+                    Point3="4,17.5" />
+                  <mssgle:LineSegment
+                    End="19,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="19,17.5"
+                    Point2="23,17.5"
+                    Point3="23,21.5" />
+                  <mssgle:LineSegment
+                    End="23,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Create Match Profiles.Paths[Data Conversion Output]"
+          TopLeft="865,488">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="33,96"
+              Start="0,0"
+              End="33,88.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,44"
+                    Point2="0,48"
+                    Point3="4,48" />
+                  <mssgle:LineSegment
+                    End="29,48" />
+                  <mssgle:CubicBezierSegment
+                    Point1="29,48"
+                    Point2="33,48"
+                    Point3="33,52" />
+                  <mssgle:LineSegment
+                    End="33,88.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Create Match Profiles\Get Applicants">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

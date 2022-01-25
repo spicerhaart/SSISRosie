@@ -1,0 +1,1816 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/25/2021 4:10:16 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WX9000ITD32"
+  DTS:CreatorName="SPICERHAART\1897047"
+  DTS:DTSID="{B683C565-E102-46C9-A644-9F6ED5C170C9}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="Upsert Contact Test Data"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{DE6FBEF0-C99F-4224-BA4A-4E0E1AD2BC72}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[colsqlbi01v.Entities]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{6BBAA385-9495-4FFC-BB96-54A22ECDFB56}"
+      DTS:ObjectName="colsqlbi01v.Entities">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=colsqlbi01v;Initial Catalog=Entities;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[sql2016dev.EntitiesDev]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{11BFCAB6-D0FD-4A44-982C-4C41B3AC0869}"
+      DTS:ObjectName="sql2016dev.EntitiesDev">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=sql2016dev;Initial Catalog=EntitiesDev;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[sql2016dev.EntitiesDev1]"
+      DTS:CreationName="ADO.NET:SQL"
+      DTS:DTSID="{9786E209-383D-4123-BC5F-515C064BBCAD}"
+      DTS:ObjectName="sql2016dev.EntitiesDev1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=sql2016dev;Initial Catalog=EntitiesDev;Integrated Security=True;Application Name=SSIS-Package4-{9786E209-383D-4123-BC5F-515C064BBCAD}sql2016dev.EntitiesDev1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{02F57F06-7C7A-4433-B917-9BEE7457DD10}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input].Columns[etag]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="etag"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[etag]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input].Columns[etag (1)]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="etag (1)"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[etag (1)]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Conditional Split.Outputs[Case 1]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Case 1"
+                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[REPLACENULL](#{Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[etag (1)]},"") != #{Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[etag]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">REPLACENULL([etag (1)],"") != etag</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[Id]"
+                      cachedDataType="i4"
+                      cachedName="Id"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[Id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[etag]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="etag"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[etag]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[OriginId]"
+                      cachedDataType="ui1"
+                      cachedName="OriginId"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[OriginId]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[AccountId]"
+                      cachedDataType="i2"
+                      cachedName="AccountId"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[AccountId]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[ContactJSON]"
+                      cachedDataType="nText"
+                      cachedName="ContactJSON"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[ContactJSON]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[DateAdded]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateAdded"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[DateAdded]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[DateUpdated]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateUpdated"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[DateUpdated]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[CustomJSON]"
+                      cachedDataType="nText"
+                      cachedName="CustomJSON"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[CustomJSON]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[Id]"
+                      cachedDataType="i4"
+                      cachedName="Id"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[Id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[etag]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="etag"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[etag]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[Id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[Id]"
+                      name="Id"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[Id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[etag]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[etag]"
+                      name="etag">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[etag]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[OriginId]"
+                      dataType="ui1"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[OriginId]"
+                      name="OriginId">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[OriginId]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[AccountId]"
+                      dataType="i2"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[AccountId]"
+                      name="AccountId">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[AccountId]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[ContactJSON]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[ContactJSON]"
+                      name="ContactJSON">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[ContactJSON]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DateAdded]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DateAdded]"
+                      name="DateAdded">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[DateAdded]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DateUpdated]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DateUpdated]"
+                      name="DateUpdated">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[DateUpdated]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[CustomJSON]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[CustomJSON]"
+                      name="CustomJSON">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input].Columns[CustomJSON]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[Id (1)]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[Id (1)]"
+                      name="Id (1)">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[Id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[etag (1)]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[etag (1)]"
+                      name="etag (1)">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input].Columns[etag]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[Id]"
+                      cachedDataType="i4"
+                      cachedName="Id"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[Id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[etag]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="etag"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[etag]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[OriginId]"
+                      cachedDataType="ui1"
+                      cachedName="OriginId"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[OriginId]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[AccountId]"
+                      cachedDataType="i2"
+                      cachedName="AccountId"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[AccountId]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[ContactJSON]"
+                      cachedDataType="nText"
+                      cachedName="ContactJSON"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[ContactJSON]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[DateAdded]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateAdded"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[DateAdded]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[DateUpdated]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateUpdated"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[DateUpdated]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[CustomJSON]"
+                      cachedDataType="nText"
+                      cachedName="CustomJSON"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[CustomJSON]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[Id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[Id]"
+                      name="Id"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[Id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[etag]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[etag]"
+                      name="etag">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[etag]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[OriginId]"
+                      dataType="ui1"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[OriginId]"
+                      name="OriginId">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[OriginId]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[AccountId]"
+                      dataType="i2"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[AccountId]"
+                      name="AccountId">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[AccountId]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[ContactJSON]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[ContactJSON]"
+                      name="ContactJSON">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[ContactJSON]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[DateAdded]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[DateAdded]"
+                      name="DateAdded">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[DateAdded]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[DateUpdated]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[DateUpdated]"
+                      name="DateUpdated">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[DateUpdated]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[CustomJSON]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[CustomJSON]"
+                      name="CustomJSON">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[CustomJSON]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Sort 1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort 1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Sort 1.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort 1.Inputs[Sort Input].Columns[id]"
+                      cachedDataType="i4"
+                      cachedName="id"
+                      lineageId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Output].Columns[id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort 1.Inputs[Sort Input].Columns[etag]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="etag"
+                      lineageId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Output].Columns[etag]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Sort 1.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[Id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[Id]"
+                      name="Id"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Output].Columns[id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[etag]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Data Flow Task\Sort 1.Outputs[Sort Output].Columns[etag]"
+                      name="etag">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Output].Columns[etag]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Source Live Data"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Source Live Data"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Contacts]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT * FROM dbo.Contacts WITH (NOLOCK)
+WHERE  Accountid = 1738</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Source Live Data.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[colsqlbi01v.Entities]"
+                  connectionManagerRefId="Package.ConnectionManagers[colsqlbi01v.Entities]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[Id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].ExternalColumns[Id]"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[Id]"
+                      name="Id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[etag]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].ExternalColumns[etag]"
+                      length="250"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[etag]"
+                      name="etag"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[OriginId]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].ExternalColumns[OriginId]"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[OriginId]"
+                      name="OriginId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[AccountId]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].ExternalColumns[AccountId]"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[AccountId]"
+                      name="AccountId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[ContactJSON]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].ExternalColumns[ContactJSON]"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[ContactJSON]"
+                      name="ContactJSON"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[DateAdded]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].ExternalColumns[DateAdded]"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[DateAdded]"
+                      name="DateAdded"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[DateUpdated]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].ExternalColumns[DateUpdated]"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[DateUpdated]"
+                      name="DateUpdated"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[CustomJSON]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].ExternalColumns[CustomJSON]"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].Columns[CustomJSON]"
+                      name="CustomJSON"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].ExternalColumns[Id]"
+                      dataType="i4"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].ExternalColumns[etag]"
+                      dataType="wstr"
+                      length="250"
+                      name="etag" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].ExternalColumns[OriginId]"
+                      dataType="ui1"
+                      name="OriginId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].ExternalColumns[AccountId]"
+                      dataType="i2"
+                      name="AccountId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].ExternalColumns[ContactJSON]"
+                      dataType="nText"
+                      name="ContactJSON" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].ExternalColumns[DateAdded]"
+                      dataType="dbTimeStamp"
+                      name="DateAdded" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].ExternalColumns[DateUpdated]"
+                      dataType="dbTimeStamp"
+                      name="DateUpdated" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output].ExternalColumns[CustomJSON]"
+                      dataType="nText"
+                      name="CustomJSON" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output].Columns[Id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output].Columns[Id]"
+                      name="Id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output].Columns[etag]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output].Columns[etag]"
+                      name="etag" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output].Columns[OriginId]"
+                      dataType="ui1"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output].Columns[OriginId]"
+                      name="OriginId" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output].Columns[AccountId]"
+                      dataType="i2"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output].Columns[AccountId]"
+                      name="AccountId" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output].Columns[ContactJSON]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output].Columns[ContactJSON]"
+                      name="ContactJSON" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output].Columns[DateAdded]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output].Columns[DateAdded]"
+                      name="DateAdded" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output].Columns[DateUpdated]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output].Columns[DateUpdated]"
+                      name="DateUpdated" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output].Columns[CustomJSON]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output].Columns[CustomJSON]"
+                      name="CustomJSON" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Source Test Data"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Source Test Data"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Contacts]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT id,etag FROM dbo.Contacts
+WHERE  Accountid = 1738</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Source Test Data.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[sql2016dev.EntitiesDev]"
+                  connectionManagerRefId="Package.ConnectionManagers[sql2016dev.EntitiesDev]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Output].Columns[etag]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Output].ExternalColumns[etag]"
+                      length="250"
+                      lineageId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Output].Columns[etag]"
+                      name="etag"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Output].Columns[id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Output].ExternalColumns[id]"
+                      lineageId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Output].Columns[id]"
+                      name="id"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Output].ExternalColumns[etag]"
+                      dataType="wstr"
+                      length="250"
+                      name="etag" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Output].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Error Output].Columns[id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Error Output].Columns[id]"
+                      name="id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Error Output].Columns[etag]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Error Output].Columns[etag]"
+                      name="etag" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Upsert Test Data"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Upsert Destination (Insert, Update, Delete); ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+              description="Upsert destination can be used for bulk insert / update / delete (i.e. Merge) based on matching source and target records in MS SQL Server, PostgreSql, Amazon Redshift database."
+              name="Upsert Test Data"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="LoggingMode determines how much information is logged during Package Execution. Set Logging mode to Debugging for maximum log."
+                  expressionType="Notify"
+                  name="LoggingMode"
+                  typeConverter="ZappySys.PowerPack.Common.LoggingMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="When you enable this property it will prefix timestamp before Log messages."
+                  expressionType="Notify"
+                  name="PrefixTimestamp">false</property>
+                <property
+                  dataType="System.Null"
+                  expressionType="Notify"
+                  name="SelfRef"
+                  typeConverter="NOTBROWSABLE" />
+                <property
+                  dataType="System.String"
+                  description="Target table name where you like insert, update or delete records"
+                  expressionType="Notify"
+                  name="TableName"
+                  typeConverter="ZappySys.PowerPack.Converters.TableEditor,ZappySys.PowerPack130.UI,Version=1.0.0.0,Culture=neutral,PublicKeyToken=1903265a93eae502">[dbo].[Contacts]</property>
+                <property
+                  dataType="System.Int32"
+                  description="Commit batch size (0=Commit once all source rows are consumed). You can Change Batch Size to commit in smaller chunks too if error handling needed."
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Action you like to perform (e.g. Upsert, Insert, Update, Delete or Sync)"
+                  expressionType="Notify"
+                  name="Action"
+                  typeConverter="ZappySys.Common.Data.MergeMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="INSERT source rows to target if they don't exist in target table (Only for Sync or Upsert Action)"
+                  expressionType="Notify"
+                  name="EnableInsert">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="UPDATE source rows to target if they exist in target table (Only for Sync or Upsert Action)"
+                  expressionType="Notify"
+                  name="EnableUpdate">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="DELETE target rows if missing in source (Only for Sync or Upsert Action)"
+                  expressionType="Notify"
+                  name="EnableDelete">false</property>
+                <property
+                  dataType="System.String"
+                  description="User defined Temp table to hold source result before final merge. This table is truncated before each data load. Unlike auto temp table, custom temp table is not dropped after process is finished."
+                  expressionType="Notify"
+                  name="CustomTempTableName"></property>
+                <property
+                  dataType="System.String"
+                  description="SQL command you like to execute before starting load in target table (e.g. DROP INDEX on target). Along with variable placeholders, you can also use special placeholders [%target_table%], [%temp_table%] and [%target_keys%]"
+                  expressionType="Notify"
+                  name="PreExecuteCommand"></property>
+                <property
+                  dataType="System.String"
+                  description="SQL command you like to execute at the end once target table is update (e.g. REBUILD or CREATE INDEX on target table). Along with variable placeholders, you can also use special placeholders [%target_table%], [%temp_table%] and [%target_keys%]"
+                  expressionType="Notify"
+                  name="PostExecuteCommand"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies what to do if you encounter duplicate records in source data. You can use first row in the group or keep last row or throw error."
+                  expressionType="Notify"
+                  name="DuplicateRemovalMode"
+                  typeConverter="ZappySys.Common.Data.DuplicateRemovalMode">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">ZappySys.UpsertDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Upsert Test Data.Connections[DB-CONNECTION]"
+                  connectionManagerID="Package.ConnectionManagers[sql2016dev.EntitiesDev1]"
+                  connectionManagerRefId="Package.ConnectionManagers[sql2016dev.EntitiesDev1]"
+                  description="Connection for this component"
+                  name="DB-CONNECTION" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="UpsertDestinationInput"
+                  truncationRowDisposition="FailComponent">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].Columns[Id]"
+                      cachedDataType="i4"
+                      cachedName="Id"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].ExternalColumns[Id]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[Id]"
+                      name="Id" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].Columns[etag]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="etag"
+                      externalMetadataColumnId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].ExternalColumns[etag]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[etag]"
+                      name="etag" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].Columns[OriginId]"
+                      cachedDataType="ui1"
+                      cachedName="OriginId"
+                      externalMetadataColumnId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].ExternalColumns[OriginId]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[OriginId]"
+                      name="OriginId" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].Columns[AccountId]"
+                      cachedDataType="i2"
+                      cachedName="AccountId"
+                      externalMetadataColumnId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].ExternalColumns[AccountId]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[AccountId]"
+                      name="AccountId" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].Columns[ContactJSON]"
+                      cachedDataType="nText"
+                      cachedName="ContactJSON"
+                      externalMetadataColumnId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].ExternalColumns[ContactJSON]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[ContactJSON]"
+                      name="ContactJSON" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].Columns[DateAdded]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateAdded"
+                      externalMetadataColumnId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].ExternalColumns[DateAdded]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DateAdded]"
+                      name="DateAdded" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].Columns[DateUpdated]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateUpdated"
+                      externalMetadataColumnId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].ExternalColumns[DateUpdated]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[DateUpdated]"
+                      name="DateUpdated" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].Columns[CustomJSON]"
+                      cachedDataType="nText"
+                      cachedName="CustomJSON"
+                      externalMetadataColumnId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].ExternalColumns[CustomJSON]"
+                      lineageId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output].Columns[CustomJSON]"
+                      name="CustomJSON" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].ExternalColumns[Id]"
+                      dataType="i4"
+                      name="Id">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Primary Key Column for this table"
+                          expressionType="Notify"
+                          name="IsKey">true</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].ExternalColumns[etag]"
+                      dataType="wstr"
+                      length="250"
+                      name="etag" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].ExternalColumns[OriginId]"
+                      dataType="ui1"
+                      name="OriginId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].ExternalColumns[AccountId]"
+                      dataType="i2"
+                      name="AccountId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].ExternalColumns[ContactJSON]"
+                      dataType="nText"
+                      name="ContactJSON" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].ExternalColumns[DateAdded]"
+                      dataType="dbTimeStamp"
+                      name="DateAdded" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].ExternalColumns[DateUpdated]"
+                      dataType="dbTimeStamp"
+                      name="DateUpdated" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput].ExternalColumns[CustomJSON]"
+                      dataType="nText"
+                      name="CustomJSON" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output]"
+                  isErrorOut="true"
+                  name="UpsertDestination Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[ErrorColumnName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="128"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[ErrorColumnName]"
+                      name="ErrorColumnName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[ErrorMessage]"
+                      dataType="wstr"
+                      length="1024"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[ErrorMessage]"
+                      name="ErrorMessage" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[Id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[Id]"
+                      name="Id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[etag]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[etag]"
+                      name="etag" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[OriginId]"
+                      dataType="ui1"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[OriginId]"
+                      name="OriginId" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[AccountId]"
+                      dataType="i2"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[AccountId]"
+                      name="AccountId" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[ContactJSON]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[ContactJSON]"
+                      name="ContactJSON" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[DateAdded]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[DateAdded]"
+                      name="DateAdded" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[DateUpdated]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[DateUpdated]"
+                      name="DateUpdated" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[CustomJSON]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[UpsertDestination Error Output].Columns[CustomJSON]"
+                      name="CustomJSON" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Upsert Test Data.Outputs[New Records Output]"
+                  name="New Records Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[New Records Output].Columns[Id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[New Records Output].Columns[Id]"
+                      name="Id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[New Records Output].Columns[etag]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[New Records Output].Columns[etag]"
+                      name="etag" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[New Records Output].Columns[OriginId]"
+                      dataType="ui1"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[New Records Output].Columns[OriginId]"
+                      name="OriginId" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[New Records Output].Columns[AccountId]"
+                      dataType="i2"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[New Records Output].Columns[AccountId]"
+                      name="AccountId" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[New Records Output].Columns[ContactJSON]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[New Records Output].Columns[ContactJSON]"
+                      name="ContactJSON" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[New Records Output].Columns[DateAdded]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[New Records Output].Columns[DateAdded]"
+                      name="DateAdded" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[New Records Output].Columns[DateUpdated]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[New Records Output].Columns[DateUpdated]"
+                      name="DateUpdated" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[New Records Output].Columns[CustomJSON]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[New Records Output].Columns[CustomJSON]"
+                      name="CustomJSON" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Upsert Test Data.Outputs[Updated Records Output]"
+                  name="Updated Records Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[Updated Records Output].Columns[Id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[Updated Records Output].Columns[Id]"
+                      name="Id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[Updated Records Output].Columns[etag]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[Updated Records Output].Columns[etag]"
+                      name="etag" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[Updated Records Output].Columns[OriginId]"
+                      dataType="ui1"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[Updated Records Output].Columns[OriginId]"
+                      name="OriginId" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[Updated Records Output].Columns[AccountId]"
+                      dataType="i2"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[Updated Records Output].Columns[AccountId]"
+                      name="AccountId" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[Updated Records Output].Columns[ContactJSON]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[Updated Records Output].Columns[ContactJSON]"
+                      name="ContactJSON" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[Updated Records Output].Columns[DateAdded]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[Updated Records Output].Columns[DateAdded]"
+                      name="DateAdded" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[Updated Records Output].Columns[DateUpdated]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[Updated Records Output].Columns[DateUpdated]"
+                      name="DateUpdated" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Upsert Test Data.Outputs[Updated Records Output].Columns[CustomJSON]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task\Upsert Test Data.Outputs[Updated Records Output].Columns[CustomJSON]"
+                      name="CustomJSON" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Case 1]"
+              endId="Package\Data Flow Task\Upsert Test Data.Inputs[UpsertDestinationInput]"
+              name="Case 1"
+              startId="Package\Data Flow Task\Conditional Split.Outputs[Case 1]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Merge Join Output]"
+              endId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+              name="Merge Join Output"
+              startId="Package\Data Flow Task\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\Sort.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\Source Live Data.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output1]"
+              endId="Package\Data Flow Task\Sort 1.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\Source Test Data.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Sort Output]"
+              endId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Data Flow Task\Sort.Outputs[Sort Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Sort Output1]"
+              endId="Package\Data Flow Task\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\Data Flow Task\Sort 1.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Data Flow Task"
+          TopLeft="434,91" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Data Flow Task\Source Live Data"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Data Flow Task\Source Test Data"
+          TopLeft="224.5,5.5" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Data Flow Task\Merge Join"
+          TopLeft="239.5,209.5" />
+        <NodeLayout
+          Size="98,42"
+          Id="Package\Data Flow Task\Sort"
+          TopLeft="92.5,107.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="84.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="57,60"
+              Start="0,0"
+              End="57,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="53,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="53,30"
+                    Point2="57,30"
+                    Point3="57,34" />
+                  <mssgle:LineSegment
+                    End="57,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="3.69052734375,35,49.6189453125,11.228515625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="107,42"
+          Id="Package\Data Flow Task\Sort 1"
+          TopLeft="251,107.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output1]"
+          TopLeft="304.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-24.80947265625,20.6357421875,49.6189453125,11.228515625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Sort Output]"
+          TopLeft="141.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="142.666666666667,60"
+              Start="0,0"
+              End="142.666666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5623100303951" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5623100303951"
+                    Point2="0,35.5623100303951"
+                    Point3="4,35.5623100303951" />
+                  <mssgle:LineSegment
+                    End="138.666666666667,35.5623100303951" />
+                  <mssgle:CubicBezierSegment
+                    Point1="138.666666666667,35.5623100303951"
+                    Point2="142.666666666667,35.5623100303951"
+                    Point3="142.666666666667,39.5623100303951" />
+                  <mssgle:LineSegment
+                    End="142.666666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="46.5238606770833,40.5623100303951,49.6189453125,11.228515625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Sort Output1]"
+          TopLeft="304.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="20.3333333333333,60"
+              Start="0,0"
+              End="20.3333333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5623100303951" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5623100303951"
+                    Point2="0,35.5623100303951"
+                    Point3="4,35.5623100303951" />
+                  <mssgle:LineSegment
+                    End="16.3333333333333,35.5623100303951" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.3333333333333,35.5623100303951"
+                    Point2="20.3333333333333,35.5623100303951"
+                    Point3="20.3333333333333,39.5623100303951" />
+                  <mssgle:LineSegment
+                    End="20.3333333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-14.6428059895833,40.5623100303951,49.6189453125,11.228515625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Data Flow Task\Conditional Split"
+          TopLeft="227,311.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Merge Join Output]"
+          TopLeft="304.5,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-24.80947265625,20.6357421875,49.6189453125,11.228515625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Data Flow Task\Upsert Test Data"
+          TopLeft="225,413.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Case 1]"
+          TopLeft="304.5,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-35.5042578125,20.4453125,71.008515625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Source Live Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Source Test Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

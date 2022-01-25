@@ -1,0 +1,10 @@
+<SSISVariables>
+    <RexAPIWebURL>https://api.uk.rexsoftware.com/rex.php</RexAPIWebURL>
+    <PackageUser>rosie@spicerhaart.co.uk</PackageUser>
+    <PackagePassword>P4ssword</PackagePassword>
+    <PackageErrorEmail>ITDevelopers2@spicerhaart.co.uk</PackageErrorEmail>
+    <ListingImageOutput>C:\RosieImages</ListingImageOutput>
+    <ListingImageOutputCopy1>\\colftp02v\RosieLoad</ListingImageOutputCopy1>
+    <ListingImageOutputCopy2>\\colnas01\webimage$\PropImage\hires</ListingImageOutputCopy2>
+    <ListingImageOutputCopy3>\\images.spicerhaart.co.uk\i$\Images\PropImage\Hires</ListingImageOutputCopy3>
+</SSISVariables>

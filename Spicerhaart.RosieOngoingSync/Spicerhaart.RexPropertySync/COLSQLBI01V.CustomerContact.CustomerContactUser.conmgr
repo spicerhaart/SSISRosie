@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="COLSQLBI01V.CustomerContact.CustomerContactUser"
+  DTS:DTSID="{B09821BB-92FD-4F9E-B287-446D3138AF8A}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=COLSQLBI01V;User ID=CustomerContactUser;Initial Catalog=CustomerContact;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1"
+        p4:Salt="QctdVsPjzQ=="
+        p4:IV="GmvbtRLiwcQ=" xmlns:p4="www.microsoft.com/SqlServer/SSIS">SoHALonICRWjmTK9vRdwpYVQUvM1sP9Hvif5wOPthox5B4i16uEfHZkOLwkyLwAK0KfTfuWkWSVRcDTPHwWuXHC+SOUm2CWvA2fWMuyR3zXEcl+AhOnvjuSOEGr8jDCtLgpFXGa2GAgUs/i9TlrmS6QOfCf60eZW</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

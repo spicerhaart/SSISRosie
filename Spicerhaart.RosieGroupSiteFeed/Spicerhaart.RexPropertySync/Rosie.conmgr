@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Rosie"
+  DTS:DTSID="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=COLSQL10;User ID=RosieUser;Initial Catalog=Rosie;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1"
+        p4:Salt="WHPbJc4wmQ=="
+        p4:IV="3d+7TQcaLBk=" xmlns:p4="www.microsoft.com/SqlServer/SSIS">ph08AxJlFMGXkQWGS5E6lE6hXb3LCCKNy8B1KnfOWInVqyBLzmSdCg4x21kY54YmRkvHsGNzAxNQnnDItv6A0fG7PioRzCZVRFFzy84gis/a9w3+6DgfTYMEIL7n3TYriE10UwNlyjRmPlDSxMY8Ay07WWcOqFVsewelLT4IMAw=</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
