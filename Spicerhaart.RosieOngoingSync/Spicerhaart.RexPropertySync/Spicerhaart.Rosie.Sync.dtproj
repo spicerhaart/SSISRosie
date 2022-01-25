@@ -15,7 +15,7 @@
       <SSIS:Project SSIS:ProtectionLevel="EncryptSensitiveWithPassword" xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
         <SSIS:Properties>
           <SSIS:Property SSIS:Name="ID">{bf0cffc4-af36-4b76-904e-f58f05ea3c68}</SSIS:Property>
-          <SSIS:Property SSIS:Name="Name">Spicerhaart</SSIS:Property>
+          <SSIS:Property SSIS:Name="Name">Spicerhaart.Rosie</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionMajor">0</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">WX9000ITD21</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="A+zaJi38zA==" SSIS:IV="W4udPtOcZxk=">2glG/7NKc52dkCjXI5ZL6XL7SnB+gtSG0EJjqbPHzioGm8pX/UuvpFdApGJJpiwQZy3V7+NOYNgbf2VDjD7pe36Fdp4cm2Q5qenLQm0NQ0idpNiuJGmvGU1qz2TOM4TBzmDYaYIB59mERr3wYPAgkQMF84tM2czA/zyyRGFx05jhVdoDlS803Q==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="9GXaTrU47w==" SSIS:IV="CSg4Q9OOhw8=">woWl7ZmUiK4TmCwUFCUgbjcYlyPttn8L1N1Ij13dO1pxRwAAsWkh8GEFzjKl8B7civ+/JwbhUwDKvYacXWsc7LRvTfpM6MhToREII2/l+/5cPo4IHLPoe3ECj8kg6cRk099BwGMdjwad5/fIZZRC2DesJETUxBnHljU19Seyv0Mnh8kfw5Bhow==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
