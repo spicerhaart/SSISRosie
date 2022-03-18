@@ -12,8 +12,8 @@
   DTS:ObjectName="RosieMailMergeArchive"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="76"
-  DTS:VersionGUID="{4FA63766-5151-4413-87FA-E25B3ADC8210}">
+  DTS:VersionBuild="109"
+  DTS:VersionGUID="{BCB5BBFD-9FE1-4716-9410-396A0BDD26A4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -48,6 +48,26 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{70C16B06-6C9D-492D-A73A-CE04641569A3}"
+      DTS:ObjectName="ProcessAllOffices">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{0FB65F7C-FC31-4200-A30B-2C6F6CF0C4F7}"
+      DTS:ObjectName="RexAccountId">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">1864</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
@@ -171,13 +191,31 @@
         DTS:DataType="8"
         xml:space="preserve"></DTS:VariableValue>
     </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B6729A64-5FA6-43C8-8F23-6BB85F700613}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="TestOfficeList">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\Get Office List"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{E8713C8D-8CE1-4080-AF85-B067BAE3B5B9}"
+      DTS:DTSID="{7972E359-7EB2-4FAB-A7DC-C26C43135593}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Get Office List"
@@ -186,12 +224,23 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{78432CA1-1FEA-4ED4-9C0F-D552A4A9DE0E}"
-          SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="--Testing&#xA;--select &#xA;--1738 as office_id,&#xA;--1738 as r_account_id,&#xA;--null as [LastRunTime]&#xA;&#xA;select &#xA;&#x9;office_id,&#xA;&#x9;r_account_id ,&#xA;&#x9;[LastRunTime]&#xA;from &#xA;&#x9;dbo.RosieOfficeMigration rom WITH (NOLOCK) &#xA;left outer join &#xA;&#x9;[Rosie].[dbo].[PackageLastRun] plr&#xA;ON &#xA;&#x9;rom.r_account_id = plr.[AccountId]&#xA;&#x9;and [PackageName] = 'MailMergeArchive' &#xA;WHERE &#xA;&#x9;migrated = 1 &#xA;order by &#xA;&#x9;[LastRunTime] asc"
+          SQLTask:SqlStatementSource="select &#xA;&#x9;office_id,&#xA;&#x9;r_account_id ,&#xA;&#x9;[LastRunTime]&#xA;from &#xA;&#x9;dbo.RosieOfficeMigration rom WITH (NOLOCK) &#xA;left outer join &#xA;&#x9;[Rosie].[dbo].[PackageLastRun] plr&#xA;ON &#xA;&#x9;rom.r_account_id = plr.[AccountId]&#xA;&#x9;and [PackageName] = 'MailMergeArchive' &#xA;WHERE &#xA;&#x9;migrated = 1 and&#xA;&#x9;(? = 1 or rom.r_account_id = ?)"
           SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
             SQLTask:ResultName="0"
             SQLTask:DtsVariableName="User::OfficeList" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::ProcessAllOffices"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="$Package::RexAccountId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
         </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
@@ -498,11 +547,11 @@
                           name="Data Conversion Input">
                           <inputColumns>
                             <inputColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Data Conversion.Inputs[Data Conversion Input].Columns[MailMergeId]"
+                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Data Conversion.Inputs[Data Conversion Input].Columns[rows]"
                               cachedDataType="wstr"
                               cachedLength="28"
-                              cachedName="MailMergeId"
-                              lineageId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].Columns[MailMergeId]" />
+                              cachedName="rows"
+                              lineageId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].Columns[rows]" />
                           </inputColumns>
                           <externalMetadataColumns />
                         </input>
@@ -528,7 +577,7 @@
                                   containsID="true"
                                   dataType="System.Int32"
                                   description="Specifies the input column used as the source of data for the conversion."
-                                  name="SourceInputColumnLineageID">#{Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].Columns[MailMergeId]}</property>
+                                  name="SourceInputColumnLineageID">#{Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].Columns[rows]}</property>
                                 <property
                                   dataType="System.Boolean"
                                   description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -627,7 +676,7 @@
                           expressionType="Notify"
                           name="LayoutInfo">&lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;settings ver="3"&gt;
-  &lt;dataset id="dsMai30" main="True" inputid="384" readfrominput="True"&gt;&lt;/dataset&gt;
+  &lt;dataset id="dsrow58" main="True" inputid="58" readfrominput="True"&gt;&lt;/dataset&gt;
   &lt;map name="method" value="MailMergeEventLogs::Archive" datatype="String" /&gt;
   &lt;map name="strip_response_prefix" value="True" datatype="String" /&gt;
   &lt;map name="token" value="{{User::RexToken}}" datatype="String" /&gt;
@@ -697,24 +746,24 @@
                       </properties>
                       <inputs>
                         <input
-                          refId="Package\Iterate Offices\Process Office\Mail Merge Search\JSON Generator Transform.Inputs[JsonInput2]"
-                          name="JsonInput2">
+                          refId="Package\Iterate Offices\Process Office\Mail Merge Search\JSON Generator Transform.Inputs[JsonInput1]"
+                          name="JsonInput1">
                           <properties>
                             <property
                               dataType="System.Int32"
                               description="Id for attached dataset with input. Use JSON Layout Editor to see attached dataset"
                               expressionType="Notify"
-                              name="DatasetInputId">384</property>
+                              name="DatasetInputId">58</property>
                           </properties>
                           <inputColumns>
                             <inputColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\JSON Generator Transform.Inputs[JsonInput2].Columns[MailMergeId]"
+                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\JSON Generator Transform.Inputs[JsonInput1].Columns[rows]"
                               cachedDataType="wstr"
                               cachedLength="28"
-                              cachedName="MailMergeId"
-                              lineageId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].Columns[MailMergeId]" />
+                              cachedName="rows"
+                              lineageId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].Columns[rows]" />
                             <inputColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\JSON Generator Transform.Inputs[JsonInput2].Columns[intMailMergeId]"
+                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\JSON Generator Transform.Inputs[JsonInput1].Columns[intMailMergeId]"
                               cachedDataType="numeric"
                               cachedName="intMailMergeId"
                               cachedPrecision="18"
@@ -723,8 +772,8 @@
                           <externalMetadataColumns />
                         </input>
                         <input
-                          refId="Package\Iterate Offices\Process Office\Mail Merge Search\JSON Generator Transform.Inputs[JsonInput1]"
-                          name="JsonInput1">
+                          refId="Package\Iterate Offices\Process Office\Mail Merge Search\JSON Generator Transform.Inputs[JsonInput2]"
+                          name="JsonInput2">
                           <externalMetadataColumns />
                         </input>
                       </inputs>
@@ -1272,7 +1321,7 @@
                           expressionType="Notify"
                           name="HttpRequestData">{
 "method":"MailMergeEventLogs::Search",
-"strip_response_prefix": true,
+"strip_response_prefix": "true",
 "token": "{{User::RexToken}}",
 "args":
     {
@@ -1293,7 +1342,10 @@
                     "type": "!=", 
                     "value": "letter"
                 }
-             ]
+
+             ],
+        "result_format": "ids",
+        "limit": "5000"
     }
 }</property>
                         <property
@@ -1306,7 +1358,7 @@
                           description="Specifies content type for data you wish to POST. If you select Default option then system default content type will be used (i.e. application/x-www-form-urlencoded). If you specify Content-Type header along with this option then header value takes precedence."
                           expressionType="Notify"
                           name="HttpRequestContentType"
-                          typeConverter="ZappySys.Common.Web.HttpRequestContentType">0</property>
+                          typeConverter="ZappySys.Common.Web.HttpRequestContentType">2</property>
                         <property
                           dataType="System.Boolean"
                           description="Check this option if you want to upload file(s) (i.e. POST RAW file data) or send data using Multi-Part encoding method (i.e. Content-Type: multipart/form-data). Multi-Part request allows you to mix key/value and upload files in same request. On the other hand raw upload allows only single file upload (without any key/value) &#xA;&#xA;==== Raw Upload (Content-Type: application/octet-stream) =====   &#xA;To upload single file in raw mode check this option and specify full file path starting with @ sign in the Body (e.g.  @c:\data\myfile.zip ) &#xA;&#xA;==== Form-Data / Multipart Upload (Content-Type: multipart/form-data) =====   &#xA;To treat your Request data as multi part fields you must specify key/value pairs separated by new lines into RequestData field (i.e. Body). Each key value pair is entered on new-line and key/value are separated using equal sign (=). Preceding and trailing spaces are ignored also blank lines are ignored. &#xA;If field value has some any special character(s) then use escape sequence (e.g. For NewLine: \r\n, For Tab: \t, For at (@): \@). When value of any field starts with at sign (@) its automatically treated as File you want to upload. By default file content type is determined based on extension however you can supply content type manually for any field using this way [ fieldname.Content-Type=some content type ]. In below example we have supplied Content-Type for file2 and SomeField1, all other fields are using default content-type.&#xA;See below Example of uploading multiple files along with additional fields.&#xA;&#xA;file1=@c:\data\Myfile1.txt&#xA;file2=@c:\data\Myfile2.json&#xA;file2.Content-Type=application/json&#xA;SomeField1=aaaaaaa&#xA;SomeField1.Content-Type=text/plain&#xA;SomeField2=12345&#xA;SomeFieldWithNewLineAndTab=This is line1\r\nThis is line2\r\nThis is \ttab \ttab \ttab&#xA;SomeFieldStartingWithAtSign=\@MyTwitterHandle&#xA;"
@@ -1726,12 +1778,12 @@
                           truncationRowDisposition="FailComponent">
                           <outputColumns>
                             <outputColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].Columns[MailMergeId]"
+                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].Columns[rows]"
                               dataType="wstr"
-                              externalMetadataColumnId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[_id]"
+                              externalMetadataColumnId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[rows]"
                               length="28"
-                              lineageId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].Columns[MailMergeId]"
-                              name="MailMergeId" />
+                              lineageId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].Columns[rows]"
+                              name="rows" />
                           </outputColumns>
                           <externalMetadataColumns
                             isUsed="True">
@@ -1765,851 +1817,10 @@
                               length="144"
                               name="P_correlation_async_correlation_id" />
                             <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[system_record_state]"
-                              dataType="wstr"
-                              length="24"
-                              name="system_record_state" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[system_send_status_id]"
-                              dataType="wstr"
-                              length="24"
-                              name="system_send_status_id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[send_failed_reason]"
-                              dataType="wstr"
-                              length="408"
-                              name="send_failed_reason" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[calendar_event_id]"
-                              dataType="wstr"
-                              length="144"
-                              name="calendar_event_id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[reminder_id]"
-                              dataType="wstr"
-                              length="1020"
-                              name="reminder_id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[contract_id]"
-                              dataType="wstr"
-                              length="1020"
-                              name="contract_id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[print_status]"
-                              dataType="wstr"
-                              length="1020"
-                              name="print_status" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[invalid_print_reason]"
-                              dataType="wstr"
-                              length="1020"
-                              name="invalid_print_reason" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[fallback_recipient_name]"
-                              dataType="wstr"
-                              length="1020"
-                              name="fallback_recipient_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[engagement_status]"
+                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[rows]"
                               dataType="wstr"
                               length="28"
-                              name="engagement_status" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[send_connection_id]"
-                              dataType="wstr"
-                              length="12"
-                              name="send_connection_id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[custom_merge_data]"
-                              dataType="wstr"
-                              length="1020"
-                              name="custom_merge_data" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[content_type]"
-                              dataType="wstr"
-                              length="32"
-                              name="content_type" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[ignore_wash]"
-                              dataType="wstr"
-                              length="1020"
-                              name="ignore_wash" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[ignore_compliance_warnings]"
-                              dataType="wstr"
-                              length="1020"
-                              name="ignore_compliance_warnings" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[ignore_compliance_errors]"
-                              dataType="wstr"
-                              length="1020"
-                              name="ignore_compliance_errors" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[location_id]"
-                              dataType="wstr"
-                              length="4"
-                              name="location_id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[merge_type]"
-                              dataType="wstr"
-                              length="12"
-                              name="merge_type" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[merge_count_contacts]"
-                              dataType="wstr"
-                              length="4"
-                              name="merge_count_contacts" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[merge_count_listings]"
-                              dataType="wstr"
-                              length="80"
-                              name="merge_count_listings" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[merge_count_properties]"
-                              dataType="wstr"
-                              length="80"
-                              name="merge_count_properties" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[merge_count_projects]"
-                              dataType="wstr"
-                              length="1020"
-                              name="merge_count_projects" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[merge_count_project_stages]"
-                              dataType="wstr"
-                              length="1020"
-                              name="merge_count_project_stages" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[custom_content_preview]"
-                              dataType="wstr"
-                              length="400"
-                              name="custom_content_preview" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[system_ctime]"
-                              dataType="wstr"
-                              length="40"
-                              name="system_ctime" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[attachments]"
-                              dataType="wstr"
-                              length="1020"
-                              name="attachments" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[custom]"
-                              dataType="wstr"
-                              length="1020"
-                              name="custom" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[bccd_contacts]"
-                              dataType="wstr"
-                              length="1020"
-                              name="bccd_contacts" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[ccd_contacts]"
-                              dataType="wstr"
-                              length="1020"
-                              name="ccd_contacts" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[_security_user_rights]"
-                              dataType="wstr"
-                              length="312"
-                              name="_security_user_rights" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[template._template_medium]"
-                              dataType="wstr"
-                              length="12"
-                              name="template._template_medium" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[template._template_name]"
-                              dataType="wstr"
-                              length="180"
-                              name="template._template_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[template._template_email_subject]"
-                              dataType="wstr"
-                              length="1020"
-                              name="template._template_email_subject" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[template._template_module.id]"
-                              dataType="wstr"
-                              length="28"
-                              name="template._template_module.id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[template._template_module.text]"
-                              dataType="wstr"
-                              length="28"
-                              name="template._template_module.text" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[template.id]"
-                              dataType="i8"
-                              name="template.id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[system_created_user.id]"
-                              dataType="wstr"
-                              length="20"
-                              name="system_created_user.id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[system_created_user._name]"
-                              dataType="wstr"
-                              length="64"
-                              name="system_created_user._name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[system_created_user._first_name]"
-                              dataType="wstr"
-                              length="28"
-                              name="system_created_user._first_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[system_created_user._last_name]"
-                              dataType="wstr"
-                              length="32"
-                              name="system_created_user._last_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[system_created_user._email_address]"
-                              dataType="wstr"
-                              length="124"
-                              name="system_created_user._email_address" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[system_created_user._phone_direct]"
-                              dataType="wstr"
-                              length="1020"
-                              name="system_created_user._phone_direct" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[system_created_user._phone_mobile]"
-                              dataType="wstr"
-                              length="80"
-                              name="system_created_user._phone_mobile" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[system_created_user._position]"
-                              dataType="wstr"
-                              length="80"
-                              name="system_created_user._position" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[system_created_user._is_account_user]"
-                              dataType="wstr"
-                              length="4"
-                              name="system_created_user._is_account_user" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[system_created_user._profile_image]"
-                              dataType="wstr"
-                              length="1020"
-                              name="system_created_user._profile_image" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[contact._name]"
-                              dataType="wstr"
-                              length="92"
-                              name="contact._name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[contact._email_address]"
-                              dataType="wstr"
-                              length="128"
-                              name="contact._email_address" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[contact._phone_number]"
-                              dataType="wstr"
-                              length="48"
-                              name="contact._phone_number" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[contact._fax_number]"
-                              dataType="wstr"
-                              length="1020"
-                              name="contact._fax_number" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[contact._address_postal]"
-                              dataType="wstr"
-                              length="168"
-                              name="contact._address_postal" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[contact._address]"
-                              dataType="wstr"
-                              length="192"
-                              name="contact._address" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[contact.id]"
-                              dataType="wstr"
-                              length="28"
-                              name="contact.id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[property]"
-                              dataType="wstr"
-                              length="1020"
-                              name="property" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing]"
-                              dataType="wstr"
-                              length="1020"
-                              name="listing" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[project]"
-                              dataType="wstr"
-                              length="1020"
-                              name="project" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[project_stage]"
-                              dataType="wstr"
-                              length="1020"
-                              name="project_stage" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[chain_link]"
-                              dataType="wstr"
-                              length="1020"
-                              name="chain_link" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[send_from_user.id]"
-                              dataType="wstr"
-                              length="20"
-                              name="send_from_user.id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[send_from_user._name]"
-                              dataType="wstr"
-                              length="64"
-                              name="send_from_user._name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[send_from_user._first_name]"
-                              dataType="wstr"
-                              length="28"
-                              name="send_from_user._first_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[send_from_user._last_name]"
-                              dataType="wstr"
-                              length="32"
-                              name="send_from_user._last_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[send_from_user._email_address]"
-                              dataType="wstr"
-                              length="124"
-                              name="send_from_user._email_address" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[send_from_user._phone_direct]"
-                              dataType="wstr"
-                              length="1020"
-                              name="send_from_user._phone_direct" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[send_from_user._phone_mobile]"
-                              dataType="wstr"
-                              length="80"
-                              name="send_from_user._phone_mobile" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[send_from_user._position]"
-                              dataType="wstr"
-                              length="80"
-                              name="send_from_user._position" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[send_from_user._is_account_user]"
-                              dataType="wstr"
-                              length="4"
-                              name="send_from_user._is_account_user" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[send_from_user._profile_image]"
-                              dataType="wstr"
-                              length="1020"
-                              name="send_from_user._profile_image" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[from_user.id]"
-                              dataType="wstr"
-                              length="20"
-                              name="from_user.id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[from_user._name]"
-                              dataType="wstr"
-                              length="64"
-                              name="from_user._name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[from_user._first_name]"
-                              dataType="wstr"
-                              length="28"
-                              name="from_user._first_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[from_user._last_name]"
-                              dataType="wstr"
-                              length="32"
-                              name="from_user._last_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[from_user._email_address]"
-                              dataType="wstr"
-                              length="124"
-                              name="from_user._email_address" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[from_user._phone_direct]"
-                              dataType="wstr"
-                              length="1020"
-                              name="from_user._phone_direct" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[from_user._phone_mobile]"
-                              dataType="wstr"
-                              length="80"
-                              name="from_user._phone_mobile" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[from_user._position]"
-                              dataType="wstr"
-                              length="80"
-                              name="from_user._position" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[from_user._is_account_user]"
-                              dataType="wstr"
-                              length="4"
-                              name="from_user._is_account_user" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[from_user._profile_image]"
-                              dataType="wstr"
-                              length="1020"
-                              name="from_user._profile_image" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_ctime]"
-                              dataType="i8"
-                              name="event._system_ctime" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_modtime]"
-                              dataType="i8"
-                              name="event._system_modtime" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._custom_content_preview]"
-                              dataType="wstr"
-                              length="400"
-                              name="event._custom_content_preview" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._print_status]"
-                              dataType="wstr"
-                              length="1020"
-                              name="event._print_status" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._provide_print_job_response]"
-                              dataType="bool"
-                              name="event._provide_print_job_response" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._include_letterhead]"
-                              dataType="bool"
-                              name="event._include_letterhead" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._connection_id]"
-                              dataType="i8"
-                              name="event._connection_id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_sent_at]"
-                              dataType="i8"
-                              name="event._system_sent_at" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._scheduled_to_send_at]"
-                              dataType="wstr"
-                              length="1020"
-                              name="event._scheduled_to_send_at" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_scheduled_send_attempted_at]"
-                              dataType="wstr"
-                              length="1020"
-                              name="event._system_scheduled_send_attempted_at" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._send_failed_reason]"
-                              dataType="wstr"
-                              length="1020"
-                              name="event._send_failed_reason" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_modified_user.id]"
-                              dataType="wstr"
-                              length="20"
-                              name="event._system_modified_user.id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_modified_user._name]"
-                              dataType="wstr"
-                              length="64"
-                              name="event._system_modified_user._name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_modified_user._first_name]"
-                              dataType="wstr"
-                              length="28"
-                              name="event._system_modified_user._first_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_modified_user._last_name]"
-                              dataType="wstr"
-                              length="32"
-                              name="event._system_modified_user._last_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_modified_user._email_address]"
-                              dataType="wstr"
-                              length="124"
-                              name="event._system_modified_user._email_address" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_created_user.id]"
-                              dataType="wstr"
-                              length="20"
-                              name="event._system_created_user.id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_created_user._name]"
-                              dataType="wstr"
-                              length="64"
-                              name="event._system_created_user._name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_created_user._first_name]"
-                              dataType="wstr"
-                              length="28"
-                              name="event._system_created_user._first_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_created_user._last_name]"
-                              dataType="wstr"
-                              length="32"
-                              name="event._system_created_user._last_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_created_user._email_address]"
-                              dataType="wstr"
-                              length="124"
-                              name="event._system_created_user._email_address" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_scheduled_user]"
-                              dataType="wstr"
-                              length="1020"
-                              name="event._system_scheduled_user" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_sent_user.id]"
-                              dataType="wstr"
-                              length="20"
-                              name="event._system_sent_user.id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_sent_user._name]"
-                              dataType="wstr"
-                              length="64"
-                              name="event._system_sent_user._name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_sent_user._first_name]"
-                              dataType="wstr"
-                              length="28"
-                              name="event._system_sent_user._first_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_sent_user._last_name]"
-                              dataType="wstr"
-                              length="32"
-                              name="event._system_sent_user._last_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_sent_user._email_address]"
-                              dataType="wstr"
-                              length="124"
-                              name="event._system_sent_user._email_address" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_send_status.id]"
-                              dataType="wstr"
-                              length="16"
-                              name="event._system_send_status.id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._system_send_status.text]"
-                              dataType="wstr"
-                              length="16"
-                              name="event._system_send_status.text" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._send_from_user.id]"
-                              dataType="wstr"
-                              length="20"
-                              name="event._send_from_user.id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._send_from_user._name]"
-                              dataType="wstr"
-                              length="64"
-                              name="event._send_from_user._name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._send_from_user._first_name]"
-                              dataType="wstr"
-                              length="28"
-                              name="event._send_from_user._first_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._send_from_user._last_name]"
-                              dataType="wstr"
-                              length="32"
-                              name="event._send_from_user._last_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event._send_from_user._email_address]"
-                              dataType="wstr"
-                              length="124"
-                              name="event._send_from_user._email_address" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[event.id]"
-                              dataType="i8"
-                              name="event.id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[_id]"
-                              dataType="wstr"
-                              length="28"
-                              name="_id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[template]"
-                              dataType="wstr"
-                              length="1020"
-                              name="template" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[property._adr_unit_number]"
-                              dataType="wstr"
-                              length="1020"
-                              name="property._adr_unit_number" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[property._adr_street_number]"
-                              dataType="wstr"
-                              length="68"
-                              name="property._adr_street_number" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[property._adr_street_name]"
-                              dataType="wstr"
-                              length="76"
-                              name="property._adr_street_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[property._adr_state_or_region]"
-                              dataType="wstr"
-                              length="1020"
-                              name="property._adr_state_or_region" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[property._adr_suburb_or_town]"
-                              dataType="wstr"
-                              length="48"
-                              name="property._adr_suburb_or_town" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[property._adr_postcode]"
-                              dataType="wstr"
-                              length="28"
-                              name="property._adr_postcode" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[property._adr_country]"
-                              dataType="wstr"
-                              length="8"
-                              name="property._adr_country" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[property.id]"
-                              dataType="wstr"
-                              length="32"
-                              name="property.id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing.id]"
-                              dataType="i8"
-                              name="listing.id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_1.id]"
-                              dataType="wstr"
-                              length="20"
-                              name="listing._listing_agent_1.id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_1._name]"
-                              dataType="wstr"
-                              length="64"
-                              name="listing._listing_agent_1._name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_1._first_name]"
-                              dataType="wstr"
-                              length="20"
-                              name="listing._listing_agent_1._first_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_1._last_name]"
-                              dataType="wstr"
-                              length="40"
-                              name="listing._listing_agent_1._last_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_1._email_address]"
-                              dataType="wstr"
-                              length="136"
-                              name="listing._listing_agent_1._email_address" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_1._phone_direct]"
-                              dataType="wstr"
-                              length="1020"
-                              name="listing._listing_agent_1._phone_direct" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_1._phone_mobile]"
-                              dataType="wstr"
-                              length="1020"
-                              name="listing._listing_agent_1._phone_mobile" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_1._position]"
-                              dataType="wstr"
-                              length="1020"
-                              name="listing._listing_agent_1._position" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_1._is_account_user]"
-                              dataType="wstr"
-                              length="4"
-                              name="listing._listing_agent_1._is_account_user" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_1._profile_image]"
-                              dataType="wstr"
-                              length="1020"
-                              name="listing._listing_agent_1._profile_image" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_2.id]"
-                              dataType="wstr"
-                              length="20"
-                              name="listing._listing_agent_2.id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_2._name]"
-                              dataType="wstr"
-                              length="84"
-                              name="listing._listing_agent_2._name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_2._first_name]"
-                              dataType="wstr"
-                              length="36"
-                              name="listing._listing_agent_2._first_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_2._last_name]"
-                              dataType="wstr"
-                              length="44"
-                              name="listing._listing_agent_2._last_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_2._email_address]"
-                              dataType="wstr"
-                              length="176"
-                              name="listing._listing_agent_2._email_address" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_2._phone_direct]"
-                              dataType="wstr"
-                              length="1020"
-                              name="listing._listing_agent_2._phone_direct" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_2._phone_mobile]"
-                              dataType="wstr"
-                              length="1020"
-                              name="listing._listing_agent_2._phone_mobile" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_2._position]"
-                              dataType="wstr"
-                              length="1020"
-                              name="listing._listing_agent_2._position" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_2._is_account_user]"
-                              dataType="wstr"
-                              length="4"
-                              name="listing._listing_agent_2._is_account_user" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_2._profile_image]"
-                              dataType="wstr"
-                              length="1020"
-                              name="listing._listing_agent_2._profile_image" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_category.id]"
-                              dataType="wstr"
-                              length="64"
-                              name="listing._listing_category.id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_category.text]"
-                              dataType="wstr"
-                              length="64"
-                              name="listing._listing_category.text" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_primary_image.uri]"
-                              dataType="wstr"
-                              length="468"
-                              name="listing._listing_primary_image.uri" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_primary_image._url]"
-                              dataType="wstr"
-                              length="732"
-                              name="listing._listing_primary_image._url" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_primary_image._thumbs.800x600.uri]"
-                              dataType="wstr"
-                              length="500"
-                              name="listing._listing_primary_image._thumbs.800x600.uri" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_primary_image._thumbs.800x600._url]"
-                              dataType="wstr"
-                              length="764"
-                              name="listing._listing_primary_image._thumbs.800x600._url" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_primary_image._thumbs.400x300.uri]"
-                              dataType="wstr"
-                              length="500"
-                              name="listing._listing_primary_image._thumbs.400x300.uri" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_primary_image._thumbs.400x300._url]"
-                              dataType="wstr"
-                              length="764"
-                              name="listing._listing_primary_image._thumbs.400x300._url" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_primary_image._thumbs.200x150.uri]"
-                              dataType="wstr"
-                              length="500"
-                              name="listing._listing_primary_image._thumbs.200x150.uri" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_primary_image._thumbs.200x150._url]"
-                              dataType="wstr"
-                              length="764"
-                              name="listing._listing_primary_image._thumbs.200x150._url" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_primary_image._thumbs.80x60.uri]"
-                              dataType="wstr"
-                              length="492"
-                              name="listing._listing_primary_image._thumbs.80x60.uri" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_primary_image._thumbs.80x60._url]"
-                              dataType="wstr"
-                              length="756"
-                              name="listing._listing_primary_image._thumbs.80x60._url" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_primary_image._thumbs.original.uri]"
-                              dataType="wstr"
-                              length="504"
-                              name="listing._listing_primary_image._thumbs.original.uri" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_primary_image._thumbs.original._url]"
-                              dataType="wstr"
-                              length="768"
-                              name="listing._listing_primary_image._thumbs.original._url" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._location.id]"
-                              dataType="wstr"
-                              length="4"
-                              name="listing._location.id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._location.text]"
-                              dataType="wstr"
-                              length="56"
-                              name="listing._location.text" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._project_stage]"
-                              dataType="wstr"
-                              length="1020"
-                              name="listing._project_stage" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing.property._system_search_key]"
-                              dataType="wstr"
-                              length="192"
-                              name="listing.property._system_search_key" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing.property._adr_unit_number]"
-                              dataType="wstr"
-                              length="1020"
-                              name="listing.property._adr_unit_number" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing.property._adr_street_number]"
-                              dataType="wstr"
-                              length="68"
-                              name="listing.property._adr_street_number" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing.property._adr_street_name]"
-                              dataType="wstr"
-                              length="56"
-                              name="listing.property._adr_street_name" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing.property._adr_state_or_region]"
-                              dataType="wstr"
-                              length="1020"
-                              name="listing.property._adr_state_or_region" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing.property._adr_suburb_or_town]"
-                              dataType="wstr"
-                              length="48"
-                              name="listing.property._adr_suburb_or_town" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing.property._adr_postcode]"
-                              dataType="wstr"
-                              length="28"
-                              name="listing.property._adr_postcode" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing.property._adr_country]"
-                              dataType="wstr"
-                              length="8"
-                              name="listing.property._adr_country" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing.property.id]"
-                              dataType="wstr"
-                              length="32"
-                              name="listing.property.id" />
-                            <externalMetadataColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[listing._listing_agent_2]"
-                              dataType="wstr"
-                              length="1020"
-                              name="listing._listing_agent_2" />
+                              name="rows" />
                             <externalMetadataColumn
                               refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSourceOutput].ExternalColumns[__FileName]"
                               dataType="wstr"
@@ -2623,11 +1834,11 @@
                           name="JsonSource Error Output">
                           <outputColumns>
                             <outputColumn
-                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSource Error Output].Columns[MailMergeId]"
+                              refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSource Error Output].Columns[rows]"
                               dataType="wstr"
                               length="28"
-                              lineageId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSource Error Output].Columns[MailMergeId]"
-                              name="MailMergeId" />
+                              lineageId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSource Error Output].Columns[rows]"
+                              name="rows" />
                             <outputColumn
                               refId="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search.Outputs[JsonSource Error Output].Columns[ErrorCode]"
                               dataType="i4"
@@ -2903,7 +2114,7 @@
                   <paths>
                     <path
                       refId="Package\Iterate Offices\Process Office\Mail Merge Search.Paths[Data Conversion Output]"
-                      endId="Package\Iterate Offices\Process Office\Mail Merge Search\JSON Generator Transform.Inputs[JsonInput2]"
+                      endId="Package\Iterate Offices\Process Office\Mail Merge Search\JSON Generator Transform.Inputs[JsonInput1]"
                       name="Data Conversion Output"
                       startId="Package\Iterate Offices\Process Office\Mail Merge Search\Data Conversion.Outputs[Data Conversion Output]" />
                     <path
@@ -2949,7 +2160,7 @@
               DTS:LocaleID="-1"
               DTS:ObjectName="Package Processed Data Log"
               DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-              DTS:ThreadHint="2">
+              DTS:ThreadHint="1">
               <DTS:Variables />
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
@@ -3013,7 +2224,7 @@
               DTS:ExecutableType="Microsoft.ExpressionTask"
               DTS:LocaleID="-1"
               DTS:ObjectName="Set Start Date Variable"
-              DTS:ThreadHint="1">
+              DTS:ThreadHint="2">
               <DTS:Variables />
               <DTS:ObjectData>
                 <ExpressionTask
@@ -3105,20 +2316,20 @@
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
-      DTS:DTSID="{7CD0E6C3-8595-42B2-9E2D-CAF432A03D1C}"
+      DTS:DTSID="{8DC4F28D-47FC-43D6-AA1B-4D2A9711EAB7}"
       DTS:From="Package\Set Variables"
       DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint"
+      DTS:ObjectName="Constraint 2"
       DTS:To="Package\Get Office List" />
     <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
       DTS:CreationName=""
-      DTS:DTSID="{556962FF-BE0D-4A40-A873-83C45CCA7074}"
+      DTS:DTSID="{CBDB4C30-5124-4915-B6F6-9AD987F6979A}"
       DTS:From="Package\Get Office List"
       DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 1"
+      DTS:ObjectName="Constraint 3"
       DTS:To="Package\Iterate Offices" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
@@ -3134,10 +2345,6 @@
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="145,42"
-          Id="Package\Get Office List"
-          TopLeft="284,113" />
-        <NodeLayout
           Size="164,42"
           Id="Package\Iterate Offices\Process Office\Email Auth Failure"
           TopLeft="326,184" />
@@ -3149,6 +2356,10 @@
           Size="165,42"
           Id="Package\Iterate Offices\Process Office\Mail Merge Search"
           TopLeft="44,250" />
+        <NodeLayout
+          Size="214,42"
+          Id="Package\Iterate Offices\Process Office\Package Processed Data Log"
+          TopLeft="165,348" />
         <NodeLayout
           Size="187,42"
           Id="Package\Iterate Offices\Process Office\Set Package Start Date"
@@ -3271,10 +2482,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="214,42"
-          Id="Package\Iterate Offices\Process Office\Package Processed Data Log"
-          TopLeft="165,348" />
         <EdgeLayout
           Id="Package\Iterate Offices\Process Office.PrecedenceConstraints[Constraint 4]"
           TopLeft="126.5,292">
@@ -3327,20 +2534,36 @@
           Size="140,42"
           Id="Package\Set Variables"
           TopLeft="287,23" />
+        <NodeLayout
+          Size="145,42"
+          Id="Package\Get Office List"
+          TopLeft="572,107" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="356.75,65">
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="357,65">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,48"
+              EndConnector="287.5,42"
               Start="0,0"
-              End="0,40.5">
+              End="287.5,34.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,40.5" />
+                    End="0,17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17"
+                    Point2="0,21"
+                    Point3="4,21" />
+                  <mssgle:LineSegment
+                    End="283.5,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="283.5,21"
+                    Point2="287.5,21"
+                    Point3="287.5,25" />
+                  <mssgle:LineSegment
+                    End="287.5,34.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3350,31 +2573,31 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="356.5,155">
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="644.5,149">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="143,43"
+              EndConnector="-145,49"
               Start="0,0"
-              End="143,35.5">
+              End="-145,41.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.5" />
+                    End="0,20.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,17.5"
-                    Point2="0,21.5"
-                    Point3="4,21.5" />
+                    Point1="0,20.5"
+                    Point2="0,24.5"
+                    Point3="-4,24.5" />
                   <mssgle:LineSegment
-                    End="139,21.5" />
+                    End="-141,24.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="139,21.5"
-                    Point2="143,21.5"
-                    Point3="143,25.5" />
+                    Point1="-141,24.5"
+                    Point2="-145,24.5"
+                    Point3="-145,28.5" />
                   <mssgle:LineSegment
-                    End="143,35.5" />
+                    End="-145,41.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3392,118 +2615,36 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="206,42"
-          Id="Package\Iterate Offices\Process Office\Mail Merge Search\JSON Generator Transform"
-          TopLeft="142,164" />
-        <NodeLayout
-          Size="156,42"
-          Id="Package\Iterate Offices\Process Office\Mail Merge Search\Data Conversion"
-          TopLeft="474,91" />
-        <NodeLayout
-          Size="165,42"
-          Id="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search"
-          TopLeft="156,53" />
-        <EdgeLayout
-          Id="Package\Iterate Offices\Process Office\Mail Merge Search.Paths[JsonSourceOutput]"
-          TopLeft="321,74">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="153,38"
-              Start="0,0"
-              End="145.5,38">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="72.5,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="72.5,0"
-                    Point2="76.5,0"
-                    Point3="76.5,4" />
-                  <mssgle:LineSegment
-                    End="76.5,34" />
-                  <mssgle:CubicBezierSegment
-                    Point1="76.5,34"
-                    Point2="76.5,38"
-                    Point3="80.5,38" />
-                  <mssgle:LineSegment
-                    End="145.5,38" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Process Office\Mail Merge Search.Paths[Data Conversion Output]"
-          TopLeft="552,133">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-307,31"
-              Start="0,0"
-              End="-307,23.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,11.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,11.5"
-                    Point2="0,15.5"
-                    Point3="-4,15.5" />
-                  <mssgle:LineSegment
-                    End="-303,15.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-303,15.5"
-                    Point2="-307,15.5"
-                    Point3="-307,19.5" />
-                  <mssgle:LineSegment
-                    End="-307,23.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="130,42"
+          Id="Package\Iterate Offices\Process Office\Mail Merge Search\ErrorCount"
+          TopLeft="463,626" />
         <NodeLayout
           Size="176,42"
           Id="Package\Iterate Offices\Process Office\Mail Merge Search\Web API Destination"
-          TopLeft="159,280" />
-        <EdgeLayout
-          Id="Package\Iterate Offices\Process Office\Mail Merge Search.Paths[JsonGeneratorTransformOutput]"
-          TopLeft="246,206">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,74"
-              Start="0,0"
-              End="0,66.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,66.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          TopLeft="158,319" />
         <NodeLayout
           Size="189,42"
           Id="Package\Iterate Offices\Process Office\Mail Merge Search\JSON Parser Transform"
-          TopLeft="171,392" />
+          TopLeft="170,431" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\Iterate Offices\Process Office\Mail Merge Search\JSON Generator Transform"
+          TopLeft="141,203" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Iterate Offices\Process Office\Mail Merge Search\Conditional Split"
+          TopLeft="282,533" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Iterate Offices\Process Office\Mail Merge Search\Data Conversion"
+          TopLeft="473,130" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Iterate Offices\Process Office\Mail Merge Search\ArchiveCount"
+          TopLeft="165,627" />
         <EdgeLayout
           Id="Package\Iterate Offices\Process Office\Mail Merge Search.Paths[Response Output]"
-          TopLeft="247,322">
+          TopLeft="246,361">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3535,13 +2676,9 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="155,42"
-          Id="Package\Iterate Offices\Process Office\Mail Merge Search\Conditional Split"
-          TopLeft="283,494" />
         <EdgeLayout
           Id="Package\Iterate Offices\Process Office\Mail Merge Search.Paths[JsonParserTransformOutput]"
-          TopLeft="265.5,434">
+          TopLeft="264.5,473">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3573,13 +2710,67 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="141,42"
-          Id="Package\Iterate Offices\Process Office\Mail Merge Search\ArchiveCount"
-          TopLeft="166,588" />
+        <EdgeLayout
+          Id="Package\Iterate Offices\Process Office\Mail Merge Search.Paths[JsonGeneratorTransformOutput]"
+          TopLeft="245,245">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,74"
+              Start="0,0"
+              End="0,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Process Office\Mail Merge Search.Paths[ErrorTrue]"
+          TopLeft="384,575">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="144,51"
+              Start="0,0"
+              End="144,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.7126436781609" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.7126436781609"
+                    Point2="0,20.7126436781609"
+                    Point3="4,20.7126436781609" />
+                  <mssgle:LineSegment
+                    End="140,20.7126436781609" />
+                  <mssgle:CubicBezierSegment
+                    Point1="140,20.7126436781609"
+                    Point2="144,20.7126436781609"
+                    Point3="144,24.7126436781609" />
+                  <mssgle:LineSegment
+                    End="144,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="50.43865234375,25.7126436781609,43.1226953125,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Iterate Offices\Process Office\Mail Merge Search.Paths[ErrorFalse]"
-          TopLeft="336,536">
+          TopLeft="335,575">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3613,44 +2804,64 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="130,42"
-          Id="Package\Iterate Offices\Process Office\Mail Merge Search\ErrorCount"
-          TopLeft="464,587" />
         <EdgeLayout
-          Id="Package\Iterate Offices\Process Office\Mail Merge Search.Paths[ErrorTrue]"
-          TopLeft="385,536">
+          Id="Package\Iterate Offices\Process Office\Mail Merge Search.Paths[Data Conversion Output]"
+          TopLeft="551,172">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="144,51"
+              EndConnector="-307,31"
               Start="0,0"
-              End="144,43.5">
+              End="-307,23.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16.7126436781609" />
+                    End="0,11.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,16.7126436781609"
-                    Point2="0,20.7126436781609"
-                    Point3="4,20.7126436781609" />
+                    Point1="0,11.5"
+                    Point2="0,15.5"
+                    Point3="-4,15.5" />
                   <mssgle:LineSegment
-                    End="140,20.7126436781609" />
+                    End="-303,15.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="140,20.7126436781609"
-                    Point2="144,20.7126436781609"
-                    Point3="144,24.7126436781609" />
+                    Point1="-303,15.5"
+                    Point2="-307,15.5"
+                    Point3="-307,19.5" />
                   <mssgle:LineSegment
-                    End="144,43.5" />
+                    End="-307,23.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="50.43865234375,25.7126436781609,43.1226953125,9.421875"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Iterate Offices\Process Office\Mail Merge Search\Mail Merge Search"
+          TopLeft="470,27" />
+        <EdgeLayout
+          Id="Package\Iterate Offices\Process Office\Mail Merge Search.Paths[JsonSourceOutput]"
+          TopLeft="551.75,69">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

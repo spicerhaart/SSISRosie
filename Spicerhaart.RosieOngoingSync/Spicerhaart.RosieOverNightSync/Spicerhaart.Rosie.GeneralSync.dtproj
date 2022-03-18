@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">WX9000ITD21</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="rmzgYOHg/g==" SSIS:IV="jKe6SwOc4lE=">RVd82YO4X4XiEEqKsbkMdIfe0MqR5EldrFeQhTEYXVwIQQFEXxnPho3Woe2DSYcb75p5k++1kvyw2UtQDf0IRmlo8FX7+2czgy3YoImAqNYbYU0l2bpX3dzY9geRTR9X2gRho80V2jypo+J394Li4owmIbFQRM9dywAkbWc6xzMPXUMDWRVA2Q==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="JZKPfrcNzQ==" SSIS:IV="gDnfbuPJhq4=">tXblKZwh8i8m/mQrSO5FpxUYN9hzrPUPLWSaLJ7SKl9nRrHpX5cB3pXlWWhruT3MpSH57hmZV+nmJ5gFS5UYKuR2RZixtWRsogSCazSMcSc5OkyupAydlVcNWdsG+GSx5WNhq/SZpnPd70oxUd1pq4UlgjU44rAX0I9e/qjYg90kRklFyOKA8A==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -2752,16 +2752,44 @@
                 <SSIS:Property SSIS:Name="Name">RosieMailMergeArchive</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">60</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">87</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{39F390FD-BEA9-4122-9F75-7A4E0109045F}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{7EA3CFC0-8C51-458B-937E-0D4F2369073F}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
+                <SSIS:Parameter SSIS:Name="ProcessAllOffices">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{70C16B06-6C9D-492D-A73A-CE04641569A3}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="RexAccountId">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{0FB65F7C-FC31-4200-A30B-2C6F6CF0C4F7}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">1864</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="CM.HTTP 1.AuthScheme">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
