@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">WX9000ITD21</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="V6dO1bGeCQ==" SSIS:IV="BJa/AU5gQig=">W3ZgQupnLvHq0jhvbb0O6xVpn8Bf4lNzNceVZStIBLvyRKgbcuBQHHky/JbTeWgpOKaA5P2WNLHwLtcK4P6r5u9/hig5BYmMigJ7pMTYNW9hvhdmTY82mDJ6bmfBtrzYkG0DKDw9Xms5raCgjh2kK05ezaLqOJOBGzcdlzUt3A+uUCKJ2BzeAg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="VkG6WL2aOw==" SSIS:IV="dgz5WVlcmwM=">L8JNmQCnJ3qcOSR7iY2AVQoh6UXhhVlNTp7dR6fYvL7CkWY30jh2bn5DepdhLZngr/Ni5ZsS5yJGN+LgOc4m9KQVr2yj3LNhQKnEx37OtWVuuIoacSP3UYJn9RzHvl7I+F4mvWL6cWrtDVSVXuTNLy0bdNS+8MZEOVW08rF99hwx4IVzV0evMg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -644,10 +644,10 @@
                 <SSIS:Property SSIS:Name="Name">RosieWebQueue</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1167</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">1168</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{799DF32B-24E0-44C5-B162-86094A85CAE7}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{EE895763-2AF1-46C2-A8CF-EF9D60989929}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1431,7 +1431,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">130</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">150</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -1903,7 +1903,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">130</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">150</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -2082,7 +2082,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">130</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">150</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -2173,7 +2173,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">130</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">150</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
