@@ -1,11 +1,11 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="10/26/2018 4:42:07 PM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="79000ITD10"
   DTS:CreatorName="SPICERHAART\1901434"
-  DTS:DTSID="{F8ED6B44-5413-4A44-BFF0-0097A6D10C77}"
+  DTS:DTSID="{FDCBF031-D8A8-4CCA-BEF3-1C632670EE1C}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:FailParentOnFailure="True"
   DTS:LastModifiedProductVersion="15.0.2000.150"
@@ -13,27 +13,27 @@
   DTS:ObjectName="ContactInterestedInNewHomes"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="1173"
-  DTS:VersionGUID="{BAB7134A-5988-4C82-ACAA-FE4BC4311428}">
+  DTS:VersionBuild="1174"
+  DTS:VersionGUID="{3EBE068F-42FA-49CA-B8EF-B286560ACFD9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[colsqlbi01v.Entities]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{6D695BD8-EEEA-4A9D-B52D-80ABDB552D68}"
+      DTS:DTSID="{E403BD51-C4DE-4EA9-A027-C2A9A5CF928D}"
       DTS:ObjectName="colsqlbi01v.Entities">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="Data Source=colsqlbi01v;User ID=wh_user;Initial Catalog=Entities;Provider=SQLNCLI11.1;Auto Translate=False;">
           <EncryptedData
             Type="http://www.w3.org/2001/04/xmlenc#Element"
-            Salt="UXk336cjLQ=="
-            IV="KBPoK8vg6FE=" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            Salt="iuBA13dZ0A=="
+            IV="LfI4MnIeYZI=" xmlns="http://www.w3.org/2001/04/xmlenc#">
             <EncryptionMethod
               Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" />
             <CipherData>
-              <CipherValue>KBPoK8vg6FFKMgXkjAyxQVOt55qyBYbh5qBk7dCUdyQaN+TyY7S1Ke4EG1+lQ+sI0OZanId0fm32fxMbJr3yWxRAcQVdbCGNtTaqkdrCxzCnJpTrB4US/uujnqSDQh12g9Sv2AN5lzEqLDyQxYhIi+caatruGEf9</CipherValue>
+              <CipherValue>LfI4MnIeYZKtui4VM7/CGSuxJCcnE/PNaCaMMjLjToX+wPTJitqNjf8/+v1s5+ewkDnFfQb/DokFRj9EZQM7v1cfg+ITfR8g7FHMD0CONjrLA5zXvw0UFU06BC8cn+WKApE/eULwTlx0SVQYHqS1WfBWUm2zeNSl</CipherValue>
             </CipherData>
           </EncryptedData>
         </DTS:ConnectionManager>
@@ -42,7 +42,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[COLSQLBI01v.Metrics]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{23A39F61-7DF9-4D10-90F6-486985C7E90E}"
+      DTS:DTSID="{768A9A81-536A-46DA-B6A2-7B488BFEFF34}"
       DTS:ObjectName="COLSQLBI01v.Metrics">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -52,19 +52,19 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[COLSQLBI01v.Queues.SSISAPIUser]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{76F87E4F-FCAB-405F-BEEC-0993B2249AAD}"
+      DTS:DTSID="{F378EBEE-230F-4B3C-9483-B49FB5B39D9C}"
       DTS:ObjectName="COLSQLBI01v.Queues.SSISAPIUser">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="Data Source=COLSQLBI01v;User ID=SSISAPIUser;Initial Catalog=Queues;Provider=SQLNCLI11.1;Auto Translate=False;">
           <EncryptedData
             Type="http://www.w3.org/2001/04/xmlenc#Element"
-            Salt="60IBu/ux0Q=="
-            IV="U9jMqBBMRSs=" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            Salt="PGlWs3yvnQ=="
+            IV="0BXWnaoYEPI=" xmlns="http://www.w3.org/2001/04/xmlenc#">
             <EncryptionMethod
               Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" />
             <CipherData>
-              <CipherValue>U9jMqBBMRSu8arWfsO2W0YkyLe7pS8Kn6aFHZCOo0lAgEeDs+RWOA3kNCcAHoegqTTjbTuHO1HNoOudazCxJdlZASc47bp6Ta0WJzS761TU9P3rbiK4CSOauCpQ3XQI/gUFjBnLowvaq09SCMVgrYK1gBrojMeN6sbgkJV0WOv8=</CipherValue>
+              <CipherValue>0BXWnaoYEPJ4cS2ih7EAkhASju4+D5PXxRevbVesColJXH7VaVs3ZSaxdJJkvgzo5nmNPftSD8u1P+WdIJURLKBRUkCythZi3AQqYeiWeH0vBy/ZlwNuLlfzYWi24OAyR+hl2blEP07GT2HsQ7GRtbLUxRF/o6iyNU2blRIZ/Qg=</CipherValue>
             </CipherData>
           </EncryptedData>
         </DTS:ConnectionManager>
@@ -73,7 +73,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[COLSQLBI01V.RosieWorkBench]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{EEDA3E13-74E6-40DE-A724-955A03FB6258}"
+      DTS:DTSID="{3A3AF61A-F2AD-40CD-A7DF-78D4ECB0C99C}"
       DTS:ObjectName="COLSQLBI01V.RosieWorkBench">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -83,7 +83,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[HTTP 1]"
       DTS:CreationName="ZS-HTTP"
-      DTS:DTSID="{010F1489-F0AA-4D14-B938-FBA3BA022238}"
+      DTS:DTSID="{44D4D139-0598-4896-8B40-7432C70A755A}"
       DTS:ObjectName="HTTP 1">
       <DTS:ObjectData>
         <ConnectionManager
@@ -94,7 +94,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[RexSync.xml]"
       DTS:CreationName="FILE"
-      DTS:DTSID="{A825CB0C-F5DC-4E09-9A87-1654BB45EA33}"
+      DTS:DTSID="{34A73B03-8BDD-41FA-81E7-A92B6EFB5450}"
       DTS:ObjectName="RexSync.xml">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -104,7 +104,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[SMTP]"
       DTS:CreationName="ZS-SMTP"
-      DTS:DTSID="{BC1F1DC9-45BC-4E52-904D-CF38055AFD7D}"
+      DTS:DTSID="{10B54BC1-FD12-43EE-964F-56D48007647D}"
       DTS:ObjectName="SMTP">
       <DTS:ObjectData>
         <ConnectionManager
@@ -115,7 +115,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
       DTS:CreationName="SMTP"
-      DTS:DTSID="{1F64FC25-23F2-4DC1-90FD-E1523073A498}"
+      DTS:DTSID="{13AC6D04-3FA0-43DE-90C6-60F1739F1765}"
       DTS:ObjectName="SMTP Connection Manager">
       <DTS:ObjectData>
         <SmtpConnectionManager
@@ -128,7 +128,7 @@
     <DTS:PackageParameter
       DTS:CreationName=""
       DTS:DataType="8"
-      DTS:DTSID="{70419F88-34D9-428B-9ED8-54487CEE57F3}"
+      DTS:DTSID="{3D52903A-8589-40B4-B9EB-8626071196C3}"
       DTS:ObjectName="InputOfficeId">
       <DTS:Property
         DTS:DataType="8"
@@ -138,7 +138,7 @@
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{32924A73-A8DA-4AC9-8CC7-8BCB11245600}"
+      DTS:DTSID="{6A3822F8-C840-409F-A715-CA48CF260670}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="CampaignId">
@@ -147,7 +147,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{36D8A9C1-E9C1-4B62-9905-17325FBBD7D4}"
+      DTS:DTSID="{F24CE71D-94C1-4823-81F4-5A2C21E7E920}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="CampaignMemberStatusId">
@@ -156,7 +156,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{F919971A-3900-46BE-953C-84E61271FE9B}"
+      DTS:DTSID="{DAD08ED7-DF1A-4AA8-92CF-8D0062069140}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="ListingServiceID">
@@ -165,7 +165,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{B81B9430-A234-42BB-A0E4-AB8AC3437EB9}"
+      DTS:DTSID="{5A8C0A84-ADD8-4DFB-BA49-2683AA56203C}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="OfficeList">
@@ -183,7 +183,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{03591642-FF7C-4DFF-A013-E0E6F7DBB377}"
+      DTS:DTSID="{BA68C22C-1F89-4A6C-A86B-DA1B5C830C65}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="Office_id">
@@ -193,7 +193,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{7F9D6629-F572-431C-BCEF-79C28F66117D}"
+      DTS:DTSID="{BC3D4212-48C6-4F70-848A-227D9120716A}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="PackageErrorEmail">
@@ -202,7 +202,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{FEB48DCD-BBF9-4B66-96D1-4A1BFDAC93F3}"
+      DTS:DTSID="{16C50484-31AA-4B34-A643-DC85B4C44EF2}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="PackageExecutionInfo">
@@ -212,7 +212,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{94F59D4D-DA53-4964-875C-7A629C555E48}"
+      DTS:DTSID="{9D2B0766-DCEE-4DE0-90EF-2D9243FE0945}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="PackagePassword">
@@ -221,7 +221,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{89281F11-8267-4FFE-A514-3B47EB81C73D}"
+      DTS:DTSID="{E8EB4379-CB78-43FA-A8AB-EBD092C12BF9}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="PackageStartDate">
@@ -230,7 +230,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{660B489C-16CA-47C2-AD5F-279DE7307DDF}"
+      DTS:DTSID="{E452F45C-2FB8-489E-8DA0-4084BFE97187}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="PackageStartForNextRun">
@@ -239,7 +239,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{B7EA61CE-D5F9-4888-A69F-B6C177383289}"
+      DTS:DTSID="{F5B8FFF2-AA8C-4314-ACA2-F333C2E17146}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="PackageUser">
@@ -248,7 +248,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{EE2C802D-DF26-4CD9-ABB9-9D5F6B78B6A3}"
+      DTS:DTSID="{24D6C4B5-3B6F-4716-84D4-646EA5B03B50}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="ProcessingStart">
@@ -257,7 +257,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{B5982859-49BA-4553-B2D3-FD1E05C1E97C}"
+      DTS:DTSID="{DF97727D-5F9D-4DD0-BB46-31808C2E8511}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="PropertyCategory">
@@ -267,7 +267,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{9CF28BE9-DED2-4CD7-8643-4ACEF935A5A9}"
+      DTS:DTSID="{CDA6D7F5-8203-46E1-B89A-DDE5500C341B}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="Record_id">
@@ -277,7 +277,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{695E1ABF-605C-4C95-883C-C40F53B612A5}"
+      DTS:DTSID="{DCE82E2D-C30B-476F-9BAF-61B762B014A6}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="ResponseAuth">
@@ -286,7 +286,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{822917A7-85CD-4EA3-AC37-750809A80675}"
+      DTS:DTSID="{0998E981-7C16-4A6E-9AEC-8F37FB87B798}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="ResponseAuthCode">
@@ -296,7 +296,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{536C2A1C-3695-4842-92AA-EE10690C5219}"
+      DTS:DTSID="{9586CF4E-98EC-4467-A30E-E291FF604BD0}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="RexAccountID">
@@ -305,7 +305,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{A43AE47B-0CA2-4605-87CA-D518A6E58E71}"
+      DTS:DTSID="{7AF9990A-E402-4D6E-8994-A43EDC6A5EAD}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="RexAPIWebURL">
@@ -314,7 +314,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{6C69755C-BF0C-4384-BBD9-6BFEB98EB5AF}"
+      DTS:DTSID="{B2839625-D2C0-4D1B-B9AB-2B611D2CC7CE}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="RexAPIWebURLv1">
@@ -323,7 +323,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{08D8F5D4-2680-4455-B9CA-9466B9B611C3}"
+      DTS:DTSID="{13C26736-F65B-4E8E-A18B-94D2E49BA7E0}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="RexToken">
@@ -333,7 +333,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{33FB843F-629C-4ABF-8C9E-C4844B932E7B}"
+      DTS:DTSID="{36400956-567C-477D-8D56-3D3EB9E5AA6E}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="RosieUserID">
@@ -342,7 +342,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{ADC106C0-8450-47E4-8CC1-FFAA9D4A801A}"
+      DTS:DTSID="{20733598-1E6A-4CF8-8D37-F803D26F21B9}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="ServiceName">
@@ -352,7 +352,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{98B3B366-F7B2-4F7E-8ED3-A4AF4A11E67E}"
+      DTS:DTSID="{3EE6969B-C643-439F-A7A6-D6341362B02E}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="DATEDIFF(&quot;S&quot;, (DT_DBTIMESTAMP)&quot;1970-01-01&quot;, (DT_DBTIMESTAMP)&quot;2018-09-01&quot;)"
       DTS:IncludeInDebugDump="2345"
@@ -363,7 +363,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{C848ADBB-FDCB-426F-B351-6B6A80FD368E}"
+      DTS:DTSID="{806B14D6-A1BD-47C7-938E-8F3762989C3E}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="UpsertedCount">
@@ -372,7 +372,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{5AE1CDCF-8693-461E-AAAE-63143CDCBA74}"
+      DTS:DTSID="{85CB49CA-40B1-4AED-AD1E-94540688A863}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="Variable">
@@ -394,7 +394,7 @@
       DTS:refId="Package\Get Office List"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{258871C3-6D43-4CDE-A28A-0DCCB8E00B48}"
+      DTS:DTSID="{94D04DA7-F647-4BC2-ACDB-AB88D13032DE}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Get Office List"
@@ -403,7 +403,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{76F87E4F-FCAB-405F-BEEC-0993B2249AAD}"
+          SQLTask:Connection="{F378EBEE-230F-4B3C-9483-B49FB5B39D9C}"
           SQLTask:BypassPrepare="False"
           SQLTask:SqlStatementSource="exec CIINH.[uspSelOfficeList]"
           SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
@@ -423,13 +423,13 @@
       DTS:refId="Package\Iterate Offices"
       DTS:CreationName="STOCK:FOREACHLOOP"
       DTS:Description="Foreach Loop Container"
-      DTS:DTSID="{98AE414A-606B-49ED-96EE-50B91462EC11}"
+      DTS:DTSID="{9B49ED40-4BF4-448C-BC57-78FFB2D2B7BE}"
       DTS:ExecutableType="STOCK:FOREACHLOOP"
       DTS:LocaleID="-1"
       DTS:ObjectName="Iterate Offices">
       <DTS:ForEachEnumerator
         DTS:CreationName="Microsoft.ForEachADOEnumerator"
-        DTS:DTSID="{2FDEE8F0-D62C-4461-89CE-3AAF33F632D2}"
+        DTS:DTSID="{A8DABD57-D169-49DA-8997-239469D9CF94}"
         DTS:ObjectName="{A7CC5C17-CF0B-4BFC-AD97-DC80FF43AE29}">
         <DTS:ObjectData>
           <FEEADO
@@ -443,7 +443,7 @@
           DTS:refId="Package\Iterate Offices\Sequence Container"
           DTS:CreationName="STOCK:SEQUENCE"
           DTS:Description="Sequence Container"
-          DTS:DTSID="{779115B8-910D-4989-A93E-84E0F7765C7A}"
+          DTS:DTSID="{AD9743BC-A4AA-43DC-A237-FD9D0D2A411C}"
           DTS:ExecutableType="STOCK:SEQUENCE"
           DTS:LocaleID="-1"
           DTS:ObjectName="Sequence Container">
@@ -453,7 +453,7 @@
               DTS:refId="Package\Iterate Offices\Sequence Container\Add note"
               DTS:CreationName="Microsoft.Pipeline"
               DTS:Description="Data Flow Task"
-              DTS:DTSID="{7EFB2892-6775-4B4E-95E1-C17C53BBBF3B}"
+              DTS:DTSID="{367F6C1F-1FBA-4D7A-B581-BB89C7E5E572}"
               DTS:ExecutableType="Microsoft.Pipeline"
               DTS:LocaleID="-1"
               DTS:ObjectName="Add note"
@@ -1026,7 +1026,7 @@ WHERE contactid IS NOT NULL
                         <property
                           dataType="System.String"
                           description="The mappings between the parameters in the SQL command and variables."
-                          name="ParameterMapping">"Parameter0:Input",{03591642-FF7C-4DFF-A013-E0E6F7DBB377};</property>
+                          name="ParameterMapping">"Parameter0:Input",{BA68C22C-1F89-4A6C-A86B-DA1B5C830C65};</property>
                       </properties>
                       <connections>
                         <connection
@@ -3500,7 +3500,7 @@ Where Id = ?</property>
               DTS:CreationName="Microsoft.Pipeline"
               DTS:Description="Data Flow Task"
               DTS:Disabled="True"
-              DTS:DTSID="{DF8E38B2-74A8-4F5F-B431-42866F2A0003}"
+              DTS:DTSID="{89DACB75-1DA0-43D0-B1AF-3DE31039ADEF}"
               DTS:ExecutableType="Microsoft.Pipeline"
               DTS:LocaleID="-1"
               DTS:ObjectName="Add reminder"
@@ -3884,13 +3884,13 @@ and [ContactLoadedDate] &gt; cast(getdate() as date)</property>
                         <property
                           dataType="System.String"
                           description="The mappings between the parameters in the SQL command and variables."
-                          name="ParameterMapping">"Parameter0:Input",{03591642-FF7C-4DFF-A013-E0E6F7DBB377};</property>
+                          name="ParameterMapping">"Parameter0:Input",{BA68C22C-1F89-4A6C-A86B-DA1B5C830C65};</property>
                       </properties>
                       <connections>
                         <connection
                           refId="Package\Iterate Offices\Sequence Container\Add reminder\Get Rosie Loaded Contacts from SQL.Connections[OleDbConnection]"
-                          connectionManagerID="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}:invalid"
-                          connectionManagerRefId="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}:invalid"
+                          connectionManagerID="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[Rosie]"
                           description="The OLE DB runtime connection used to access the database."
                           name="OleDbConnection" />
                       </connections>
@@ -4796,7 +4796,7 @@ and [ContactLoadedDate] &gt; cast(getdate() as date)</property>
                               cachedLength="50"
                               cachedName="Category"
                               lineageId="Package\Iterate Offices\Sequence Container\Add reminder\Get Rosie Loaded Contacts from SQL.Outputs[OLE DB Source Output].Columns[Category]"
-                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11472:invalid">
+                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11557:invalid">
                               <properties>
                                 <property
                                   dataType="System.Boolean"
@@ -4811,7 +4811,7 @@ and [ContactLoadedDate] &gt; cast(getdate() as date)</property>
                               cachedLength="50"
                               cachedName="Reference"
                               lineageId="Package\Iterate Offices\Sequence Container\Add reminder\Get Rosie Loaded Contacts from SQL.Outputs[OLE DB Source Output].Columns[Reference]"
-                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11473:invalid">
+                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11558:invalid">
                               <properties>
                                 <property
                                   dataType="System.Boolean"
@@ -4826,7 +4826,7 @@ and [ContactLoadedDate] &gt; cast(getdate() as date)</property>
                               cachedLength="50"
                               cachedName="Status"
                               lineageId="Package\Iterate Offices\Sequence Container\Add reminder\Get Rosie Loaded Contacts from SQL.Outputs[OLE DB Source Output].Columns[Status]"
-                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11474:invalid">
+                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11559:invalid">
                               <properties>
                                 <property
                                   dataType="System.Boolean"
@@ -4840,7 +4840,7 @@ and [ContactLoadedDate] &gt; cast(getdate() as date)</property>
                               cachedName="PriceFrom"
                               cachedPrecision="10"
                               lineageId="Package\Iterate Offices\Sequence Container\Add reminder\Get Rosie Loaded Contacts from SQL.Outputs[OLE DB Source Output].Columns[PriceFrom]"
-                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11475:invalid">
+                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11560:invalid">
                               <properties>
                                 <property
                                   dataType="System.Boolean"
@@ -4881,7 +4881,7 @@ and [ContactLoadedDate] &gt; cast(getdate() as date)</property>
                               cachedDataType="i4"
                               cachedName="ContactId"
                               lineageId="Package\Iterate Offices\Sequence Container\Add reminder\Get Rosie Loaded Contacts from SQL.Outputs[OLE DB Source Output].Columns[ContactId]"
-                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11476:invalid">
+                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11561:invalid">
                               <properties>
                                 <property
                                   dataType="System.Boolean"
@@ -4894,7 +4894,7 @@ and [ContactLoadedDate] &gt; cast(getdate() as date)</property>
                               cachedDataType="i4"
                               cachedName="SqlId"
                               lineageId="Package\Iterate Offices\Sequence Container\Add reminder\Get Rosie Loaded Contacts from SQL.Outputs[OLE DB Source Output].Columns[SqlId]"
-                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11477:invalid">
+                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11562:invalid">
                               <properties>
                                 <property
                                   dataType="System.Boolean"
@@ -4907,7 +4907,7 @@ and [ContactLoadedDate] &gt; cast(getdate() as date)</property>
                               cachedDataType="nText"
                               cachedName="TemplateOutput"
                               lineageId="Package\Iterate Offices\Sequence Container\Add reminder\Build Reminder JSON.Outputs[TemplateTransformOutput].Columns[TemplateOutput]"
-                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11478:invalid">
+                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11563:invalid">
                               <properties>
                                 <property
                                   dataType="System.Boolean"
@@ -4920,7 +4920,7 @@ and [ContactLoadedDate] &gt; cast(getdate() as date)</property>
                               cachedDataType="i4"
                               cachedName="StatusCode"
                               lineageId="Package\Iterate Offices\Sequence Container\Add reminder\Post Batch Request.Outputs[Response Output].Columns[StatusCode]"
-                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11479:invalid">
+                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11564:invalid">
                               <properties>
                                 <property
                                   dataType="System.Boolean"
@@ -4958,53 +4958,53 @@ and [ContactLoadedDate] &gt; cast(getdate() as date)</property>
                               refId="Package\Iterate Offices\Sequence Container\Add reminder\Read Success.Outputs[JsonParserTransformOutput].Columns[SqlId]"
                               dataType="i4"
                               lineageId="Package\Iterate Offices\Sequence Container\Add reminder\Read Success.Outputs[JsonParserTransformOutput].Columns[SqlId]"
-                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11480:invalid"
+                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11565:invalid"
                               name="SqlId" />
                             <outputColumn
                               refId="Package\Iterate Offices\Sequence Container\Add reminder\Read Success.Outputs[JsonParserTransformOutput].Columns[ContactId]"
                               dataType="i4"
                               lineageId="Package\Iterate Offices\Sequence Container\Add reminder\Read Success.Outputs[JsonParserTransformOutput].Columns[ContactId]"
-                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11481:invalid"
+                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11566:invalid"
                               name="ContactId" />
                             <outputColumn
                               refId="Package\Iterate Offices\Sequence Container\Add reminder\Read Success.Outputs[JsonParserTransformOutput].Columns[prefguid]"
                               dataType="wstr"
                               length="4000"
                               lineageId="Package\Iterate Offices\Sequence Container\Add reminder\Read Success.Outputs[JsonParserTransformOutput].Columns[prefguid]"
-                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11482:invalid"
+                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11567:invalid"
                               name="prefguid" />
                             <outputColumn
                               refId="Package\Iterate Offices\Sequence Container\Add reminder\Read Success.Outputs[JsonParserTransformOutput].Columns[PriceTo]"
                               dataType="r8"
                               lineageId="Package\Iterate Offices\Sequence Container\Add reminder\Read Success.Outputs[JsonParserTransformOutput].Columns[PriceTo]"
-                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11483:invalid"
+                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11568:invalid"
                               name="PriceTo" />
                             <outputColumn
                               refId="Package\Iterate Offices\Sequence Container\Add reminder\Read Success.Outputs[JsonParserTransformOutput].Columns[PriceFrom]"
                               dataType="r8"
                               lineageId="Package\Iterate Offices\Sequence Container\Add reminder\Read Success.Outputs[JsonParserTransformOutput].Columns[PriceFrom]"
-                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11484:invalid"
+                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11569:invalid"
                               name="PriceFrom" />
                             <outputColumn
                               refId="Package\Iterate Offices\Sequence Container\Add reminder\Read Success.Outputs[JsonParserTransformOutput].Columns[CurrentOffice]"
                               dataType="wstr"
                               length="255"
                               lineageId="Package\Iterate Offices\Sequence Container\Add reminder\Read Success.Outputs[JsonParserTransformOutput].Columns[CurrentOffice]"
-                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11485:invalid"
+                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11570:invalid"
                               name="CurrentOffice" />
                             <outputColumn
                               refId="Package\Iterate Offices\Sequence Container\Add reminder\Read Success.Outputs[JsonParserTransformOutput].Columns[Status]"
                               dataType="wstr"
                               length="255"
                               lineageId="Package\Iterate Offices\Sequence Container\Add reminder\Read Success.Outputs[JsonParserTransformOutput].Columns[Status]"
-                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11486:invalid"
+                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11571:invalid"
                               name="Status" />
                             <outputColumn
                               refId="Package\Iterate Offices\Sequence Container\Add reminder\Read Success.Outputs[JsonParserTransformOutput].Columns[Reference]"
                               dataType="wstr"
                               length="255"
                               lineageId="Package\Iterate Offices\Sequence Container\Add reminder\Read Success.Outputs[JsonParserTransformOutput].Columns[Reference]"
-                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11487:invalid"
+                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11572:invalid"
                               name="Reference" />
                             <outputColumn
                               refId="Package\Iterate Offices\Sequence Container\Add reminder\Read Success.Outputs[JsonParserTransformOutput].Columns[Category]"
@@ -5018,7 +5018,7 @@ and [ContactLoadedDate] &gt; cast(getdate() as date)</property>
                               dataType="wstr"
                               length="255"
                               lineageId="Package\Iterate Offices\Sequence Container\Add reminder\Read Success.Outputs[JsonParserTransformOutput].Columns[Office]"
-                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11488:invalid"
+                              mappedColumnId="Package\Iterate Offices\Sequence Container\Add reminder\11573:invalid"
                               name="Office" />
                             <outputColumn
                               refId="Package\Iterate Offices\Sequence Container\Add reminder\Read Success.Outputs[JsonParserTransformOutput].Columns[Pivot_Name]"
@@ -6284,8 +6284,8 @@ Where Id = ?</property>
                       <connections>
                         <connection
                           refId="Package\Iterate Offices\Sequence Container\Add reminder\Update SQL as Processed.Connections[OleDbConnection]"
-                          connectionManagerID="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}:invalid"
-                          connectionManagerRefId="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}:invalid"
+                          connectionManagerID="{1ACC4D99-A047-44CB-AAAD-088F42F69A23}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[Rosie]"
                           description="The OLE DB runtime connection used to access the database."
                           name="OleDbConnection" />
                       </connections>
@@ -6430,7 +6430,7 @@ Where Id = ?</property>
               DTS:refId="Package\Iterate Offices\Sequence Container\Assign Pref Guid and WHY"
               DTS:CreationName="Microsoft.Pipeline"
               DTS:Description="Data Flow Task"
-              DTS:DTSID="{4C8ABEDA-2A37-4E4D-BE51-4FC125153D1F}"
+              DTS:DTSID="{4998658E-1994-4210-9FC1-4758BD378C05}"
               DTS:ExecutableType="Microsoft.Pipeline"
               DTS:LocaleID="-1"
               DTS:ObjectName="Assign Pref Guid and WHY"
@@ -6647,7 +6647,7 @@ WHERE contactid IS NOT NULL
                         <property
                           dataType="System.String"
                           description="The mappings between the parameters in the SQL command and variables."
-                          name="ParameterMapping">"Parameter0:Input",{03591642-FF7C-4DFF-A013-E0E6F7DBB377};</property>
+                          name="ParameterMapping">"Parameter0:Input",{BA68C22C-1F89-4A6C-A86B-DA1B5C830C65};</property>
                       </properties>
                       <connections>
                         <connection
@@ -8740,7 +8740,7 @@ Where Id = ?</property>
               DTS:refId="Package\Iterate Offices\Sequence Container\ClearCampaignId"
               DTS:CreationName="Microsoft.ExpressionTask"
               DTS:Description="Expression Task"
-              DTS:DTSID="{6752ECE0-F607-40AB-9900-6D748FA8E84F}"
+              DTS:DTSID="{6B675246-21BD-4947-A411-8613DB219841}"
               DTS:ExecutableType="Microsoft.ExpressionTask"
               DTS:LocaleID="-1"
               DTS:ObjectName="ClearCampaignId"
@@ -8755,7 +8755,7 @@ Where Id = ?</property>
               DTS:refId="Package\Iterate Offices\Sequence Container\Create Contacts"
               DTS:CreationName="Microsoft.Pipeline"
               DTS:Description="Data Flow Task"
-              DTS:DTSID="{6C1AA97F-59B8-400B-9098-368B156471F0}"
+              DTS:DTSID="{8978C113-8D60-402F-AF7B-B911AD51F9E2}"
               DTS:ExecutableType="Microsoft.Pipeline"
               DTS:LocaleID="-1"
               DTS:ObjectName="Create Contacts"
@@ -9142,7 +9142,7 @@ where contactid is null
                         <property
                           dataType="System.String"
                           description="The mappings between the parameters in the SQL command and variables."
-                          name="ParameterMapping">"Parameter0:Input",{03591642-FF7C-4DFF-A013-E0E6F7DBB377};</property>
+                          name="ParameterMapping">"Parameter0:Input",{BA68C22C-1F89-4A6C-A86B-DA1B5C830C65};</property>
                       </properties>
                       <connections>
                         <connection
@@ -11733,7 +11733,7 @@ where contactid is null
               DTS:refId="Package\Iterate Offices\Sequence Container\Email Auth Failure"
               DTS:CreationName="ZappySys.HtmlEmailTask"
               DTS:Description="Email Auth Failure"
-              DTS:DTSID="{8E87D752-B601-435F-AC46-7C7B5843F0BE}"
+              DTS:DTSID="{FB564F9A-7685-4EEB-B4D7-56964E988CBC}"
               DTS:ExecutableType="ZappySys.HtmlEmailTask"
               DTS:LocaleID="-1"
               DTS:ObjectName="Email Auth Failure"
@@ -11765,7 +11765,7 @@ where contactid is null
               DTS:refId="Package\Iterate Offices\Sequence Container\Get Auth Key"
               DTS:CreationName="ZappySys.RestApiTask"
               DTS:Description="ZS REST API Task"
-              DTS:DTSID="{8E6F5533-E358-4CA2-8F6E-E18DA5906382}"
+              DTS:DTSID="{BD2928B1-69FB-4377-864F-C1DC010B6682}"
               DTS:ExecutableType="ZappySys.RestApiTask"
               DTS:FailPackageOnFailure="True"
               DTS:LocaleID="-1"
@@ -11835,7 +11835,7 @@ where contactid is null
               DTS:refId="Package\Iterate Offices\Sequence Container\Set SSIS Variables From XML"
               DTS:CreationName="ZappySys.XmlParserTask"
               DTS:Description="ZS Xml Parser Task"
-              DTS:DTSID="{01002473-5E36-46AF-8020-60FB42258B35}"
+              DTS:DTSID="{A9E3DB16-448A-4EF2-BAF8-84C2C48D585C}"
               DTS:ExecutableType="ZappySys.XmlParserTask"
               DTS:LocaleID="-1"
               DTS:ObjectName="Set SSIS Variables From XML"
@@ -11845,7 +11845,7 @@ where contactid is null
                 <XmlParserTask
                   SourceAccessMode="Connection"
                   SourceVariable=""
-                  SourceConnection="{A825CB0C-F5DC-4E09-9A87-1654BB45EA33}"
+                  SourceConnection="{34A73B03-8BDD-41FA-81E7-A92B6EFB5450}"
                   SourceDirectValue="&lt;!-- &#xA;Using XML Parser Task you can extract values from XML document using XPath Expression &#xA;See example in below grid. Read description for each mapping.&#xA;See more examples: https://msdn.microsoft.com/en-us/library/ms256086(v=vs.110).aspx&#xA;--&gt;&#xA;&lt;catalog&gt;&#xA;   &lt;book id=&quot;bk101&quot;&gt;&#xA;      &lt;author&gt;Gambardella, Matthew&lt;/author&gt;&#xA;      &lt;title&gt;XML Developer's Guide&lt;/title&gt;&#xA;      &lt;genre&gt;Computer&lt;/genre&gt;&#xA;      &lt;price&gt;44.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-10-01&lt;/publish_date&gt;&#xA;      &lt;description&gt;An in-depth look at creating applications &#xA;      with XML.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk102&quot;&gt;&#xA;      &lt;author&gt;Ralls, Kim&lt;/author&gt;&#xA;      &lt;title&gt;Midnight Rain&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-12-16&lt;/publish_date&gt;&#xA;      &lt;description&gt;A former architect battles corporate zombies, &#xA;      an evil sorceress, and her own childhood to become queen &#xA;      of the world.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk103&quot;&gt;&#xA;      &lt;author&gt;Corets, Eva&lt;/author&gt;&#xA;      &lt;title&gt;Maeve Ascendant&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2000-11-17&lt;/publish_date&gt;&#xA;      &lt;description&gt;After the collapse of a nanotechnology &#xA;      society in England, the young survivors lay the &#xA;      foundation for a new society.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;   &lt;book id=&quot;bk104&quot;&gt;&#xA;      &lt;author&gt;Corets, Eva&lt;/author&gt;&#xA;      &lt;title&gt;Oberon's Legacy&lt;/title&gt;&#xA;      &lt;genre&gt;Fantasy&lt;/genre&gt;&#xA;      &lt;price&gt;5.95&lt;/price&gt;&#xA;      &lt;publish_date&gt;2001-03-10&lt;/publish_date&gt;&#xA;      &lt;description&gt;In post-apocalypse England, the mysterious &#xA;      agent known only as Oberon helps to create a new life &#xA;      for the inhabitants of London. Sequel to Maeve &#xA;      Ascendant.&lt;/description&gt;&#xA;   &lt;/book&gt;&#xA;&lt;/catalog&gt;"
                   TargetSettings="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;XmlParserSetting xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;Mappings&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/RexAPIWebURL&lt;/Path&gt;&lt;Target&gt;User::RexAPIWebURL&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt; /SSISVariables/PackageUser&lt;/Path&gt;&lt;Target&gt;User::PackageUser&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/PackageErrorEmail&lt;/Path&gt;&lt;Target&gt;User::PackageErrorEmail&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/PackagePassword&lt;/Path&gt;&lt;Target&gt;User::PackagePassword&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;XmlParserMapping&gt;&lt;Path&gt;/SSISVariables/RexAPIWebURLv1&lt;/Path&gt;&lt;Target&gt;User::RexAPIWebURLv1&lt;/Target&gt;&lt;Required&gt;true&lt;/Required&gt;&lt;Description /&gt;&lt;/XmlParserMapping&gt;&lt;/Mappings&gt;&lt;Path /&gt;&lt;/XmlParserSetting&gt;"
                   LogLevel="Normal"
@@ -11857,7 +11857,7 @@ where contactid is null
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Iterate Offices\Sequence Container.PrecedenceConstraints[Constraint]"
               DTS:CreationName=""
-              DTS:DTSID="{81065D99-AE0D-44F3-8EA5-0771CBE37766}"
+              DTS:DTSID="{4FB7155C-7B0B-421D-B875-3D8DA5CDDCEC}"
               DTS:From="Package\Iterate Offices\Sequence Container\Set SSIS Variables From XML"
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint"
@@ -11865,7 +11865,7 @@ where contactid is null
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Iterate Offices\Sequence Container.PrecedenceConstraints[Constraint 1]"
               DTS:CreationName=""
-              DTS:DTSID="{EB7ECF0A-F8C3-4E36-AE2A-F7C9B0E33E9C}"
+              DTS:DTSID="{5D241814-F59B-47FB-9413-FCC9B5482EC1}"
               DTS:From="Package\Iterate Offices\Sequence Container\Create Contacts"
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint 1"
@@ -11873,7 +11873,7 @@ where contactid is null
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Iterate Offices\Sequence Container.PrecedenceConstraints[Constraint 10]"
               DTS:CreationName=""
-              DTS:DTSID="{C1501934-FEB7-4D70-A862-24CCE458E6D7}"
+              DTS:DTSID="{22134112-9A67-4A76-A5BC-6A824C0645CC}"
               DTS:From="Package\Iterate Offices\Sequence Container\Create Contacts"
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint 10"
@@ -11881,7 +11881,7 @@ where contactid is null
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Iterate Offices\Sequence Container.PrecedenceConstraints[Constraint 12]"
               DTS:CreationName=""
-              DTS:DTSID="{4DFC7C8E-4D0B-4ECA-B3C1-1EA5E8B237CE}"
+              DTS:DTSID="{690B93D9-B021-4A45-9308-E52C69291587}"
               DTS:From="Package\Iterate Offices\Sequence Container\Get Auth Key"
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint 12"
@@ -11889,7 +11889,7 @@ where contactid is null
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Iterate Offices\Sequence Container.PrecedenceConstraints[Constraint 2]"
               DTS:CreationName=""
-              DTS:DTSID="{6D5D1631-9199-4308-A9B6-99012017B36C}"
+              DTS:DTSID="{8A8E37D9-8DC9-41BA-9B97-540432CC7833}"
               DTS:From="Package\Iterate Offices\Sequence Container\Get Auth Key"
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint 2"
@@ -11898,7 +11898,7 @@ where contactid is null
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Iterate Offices\Sequence Container.PrecedenceConstraints[Constraint 5]"
               DTS:CreationName=""
-              DTS:DTSID="{CB57B2CF-5E84-47CF-A3EA-A792FD509FD5}"
+              DTS:DTSID="{7636A209-2A3C-4EC9-90C6-B210D76797ED}"
               DTS:From="Package\Iterate Offices\Sequence Container\Set SSIS Variables From XML"
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint 5"
@@ -11906,7 +11906,7 @@ where contactid is null
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Iterate Offices\Sequence Container.PrecedenceConstraints[Constraint 7]"
               DTS:CreationName=""
-              DTS:DTSID="{869645D4-B150-4343-B9E5-DB59FED8B75F}"
+              DTS:DTSID="{A0F45966-DDA1-47AE-A779-405BD7AAC12F}"
               DTS:From="Package\Iterate Offices\Sequence Container\Create Contacts"
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint 7"
@@ -11917,14 +11917,14 @@ where contactid is null
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{C01A762E-EB14-40FA-9BDA-50A181FAE0F3}"
-          DTS:ObjectName="{C01A762E-EB14-40FA-9BDA-50A181FAE0F3}"
+          DTS:DTSID="{ECCB6CFA-84CA-4934-B603-36CDBCD3B304}"
+          DTS:ObjectName="{ECCB6CFA-84CA-4934-B603-36CDBCD3B304}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::Office_id" />
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{DBB1130B-7A0A-46C7-B9BA-853CBE3ADE51}"
-          DTS:ObjectName="{DBB1130B-7A0A-46C7-B9BA-853CBE3ADE51}"
+          DTS:DTSID="{5077E9BF-EADF-467C-8B65-65F14980EEA5}"
+          DTS:ObjectName="{5077E9BF-EADF-467C-8B65-65F14980EEA5}"
           DTS:ValueIndex="1"
           DTS:VariableName="User::RexAccountID" />
       </DTS:ForEachVariableMappings>
@@ -11933,7 +11933,7 @@ where contactid is null
       DTS:refId="Package\Set new contact permalink in origin contact"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{1D639280-2CC1-45E4-8092-DAA89DC2EF55}"
+      DTS:DTSID="{3F358894-4ED0-4A65-8C14-AF438661E958}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Set new contact permalink in origin contact"
@@ -11942,7 +11942,7 @@ where contactid is null
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{76F87E4F-FCAB-405F-BEEC-0993B2249AAD}"
+          SQLTask:Connection="{F378EBEE-230F-4B3C-9483-B49FB5B39D9C}"
           SQLTask:BypassPrepare="False"
           SQLTask:SqlStatementSource="exec CIINH.uspUpdateSourceContactLinkedContact" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
@@ -11951,7 +11951,7 @@ where contactid is null
       DTS:refId="Package\Set origin permalink in new contact"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{60DCCD39-3CEC-405B-BEE8-8354E05A3308}"
+      DTS:DTSID="{C6CA95D6-63FA-4645-8023-5953AEA9E027}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Set origin permalink in new contact"
@@ -11960,7 +11960,7 @@ where contactid is null
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{76F87E4F-FCAB-405F-BEEC-0993B2249AAD}"
+          SQLTask:Connection="{F378EBEE-230F-4B3C-9483-B49FB5B39D9C}"
           SQLTask:BypassPrepare="False"
           SQLTask:SqlStatementSource="exec CIINH.uspUpdateNewContactLinkedContact" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
@@ -11969,7 +11969,7 @@ where contactid is null
       DTS:refId="Package\Staging data"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{F45C5347-0990-4432-8D01-04C480755D14}"
+      DTS:DTSID="{5002CC16-280D-4974-B825-722F55F37A2C}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Staging data"
@@ -11978,7 +11978,7 @@ where contactid is null
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{76F87E4F-FCAB-405F-BEEC-0993B2249AAD}"
+          SQLTask:Connection="{F378EBEE-230F-4B3C-9483-B49FB5B39D9C}"
           SQLTask:BypassPrepare="False"
           SQLTask:SqlStatementSource="exec CIINH.[uspProcessStagingContactsInterestedInNewHomes]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
@@ -11988,7 +11988,7 @@ where contactid is null
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{BFC2CC03-E8BC-4EA2-8C36-34DF8FAF5550}"
+      DTS:DTSID="{F81C8CCA-92D6-48E0-8E4B-79405A0EDD5F}"
       DTS:From="Package\Staging data"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
@@ -11996,7 +11996,7 @@ where contactid is null
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{3DC8713A-54DA-4E3B-BAB6-D93C77E5F948}"
+      DTS:DTSID="{E489C40A-544D-465B-AC5F-F5492BC3E7F3}"
       DTS:From="Package\Iterate Offices"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
@@ -12004,7 +12004,7 @@ where contactid is null
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
-      DTS:DTSID="{21BF92F6-B018-4DB9-8F20-2450C39B4A04}"
+      DTS:DTSID="{A146C910-2CBE-419E-8318-D9D3340EE90B}"
       DTS:From="Package\Set origin permalink in new contact"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
@@ -12012,7 +12012,7 @@ where contactid is null
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 8 1]"
       DTS:CreationName=""
-      DTS:DTSID="{6E49F407-CB42-4D06-B98C-279D979DC986}"
+      DTS:DTSID="{83D15C90-399C-472B-9915-D5385390071C}"
       DTS:From="Package\Get Office List"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 8 1"
@@ -12022,7 +12022,7 @@ where contactid is null
     <DTS:EventHandler
       DTS:refId="Package.EventHandlers[OnError]"
       DTS:CreationName="OnError"
-      DTS:DTSID="{294C1AB7-B62C-4352-B94F-98F853F61608}"
+      DTS:DTSID="{DA809D42-A5E5-4FD7-9ACF-22ED0BB0CEAC}"
       DTS:EventID="0"
       DTS:EventName="OnError"
       DTS:LocaleID="-1">
@@ -12030,7 +12030,7 @@ where contactid is null
         <DTS:Variable
           DTS:CreationName=""
           DTS:Description="The propagate property of the event"
-          DTS:DTSID="{FC85DD5B-DAB2-42B6-AE2D-5521307F1870}"
+          DTS:DTSID="{66381194-A51F-4EED-BDD0-F06E348797F7}"
           DTS:IncludeInDebugDump="6789"
           DTS:Namespace="System"
           DTS:ObjectName="Propagate">
@@ -12043,7 +12043,7 @@ where contactid is null
           DTS:refId="Package.EventHandlers[OnError]\Email error"
           DTS:CreationName="ZappySys.HtmlEmailTask"
           DTS:Description="Email Auth Failure"
-          DTS:DTSID="{FE24A988-FB08-4F2C-B114-3F2A97E42831}"
+          DTS:DTSID="{CCB8EE28-FC80-49D9-910B-E5F26D0074F5}"
           DTS:ExecutableType="ZappySys.HtmlEmailTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Email error"
@@ -12074,7 +12074,7 @@ where contactid is null
           DTS:refId="Package.EventHandlers[OnError]\Insert error log into database"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{8C2EE086-31DF-4711-9328-03C366698ED1}"
+          DTS:DTSID="{5E417AA1-99CE-44E7-94FE-F0CC6ED8275C}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Insert error log into database"
@@ -12122,7 +12122,7 @@ where contactid is null
         <DTS:PrecedenceConstraint
           DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
-          DTS:DTSID="{E6AB6C19-A1BD-4DA3-B9C2-F3622698BAF1}"
+          DTS:DTSID="{2DE71B89-F739-4EEA-AF53-F0FACB5929FE}"
           DTS:From="Package.EventHandlers[OnError]\Insert error log into database"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
@@ -12133,7 +12133,7 @@ where contactid is null
     <DTS:EventHandler
       DTS:refId="Package.EventHandlers[OnTaskFailed]"
       DTS:CreationName="OnTaskFailed"
-      DTS:DTSID="{747BC6EF-28B9-4B01-89EE-CC0BE1BD98C4}"
+      DTS:DTSID="{7D01D24E-8E86-4845-8252-75233898C8BE}"
       DTS:EventID="0"
       DTS:EventName="OnTaskFailed"
       DTS:LocaleID="-1">
@@ -12141,7 +12141,7 @@ where contactid is null
         <DTS:Variable
           DTS:CreationName=""
           DTS:Description="The propagate property of the event"
-          DTS:DTSID="{E3B82551-A334-4D04-BF0D-72010FB29B2D}"
+          DTS:DTSID="{BD7AA28E-9FA7-4475-AF4C-16A4233A4A2F}"
           DTS:IncludeInDebugDump="6789"
           DTS:Namespace="System"
           DTS:ObjectName="Propagate">
@@ -12455,6 +12455,14 @@ where contactid is null
           Id="Package\Iterate Offices"
           TopLeft="5.50000000000011,107.5" />
         <NodeLayout
+          Size="288,42"
+          Id="Package\Set new contact permalink in origin contact"
+          TopLeft="387.5,971.5" />
+        <NodeLayout
+          Size="249,42"
+          Id="Package\Set origin permalink in new contact"
+          TopLeft="393.5,897.5" />
+        <NodeLayout
           Size="141,42"
           Id="Package\Staging data"
           TopLeft="616.5,7.5" />
@@ -12480,32 +12488,6 @@ where contactid is null
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 8 1]"
-          TopLeft="436,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="249,42"
-          Id="Package\Set origin permalink in new contact"
-          TopLeft="393.5,897.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="436,867.5">
@@ -12540,10 +12522,6 @@ where contactid is null
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="288,42"
-          Id="Package\Set new contact permalink in origin contact"
-          TopLeft="387.5,971.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="518,939.5">
@@ -12570,6 +12548,28 @@ where contactid is null
                     Point3="13.5,20" />
                   <mssgle:LineSegment
                     End="13.5,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8 1]"
+          TopLeft="436,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
