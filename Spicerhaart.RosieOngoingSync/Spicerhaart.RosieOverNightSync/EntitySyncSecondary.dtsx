@@ -8,13 +8,13 @@
   DTS:DTSID="{ED3F410A-42A2-47C7-B41E-91EC48120B83}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:FailParentOnFailure="True"
-  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
   DTS:LocaleID="2057"
   DTS:ObjectName="EntitySyncSecondary"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="1059"
-  DTS:VersionGUID="{F1A3F0A3-B475-47D6-B302-2F4DB5A13880}">
+  DTS:VersionBuild="1062"
+  DTS:VersionGUID="{50F77EAB-C0F7-4075-AC0A-95AF4F5B0AC9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -25,15 +25,17 @@
       DTS:ObjectName="colsqlbi01v.Entities">
       <DTS:ObjectData>
         <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
           DTS:ConnectionString="Data Source=colsqlbi01v;User ID=wh_user;Initial Catalog=Entities;Provider=SQLNCLI11.1;Auto Translate=False;">
           <EncryptedData
             Type="http://www.w3.org/2001/04/xmlenc#Element"
-            Salt="DKaV4c0VYw=="
-            IV="xhEBsaFv5sc=" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            Salt="1+oBJvCfuA=="
+            IV="uJtAOAcpXj0=" xmlns="http://www.w3.org/2001/04/xmlenc#">
             <EncryptionMethod
               Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" />
             <CipherData>
-              <CipherValue>xhEBsaFv5sdNbZITKoFk5v2runfTPNyR8/NGSf/Ydlm+tRtqblWd6tgq7ikpy4q0VEv3NejgeEdoWoqZBKHbfu2XerIJsXY8/bxklLpVRREpCDXEimCHbYg/9zzjeQMhZlEx5VlCyy9I3OkFXTTA7tDSaVZN6D+e</CipherValue>
+              <CipherValue>uJtAOAcpXj2QJ1Z53QNKAa9AFTsq1dkrj2mCl9zOoq72GwXN8vcALmW2sCZXC6qZAJCIvs2RxRsSa6gHvj2mDF3QY0Vhy+spGIuKqP0XeQxQOgIQt/JnicKJr+puzlRC390GpVBy6nOrPgeDZTlLTWZByy32p6wx</CipherValue>
             </CipherData>
           </EncryptedData>
         </DTS:ConnectionManager>
@@ -46,15 +48,17 @@
       DTS:ObjectName="colsqlbi01v.Entities 1">
       <DTS:ObjectData>
         <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
           DTS:ConnectionString="Data Source=colsqlbi01v;User ID=wh_user;Initial Catalog=Entities;Provider=SQLNCLI11.1;Auto Translate=False;">
           <EncryptedData
             Type="http://www.w3.org/2001/04/xmlenc#Element"
-            Salt="oizNSsb7vg=="
-            IV="IVi5bIXGYNY=" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            Salt="uk3f33dGvg=="
+            IV="Re2CA4lr91s=" xmlns="http://www.w3.org/2001/04/xmlenc#">
             <EncryptionMethod
               Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" />
             <CipherData>
-              <CipherValue>IVi5bIXGYNbFHTWYLprjBpKKdgvqaFPD5fATqaJt2HtHsrdQ23V/PyfE1yhYl6E2J2HtIKEuxH+POMjrNlyScyAbuT89LhRVuBB9Cvuatc1Umg7+G8pNJsYU+6gejaxHEexrT5WWxmsopOg1SUmQcy7GcDdjBoKO</CipherValue>
+              <CipherValue>Re2CA4lr91sOTMAufSiV+qpnUbPTjFNbwafOy9kCH+/jwiz5RB/m1+iDpHRoI1IlEPNsNJ8+jBcbC2IQ/kbv6AOj0PRIWC+XTkepYICye850okP91oXx1/Tnz2l3aUdALDmzkR42uplD93nTA1evkQbSIZHn7zX5</CipherValue>
             </CipherData>
           </EncryptedData>
         </DTS:ConnectionManager>
@@ -77,6 +81,8 @@
       DTS:ObjectName="COLSQLBI01v.Metrics">
       <DTS:ObjectData>
         <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
           DTS:ConnectionString="Data Source=COLSQLBI01v;Initial Catalog=Metrics;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -87,6 +93,8 @@
       DTS:ObjectName="COLSQLBI01V.RosieWorkBench">
       <DTS:ObjectData>
         <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
           DTS:ConnectionString="Data Source=COLSQLBI01V;Initial Catalog=RosieWorkBench;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -97,7 +105,8 @@
       DTS:ObjectName="HTTP">
       <DTS:ObjectData>
         <ConnectionManager
-          ConnectionString="Url=https://api.rexsoftware.com/rex.php;CredentialType=Notset;UserName=;Timeout=100000;SoapWssPasswordType=Notset;JwtCustomClaims=;RetainCookies=False;UseProxy=False;ProxyUrl=;UseProxyCreds=False;ProxyUserName=;DoNotUseDefaultProxy=False;UseClientCertificate=False;CertificatePath=;CertificateStorageType=CurrentUser;CertificateStoreName=My;CertificateThumbprint=;RetryMode=None;RetryCountMax=3;RetryWaitTimeMs=2000;RetryMultiplyWaitTime=False;RetryMessageList=;RetryStatusCodeList=;AuthScheme=Bearer;TokenAuthHeader=;TokenUrl=;TokenRequestData=;TokenRequestHeaders=Accept:*/*||Cache-Control:no-cache;TokenRequestMethod=;TokenRequestContentType=Default;TokenRequestIsMultiPart=False;TokenResponseContentFilter=;TokenResponseValueExtractMode=Body;TokenResponseCookie=;TokenResponseHeader=;TokenResponseContentType=None;TokenExpirationTimeInSeconds=3600;EnableRequestHashing=False;HashAlgorithm=sha256;HashSignatureFormat=;HashSignatureFormatForLogin=;ExtraHeaders=;ExtraHeadersForLogin=;HashTimestampFormat=;HashTreatSecretAsNonBase64=False;HashSignWithApiKey=False;RetainSameConnection=False" />
+          ConnectionString="Url=https://api.rexsoftware.com/rex.php;CredentialType=Notset;UserName=;Timeout=100000;SoapWssPasswordType=Notset;JwtCustomClaims=;RetainCookies=False;UseProxy=False;ProxyUrl=;UseProxyCreds=False;ProxyUserName=;DoNotUseDefaultProxy=False;UseClientCertificate=False;CertificatePath=;CertificateStorageType=CurrentUser;CertificateStoreName=My;CertificateThumbprint=;RetryMode=None;RetryCountMax=3;RetryWaitTimeMs=2000;RetryMultiplyWaitTime=False;RetryMessageList=;RetryStatusCodeList=;AuthScheme=Bearer;TokenAuthHeader=;TokenUrl=;TokenRequestData=;TokenRequestHeaders=Accept:*/*||Cache-Control:no-cache;TokenRequestMethod=;TokenRequestContentType=Default;TokenRequestIsMultiPart=False;TokenResponseContentFilter=;TokenResponseValueExtractMode=Body;TokenResponseCookie=;TokenResponseHeader=;TokenResponseContentType=None;TokenExpirationTimeInSeconds=3600;EnableRequestHashing=False;HashAlgorithm=sha256;HashSignatureFormat=;HashSignatureFormatForLogin=;ExtraHeaders=;ExtraHeadersForLogin=;HashTimestampFormat=;HashTreatSecretAsNonBase64=False;HashSignWithApiKey=False;RetainSameConnection=False"
+          ConnectByProxy="False" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -107,7 +116,8 @@
       DTS:ObjectName="HTTP 1">
       <DTS:ObjectData>
         <ConnectionManager
-          ConnectionString="Url=https://api.rexsoftware.com/rex.php;CredentialType=Notset;UserName=;Timeout=100000;SoapWssPasswordType=Notset;JwtCustomClaims=;RetainCookies=False;UseProxy=False;ProxyUrl=;UseProxyCreds=False;ProxyUserName=;DoNotUseDefaultProxy=False;UseClientCertificate=False;CertificatePath=;CertificateStorageType=CurrentUser;CertificateStoreName=My;CertificateThumbprint=;RetryMode=None;RetryCountMax=3;RetryWaitTimeMs=2000;RetryMultiplyWaitTime=False;RetryMessageList=;RetryStatusCodeList=;AuthScheme=Bearer;TokenAuthHeader=;TokenUrl=;TokenRequestData=;TokenRequestHeaders=Accept:*/*||Cache-Control:no-cache;TokenRequestMethod=;TokenRequestContentType=Default;TokenRequestIsMultiPart=False;TokenResponseContentFilter=;TokenResponseValueExtractMode=Body;TokenResponseCookie=;TokenResponseHeader=;TokenResponseContentType=None;TokenExpirationTimeInSeconds=3600;EnableRequestHashing=False;HashAlgorithm=sha256;HashSignatureFormat=;HashSignatureFormatForLogin=;ExtraHeaders=;ExtraHeadersForLogin=;HashTimestampFormat=;HashTreatSecretAsNonBase64=False;HashSignWithApiKey=False;RetainSameConnection=False" />
+          ConnectionString="Url=https://api.rexsoftware.com/rex.php;CredentialType=Notset;UserName=;Timeout=100000;SoapWssPasswordType=Notset;JwtCustomClaims=;RetainCookies=False;UseProxy=False;ProxyUrl=;UseProxyCreds=False;ProxyUserName=;DoNotUseDefaultProxy=False;UseClientCertificate=False;CertificatePath=;CertificateStorageType=CurrentUser;CertificateStoreName=My;CertificateThumbprint=;RetryMode=None;RetryCountMax=3;RetryWaitTimeMs=2000;RetryMultiplyWaitTime=False;RetryMessageList=;RetryStatusCodeList=;AuthScheme=Bearer;TokenAuthHeader=;TokenUrl=;TokenRequestData=;TokenRequestHeaders=Accept:*/*||Cache-Control:no-cache;TokenRequestMethod=;TokenRequestContentType=Default;TokenRequestIsMultiPart=False;TokenResponseContentFilter=;TokenResponseValueExtractMode=Body;TokenResponseCookie=;TokenResponseHeader=;TokenResponseContentType=None;TokenExpirationTimeInSeconds=3600;EnableRequestHashing=False;HashAlgorithm=sha256;HashSignatureFormat=;HashSignatureFormatForLogin=;ExtraHeaders=;ExtraHeadersForLogin=;HashTimestampFormat=;HashTreatSecretAsNonBase64=False;HashSignWithApiKey=False;RetainSameConnection=False"
+          ConnectByProxy="False" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -127,7 +137,8 @@
       DTS:ObjectName="SMTP">
       <DTS:ObjectData>
         <ConnectionManager
-          ConnectionString="SmtpServer=outlookcol;UserName=;Port=25;EnableSsl=False;Timeout=10000;EnableAnonymousAuth=False" />
+          ConnectionString="SmtpServer=outlookcol;UserName=;Port=25;EnableSsl=False;Timeout=10000;EnableAnonymousAuth=False"
+          ConnectByProxy="False" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -137,7 +148,8 @@
       DTS:ObjectName="SMTP Connection Manager">
       <DTS:ObjectData>
         <SmtpConnectionManager
-          ConnectionString="SmtpServer=outlookcol;UseWindowsAuthentication=False;EnableSsl=False;" />
+          ConnectionString="SmtpServer=outlookcol;UseWindowsAuthentication=False;EnableSsl=False;"
+          ConnectByProxy="False" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -22517,7 +22529,7 @@ WHERE [AccountId] = ?</property>
                         <property
                           dataType="System.String"
                           description="The mappings between the parameters in the SQL command and variables."
-                          name="ParameterMapping">"Parameter0:Input",{40C273CD-83FA-4737-B171-10500D92D346};</property>
+                          name="ParameterMapping">"Parameter0:Input",{EE81ACF9-9058-4481-A346-732989159AA5};</property>
                       </properties>
                       <connections>
                         <connection
@@ -25792,6 +25804,14 @@ WHERE [AccountId] = ?</property>
           Id="Package\Get Office List"
           TopLeft="835.5,5.5" />
         <NodeLayout
+          Size="172,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members"
+          TopLeft="1617,515.5" />
+        <NodeLayout
+          Size="131,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaigns"
+          TopLeft="1637.5,413.5" />
+        <NodeLayout
           Size="164,42"
           Id="Package\Iterate Offices\Sequence Container\Email Auth Failure"
           TopLeft="715,311.5" />
@@ -25807,6 +25827,10 @@ WHERE [AccountId] = ?</property>
           Size="176,42"
           Id="Package\Iterate Offices\Sequence Container\Listing Portal Upload"
           TopLeft="1141,311.5" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search"
+          TopLeft="1619,311.5" />
         <NodeLayout
           Size="140,42"
           Id="Package\Iterate Offices\Sequence Container\Match Profile"
@@ -25922,6 +25946,28 @@ WHERE [AccountId] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container.PrecedenceConstraints[Constraint 13]"
+          TopLeft="1703,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package\Iterate Offices\Sequence Container.PrecedenceConstraints[Constraint 14]"
           TopLeft="987.833333333333,251.5">
           <EdgeLayout.Curve>
@@ -25947,6 +25993,28 @@ WHERE [AccountId] = ?</property>
                     Point3="-408.833333333333,28.4039270687237" />
                   <mssgle:LineSegment
                     End="-408.833333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container.PrecedenceConstraints[Constraint 15]"
+          TopLeft="1703,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -26011,6 +26079,40 @@ WHERE [AccountId] = ?</property>
             <mssgm:EdgeLabel
               BoundingBox="-118.046903211806,33.3409563409563,30.4826953125,9.7490234375"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container.PrecedenceConstraints[Constraint 3]"
+          TopLeft="1061.72222222222,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="641.277777777778,59.9999999999999"
+              Start="0,0"
+              End="641.277777777778,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.61978842563777" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.61978842563777"
+                    Point2="0,12.6197884256378"
+                    Point3="4,12.6197884256378" />
+                  <mssgle:LineSegment
+                    End="637.277777777778,12.6197884256378" />
+                  <mssgle:CubicBezierSegment
+                    Point1="637.277777777778,12.6197884256378"
+                    Point2="641.277777777778,12.6197884256378"
+                    Point3="641.277777777778,16.6197884256378" />
+                  <mssgle:LineSegment
+                    End="641.277777777778,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -26103,96 +26205,6 @@ WHERE [AccountId] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="172,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members"
-          TopLeft="1617,515.5" />
-        <NodeLayout
-          Size="131,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaigns"
-          TopLeft="1637.5,413.5" />
-        <NodeLayout
-          Size="168,42"
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search"
-          TopLeft="1619,311.5" />
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container.PrecedenceConstraints[Constraint 13]"
-          TopLeft="1703,455.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container.PrecedenceConstraints[Constraint 15]"
-          TopLeft="1703,353.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container.PrecedenceConstraints[Constraint 3]"
-          TopLeft="1061.72222222222,251.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="641.277777777778,59.9999999999999"
-              Start="0,0"
-              End="641.277777777778,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,8.61978842563777" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,8.61978842563777"
-                    Point2="0,12.6197884256378"
-                    Point3="4,12.6197884256378" />
-                  <mssgle:LineSegment
-                    End="637.277777777778,12.6197884256378" />
-                  <mssgle:CubicBezierSegment
-                    Point1="637.277777777778,12.6197884256378"
-                    Point2="641.277777777778,12.6197884256378"
-                    Point3="641.277777777778,16.6197884256378" />
-                  <mssgle:LineSegment
-                    End="641.277777777778,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
@@ -26203,7 +26215,7 @@ WHERE [AccountId] = ?</property>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="1805,716"
+          PanelSize="1805,717"
           Size="1805,760"
           Id="Package\Iterate Offices"
           TopLeft="5.5,107.5" />
@@ -26325,6 +26337,974 @@ WHERE [AccountId] = ?</property>
     </LayoutInfo>
   </DtsEventHandler>
   <TaskHost
+    design-time-name="Package\Iterate Offices\Sequence Container\Campaign Members">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members\Read details"
+          TopLeft="253,515.5" />
+        <NodeLayout
+          Size="198,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members\Upsert CampaignMember"
+          TopLeft="269.5,923.5" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members\Build request"
+          TopLeft="238,413.5" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members\Trash Destination"
+          TopLeft="505,413.5" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members\JSON Parser Add id back in"
+          TopLeft="237.5,617.5" />
+        <NodeLayout
+          Size="109,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members\record"
+          TopLeft="286.5,719.5" />
+        <NodeLayout
+          Size="259,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members\Existing Campaign Members from SQL"
+          TopLeft="489.5,5.5" />
+        <NodeLayout
+          Size="244,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members\Merge Join To Find Those to Insert"
+          TopLeft="464,209.5" />
+        <NodeLayout
+          Size="118,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members\API Sort"
+          TopLeft="347,107.5" />
+        <NodeLayout
+          Size="120,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members\SQL Sort"
+          TopLeft="526,107.5" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members\Trash Destination 1"
+          TopLeft="5.50000000000011,617.5" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members\Insert or Ignore"
+          TopLeft="509,311.5" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members\Search Campaigns"
+          TopLeft="287.5,5.5" />
+        <NodeLayout
+          Size="196,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members\Add accountid and origin"
+          TopLeft="243,821.5" />
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[WebApiDestination Error Output]"
+          TopLeft="299.666666666667,557.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-208.666666666667,60"
+              Start="0,0"
+              End="-208.666666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4186046511628" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4186046511628"
+                    Point2="0,24.4186046511628"
+                    Point3="-4,24.4186046511628" />
+                  <mssgle:LineSegment
+                    End="-204.666666666667,24.4186046511628" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-204.666666666667,24.4186046511628"
+                    Point2="-208.666666666667,24.4186046511628"
+                    Point3="-208.666666666667,28.4186046511628" />
+                  <mssgle:LineSegment
+                    End="-208.666666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-176.154895833334,29.4186046511628,143.643125,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[upsert]"
+          TopLeft="561.666666666667,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-253.166666666667,60"
+              Start="0,0"
+              End="-253.166666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3701799485861" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3701799485861"
+                    Point2="0,24.3701799485861"
+                    Point3="-4,24.3701799485861" />
+                  <mssgle:LineSegment
+                    End="-249.166666666667,24.3701799485861" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-249.166666666667,24.3701799485861"
+                    Point2="-253.166666666667,24.3701799485861"
+                    Point3="-253.166666666667,28.3701799485861" />
+                  <mssgle:LineSegment
+                    End="-253.166666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-141.150872395833,29.3701799485861,29.135078125,11.033203125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[Sort Output1]"
+          TopLeft="406,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="140.666666666667,60"
+              Start="0,0"
+              End="140.666666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.7654723127036" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.7654723127036"
+                    Point2="0,35.7654723127036"
+                    Point3="4,35.7654723127036" />
+                  <mssgle:LineSegment
+                    End="136.666666666667,35.7654723127036" />
+                  <mssgle:CubicBezierSegment
+                    Point1="136.666666666667,35.7654723127036"
+                    Point2="140.666666666667,35.7654723127036"
+                    Point3="140.666666666667,39.7654723127036" />
+                  <mssgle:LineSegment
+                    End="140.666666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[Sort Output]"
+          TopLeft="586,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="39.3333333333334,60"
+              Start="0,0"
+              End="39.3333333333334,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.7654723127036" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.7654723127036"
+                    Point2="0,35.7654723127036"
+                    Point3="4,35.7654723127036" />
+                  <mssgle:LineSegment
+                    End="35.3333333333334,35.7654723127036" />
+                  <mssgle:CubicBezierSegment
+                    Point1="35.3333333333334,35.7654723127036"
+                    Point2="39.3333333333334,35.7654723127036"
+                    Point3="39.3333333333334,39.7654723127036" />
+                  <mssgle:LineSegment
+                    End="39.3333333333334,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[Response Output]"
+          TopLeft="341.666666666667,557.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[OLE DB Source Output]"
+          TopLeft="619,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-33,60"
+              Start="0,0"
+              End="-33,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="-4,30" />
+                  <mssgle:LineSegment
+                    End="-29,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-29,30"
+                    Point2="-33,30"
+                    Point3="-33,34" />
+                  <mssgle:LineSegment
+                    End="-33,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[Merge Join Output]"
+          TopLeft="586,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[JsonSourceOutput]"
+          TopLeft="370.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="35.5,60"
+              Start="0,0"
+              End="35.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="31.5,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="31.5,30"
+                    Point2="35.5,30"
+                    Point3="35.5,34" />
+                  <mssgle:LineSegment
+                    End="35.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[JsonParserTransformOutput1]"
+          TopLeft="341,659.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[JsonParserTransformOutput]"
+          TopLeft="341,761.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[JsonGeneratorTransformOutput]"
+          TopLeft="308.5,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12.5,60"
+              Start="0,0"
+              End="12.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="8.5,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8.5,30"
+                    Point2="12.5,30"
+                    Point3="12.5,34" />
+                  <mssgle:LineSegment
+                    End="12.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[ignore]"
+          TopLeft="610.333333333333,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-24.3333333333334,60"
+              Start="0,0"
+              End="-24.3333333333334,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3701799485861" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3701799485861"
+                    Point2="0,24.3701799485861"
+                    Point3="-4,24.3701799485861" />
+                  <mssgle:LineSegment
+                    End="-20.3333333333334,24.3701799485861" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-20.3333333333334,24.3701799485861"
+                    Point2="-24.3333333333334,24.3701799485861"
+                    Point3="-24.3333333333334,28.3701799485861" />
+                  <mssgle:LineSegment
+                    End="-24.3333333333334,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-26.5716080729167,29.3701799485861,28.8098828125,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[Derived Column Output]"
+          TopLeft="341,863.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="27.5,60"
+              Start="0,0"
+              End="27.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="23.5,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="23.5,30"
+                    Point2="27.5,30"
+                    Point3="27.5,34" />
+                  <mssgle:LineSegment
+                    End="27.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Iterate Offices\Sequence Container\Campaigns">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="136,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaigns\Read details"
+          TopLeft="253,515.5" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaigns\Upsert Campaign"
+          TopLeft="269.5,923.5" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaigns\Build request"
+          TopLeft="238,413.5" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaigns\Trash Destination"
+          TopLeft="505,413.5" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaigns\JSON Parser Add id back in"
+          TopLeft="237.5,617.5" />
+        <NodeLayout
+          Size="109,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaigns\record"
+          TopLeft="286.5,719.5" />
+        <NodeLayout
+          Size="218,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaigns\Existing Campaigns from SQL"
+          TopLeft="489.5,5.5" />
+        <NodeLayout
+          Size="244,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaigns\Merge Join To Find Those to Insert"
+          TopLeft="464,209.5" />
+        <NodeLayout
+          Size="118,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaigns\API Sort"
+          TopLeft="347,107.5" />
+        <NodeLayout
+          Size="120,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaigns\SQL Sort"
+          TopLeft="526,107.5" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaigns\Trash Destination 1"
+          TopLeft="5.50000000000011,617.5" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaigns\Insert or Ignore"
+          TopLeft="509,311.5" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaigns\Search Campaigns"
+          TopLeft="287.5,5.5" />
+        <NodeLayout
+          Size="196,42"
+          Id="Package\Iterate Offices\Sequence Container\Campaigns\Add accountid and origin"
+          TopLeft="243,821.5" />
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[WebApiDestination Error Output]"
+          TopLeft="299.666666666667,557.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-208.666666666667,60"
+              Start="0,0"
+              End="-208.666666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4186046511628" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4186046511628"
+                    Point2="0,24.4186046511628"
+                    Point3="-4,24.4186046511628" />
+                  <mssgle:LineSegment
+                    End="-204.666666666667,24.4186046511628" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-204.666666666667,24.4186046511628"
+                    Point2="-208.666666666667,24.4186046511628"
+                    Point3="-208.666666666667,28.4186046511628" />
+                  <mssgle:LineSegment
+                    End="-208.666666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-176.154895833333,29.4186046511628,143.643125,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[upsert]"
+          TopLeft="561.666666666667,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-253.166666666667,60"
+              Start="0,0"
+              End="-253.166666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3701799485861" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3701799485861"
+                    Point2="0,24.3701799485861"
+                    Point3="-4,24.3701799485861" />
+                  <mssgle:LineSegment
+                    End="-249.166666666667,24.3701799485861" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-249.166666666667,24.3701799485861"
+                    Point2="-253.166666666667,24.3701799485861"
+                    Point3="-253.166666666667,28.3701799485861" />
+                  <mssgle:LineSegment
+                    End="-253.166666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-141.150872395833,29.3701799485861,29.135078125,11.033203125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[Sort Output1]"
+          TopLeft="406,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="140.666666666667,60"
+              Start="0,0"
+              End="140.666666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.7654723127036" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.7654723127036"
+                    Point2="0,35.7654723127036"
+                    Point3="4,35.7654723127036" />
+                  <mssgle:LineSegment
+                    End="136.666666666667,35.7654723127036" />
+                  <mssgle:CubicBezierSegment
+                    Point1="136.666666666667,35.7654723127036"
+                    Point2="140.666666666667,35.7654723127036"
+                    Point3="140.666666666667,39.7654723127036" />
+                  <mssgle:LineSegment
+                    End="140.666666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[Sort Output]"
+          TopLeft="586,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="39.3333333333334,60"
+              Start="0,0"
+              End="39.3333333333334,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.7654723127036" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.7654723127036"
+                    Point2="0,35.7654723127036"
+                    Point3="4,35.7654723127036" />
+                  <mssgle:LineSegment
+                    End="35.3333333333334,35.7654723127036" />
+                  <mssgle:CubicBezierSegment
+                    Point1="35.3333333333334,35.7654723127036"
+                    Point2="39.3333333333334,35.7654723127036"
+                    Point3="39.3333333333334,39.7654723127036" />
+                  <mssgle:LineSegment
+                    End="39.3333333333334,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[Response Output]"
+          TopLeft="341.666666666667,557.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[OLE DB Source Output]"
+          TopLeft="598.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-12.5,60"
+              Start="0,0"
+              End="-12.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="-4,30" />
+                  <mssgle:LineSegment
+                    End="-8.5,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-8.5,30"
+                    Point2="-12.5,30"
+                    Point3="-12.5,34" />
+                  <mssgle:LineSegment
+                    End="-12.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[Merge Join Output]"
+          TopLeft="586,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[JsonSourceOutput]"
+          TopLeft="370.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="35.5,60"
+              Start="0,0"
+              End="35.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="31.5,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="31.5,30"
+                    Point2="35.5,30"
+                    Point3="35.5,34" />
+                  <mssgle:LineSegment
+                    End="35.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[JsonParserTransformOutput1]"
+          TopLeft="341,659.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[JsonParserTransformOutput]"
+          TopLeft="341,761.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[JsonGeneratorTransformOutput]"
+          TopLeft="308.5,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12.5,60"
+              Start="0,0"
+              End="12.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="8.5,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8.5,30"
+                    Point2="12.5,30"
+                    Point3="12.5,34" />
+                  <mssgle:LineSegment
+                    End="12.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[ignore]"
+          TopLeft="610.333333333333,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-24.3333333333334,60"
+              Start="0,0"
+              End="-24.3333333333334,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3701799485861" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3701799485861"
+                    Point2="0,24.3701799485861"
+                    Point3="-4,24.3701799485861" />
+                  <mssgle:LineSegment
+                    End="-20.3333333333334,24.3701799485861" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-20.3333333333334,24.3701799485861"
+                    Point2="-24.3333333333334,24.3701799485861"
+                    Point3="-24.3333333333334,28.3701799485861" />
+                  <mssgle:LineSegment
+                    End="-24.3333333333334,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-26.5716080729167,29.3701799485861,28.8098828125,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[Derived Column Output]"
+          TopLeft="341,863.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8.5,60"
+              Start="0,0"
+              End="8.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="4.5,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4.5,30"
+                    Point2="8.5,30"
+                    Point3="8.5,34" />
+                  <mssgle:LineSegment
+                    End="8.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
     design-time-name="Package\Iterate Offices\Sequence Container\Listing Portal Upload">
     <LayoutInfo>
       <GraphLayout
@@ -26404,6 +27384,498 @@ WHERE [AccountId] = ?</property>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <TaskHost
+    design-time-name="Package\Iterate Offices\Sequence Container\MarketLead search">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search\Trash Destination"
+          TopLeft="505,413.5" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search\JSON Generator Transform"
+          TopLeft="238,413.5" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search\Upsert Market Leads"
+          TopLeft="269.5,923.5" />
+        <NodeLayout
+          Size="229,42"
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search\Existing Market Leads from SQL"
+          TopLeft="489.5,5.5" />
+        <NodeLayout
+          Size="118,42"
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search\API Sort"
+          TopLeft="347,107.5" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search\JSON Parser Add id back in"
+          TopLeft="237.5,617.5" />
+        <NodeLayout
+          Size="244,42"
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search\Merge Join To Find Those to Insert"
+          TopLeft="464,209.5" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search\Insert or Ignore"
+          TopLeft="509,311.5" />
+        <NodeLayout
+          Size="120,42"
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search\SQL Sort"
+          TopLeft="526,107.5" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search\Trash Destination 1"
+          TopLeft="5.50000000000011,617.5" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search\Web API Destination"
+          TopLeft="253,515.5" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search\Search Market Leads"
+          TopLeft="287.5,5.5" />
+        <NodeLayout
+          Size="196,42"
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search\Add accountid and origin"
+          TopLeft="243,821.5" />
+        <NodeLayout
+          Size="109,42"
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search\record"
+          TopLeft="286.5,719.5" />
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[WebApiDestination Error Output]"
+          TopLeft="313,557.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-222,60.0000000000001"
+              Start="0,0"
+              End="-222,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3243243243244" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3243243243244"
+                    Point2="0,24.3243243243244"
+                    Point3="-4,24.3243243243244" />
+                  <mssgle:LineSegment
+                    End="-218,24.3243243243244" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-218,24.3243243243244"
+                    Point2="-222,24.3243243243244"
+                    Point3="-222,28.3243243243244" />
+                  <mssgle:LineSegment
+                    End="-222,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-182.8215625,29.3243243243244,143.643125,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[upsert]"
+          TopLeft="561.666666666667,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-220.666666666667,60"
+              Start="0,0"
+              End="-220.666666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3701799485861" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3701799485861"
+                    Point2="0,24.3701799485861"
+                    Point3="-4,24.3701799485861" />
+                  <mssgle:LineSegment
+                    End="-216.666666666667,24.3701799485861" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-216.666666666667,24.3701799485861"
+                    Point2="-220.666666666667,24.3701799485861"
+                    Point3="-220.666666666667,28.3701799485861" />
+                  <mssgle:LineSegment
+                    End="-220.666666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-124.900872395834,29.3701799485861,29.135078125,11.033203125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[Sort Output1]"
+          TopLeft="406,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="140.666666666667,60"
+              Start="0,0"
+              End="140.666666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.7654723127036" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.7654723127036"
+                    Point2="0,35.7654723127036"
+                    Point3="4,35.7654723127036" />
+                  <mssgle:LineSegment
+                    End="136.666666666667,35.7654723127036" />
+                  <mssgle:CubicBezierSegment
+                    Point1="136.666666666667,35.7654723127036"
+                    Point2="140.666666666667,35.7654723127036"
+                    Point3="140.666666666667,39.7654723127036" />
+                  <mssgle:LineSegment
+                    End="140.666666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[Sort Output]"
+          TopLeft="586,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="39.3333333333334,60"
+              Start="0,0"
+              End="39.3333333333334,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.7654723127036" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.7654723127036"
+                    Point2="0,35.7654723127036"
+                    Point3="4,35.7654723127036" />
+                  <mssgle:LineSegment
+                    End="35.3333333333334,35.7654723127036" />
+                  <mssgle:CubicBezierSegment
+                    Point1="35.3333333333334,35.7654723127036"
+                    Point2="39.3333333333334,35.7654723127036"
+                    Point3="39.3333333333334,39.7654723127036" />
+                  <mssgle:LineSegment
+                    End="39.3333333333334,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[Response Output]"
+          TopLeft="369,557.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-28,60"
+              Start="0,0"
+              End="-28,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3243243243243" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3243243243243"
+                    Point2="0,24.3243243243243"
+                    Point3="-4,24.3243243243243" />
+                  <mssgle:LineSegment
+                    End="-24,24.3243243243243" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-24,24.3243243243243"
+                    Point2="-28,24.3243243243243"
+                    Point3="-28,28.3243243243243" />
+                  <mssgle:LineSegment
+                    End="-28,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[OLE DB Source Output]"
+          TopLeft="604,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-18,60"
+              Start="0,0"
+              End="-18,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="-4,30" />
+                  <mssgle:LineSegment
+                    End="-14,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-14,30"
+                    Point2="-18,30"
+                    Point3="-18,34" />
+                  <mssgle:LineSegment
+                    End="-18,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[Merge Join Output]"
+          TopLeft="586,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[JsonSourceOutput]"
+          TopLeft="376,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="30,60"
+              Start="0,0"
+              End="30,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="26,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="26,30"
+                    Point2="30,30"
+                    Point3="30,34" />
+                  <mssgle:LineSegment
+                    End="30,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[JsonParserTransformOutput1]"
+          TopLeft="341,761.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[JsonParserTransformOutput]"
+          TopLeft="341,659.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[JsonGeneratorTransformOutput]"
+          TopLeft="341,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[ignore]"
+          TopLeft="610.333333333333,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-24.3333333333334,60"
+              Start="0,0"
+              End="-24.3333333333334,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3701799485861" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3701799485861"
+                    Point2="0,24.3701799485861"
+                    Point3="-4,24.3701799485861" />
+                  <mssgle:LineSegment
+                    End="-20.3333333333334,24.3701799485861" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-20.3333333333334,24.3701799485861"
+                    Point2="-24.3333333333334,24.3701799485861"
+                    Point3="-24.3333333333334,28.3701799485861" />
+                  <mssgle:LineSegment
+                    End="-24.3333333333334,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-26.5716080729167,29.3701799485861,28.8098828125,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[Derived Column Output]"
+          TopLeft="341,863.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="16.5,60"
+              Start="0,0"
+              End="16.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="12.5,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="12.5,30"
+                    Point2="16.5,30"
+                    Point3="16.5,34" />
+                  <mssgle:LineSegment
+                    End="16.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Iterate Offices\Sequence Container\MarketLead search\Existing Market Leads from SQL">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Iterate Offices\Sequence Container\Match Profile">
     <LayoutInfo>
@@ -26948,9 +28420,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -26984,9 +28454,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -27020,9 +28488,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -27056,9 +28522,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -27080,9 +28544,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -27104,9 +28566,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -27140,9 +28600,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -27164,9 +28622,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -27224,9 +28680,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -27261,7 +28715,7 @@ WHERE [AccountId] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-165.8850390625,29.3037974683544,160.770078125,16"
+              BoundingBox="-157.3215625,29.3037974683544,143.643125,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -28400,9 +29854,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28436,9 +29888,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28472,9 +29922,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28508,9 +29956,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28532,9 +29978,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28568,9 +30012,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28592,9 +30034,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28616,9 +30056,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28640,9 +30078,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28712,1440 +30148,6 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <TaskHost
-    design-time-name="Package\Iterate Offices\Sequence Container\Campaign Members">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="136,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members\Read details"
-          TopLeft="253,515.5" />
-        <NodeLayout
-          Size="198,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members\Upsert CampaignMember"
-          TopLeft="269.5,923.5" />
-        <NodeLayout
-          Size="141,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members\Build request"
-          TopLeft="238,413.5" />
-        <NodeLayout
-          Size="162,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members\Trash Destination"
-          TopLeft="505,413.5" />
-        <NodeLayout
-          Size="207,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members\JSON Parser Add id back in"
-          TopLeft="237.5,617.5" />
-        <NodeLayout
-          Size="109,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members\record"
-          TopLeft="286.5,719.5" />
-        <NodeLayout
-          Size="259,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members\Existing Campaign Members from SQL"
-          TopLeft="489.5,5.5" />
-        <NodeLayout
-          Size="244,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members\Merge Join To Find Those to Insert"
-          TopLeft="464,209.5" />
-        <NodeLayout
-          Size="118,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members\API Sort"
-          TopLeft="347,107.5" />
-        <NodeLayout
-          Size="120,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members\SQL Sort"
-          TopLeft="526,107.5" />
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members\Trash Destination 1"
-          TopLeft="5.50000000000011,617.5" />
-        <NodeLayout
-          Size="154,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members\Insert or Ignore"
-          TopLeft="509,311.5" />
-        <NodeLayout
-          Size="166,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members\Search Campaigns"
-          TopLeft="287.5,5.5" />
-        <NodeLayout
-          Size="196,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members\Add accountid and origin"
-          TopLeft="243,821.5" />
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[WebApiDestination Error Output]"
-          TopLeft="299.666666666667,557.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-208.666666666667,60"
-              Start="0,0"
-              End="-208.666666666667,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.4186046511628" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.4186046511628"
-                    Point2="0,24.4186046511628"
-                    Point3="-4,24.4186046511628" />
-                  <mssgle:LineSegment
-                    End="-204.666666666667,24.4186046511628" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-204.666666666667,24.4186046511628"
-                    Point2="-208.666666666667,24.4186046511628"
-                    Point3="-208.666666666667,28.4186046511628" />
-                  <mssgle:LineSegment
-                    End="-208.666666666667,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-176.154895833334,29.4186046511628,143.643125,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[upsert]"
-          TopLeft="561.666666666667,353.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-253.166666666667,60"
-              Start="0,0"
-              End="-253.166666666667,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.3701799485861" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.3701799485861"
-                    Point2="0,24.3701799485861"
-                    Point3="-4,24.3701799485861" />
-                  <mssgle:LineSegment
-                    End="-249.166666666667,24.3701799485861" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-249.166666666667,24.3701799485861"
-                    Point2="-253.166666666667,24.3701799485861"
-                    Point3="-253.166666666667,28.3701799485861" />
-                  <mssgle:LineSegment
-                    End="-253.166666666667,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-141.150872395833,29.3701799485861,29.135078125,11.033203125"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[Sort Output1]"
-          TopLeft="406,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="140.666666666667,60"
-              Start="0,0"
-              End="140.666666666667,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,31.7654723127036" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,31.7654723127036"
-                    Point2="0,35.7654723127036"
-                    Point3="4,35.7654723127036" />
-                  <mssgle:LineSegment
-                    End="136.666666666667,35.7654723127036" />
-                  <mssgle:CubicBezierSegment
-                    Point1="136.666666666667,35.7654723127036"
-                    Point2="140.666666666667,35.7654723127036"
-                    Point3="140.666666666667,39.7654723127036" />
-                  <mssgle:LineSegment
-                    End="140.666666666667,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[Sort Output]"
-          TopLeft="586,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="39.3333333333334,60"
-              Start="0,0"
-              End="39.3333333333334,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,31.7654723127036" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,31.7654723127036"
-                    Point2="0,35.7654723127036"
-                    Point3="4,35.7654723127036" />
-                  <mssgle:LineSegment
-                    End="35.3333333333334,35.7654723127036" />
-                  <mssgle:CubicBezierSegment
-                    Point1="35.3333333333334,35.7654723127036"
-                    Point2="39.3333333333334,35.7654723127036"
-                    Point3="39.3333333333334,39.7654723127036" />
-                  <mssgle:LineSegment
-                    End="39.3333333333334,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[Response Output]"
-          TopLeft="341.666666666667,557.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[OLE DB Source Output]"
-          TopLeft="619,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-33,60"
-              Start="0,0"
-              End="-33,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="-4,30" />
-                  <mssgle:LineSegment
-                    End="-29,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-29,30"
-                    Point2="-33,30"
-                    Point3="-33,34" />
-                  <mssgle:LineSegment
-                    End="-33,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[Merge Join Output]"
-          TopLeft="586,251.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[JsonSourceOutput]"
-          TopLeft="370.5,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="35.5,60"
-              Start="0,0"
-              End="35.5,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="4,30" />
-                  <mssgle:LineSegment
-                    End="31.5,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="31.5,30"
-                    Point2="35.5,30"
-                    Point3="35.5,34" />
-                  <mssgle:LineSegment
-                    End="35.5,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[JsonParserTransformOutput1]"
-          TopLeft="341,659.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[JsonParserTransformOutput]"
-          TopLeft="341,761.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[JsonGeneratorTransformOutput]"
-          TopLeft="308.5,455.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="12.5,60"
-              Start="0,0"
-              End="12.5,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="4,30" />
-                  <mssgle:LineSegment
-                    End="8.5,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="8.5,30"
-                    Point2="12.5,30"
-                    Point3="12.5,34" />
-                  <mssgle:LineSegment
-                    End="12.5,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[ignore]"
-          TopLeft="610.333333333333,353.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-24.3333333333334,60"
-              Start="0,0"
-              End="-24.3333333333334,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.3701799485861" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.3701799485861"
-                    Point2="0,24.3701799485861"
-                    Point3="-4,24.3701799485861" />
-                  <mssgle:LineSegment
-                    End="-20.3333333333334,24.3701799485861" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-20.3333333333334,24.3701799485861"
-                    Point2="-24.3333333333334,24.3701799485861"
-                    Point3="-24.3333333333334,28.3701799485861" />
-                  <mssgle:LineSegment
-                    End="-24.3333333333334,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-26.5716080729167,29.3701799485861,28.8098828125,11.384765625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaign Members.Paths[Derived Column Output]"
-          TopLeft="341,863.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="27.5,60"
-              Start="0,0"
-              End="27.5,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="4,30" />
-                  <mssgle:LineSegment
-                    End="23.5,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="23.5,30"
-                    Point2="27.5,30"
-                    Point3="27.5,34" />
-                  <mssgle:LineSegment
-                    End="27.5,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <TaskHost
-    design-time-name="Package\Iterate Offices\Sequence Container\Campaigns">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="136,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaigns\Read details"
-          TopLeft="253,515.5" />
-        <NodeLayout
-          Size="160,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaigns\Upsert Campaign"
-          TopLeft="269.5,923.5" />
-        <NodeLayout
-          Size="141,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaigns\Build request"
-          TopLeft="238,413.5" />
-        <NodeLayout
-          Size="162,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaigns\Trash Destination"
-          TopLeft="505,413.5" />
-        <NodeLayout
-          Size="207,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaigns\JSON Parser Add id back in"
-          TopLeft="237.5,617.5" />
-        <NodeLayout
-          Size="109,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaigns\record"
-          TopLeft="286.5,719.5" />
-        <NodeLayout
-          Size="218,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaigns\Existing Campaigns from SQL"
-          TopLeft="489.5,5.5" />
-        <NodeLayout
-          Size="244,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaigns\Merge Join To Find Those to Insert"
-          TopLeft="464,209.5" />
-        <NodeLayout
-          Size="118,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaigns\API Sort"
-          TopLeft="347,107.5" />
-        <NodeLayout
-          Size="120,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaigns\SQL Sort"
-          TopLeft="526,107.5" />
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaigns\Trash Destination 1"
-          TopLeft="5.50000000000011,617.5" />
-        <NodeLayout
-          Size="154,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaigns\Insert or Ignore"
-          TopLeft="509,311.5" />
-        <NodeLayout
-          Size="166,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaigns\Search Campaigns"
-          TopLeft="287.5,5.5" />
-        <NodeLayout
-          Size="196,42"
-          Id="Package\Iterate Offices\Sequence Container\Campaigns\Add accountid and origin"
-          TopLeft="243,821.5" />
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[WebApiDestination Error Output]"
-          TopLeft="299.666666666667,557.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-208.666666666667,60"
-              Start="0,0"
-              End="-208.666666666667,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.4186046511628" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.4186046511628"
-                    Point2="0,24.4186046511628"
-                    Point3="-4,24.4186046511628" />
-                  <mssgle:LineSegment
-                    End="-204.666666666667,24.4186046511628" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-204.666666666667,24.4186046511628"
-                    Point2="-208.666666666667,24.4186046511628"
-                    Point3="-208.666666666667,28.4186046511628" />
-                  <mssgle:LineSegment
-                    End="-208.666666666667,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-176.154895833333,29.4186046511628,143.643125,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[upsert]"
-          TopLeft="561.666666666667,353.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-253.166666666667,60"
-              Start="0,0"
-              End="-253.166666666667,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.3701799485861" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.3701799485861"
-                    Point2="0,24.3701799485861"
-                    Point3="-4,24.3701799485861" />
-                  <mssgle:LineSegment
-                    End="-249.166666666667,24.3701799485861" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-249.166666666667,24.3701799485861"
-                    Point2="-253.166666666667,24.3701799485861"
-                    Point3="-253.166666666667,28.3701799485861" />
-                  <mssgle:LineSegment
-                    End="-253.166666666667,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-141.150872395833,29.3701799485861,29.135078125,11.033203125"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[Sort Output1]"
-          TopLeft="406,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="140.666666666667,60"
-              Start="0,0"
-              End="140.666666666667,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,31.7654723127036" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,31.7654723127036"
-                    Point2="0,35.7654723127036"
-                    Point3="4,35.7654723127036" />
-                  <mssgle:LineSegment
-                    End="136.666666666667,35.7654723127036" />
-                  <mssgle:CubicBezierSegment
-                    Point1="136.666666666667,35.7654723127036"
-                    Point2="140.666666666667,35.7654723127036"
-                    Point3="140.666666666667,39.7654723127036" />
-                  <mssgle:LineSegment
-                    End="140.666666666667,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[Sort Output]"
-          TopLeft="586,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="39.3333333333334,60"
-              Start="0,0"
-              End="39.3333333333334,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,31.7654723127036" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,31.7654723127036"
-                    Point2="0,35.7654723127036"
-                    Point3="4,35.7654723127036" />
-                  <mssgle:LineSegment
-                    End="35.3333333333334,35.7654723127036" />
-                  <mssgle:CubicBezierSegment
-                    Point1="35.3333333333334,35.7654723127036"
-                    Point2="39.3333333333334,35.7654723127036"
-                    Point3="39.3333333333334,39.7654723127036" />
-                  <mssgle:LineSegment
-                    End="39.3333333333334,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[Response Output]"
-          TopLeft="341.666666666667,557.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[OLE DB Source Output]"
-          TopLeft="598.5,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-12.5,60"
-              Start="0,0"
-              End="-12.5,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="-4,30" />
-                  <mssgle:LineSegment
-                    End="-8.5,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-8.5,30"
-                    Point2="-12.5,30"
-                    Point3="-12.5,34" />
-                  <mssgle:LineSegment
-                    End="-12.5,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[Merge Join Output]"
-          TopLeft="586,251.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[JsonSourceOutput]"
-          TopLeft="370.5,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="35.5,60"
-              Start="0,0"
-              End="35.5,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="4,30" />
-                  <mssgle:LineSegment
-                    End="31.5,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="31.5,30"
-                    Point2="35.5,30"
-                    Point3="35.5,34" />
-                  <mssgle:LineSegment
-                    End="35.5,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[JsonParserTransformOutput1]"
-          TopLeft="341,659.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[JsonParserTransformOutput]"
-          TopLeft="341,761.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[JsonGeneratorTransformOutput]"
-          TopLeft="308.5,455.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="12.5,60"
-              Start="0,0"
-              End="12.5,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="4,30" />
-                  <mssgle:LineSegment
-                    End="8.5,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="8.5,30"
-                    Point2="12.5,30"
-                    Point3="12.5,34" />
-                  <mssgle:LineSegment
-                    End="12.5,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[ignore]"
-          TopLeft="610.333333333333,353.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-24.3333333333334,60"
-              Start="0,0"
-              End="-24.3333333333334,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.3701799485861" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.3701799485861"
-                    Point2="0,24.3701799485861"
-                    Point3="-4,24.3701799485861" />
-                  <mssgle:LineSegment
-                    End="-20.3333333333334,24.3701799485861" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-20.3333333333334,24.3701799485861"
-                    Point2="-24.3333333333334,24.3701799485861"
-                    Point3="-24.3333333333334,28.3701799485861" />
-                  <mssgle:LineSegment
-                    End="-24.3333333333334,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-26.5716080729167,29.3701799485861,28.8098828125,11.384765625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\Campaigns.Paths[Derived Column Output]"
-          TopLeft="341,863.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="8.5,60"
-              Start="0,0"
-              End="8.5,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="4,30" />
-                  <mssgle:LineSegment
-                    End="4.5,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="4.5,30"
-                    Point2="8.5,30"
-                    Point3="8.5,34" />
-                  <mssgle:LineSegment
-                    End="8.5,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <TaskHost
-    design-time-name="Package\Iterate Offices\Sequence Container\MarketLead search">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="162,42"
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search\Trash Destination"
-          TopLeft="505,413.5" />
-        <NodeLayout
-          Size="206,42"
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search\JSON Generator Transform"
-          TopLeft="238,413.5" />
-        <NodeLayout
-          Size="176,42"
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search\Upsert Market Leads"
-          TopLeft="269.5,923.5" />
-        <NodeLayout
-          Size="229,42"
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search\Existing Market Leads from SQL"
-          TopLeft="489.5,5.5" />
-        <NodeLayout
-          Size="118,42"
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search\API Sort"
-          TopLeft="347,107.5" />
-        <NodeLayout
-          Size="207,42"
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search\JSON Parser Add id back in"
-          TopLeft="237.5,617.5" />
-        <NodeLayout
-          Size="244,42"
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search\Merge Join To Find Those to Insert"
-          TopLeft="464,209.5" />
-        <NodeLayout
-          Size="154,42"
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search\Insert or Ignore"
-          TopLeft="509,311.5" />
-        <NodeLayout
-          Size="120,42"
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search\SQL Sort"
-          TopLeft="526,107.5" />
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search\Trash Destination 1"
-          TopLeft="5.50000000000011,617.5" />
-        <NodeLayout
-          Size="176,42"
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search\Web API Destination"
-          TopLeft="253,515.5" />
-        <NodeLayout
-          Size="177,42"
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search\Search Market Leads"
-          TopLeft="287.5,5.5" />
-        <NodeLayout
-          Size="196,42"
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search\Add accountid and origin"
-          TopLeft="243,821.5" />
-        <NodeLayout
-          Size="109,42"
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search\record"
-          TopLeft="286.5,719.5" />
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[WebApiDestination Error Output]"
-          TopLeft="313,557.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-222,60.0000000000001"
-              Start="0,0"
-              End="-222,52.5000000000001">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.3243243243244" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.3243243243244"
-                    Point2="0,24.3243243243244"
-                    Point3="-4,24.3243243243244" />
-                  <mssgle:LineSegment
-                    End="-218,24.3243243243244" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-218,24.3243243243244"
-                    Point2="-222,24.3243243243244"
-                    Point3="-222,28.3243243243244" />
-                  <mssgle:LineSegment
-                    End="-222,52.5000000000001" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-182.8215625,29.3243243243244,143.643125,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[upsert]"
-          TopLeft="561.666666666667,353.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-220.666666666667,60"
-              Start="0,0"
-              End="-220.666666666667,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.3701799485861" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.3701799485861"
-                    Point2="0,24.3701799485861"
-                    Point3="-4,24.3701799485861" />
-                  <mssgle:LineSegment
-                    End="-216.666666666667,24.3701799485861" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-216.666666666667,24.3701799485861"
-                    Point2="-220.666666666667,24.3701799485861"
-                    Point3="-220.666666666667,28.3701799485861" />
-                  <mssgle:LineSegment
-                    End="-220.666666666667,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-124.900872395834,29.3701799485861,29.135078125,11.033203125"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[Sort Output1]"
-          TopLeft="406,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="140.666666666667,60"
-              Start="0,0"
-              End="140.666666666667,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,31.7654723127036" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,31.7654723127036"
-                    Point2="0,35.7654723127036"
-                    Point3="4,35.7654723127036" />
-                  <mssgle:LineSegment
-                    End="136.666666666667,35.7654723127036" />
-                  <mssgle:CubicBezierSegment
-                    Point1="136.666666666667,35.7654723127036"
-                    Point2="140.666666666667,35.7654723127036"
-                    Point3="140.666666666667,39.7654723127036" />
-                  <mssgle:LineSegment
-                    End="140.666666666667,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[Sort Output]"
-          TopLeft="586,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="39.3333333333334,60"
-              Start="0,0"
-              End="39.3333333333334,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,31.7654723127036" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,31.7654723127036"
-                    Point2="0,35.7654723127036"
-                    Point3="4,35.7654723127036" />
-                  <mssgle:LineSegment
-                    End="35.3333333333334,35.7654723127036" />
-                  <mssgle:CubicBezierSegment
-                    Point1="35.3333333333334,35.7654723127036"
-                    Point2="39.3333333333334,35.7654723127036"
-                    Point3="39.3333333333334,39.7654723127036" />
-                  <mssgle:LineSegment
-                    End="39.3333333333334,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[Response Output]"
-          TopLeft="369,557.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-28,60"
-              Start="0,0"
-              End="-28,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.3243243243243" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.3243243243243"
-                    Point2="0,24.3243243243243"
-                    Point3="-4,24.3243243243243" />
-                  <mssgle:LineSegment
-                    End="-24,24.3243243243243" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-24,24.3243243243243"
-                    Point2="-28,24.3243243243243"
-                    Point3="-28,28.3243243243243" />
-                  <mssgle:LineSegment
-                    End="-28,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[OLE DB Source Output]"
-          TopLeft="604,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-18,60"
-              Start="0,0"
-              End="-18,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="-4,30" />
-                  <mssgle:LineSegment
-                    End="-14,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-14,30"
-                    Point2="-18,30"
-                    Point3="-18,34" />
-                  <mssgle:LineSegment
-                    End="-18,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[Merge Join Output]"
-          TopLeft="586,251.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[JsonSourceOutput]"
-          TopLeft="376,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="30,60"
-              Start="0,0"
-              End="30,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="4,30" />
-                  <mssgle:LineSegment
-                    End="26,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="26,30"
-                    Point2="30,30"
-                    Point3="30,34" />
-                  <mssgle:LineSegment
-                    End="30,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[JsonParserTransformOutput1]"
-          TopLeft="341,761.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[JsonParserTransformOutput]"
-          TopLeft="341,659.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[JsonGeneratorTransformOutput]"
-          TopLeft="341,455.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[ignore]"
-          TopLeft="610.333333333333,353.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-24.3333333333334,60"
-              Start="0,0"
-              End="-24.3333333333334,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.3701799485861" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.3701799485861"
-                    Point2="0,24.3701799485861"
-                    Point3="-4,24.3701799485861" />
-                  <mssgle:LineSegment
-                    End="-20.3333333333334,24.3701799485861" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-20.3333333333334,24.3701799485861"
-                    Point2="-24.3333333333334,24.3701799485861"
-                    Point3="-24.3333333333334,28.3701799485861" />
-                  <mssgle:LineSegment
-                    End="-24.3333333333334,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-26.5716080729167,29.3701799485861,28.8098828125,11.384765625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Iterate Offices\Sequence Container\MarketLead search.Paths[Derived Column Output]"
-          TopLeft="341,863.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="16.5,60"
-              Start="0,0"
-              End="16.5,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="4,30" />
-                  <mssgle:LineSegment
-                    End="12.5,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="12.5,30"
-                    Point2="16.5,30"
-                    Point3="16.5,34" />
-                  <mssgle:LineSegment
-                    End="16.5,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -30153,7 +30155,7 @@ WHERE [AccountId] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Iterate Offices\Sequence Container\MarketLead search\Existing Market Leads from SQL">
+    design-time-name="Package\Iterate Offices\Sequence Container\Reminders\Existing Reminders from SQL">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
