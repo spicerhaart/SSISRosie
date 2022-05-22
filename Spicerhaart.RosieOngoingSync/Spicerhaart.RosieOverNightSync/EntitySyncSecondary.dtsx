@@ -8,13 +8,13 @@
   DTS:DTSID="{ED3F410A-42A2-47C7-B41E-91EC48120B83}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:FailParentOnFailure="True"
-  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
   DTS:LocaleID="2057"
   DTS:ObjectName="EntitySyncSecondary"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="1062"
-  DTS:VersionGUID="{50F77EAB-C0F7-4075-AC0A-95AF4F5B0AC9}">
+  DTS:VersionBuild="1063"
+  DTS:VersionGUID="{A745890E-1CB8-4EEF-BD99-8DB52F45F9ED}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -25,17 +25,15 @@
       DTS:ObjectName="colsqlbi01v.Entities">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
           DTS:ConnectionString="Data Source=colsqlbi01v;User ID=wh_user;Initial Catalog=Entities;Provider=SQLNCLI11.1;Auto Translate=False;">
           <EncryptedData
             Type="http://www.w3.org/2001/04/xmlenc#Element"
-            Salt="1+oBJvCfuA=="
-            IV="uJtAOAcpXj0=" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            Salt="E8dO1LDYXQ=="
+            IV="mj4VSqKFHJM=" xmlns="http://www.w3.org/2001/04/xmlenc#">
             <EncryptionMethod
               Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" />
             <CipherData>
-              <CipherValue>uJtAOAcpXj2QJ1Z53QNKAa9AFTsq1dkrj2mCl9zOoq72GwXN8vcALmW2sCZXC6qZAJCIvs2RxRsSa6gHvj2mDF3QY0Vhy+spGIuKqP0XeQxQOgIQt/JnicKJr+puzlRC390GpVBy6nOrPgeDZTlLTWZByy32p6wx</CipherValue>
+              <CipherValue>mj4VSqKFHJNgzH4G23Wgp6D3BXOXVqucyr8GPn+14CDbpA3W7bGOebg/9MaiULzHG94YXMcxSOB7SnJwFSjYVs5KJKZ3kNS+q3sPtB9MAcJXRAhV3amY811okuwqIky6LZo1S1wjyWvGpoDXYIbYyXdotUj0D1bT</CipherValue>
             </CipherData>
           </EncryptedData>
         </DTS:ConnectionManager>
@@ -48,17 +46,15 @@
       DTS:ObjectName="colsqlbi01v.Entities 1">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
           DTS:ConnectionString="Data Source=colsqlbi01v;User ID=wh_user;Initial Catalog=Entities;Provider=SQLNCLI11.1;Auto Translate=False;">
           <EncryptedData
             Type="http://www.w3.org/2001/04/xmlenc#Element"
-            Salt="uk3f33dGvg=="
-            IV="Re2CA4lr91s=" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            Salt="coKrOlxAGQ=="
+            IV="dHL2bJYOEXI=" xmlns="http://www.w3.org/2001/04/xmlenc#">
             <EncryptionMethod
               Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" />
             <CipherData>
-              <CipherValue>Re2CA4lr91sOTMAufSiV+qpnUbPTjFNbwafOy9kCH+/jwiz5RB/m1+iDpHRoI1IlEPNsNJ8+jBcbC2IQ/kbv6AOj0PRIWC+XTkepYICye850okP91oXx1/Tnz2l3aUdALDmzkR42uplD93nTA1evkQbSIZHn7zX5</CipherValue>
+              <CipherValue>dHL2bJYOEXK1Y3+GGw4RiJR/6XgAxAEXsEL1TpZQaT22K4wT8DaCSqygkCWo3zNQ0EIedwEsA9CR318rh3FNIx1arSbAkCaQUZvRmi1HSpgO/pEFfoIcyBrEkm7LeKIBjaiYMTSkwtPT0+g9wVVL2m62MOB8+ti9</CipherValue>
             </CipherData>
           </EncryptedData>
         </DTS:ConnectionManager>
@@ -81,8 +77,6 @@
       DTS:ObjectName="COLSQLBI01v.Metrics">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
           DTS:ConnectionString="Data Source=COLSQLBI01v;Initial Catalog=Metrics;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -93,8 +87,6 @@
       DTS:ObjectName="COLSQLBI01V.RosieWorkBench">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
           DTS:ConnectionString="Data Source=COLSQLBI01V;Initial Catalog=RosieWorkBench;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -105,8 +97,7 @@
       DTS:ObjectName="HTTP">
       <DTS:ObjectData>
         <ConnectionManager
-          ConnectionString="Url=https://api.rexsoftware.com/rex.php;CredentialType=Notset;UserName=;Timeout=100000;SoapWssPasswordType=Notset;JwtCustomClaims=;RetainCookies=False;UseProxy=False;ProxyUrl=;UseProxyCreds=False;ProxyUserName=;DoNotUseDefaultProxy=False;UseClientCertificate=False;CertificatePath=;CertificateStorageType=CurrentUser;CertificateStoreName=My;CertificateThumbprint=;RetryMode=None;RetryCountMax=3;RetryWaitTimeMs=2000;RetryMultiplyWaitTime=False;RetryMessageList=;RetryStatusCodeList=;AuthScheme=Bearer;TokenAuthHeader=;TokenUrl=;TokenRequestData=;TokenRequestHeaders=Accept:*/*||Cache-Control:no-cache;TokenRequestMethod=;TokenRequestContentType=Default;TokenRequestIsMultiPart=False;TokenResponseContentFilter=;TokenResponseValueExtractMode=Body;TokenResponseCookie=;TokenResponseHeader=;TokenResponseContentType=None;TokenExpirationTimeInSeconds=3600;EnableRequestHashing=False;HashAlgorithm=sha256;HashSignatureFormat=;HashSignatureFormatForLogin=;ExtraHeaders=;ExtraHeadersForLogin=;HashTimestampFormat=;HashTreatSecretAsNonBase64=False;HashSignWithApiKey=False;RetainSameConnection=False"
-          ConnectByProxy="False" />
+          ConnectionString="Url=https://api.rexsoftware.com/rex.php;CredentialType=Notset;UserName=;Timeout=100000;SoapWssPasswordType=Notset;JwtCustomClaims=;RetainCookies=False;UseProxy=False;ProxyUrl=;UseProxyCreds=False;ProxyUserName=;DoNotUseDefaultProxy=False;UseClientCertificate=False;CertificatePath=;CertificateStorageType=CurrentUser;CertificateStoreName=My;CertificateThumbprint=;RetryMode=None;RetryCountMax=3;RetryWaitTimeMs=2000;RetryMultiplyWaitTime=False;RetryMessageList=;RetryStatusCodeList=;AuthScheme=Bearer;TokenAuthHeader=;TokenUrl=;TokenRequestData=;TokenRequestHeaders=Accept:*/*||Cache-Control:no-cache;TokenRequestMethod=;TokenRequestContentType=Default;TokenRequestIsMultiPart=False;TokenResponseContentFilter=;TokenResponseValueExtractMode=Body;TokenResponseCookie=;TokenResponseHeader=;TokenResponseContentType=None;TokenExpirationTimeInSeconds=3600;EnableRequestHashing=False;HashAlgorithm=sha256;HashSignatureFormat=;HashSignatureFormatForLogin=;ExtraHeaders=;ExtraHeadersForLogin=;HashTimestampFormat=;HashTreatSecretAsNonBase64=False;HashSignWithApiKey=False;RetainSameConnection=False" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -116,8 +107,7 @@
       DTS:ObjectName="HTTP 1">
       <DTS:ObjectData>
         <ConnectionManager
-          ConnectionString="Url=https://api.rexsoftware.com/rex.php;CredentialType=Notset;UserName=;Timeout=100000;SoapWssPasswordType=Notset;JwtCustomClaims=;RetainCookies=False;UseProxy=False;ProxyUrl=;UseProxyCreds=False;ProxyUserName=;DoNotUseDefaultProxy=False;UseClientCertificate=False;CertificatePath=;CertificateStorageType=CurrentUser;CertificateStoreName=My;CertificateThumbprint=;RetryMode=None;RetryCountMax=3;RetryWaitTimeMs=2000;RetryMultiplyWaitTime=False;RetryMessageList=;RetryStatusCodeList=;AuthScheme=Bearer;TokenAuthHeader=;TokenUrl=;TokenRequestData=;TokenRequestHeaders=Accept:*/*||Cache-Control:no-cache;TokenRequestMethod=;TokenRequestContentType=Default;TokenRequestIsMultiPart=False;TokenResponseContentFilter=;TokenResponseValueExtractMode=Body;TokenResponseCookie=;TokenResponseHeader=;TokenResponseContentType=None;TokenExpirationTimeInSeconds=3600;EnableRequestHashing=False;HashAlgorithm=sha256;HashSignatureFormat=;HashSignatureFormatForLogin=;ExtraHeaders=;ExtraHeadersForLogin=;HashTimestampFormat=;HashTreatSecretAsNonBase64=False;HashSignWithApiKey=False;RetainSameConnection=False"
-          ConnectByProxy="False" />
+          ConnectionString="Url=https://api.rexsoftware.com/rex.php;CredentialType=Notset;UserName=;Timeout=100000;SoapWssPasswordType=Notset;JwtCustomClaims=;RetainCookies=False;UseProxy=False;ProxyUrl=;UseProxyCreds=False;ProxyUserName=;DoNotUseDefaultProxy=False;UseClientCertificate=False;CertificatePath=;CertificateStorageType=CurrentUser;CertificateStoreName=My;CertificateThumbprint=;RetryMode=None;RetryCountMax=3;RetryWaitTimeMs=2000;RetryMultiplyWaitTime=False;RetryMessageList=;RetryStatusCodeList=;AuthScheme=Bearer;TokenAuthHeader=;TokenUrl=;TokenRequestData=;TokenRequestHeaders=Accept:*/*||Cache-Control:no-cache;TokenRequestMethod=;TokenRequestContentType=Default;TokenRequestIsMultiPart=False;TokenResponseContentFilter=;TokenResponseValueExtractMode=Body;TokenResponseCookie=;TokenResponseHeader=;TokenResponseContentType=None;TokenExpirationTimeInSeconds=3600;EnableRequestHashing=False;HashAlgorithm=sha256;HashSignatureFormat=;HashSignatureFormatForLogin=;ExtraHeaders=;ExtraHeadersForLogin=;HashTimestampFormat=;HashTreatSecretAsNonBase64=False;HashSignWithApiKey=False;RetainSameConnection=False" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -137,8 +127,7 @@
       DTS:ObjectName="SMTP">
       <DTS:ObjectData>
         <ConnectionManager
-          ConnectionString="SmtpServer=outlookcol;UserName=;Port=25;EnableSsl=False;Timeout=10000;EnableAnonymousAuth=False"
-          ConnectByProxy="False" />
+          ConnectionString="SmtpServer=outlookcol;UserName=;Port=25;EnableSsl=False;Timeout=10000;EnableAnonymousAuth=False" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -148,8 +137,7 @@
       DTS:ObjectName="SMTP Connection Manager">
       <DTS:ObjectData>
         <SmtpConnectionManager
-          ConnectionString="SmtpServer=outlookcol;UseWindowsAuthentication=False;EnableSsl=False;"
-          ConnectByProxy="False" />
+          ConnectionString="SmtpServer=outlookcol;UseWindowsAuthentication=False;EnableSsl=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -1045,7 +1033,7 @@ WHERE [AccountId] = ?</property>
                         <property
                           dataType="System.String"
                           description="The mappings between the parameters in the SQL command and variables."
-                          name="ParameterMapping">"Parameter0:Input",{40C273CD-83FA-4737-B171-10500D92D346};</property>
+                          name="ParameterMapping">"Parameter0:Input",{EE81ACF9-9058-4481-A346-732989159AA5};</property>
                       </properties>
                       <connections>
                         <connection
@@ -4198,7 +4186,7 @@ WHERE [AccountId] = ?</property>
                         <property
                           dataType="System.String"
                           description="The mappings between the parameters in the SQL command and variables."
-                          name="ParameterMapping">"Parameter0:Input",{40C273CD-83FA-4737-B171-10500D92D346};</property>
+                          name="ParameterMapping">"Parameter0:Input",{EE81ACF9-9058-4481-A346-732989159AA5};</property>
                       </properties>
                       <connections>
                         <connection
@@ -26500,9 +26488,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -26536,9 +26522,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -26560,9 +26544,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -26596,9 +26578,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -26620,9 +26600,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -26656,9 +26634,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -26680,9 +26656,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -26704,9 +26678,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -26740,9 +26712,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -26812,14 +26782,20 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Iterate Offices\Sequence Container\Campaign Members\Existing Campaign Members from SQL">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Iterate Offices\Sequence Container\Campaigns">
     <LayoutInfo>
@@ -26913,7 +26889,7 @@ WHERE [AccountId] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-176.154895833333,29.4186046511628,143.643125,11.609375"
+              BoundingBox="-176.154895833334,29.4186046511628,143.643125,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -26984,9 +26960,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -27020,9 +26994,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -27044,9 +27016,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -27080,9 +27050,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -27104,9 +27072,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -27140,9 +27106,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -27164,9 +27128,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -27188,9 +27150,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -27224,9 +27184,7 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -27296,14 +27254,20 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Iterate Offices\Sequence Container\Campaigns\Existing Campaigns from SQL">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Iterate Offices\Sequence Container\Listing Portal Upload">
     <LayoutInfo>
@@ -28420,7 +28384,9 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28454,7 +28420,9 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28488,7 +28456,9 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28522,7 +28492,9 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28544,7 +28516,9 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28566,7 +28540,9 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28600,7 +28576,9 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28622,7 +28600,9 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28680,7 +28660,9 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -29854,7 +29836,9 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -29888,7 +29872,9 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -29922,7 +29908,9 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -29956,7 +29944,9 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -29978,7 +29968,9 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -30012,7 +30004,9 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -30034,7 +30028,9 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -30056,7 +30052,9 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -30078,7 +30076,9 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -30148,7 +30148,9 @@ WHERE [AccountId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
