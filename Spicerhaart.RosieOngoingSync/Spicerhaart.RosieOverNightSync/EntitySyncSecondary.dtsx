@@ -13,8 +13,8 @@
   DTS:ObjectName="EntitySyncSecondary"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="1062"
-  DTS:VersionGUID="{50F77EAB-C0F7-4075-AC0A-95AF4F5B0AC9}">
+  DTS:VersionBuild="1063"
+  DTS:VersionGUID="{09FAD35E-2B99-4818-96B3-E3A6B40C91E5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -30,12 +30,12 @@
           DTS:ConnectionString="Data Source=colsqlbi01v;User ID=wh_user;Initial Catalog=Entities;Provider=SQLNCLI11.1;Auto Translate=False;">
           <EncryptedData
             Type="http://www.w3.org/2001/04/xmlenc#Element"
-            Salt="1+oBJvCfuA=="
-            IV="uJtAOAcpXj0=" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            Salt="HCOd3bKM3w=="
+            IV="Oe4FM3zXSbY=" xmlns="http://www.w3.org/2001/04/xmlenc#">
             <EncryptionMethod
               Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" />
             <CipherData>
-              <CipherValue>uJtAOAcpXj2QJ1Z53QNKAa9AFTsq1dkrj2mCl9zOoq72GwXN8vcALmW2sCZXC6qZAJCIvs2RxRsSa6gHvj2mDF3QY0Vhy+spGIuKqP0XeQxQOgIQt/JnicKJr+puzlRC390GpVBy6nOrPgeDZTlLTWZByy32p6wx</CipherValue>
+              <CipherValue>Oe4FM3zXSbZW4jBRqlfJw6TuV3LVbwDYDAmXE6v5Uohz8ucGe6dOBfiPVpb6rTLN0sLlO+SKgZU3KCPg+0Bnnq5jIPfR8/mda0fXjMk7+IJAgDIPIVdNqBUQRRp5rWaW6lep6eJQGfRn+xcW2Onop7tQt8COBtl/</CipherValue>
             </CipherData>
           </EncryptedData>
         </DTS:ConnectionManager>
@@ -53,12 +53,12 @@
           DTS:ConnectionString="Data Source=colsqlbi01v;User ID=wh_user;Initial Catalog=Entities;Provider=SQLNCLI11.1;Auto Translate=False;">
           <EncryptedData
             Type="http://www.w3.org/2001/04/xmlenc#Element"
-            Salt="uk3f33dGvg=="
-            IV="Re2CA4lr91s=" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            Salt="qEOVEzWP7g=="
+            IV="yv0fknCSSt4=" xmlns="http://www.w3.org/2001/04/xmlenc#">
             <EncryptionMethod
               Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" />
             <CipherData>
-              <CipherValue>Re2CA4lr91sOTMAufSiV+qpnUbPTjFNbwafOy9kCH+/jwiz5RB/m1+iDpHRoI1IlEPNsNJ8+jBcbC2IQ/kbv6AOj0PRIWC+XTkepYICye850okP91oXx1/Tnz2l3aUdALDmzkR42uplD93nTA1evkQbSIZHn7zX5</CipherValue>
+              <CipherValue>yv0fknCSSt7R11djGhH5nfzdALzDF7bSO0aLQKonGdSpzR1psLsbi8HWP+WQGTAb0uG9cTlQs2P9fOkx1XieaMVEpfR7DLd88ATWvikn4ePnepYLGKSn5YXMAeC43MqIVSNtYClumJgo0RmcpWvXTL580TyykeMm</CipherValue>
             </CipherData>
           </EncryptedData>
         </DTS:ConnectionManager>
@@ -631,6 +631,7 @@
               DTS:refId="Package\Iterate Offices\Sequence Container\Campaign Members"
               DTS:CreationName="Microsoft.Pipeline"
               DTS:Description="Data Flow Task"
+              DTS:Disabled="True"
               DTS:DTSID="{c2d800ae-d19a-4c49-890b-f4f55d748d7f}"
               DTS:ExecutableType="Microsoft.Pipeline"
               DTS:LocaleID="-1"
@@ -3784,6 +3785,7 @@ WHERE [AccountId] = ?</property>
               DTS:refId="Package\Iterate Offices\Sequence Container\Campaigns"
               DTS:CreationName="Microsoft.Pipeline"
               DTS:Description="Data Flow Task"
+              DTS:Disabled="True"
               DTS:DTSID="{1915c9d4-c1a4-47d1-9b96-0bb20931bced}"
               DTS:ExecutableType="Microsoft.Pipeline"
               DTS:LocaleID="-1"
@@ -7923,6 +7925,7 @@ WHERE [AccountId] = ?</property>
               DTS:refId="Package\Iterate Offices\Sequence Container\MarketLead search"
               DTS:CreationName="Microsoft.Pipeline"
               DTS:Description="Data Flow Task"
+              DTS:Disabled="True"
               DTS:DTSID="{2634602e-2e8e-4464-b4be-1dc4819c2d8a}"
               DTS:ExecutableType="Microsoft.Pipeline"
               DTS:LocaleID="-1"
