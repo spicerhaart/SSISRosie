@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="12/10/2018 3:00:52 PM"
@@ -8,14 +8,13 @@
   DTS:DTSID="{51883404-4BC0-449E-85C5-DDB5220BBDF0}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:FailParentOnFailure="True"
-  DTS:LastModifiedProductVersion="13.0.5026.0"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
   DTS:LocaleID="2057"
   DTS:MaxErrorCount="0"
   DTS:ObjectName="OffersPull"
   DTS:PackageType="5"
-  DTS:ProtectionLevel="1"
-  DTS:VersionBuild="118"
-  DTS:VersionGUID="{32C1B111-62FF-4AC5-B378-873D8F90E9B2}">
+  DTS:VersionBuild="119"
+  DTS:VersionGUID="{4EFD646C-8C98-44C2-9921-32B562D22876}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -36,7 +35,8 @@
       DTS:ObjectName="SMTP">
       <DTS:ObjectData>
         <ConnectionManager
-          ConnectionString="SmtpServer=outlookcol;UserName=;Port=25;EnableSsl=False;Timeout=10000;EnableAnonymousAuth=False" />
+          ConnectionString="SmtpServer=outlookcol;UserName=;Port=25;EnableSsl=False;Timeout=10000;EnableAnonymousAuth=False"
+          ConnectByProxy="False" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -48,7 +48,7 @@
       DTS:ObjectName="OfficeID">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">0042</DTS:Property>
+        DTS:Name="ParameterValue">0382</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -57,7 +57,7 @@
       DTS:ObjectName="RexAccountID">
       <DTS:Property
         DTS:DataType="3"
-        DTS:Name="ParameterValue">1901</DTS:Property>
+        DTS:Name="ParameterValue">1979</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -1606,7 +1606,7 @@
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT o.offer_id, o.prop_ref, o.app_ref, o.rid_contract, o.etag_contract, o.rid_substantiation, p.office_id
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT o.offer_id, o.prop_ref, o.app_ref, o.rid_contract, o.etag_contract, o.rid_substantiation, p.office_id
 FROM tbl_offer o
 LEFT JOIN tbl_prop p
     ON o.prop_ref = p.prop_ref
@@ -1616,7 +1616,7 @@ WHERE rid_contract IS NOT NULL</property>
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT o.offer_id, o.prop_ref, o.app_ref, o.rid_contract, o.etag_contract, o.rid_substantiation, p.office_id
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT o.offer_id, o.prop_ref, o.app_ref, o.rid_contract, o.etag_contract, o.rid_substantiation, p.office_id
 FROM tbl_offer o
 LEFT JOIN tbl_prop p
     ON o.prop_ref = p.prop_ref
@@ -3532,12 +3532,12 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
               name="Data Conversion Output"
               startId="Package\Determine upsert list\Convert rid_contract column to int.Outputs[Data Conversion Output]" />
             <path
-              refId="Package\Determine upsert list.Paths[Derived Column Output1]"
+              refId="Package\Determine upsert list.Paths[Derived Column Output]"
               endId="Package\Determine upsert list\Persist object to variable.Inputs[Recordset Destination Input]"
               name="Derived Column Output"
               startId="Package\Determine upsert list\Remove nulls before save to variable.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Determine upsert list.Paths[Derived Column Output]"
+              refId="Package\Determine upsert list.Paths[Derived Column Output1]"
               endId="Package\Determine upsert list\Lookup tbl_offer record.Inputs[Lookup Input]"
               name="Derived Column Output"
               startId="Package\Determine upsert list\Add office id.Outputs[Derived Column Output]" />
@@ -3577,12 +3577,12 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
               name="Row Count Output 1"
               startId="Package\Determine upsert list\Ignore list (Equality).Outputs[Row Count Output 1]" />
             <path
-              refId="Package\Determine upsert list.Paths[Sort Output1]"
+              refId="Package\Determine upsert list.Paths[Sort Output]"
               endId="Package\Determine upsert list\Merge.Inputs[Merge Input 2]"
               name="Sort Output"
               startId="Package\Determine upsert list\Sort fresh contracts.Outputs[Sort Output]" />
             <path
-              refId="Package\Determine upsert list.Paths[Sort Output]"
+              refId="Package\Determine upsert list.Paths[Sort Output1]"
               endId="Package\Determine upsert list\Merge.Inputs[Merge Input 1]"
               name="Sort Output"
               startId="Package\Determine upsert list\Sort on rid_contract.Outputs[Sort Output]" />
@@ -7786,7 +7786,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -8103,7 +8103,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -8302,7 +8302,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -8459,7 +8459,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -13650,22 +13650,22 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
               </components>
               <paths>
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output6]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Parse contract conditions.Inputs[JsonParserTransformInput]"
                   name="Derived Column Output"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set up contract conditions object.Outputs[Derived Column Output]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output5]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output1]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Insert doi.Inputs[OLE DB Destination Input]"
                   name="Derived Column Output"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Add contract id DOI CF.Outputs[Derived Column Output]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output8]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output2]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set DOICF error.Inputs[SetVariableTransformInput]"
                   name="Derived Column Output"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Format DOI custom fields error.Outputs[Derived Column Output]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output7]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output3]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set contract error.Inputs[SetVariableTransformInput]"
                   name="Derived Column Output"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Format contract error.Outputs[Derived Column Output]" />
@@ -13675,47 +13675,52 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
                   name="Derived Column Output"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Add relevant id substantiation.Outputs[Derived Column Output]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output1]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output5]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Insert contract.Inputs[OLE DB Destination Input]"
                   name="Derived Column Output"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Add contract id contract.Outputs[Derived Column Output]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output6]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set substantiation error.Inputs[SetVariableTransformInput]"
                   name="Derived Column Output"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Format substantiation error.Outputs[Derived Column Output]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output3]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output7]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set offer history error.Inputs[SetVariableTransformInput]"
                   name="Derived Column Output"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Format offer history error.Outputs[Derived Column Output]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output2]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output8]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Insert offer history.Inputs[OLE DB Destination Input]"
                   name="Derived Column Output"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Add contract id.Outputs[Derived Column Output]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Error2]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Error]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Format substantiation error.Inputs[Derived Column Input]"
                   name="Error"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Subtantiation has error?.Outputs[Error]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Error3]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Error1]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Format offer history error.Inputs[Derived Column Input]"
                   name="Error"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Offer history has error?.Outputs[Error]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Error]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Error2]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Format contract error.Inputs[Derived Column Input]"
                   name="Error"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Contract has error?.Outputs[Error]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Error1]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Error3]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Format DOI custom fields error.Inputs[Derived Column Input]"
                   name="Error"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\DOI custom fields have has error?.Outputs[Error]" />
                 <path
                   refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonParserTransformOutput2]"
+                  endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Add contract id.Inputs[Derived Column Input]"
+                  name="JsonParserTransformOutput"
+                  startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Parse offer history.Outputs[JsonParserTransformOutput]" />
+                <path
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonParserTransformOutput]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set up contract conditions object.Inputs[Derived Column Input]"
                   name="JsonParserTransformOutput"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Parse listing purch tenants.Outputs[JsonParserTransformOutput]" />
@@ -13725,67 +13730,62 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
                   name="JsonParserTransformOutput"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Parse contract conditions.Outputs[JsonParserTransformOutput]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonParserTransformOutput]"
-                  endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Add contract id.Inputs[Derived Column Input]"
-                  name="JsonParserTransformOutput"
-                  startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Parse offer history.Outputs[JsonParserTransformOutput]" />
-                <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonSourceOutput2]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonSourceOutput]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\DOI custom fields have has error?.Inputs[Conditional Split Input]"
                   name="JsonSourceOutput"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Get contract DOI custom fields.Outputs[JsonSourceOutput]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonSourceOutput3]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonSourceOutput1]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Offer history has error?.Inputs[Conditional Split Input]"
                   name="JsonSourceOutput"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Get offer history.Outputs[JsonSourceOutput]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonSourceOutput]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonSourceOutput2]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Contract has error?.Inputs[Conditional Split Input]"
                   name="JsonSourceOutput"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Get contract.Outputs[JsonSourceOutput]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonSourceOutput1]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonSourceOutput3]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Subtantiation has error?.Inputs[Conditional Split Input]"
                   name="JsonSourceOutput"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Search substantiation.Outputs[JsonSourceOutput]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[No Error2]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[No Error]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Parse offer history.Inputs[JsonParserTransformInput]"
                   name="No Error"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Offer history has error?.Outputs[No Error]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[No Error3]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[No Error1]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Add contract id DOI CF.Inputs[Derived Column Input]"
                   name="No Error"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\DOI custom fields have has error?.Outputs[No Error]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[No Error]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[No Error2]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Add relevant id substantiation.Inputs[Derived Column Input]"
                   name="No Error"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Subtantiation has error?.Outputs[No Error]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[No Error1]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[No Error3]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Parse listing purch tenants.Inputs[JsonParserTransformInput]"
                   name="No Error"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Contract has error?.Outputs[No Error]" />
                 <path
                   refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput2]"
-                  endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Trash Destination 1.Inputs[TrashDestinationInput]"
-                  name="SetVariableTransformOutput"
-                  startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set substantiation error.Outputs[SetVariableTransformOutput]" />
-                <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput3]"
-                  endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Trash Destination 4.Inputs[TrashDestinationInput]"
-                  name="SetVariableTransformOutput"
-                  startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set offer history error.Outputs[SetVariableTransformOutput]" />
-                <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Trash Destination 2.Inputs[TrashDestinationInput]"
                   name="SetVariableTransformOutput"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set DOICF error.Outputs[SetVariableTransformOutput]" />
                 <path
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput]"
+                  endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Trash Destination 1.Inputs[TrashDestinationInput]"
+                  name="SetVariableTransformOutput"
+                  startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set substantiation error.Outputs[SetVariableTransformOutput]" />
+                <path
                   refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput1]"
+                  endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Trash Destination 4.Inputs[TrashDestinationInput]"
+                  name="SetVariableTransformOutput"
+                  startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set offer history error.Outputs[SetVariableTransformOutput]" />
+                <path
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput3]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Trash Destination 3.Inputs[TrashDestinationInput]"
                   name="SetVariableTransformOutput"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set contract error.Outputs[SetVariableTransformOutput]" />
@@ -13802,7 +13802,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Reset contract error"
           DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <ExpressionTask
@@ -13818,7 +13818,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Reset DOI error"
           DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <ExpressionTask
@@ -13834,7 +13834,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Reset offer history error"
           DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <ExpressionTask
@@ -13850,7 +13850,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Reset substantiation error"
           DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <ExpressionTask
@@ -13866,7 +13866,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Set failed"
           DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <ExpressionTask
@@ -15640,10 +15640,6 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="253,42"
-          Id="Package\Determine upsert list\Remove nulls before save to variable"
-          TopLeft="201.5,821.5" />
-        <NodeLayout
           Size="108,42"
           Id="Package\Determine upsert list\Merge"
           TopLeft="274,719.5" />
@@ -15668,17 +15664,13 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           Id="Package\Determine upsert list\Convert rid_contract column to int"
           TopLeft="441,209.5" />
         <NodeLayout
-          Size="195,43"
-          Id="Package\Determine upsert list\Contracts etag collection"
-          TopLeft="463.5,5.5" />
+          Size="173,42"
+          Id="Package\Determine upsert list\Sort on rid_contract"
+          TopLeft="241.5,617.5" />
         <NodeLayout
           Size="189,42"
           Id="Package\Determine upsert list\Lookup tbl_offer record"
           TopLeft="466.5,413.5" />
-        <NodeLayout
-          Size="173,42"
-          Id="Package\Determine upsert list\Sort on rid_contract"
-          TopLeft="241.5,617.5" />
         <NodeLayout
           Size="175,42"
           Id="Package\Determine upsert list\Ignore list (Equality)"
@@ -15688,9 +15680,17 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           Id="Package\Determine upsert list\Parse contract response rows"
           TopLeft="452.5,107.5" />
         <NodeLayout
+          Size="195,43"
+          Id="Package\Determine upsert list\Contracts etag collection"
+          TopLeft="463.5,5.5" />
+        <NodeLayout
           Size="138,42"
           Id="Package\Determine upsert list\Add office id"
           TopLeft="492,311.5" />
+        <NodeLayout
+          Size="253,42"
+          Id="Package\Determine upsert list\Remove nulls before save to variable"
+          TopLeft="201.5,821.5" />
         <EdgeLayout
           Id="Package\Determine upsert list.Paths[Update IDBS]"
           TopLeft="350.666666666667,557.5">
@@ -15729,40 +15729,6 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Determine upsert list.Paths[Sort Output1]"
-          TopLeft="561,659.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-216.333333333333,60"
-              Start="0,0"
-              End="-216.333333333333,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,31.4744525547445" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,31.4744525547445"
-                    Point2="0,35.4744525547445"
-                    Point3="-4,35.4744525547445" />
-                  <mssgle:LineSegment
-                    End="-212.333333333333,35.4744525547445" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-212.333333333333,35.4744525547445"
-                    Point2="-216.333333333333,35.4744525547445"
-                    Point3="-216.333333333333,39.4744525547445" />
-                  <mssgle:LineSegment
-                    End="-216.333333333333,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Determine upsert list.Paths[Sort Output]"
           TopLeft="328,659.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -15787,6 +15753,40 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
                     Point3="-16.6666666666667,39.4744525547445" />
                   <mssgle:LineSegment
                     End="-16.6666666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Determine upsert list.Paths[Sort Output]"
+          TopLeft="561,659.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-216.333333333333,60"
+              Start="0,0"
+              End="-216.333333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.4744525547445" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.4744525547445"
+                    Point2="0,35.4744525547445"
+                    Point3="-4,35.4744525547445" />
+                  <mssgle:LineSegment
+                    End="-212.333333333333,35.4744525547445" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-212.333333333333,35.4744525547445"
+                    Point2="-216.333333333333,35.4744525547445"
+                    Point3="-216.333333333333,39.4744525547445" />
+                  <mssgle:LineSegment
+                    End="-216.333333333333,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -15930,7 +15930,9 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-8,17.9166666666667,16,16"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -15993,7 +15995,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Determine upsert list.Paths[Derived Column Output1]"
-          TopLeft="328,863.5">
+          TopLeft="561,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -16015,7 +16017,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Determine upsert list.Paths[Derived Column Output]"
-          TopLeft="561,353.5">
+          TopLeft="328,863.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -16089,85 +16091,37 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
       <GraphLayout
         Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="124,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Insert doi"
-          TopLeft="586,515.5" />
-        <NodeLayout
-          Size="192,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Subtantiation has error?"
-          TopLeft="293,311.5" />
-        <NodeLayout
-          Size="181,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set offer history error"
-          TopLeft="1828.5,515.5" />
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Trash Destination 3"
-          TopLeft="1361.5,413.5" />
-        <NodeLayout
-          Size="240,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\DOI custom fields have has error?"
-          TopLeft="546,311.5" />
-        <NodeLayout
-          Size="204,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Parse listing purch tenants"
-          TopLeft="1086,209.5" />
-        <NodeLayout
-          Size="180,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Search substantiation"
-          TopLeft="299,209.5" />
-        <NodeLayout
-          Size="154,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set DOICF error"
-          TopLeft="839,515.5" />
-        <NodeLayout
-          Size="234,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set up contract conditions object"
-          TopLeft="1071,311.5" />
-        <NodeLayout
           Size="176,42"
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Insert substantiation"
           TopLeft="27.0000000000002,515.5" />
-        <NodeLayout
-          Size="170,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Contract has error?"
-          TopLeft="1356,107.5" />
-        <NodeLayout
-          Size="224,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Get contract DOI custom fields"
-          TopLeft="554,209.5" />
-        <NodeLayout
-          Size="162,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set contract error"
-          TopLeft="1366,311.5" />
-        <NodeLayout
-          Size="219,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Add relevant id substantiation"
-          TopLeft="5.50000000000023,413.5" />
-        <NodeLayout
-          Size="189,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Offer history has error?"
-          TopLeft="1588.5,311.5" />
         <NodeLayout
           Size="171,42"
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Trash Destination 1"
           TopLeft="303.5,617.5" />
         <NodeLayout
-          Size="180,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Format contract error"
-          TopLeft="1351,209.5" />
+          Size="162,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set contract error"
+          TopLeft="1366,311.5" />
         <NodeLayout
-          Size="137,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Get contract"
-          TopLeft="1372.5,5.49999999999977" />
+          Size="240,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\DOI custom fields have has error?"
+          TopLeft="546,311.5" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Subtantiation has error?"
+          TopLeft="293,311.5" />
+        <NodeLayout
+          Size="224,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Get contract DOI custom fields"
+          TopLeft="554,209.5" />
         <NodeLayout
           Size="197,42"
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Parse contract conditions"
           TopLeft="1089.5,413.5" />
         <NodeLayout
-          Size="188,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Add contract id DOI CF"
-          TopLeft="554,413.5" />
+          Size="234,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set up contract conditions object"
+          TopLeft="1071,311.5" />
         <NodeLayout
           Size="167,42"
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Insert offer history"
@@ -16177,6 +16131,46 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Insert contract"
           TopLeft="1114,617.5" />
         <NodeLayout
+          Size="219,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Add relevant id substantiation"
+          TopLeft="5.50000000000023,413.5" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Trash Destination 3"
+          TopLeft="1361.5,413.5" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Format contract error"
+          TopLeft="1351,209.5" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Offer history has error?"
+          TopLeft="1588.5,311.5" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Trash Destination 4"
+          TopLeft="1833.5,617.5" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set substantiation error"
+          TopLeft="294,515.5" />
+        <NodeLayout
+          Size="137,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Get contract"
+          TopLeft="1372.5,5.49999999999977" />
+        <NodeLayout
+          Size="188,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Add contract id DOI CF"
+          TopLeft="554,413.5" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Contract has error?"
+          TopLeft="1356,107.5" />
+        <NodeLayout
+          Size="124,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Insert doi"
+          TopLeft="586,515.5" />
+        <NodeLayout
           Size="199,42"
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Format offer history error"
           TopLeft="1819.5,413.5" />
@@ -16185,61 +16179,47 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Format substantiation error"
           TopLeft="285,413.5" />
         <NodeLayout
-          Size="190,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set substantiation error"
-          TopLeft="294,515.5" />
-        <NodeLayout
-          Size="192,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Add contract id contract"
-          TopLeft="1092,515.5" />
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Trash Destination 2"
-          TopLeft="830.5,617.5" />
-        <NodeLayout
-          Size="226,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Format DOI custom fields error"
-          TopLeft="803,413.5" />
+          Size="165,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Parse offer history"
+          TopLeft="1593.5,413.5" />
         <NodeLayout
           Size="156,42"
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Get offer history"
           TopLeft="1605,209.5" />
         <NodeLayout
-          Size="165,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Parse offer history"
-          TopLeft="1593.5,413.5" />
+          Size="181,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set offer history error"
+          TopLeft="1828.5,515.5" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Add contract id contract"
+          TopLeft="1092,515.5" />
+        <NodeLayout
+          Size="226,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Format DOI custom fields error"
+          TopLeft="803,413.5" />
         <NodeLayout
           Size="171,42"
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Trash Destination 4"
-          TopLeft="1833.5,617.5" />
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Trash Destination 2"
+          TopLeft="830.5,617.5" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set DOICF error"
+          TopLeft="839,515.5" />
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Parse listing purch tenants"
+          TopLeft="1086,209.5" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Search substantiation"
+          TopLeft="299,209.5" />
         <NodeLayout
           Size="150,42"
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Add contract id"
           TopLeft="1601,515.5" />
         <EdgeLayout
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput3]"
-          TopLeft="1919,557.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput1]"
           TopLeft="1447,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -16261,7 +16241,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput]"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput2]"
           TopLeft="916,557.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -16283,7 +16263,29 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput2]"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput1]"
+          TopLeft="1919,557.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput]"
           TopLeft="389,557.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -16306,78 +16308,6 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[No Error3]"
-          TopLeft="627.333333333334,353.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="20.6666666666666,60"
-              Start="0,0"
-              End="20.6666666666666,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.2384105960265" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.2384105960265"
-                    Point2="0,24.2384105960265"
-                    Point3="4,24.2384105960265" />
-                  <mssgle:LineSegment
-                    End="16.6666666666666,24.2384105960265" />
-                  <mssgle:CubicBezierSegment
-                    Point1="16.6666666666666,24.2384105960265"
-                    Point2="20.6666666666666,24.2384105960265"
-                    Point3="20.6666666666666,28.2384105960265" />
-                  <mssgle:LineSegment
-                    End="20.6666666666666,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8.8103580729167,29.2384105960265,38.2873828125,9.421875"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[No Error2]"
-          TopLeft="1652.83333333333,353.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="23.166666666667,60"
-              Start="0,0"
-              End="23.166666666667,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.302203567681" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.302203567681"
-                    Point2="0,24.302203567681"
-                    Point3="4,24.302203567681" />
-                  <mssgle:LineSegment
-                    End="19.166666666667,24.302203567681" />
-                  <mssgle:CubicBezierSegment
-                    Point1="19.166666666667,24.302203567681"
-                    Point2="23.166666666667,24.302203567681"
-                    Point3="23.166666666667,28.302203567681" />
-                  <mssgle:LineSegment
-                    End="23.166666666667,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-7.5603580729165,29.302203567681,38.2873828125,9.421875"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[No Error1]"
           TopLeft="1414,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -16413,7 +16343,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[No Error]"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[No Error2]"
           TopLeft="358.333333333334,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -16449,51 +16379,79 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[No Error1]"
+          TopLeft="627.333333333334,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="20.6666666666666,60"
+              Start="0,0"
+              End="20.6666666666666,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2384105960265" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2384105960265"
+                    Point2="0,24.2384105960265"
+                    Point3="4,24.2384105960265" />
+                  <mssgle:LineSegment
+                    End="16.6666666666666,24.2384105960265" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.6666666666666,24.2384105960265"
+                    Point2="20.6666666666666,24.2384105960265"
+                    Point3="20.6666666666666,28.2384105960265" />
+                  <mssgle:LineSegment
+                    End="20.6666666666666,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8.8103580729167,29.2384105960265,38.2873828125,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[No Error]"
+          TopLeft="1652.83333333333,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="23.166666666667,60"
+              Start="0,0"
+              End="23.166666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.302203567681" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.302203567681"
+                    Point2="0,24.302203567681"
+                    Point3="4,24.302203567681" />
+                  <mssgle:LineSegment
+                    End="19.166666666667,24.302203567681" />
+                  <mssgle:CubicBezierSegment
+                    Point1="19.166666666667,24.302203567681"
+                    Point2="23.166666666667,24.302203567681"
+                    Point3="23.166666666667,28.302203567681" />
+                  <mssgle:LineSegment
+                    End="23.166666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-7.5603580729165,29.302203567681,38.2873828125,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonSourceOutput3]"
-          TopLeft="1683,251.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonSourceOutput2]"
-          TopLeft="666,251.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonSourceOutput1]"
           TopLeft="389,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -16515,8 +16473,74 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonSourceOutput]"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonSourceOutput2]"
           TopLeft="1441,47.4999999999998">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonSourceOutput1]"
+          TopLeft="1683,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonSourceOutput]"
+          TopLeft="666,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonParserTransformOutput2]"
+          TopLeft="1676,455.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -16560,28 +16584,6 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonParserTransformOutput]"
-          TopLeft="1676,455.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonParserTransformOutput2]"
           TopLeft="1188,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -16604,78 +16606,6 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Error3]"
-          TopLeft="1713.16666666667,353.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="205.833333333333,60"
-              Start="0,0"
-              End="205.833333333333,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.302203567681" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.302203567681"
-                    Point2="0,24.302203567681"
-                    Point3="4,24.302203567681" />
-                  <mssgle:LineSegment
-                    End="201.833333333333,24.302203567681" />
-                  <mssgle:CubicBezierSegment
-                    Point1="201.833333333333,24.302203567681"
-                    Point2="205.833333333333,24.302203567681"
-                    Point3="205.833333333333,28.302203567681" />
-                  <mssgle:LineSegment
-                    End="205.833333333333,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="91.3879752604167,29.302203567681,23.0573828125,9.421875"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Error2]"
-          TopLeft="419.666666666667,353.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-30.6666666666666,60"
-              Start="0,0"
-              End="-30.6666666666666,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.297520661157" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.297520661157"
-                    Point2="0,24.297520661157"
-                    Point3="-4,24.297520661157" />
-                  <mssgle:LineSegment
-                    End="-26.6666666666666,24.297520661157" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-26.6666666666666,24.297520661157"
-                    Point2="-30.6666666666666,24.297520661157"
-                    Point3="-30.6666666666666,28.297520661157" />
-                  <mssgle:LineSegment
-                    End="-30.6666666666666,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-26.8620247395833,29.297520661157,23.0573828125,9.421875"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Error1]"
           TopLeft="704.666666666667,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -16711,7 +16641,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Error]"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Error2]"
           TopLeft="1468,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -16747,8 +16677,80 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Error1]"
+          TopLeft="1713.16666666667,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="205.833333333333,60"
+              Start="0,0"
+              End="205.833333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.302203567681" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.302203567681"
+                    Point2="0,24.302203567681"
+                    Point3="4,24.302203567681" />
+                  <mssgle:LineSegment
+                    End="201.833333333333,24.302203567681" />
+                  <mssgle:CubicBezierSegment
+                    Point1="201.833333333333,24.302203567681"
+                    Point2="205.833333333333,24.302203567681"
+                    Point3="205.833333333333,28.302203567681" />
+                  <mssgle:LineSegment
+                    End="205.833333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="91.3879752604167,29.302203567681,23.0573828125,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Error]"
+          TopLeft="419.666666666667,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-30.6666666666666,60"
+              Start="0,0"
+              End="-30.6666666666666,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.297520661157" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.297520661157"
+                    Point2="0,24.297520661157"
+                    Point3="-4,24.297520661157" />
+                  <mssgle:LineSegment
+                    End="-26.6666666666666,24.297520661157" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-26.6666666666666,24.297520661157"
+                    Point2="-30.6666666666666,24.297520661157"
+                    Point3="-30.6666666666666,28.297520661157" />
+                  <mssgle:LineSegment
+                    End="-30.6666666666666,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-26.8620247395833,29.297520661157,23.0573828125,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output8]"
-          TopLeft="916,455.5">
+          TopLeft="1676,557.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -16770,7 +16772,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output7]"
-          TopLeft="1444,251.5">
+          TopLeft="1919,455.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -16792,7 +16794,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output6]"
-          TopLeft="1188,353.5">
+          TopLeft="389,455.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -16814,7 +16816,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output5]"
-          TopLeft="648,455.5">
+          TopLeft="1188,557.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -16858,7 +16860,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output3]"
-          TopLeft="1919,455.5">
+          TopLeft="1444,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -16880,7 +16882,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output2]"
-          TopLeft="1676,557.5">
+          TopLeft="916,455.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -16902,7 +16904,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output1]"
-          TopLeft="1188,557.5">
+          TopLeft="648,455.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -16924,7 +16926,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[Derived Column Output]"
-          TopLeft="389,455.5">
+          TopLeft="1188,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -16947,19 +16949,6 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Insert doi">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Insert substantiation">
     <Properties>
@@ -16988,6 +16977,19 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Insert contract">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Insert doi">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
