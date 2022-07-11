@@ -13,8 +13,9 @@
   DTS:MaxErrorCount="0"
   DTS:ObjectName="OffersPull"
   DTS:PackageType="5"
-  DTS:VersionBuild="119"
-  DTS:VersionGUID="{4EFD646C-8C98-44C2-9921-32B562D22876}">
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="120"
+  DTS:VersionGUID="{B978C0CA-F535-4BB1-8987-AE7868675B26}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -13716,19 +13717,19 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\DOI custom fields have has error?.Outputs[Error]" />
                 <path
                   refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonParserTransformOutput2]"
+                  endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Add contract id contract.Inputs[Derived Column Input]"
+                  name="JsonParserTransformOutput"
+                  startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Parse contract conditions.Outputs[JsonParserTransformOutput]" />
+                <path
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonParserTransformOutput]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Add contract id.Inputs[Derived Column Input]"
                   name="JsonParserTransformOutput"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Parse offer history.Outputs[JsonParserTransformOutput]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonParserTransformOutput]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonParserTransformOutput1]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set up contract conditions object.Inputs[Derived Column Input]"
                   name="JsonParserTransformOutput"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Parse listing purch tenants.Outputs[JsonParserTransformOutput]" />
-                <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonParserTransformOutput1]"
-                  endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Add contract id contract.Inputs[Derived Column Input]"
-                  name="JsonParserTransformOutput"
-                  startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Parse contract conditions.Outputs[JsonParserTransformOutput]" />
                 <path
                   refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonSourceOutput]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\DOI custom fields have has error?.Inputs[Conditional Split Input]"
@@ -13771,19 +13772,19 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Contract has error?.Outputs[No Error]" />
                 <path
                   refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput2]"
+                  endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Trash Destination 4.Inputs[TrashDestinationInput]"
+                  name="SetVariableTransformOutput"
+                  startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set offer history error.Outputs[SetVariableTransformOutput]" />
+                <path
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Trash Destination 2.Inputs[TrashDestinationInput]"
                   name="SetVariableTransformOutput"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set DOICF error.Outputs[SetVariableTransformOutput]" />
                 <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput]"
+                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput1]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Trash Destination 1.Inputs[TrashDestinationInput]"
                   name="SetVariableTransformOutput"
                   startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set substantiation error.Outputs[SetVariableTransformOutput]" />
-                <path
-                  refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput1]"
-                  endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Trash Destination 4.Inputs[TrashDestinationInput]"
-                  name="SetVariableTransformOutput"
-                  startId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Set offer history error.Outputs[SetVariableTransformOutput]" />
                 <path
                   refId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput3]"
                   endId="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI\Trash Destination 3.Inputs[TrashDestinationInput]"
@@ -13802,7 +13803,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Reset contract error"
           DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <ExpressionTask
@@ -13818,7 +13819,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Reset DOI error"
           DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <ExpressionTask
@@ -13834,7 +13835,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Reset offer history error"
           DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <ExpressionTask
@@ -13850,7 +13851,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Reset substantiation error"
           DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <ExpressionTask
@@ -13866,7 +13867,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Set failed"
           DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <ExpressionTask
@@ -16241,7 +16242,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput2]"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput]"
           TopLeft="916,557.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -16263,7 +16264,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput1]"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput2]"
           TopLeft="1919,557.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -16285,7 +16286,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput]"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[SetVariableTransformOutput1]"
           TopLeft="389,557.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -16539,7 +16540,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonParserTransformOutput2]"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonParserTransformOutput]"
           TopLeft="1676,455.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -16561,7 +16562,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonParserTransformOutput1]"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonParserTransformOutput2]"
           TopLeft="1188,455.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -16583,7 +16584,7 @@ where [refTable].[rid_contract] = ? and [refTable].[office_id] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonParserTransformOutput]"
+          Id="Package\Foreach Loop Container - Amend offers\Perform request contract, substantiation and DOI.Paths[JsonParserTransformOutput1]"
           TopLeft="1188,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
